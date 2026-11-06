@@ -1,0 +1,16 @@
+# Claude Code: builder worktrees and per-machine settings
+.claude/worktrees/
+.claude/settings.local.json
+
+# Pages the arch-docs skill builds from the architecture docs
+brain/architecture/html/
+
+# Beads: the board lives on the Dolt server on alberto-linux. Nothing under
+# .beads/ is committed, its config included, so nothing from beads reaches
+# a remote.
+.beads/
+.beads-credential-key
+.dolt/
+*.db
+# bd's concurrency gate: flock files beside .beads, never deleted
+*.gate.lock*
