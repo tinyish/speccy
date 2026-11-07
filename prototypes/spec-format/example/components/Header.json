@@ -1,0 +1,20 @@
+{
+  "component": "Header",
+  "about": "A screen's title, with a field and a button to add a task.",
+  "props": { "title": "text" },
+  "events": { "add": "text" },
+  "local": { "draft": "text" },
+  "layout": "row",
+  "children": [
+    { "id": "title", "use": "text", "width": "fill", "bind": { "text": "title" } },
+    { "id": "draft", "use": "input", "props": { "type": "text", "placeholder": "New task" }, "bind": { "value": "draft" } },
+    { "id": "add", "use": "button", "props": { "text": "Add" } }
+  ],
+  "states": {
+    "blank": { "about": "The field is empty, so there is nothing to add.", "set": { "add.disabled": true } }
+  },
+  "on": {
+    "draft.change": [{ "set": { "draft": { "ref": "event" } } }],
+    "add.press": [{ "emit": "add", "with": "draft" }, { "set": { "draft": "" } }]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "component": "ErrorMessage",
+  "about": "Says something failed, and offers to try again.",
+  "props": { "message": "text" },
+  "events": { "retry": null },
+  "layout": "column",
+  "children": [
+    { "id": "message", "use": "text", "bind": { "text": "message" } },
+    { "id": "retry", "use": "button", "props": { "text": "Try again" } }
+  ],
+  "on": { "retry.press": [{ "emit": "retry" }] }
+}

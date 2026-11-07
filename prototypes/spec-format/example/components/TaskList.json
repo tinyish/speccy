@@ -1,0 +1,19 @@
+{
+  "component": "TaskList",
+  "about": "Every task, one row each.",
+  "props": { "tasks": "Task[]" },
+  "events": { "toggle": "Task", "delete": "Task" },
+  "layout": "column",
+  "children": [
+    {
+      "id": "rows", "use": "list", "width": "fill", "height": "fill",
+      "children": [
+        { "id": "row", "use": "TaskRow", "width": "fill", "repeat": { "each": "tasks", "as": "task" }, "bind": { "task": "task" } }
+      ]
+    }
+  ],
+  "on": {
+    "row.toggle": [{ "emit": "toggle", "with": "event" }],
+    "row.delete": [{ "emit": "delete", "with": "event" }]
+  }
+}

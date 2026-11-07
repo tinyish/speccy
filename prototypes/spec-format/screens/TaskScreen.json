@@ -1,0 +1,120 @@
+{
+  "screen": "TaskScreen",
+  "about": "The user's tasks: add, complete and delete them.",
+  "device": "mobile",
+  "data": {
+    "tasks": {
+      "type": "Task[]",
+      "from": "Task.list"
+    }
+  },
+  "layout": "column",
+  "children": [
+    {
+      "id": "header",
+      "use": "Header",
+      "width": "fill",
+      "props": {
+        "title": "Tasks"
+      }
+    },
+    {
+      "id": "offline",
+      "use": "Banner",
+      "width": "fill",
+      "hidden": true,
+      "props": {
+        "message": "You're offline. Changes will sync when you're back."
+      }
+    },
+    {
+      "id": "loading",
+      "use": "text",
+      "hidden": true,
+      "props": {
+        "text": "Loading your tasks…"
+      }
+    },
+    {
+      "id": "list",
+      "use": "TaskList",
+      "width": "fill",
+      "height": "fill",
+      "bind": {
+        "tasks": "tasks"
+      }
+    },
+    {
+      "id": "empty",
+      "use": "EmptyState",
+      "width": "fill",
+      "hidden": true,
+      "props": {
+        "message": "No tasks yet. Add one above."
+      }
+    },
+    {
+      "id": "error",
+      "use": "ErrorMessage",
+      "width": "fill",
+      "hidden": true,
+      "props": {
+        "message": "We couldn't load your tasks."
+      }
+    }
+  ],
+  "states": {
+    "offline": {
+      "about": "The device has no connection; the list stays usable.",
+      "set": {
+        "offline.hidden": false
+      }
+    },
+    "loading": {
+      "about": "The tasks are loading.",
+      "set": {
+        "list.hidden": true,
+        "loading.hidden": false
+      }
+    },
+    "empty": {
+      "about": "The tasks have loaded and there are none.",
+      "set": {
+        "list.hidden": true,
+        "empty.hidden": false
+      }
+    },
+    "error": {
+      "about": "The tasks failed to load.",
+      "set": {
+        "list.hidden": true,
+        "error.hidden": false
+      }
+    }
+  },
+  "on": {
+    "header.add": [
+      {
+        "call": "Task.add",
+        "with": "event"
+      }
+    ],
+    "list.toggle": [
+      {
+        "call": "Task.toggle",
+        "with": "event"
+      }
+    ],
+    "list.delete": [
+      {
+        "call": "Task.delete",
+        "with": "event"
+      }
+    ],
+    "error.retry": [
+      {
+        "reload": "tasks"
+      }
+    ]
+  }
+}

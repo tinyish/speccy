@@ -1,0 +1,5 @@
+{
+  "data": "Task",
+  "fields": { "id": "text", "title": "text", "done": "bool" },
+  "operations": ["list", "add", "toggle", "delete"]
+}

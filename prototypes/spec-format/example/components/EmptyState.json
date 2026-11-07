@@ -1,0 +1,7 @@
+{
+  "component": "EmptyState",
+  "about": "Says there is nothing here yet.",
+  "props": { "message": "text" },
+  "layout": "column",
+  "children": [{ "id": "message", "use": "text", "bind": { "text": "message" } }]
+}

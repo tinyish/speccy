@@ -1,0 +1,35 @@
+{
+  "component": "TaskRow",
+  "about": "One task: mark it done, or delete it after confirming.",
+  "props": { "task": "Task" },
+  "events": { "toggle": "Task", "delete": "Task" },
+  "layout": "row",
+  "children": [
+    { "id": "done", "use": "input", "props": { "type": "checkbox" }, "bind": { "checked": "task.done" } },
+    { "id": "title", "use": "text", "width": "fill", "bind": { "text": "task.title" } },
+    { "id": "delete", "use": "button", "props": { "text": "Delete" } },
+    {
+      "id": "confirm", "use": "dialog", "layout": "column",
+      "children": [
+        { "id": "question", "use": "text", "props": { "text": "Delete this task? This can't be undone." } },
+        {
+          "id": "actions", "use": "container", "layout": "row",
+          "children": [
+            { "id": "cancel", "use": "button", "props": { "text": "Cancel" } },
+            { "id": "yes", "use": "button", "props": { "text": "Delete" } }
+          ]
+        }
+      ]
+    }
+  ],
+  "states": {
+    "confirming": { "about": "Asking whether to delete the task.", "set": { "confirm.open": true } }
+  },
+  "on": {
+    "done.change": [{ "emit": "toggle", "with": "task" }],
+    "delete.press": [{ "enter": "confirming" }],
+    "cancel.press": [{ "exit": "confirming" }],
+    "confirm.close": [{ "exit": "confirming" }],
+    "yes.press": [{ "exit": "confirming" }, { "emit": "delete", "with": "task" }]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "container": { "element": "div", "children": true, "props": {} },
+  "text": { "element": "p", "props": { "text": "text" } },
+  "button": { "element": "button", "props": { "text": "text", "disabled": "bool" }, "events": { "press": null } },
+  "input": {
+    "element": "input",
+    "props": { "type": ["text", "checkbox", "radio"], "value": "text", "checked": "bool", "placeholder": "text", "disabled": "bool" },
+    "events": { "change": "text" }
+  },
+  "textarea": { "element": "textarea", "props": { "value": "text", "placeholder": "text", "disabled": "bool" }, "events": { "change": "text" } },
+  "select": { "element": "select", "props": { "options": "text[]", "value": "text", "disabled": "bool" }, "events": { "change": "text" } },
+  "link": { "element": "a", "props": { "text": "text", "to": "text" }, "events": { "press": null } },
+  "list": { "element": "ul", "children": true, "props": {} },
+  "form": { "element": "form", "children": true, "props": {}, "events": { "submit": null } },
+  "dialog": { "element": "dialog", "children": true, "props": { "open": "bool" }, "events": { "close": null } }
+}

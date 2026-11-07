@@ -1,0 +1,7 @@
+{
+  "component": "Banner",
+  "about": "A notice across the screen about something that affects all of it.",
+  "props": { "message": "text" },
+  "layout": "row",
+  "children": [{ "id": "message", "use": "text", "width": "fill", "bind": { "text": "message" } }]
+}
