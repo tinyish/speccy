@@ -49,7 +49,23 @@ truth.
 
 ## Principles
 
-- **<Principle in a few words>.** <What it means, and what it rules out.>
+- **Agentic-first.** speccy is designed for agents as much as for
+  people: an agent can learn the spec from its own files, write it
+  directly, check its work and see what it built, without a person in
+  between. Whatever an agent would have to guess at is a flaw in
+  speccy. It rules out anything only a person in the editor can read or
+  change.
+- **As flexible as code.** Everything the spec can say has one obvious
+  counterpart in code, and the other way round, so agents translate
+  between them one to one. A change a developer makes in one line is
+  one change in the spec. Logic stays in the code, which is its source
+  of truth; the spec describes it rather than copying it. It rules out
+  constructs no codebase could match, such as reaching inside a
+  component past what it exposes.
+- **Open format.** A spec is plain, documented text in the project's
+  own repository, readable and writable by any tool, versioned with the
+  code. It rules out a proprietary file format, a hosted store that
+  holds the spec hostage, and anything that only speccy can open.
 
 ## What success looks like
 
