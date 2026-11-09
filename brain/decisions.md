@@ -159,3 +159,50 @@ like code, and the editor shows their changes live; there is no agent
 interface. Why: the format trial showed an agent learns it from its
 files, so both kinds of author are proven with nothing agent-specific to
 build. In: `prd/mvp.md`.
+
+## canvas-renders-dom
+
+2026-11-09. The editor's canvas renders primitives as real HTML elements,
+laid out by the browser's flex and grid, inside one transformed world for
+pan and zoom; no canvas or WebGL engine. Why: penpot left the DOM for a
+Rust and Skia engine to draw large, effect-heavy vector files, which took
+it about two years and its own layout and text; speccy draws wireframes
+of HTML primitives, few per view, and real HTML keeps the canvas close to
+code. Borrowed from penpot: draw only frames in view, keep drags out of
+saved state, never store computed geometry. In: `architecture/core.md`
+when it is written.
+
+## canvas-one-item
+
+2026-11-09. The canvas shows one screen or component at a time, its base
+and a frame per state; there is no board of all screens and no overview
+until flows, which span many screens. Instances are arranged on the
+canvas and copy is edited in place on it; props and layout stay in the
+side panel, and an edit in a state's frame goes to that state. Why: states
+are what the MVP proves, and few frames per view keep the DOM canvas
+simple. In: `prd/mvp.md`.
+
+## elixir-desktop-app
+
+2026-11-09. speccy is a desktop app in Elixir and Phoenix LiveView,
+packaged with elixir-desktop, like clay. LiveView owns the spec, its files
+and the checker; the canvas's pan, zoom, drag previews and in-place
+editing run in the page as JS hooks, and only committed edits reach the
+server. Why: it keeps the way open for speccy to become a Clay-capable app
+later, and the LiveView canvas spike (`prototypes/liveview-canvas`)
+committed edits in under 20 ms in Chromium and WebKit. The React
+prototypes are rewritten; the format, catalog and render templates carry
+over. In: `architecture/core.md` when it is written.
+
+## agent-cli
+
+2026-11-09. The app installs a `speccy` command that runs without the app
+open: `check` (errors with stable codes), `render` (a frame in any state
+as a self-contained HTML file, and a PNG through headless Chrome when the
+machine has it), `explain` (the format and each primitive, generated from
+the catalog) and `open`. Agents still write the spec's files directly; the
+CLI has no edit commands. Why: penpot's agents work best when they can
+look at their result and read docs generated from the real types, and
+edit commands would be a second way to write a format that is still
+changing. One codebase keeps app and CLI on the same format. In:
+`prd/mvp.md`.

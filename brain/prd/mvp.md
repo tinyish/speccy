@@ -10,8 +10,8 @@ measures it draws on are in [seed](seed.md).
 
 ## What the MVP is
 
-An editor for building screens from components, used by Alberto and the
-coding agents he works with, and no one else yet. It is a test bench: how
+A desktop editor for building screens from components, used by Alberto
+and the coding agents he works with, and no one else yet. It is a test bench: how
 components and screens are defined is expected to change while it is
 used, and the MVP exists to try different answers on real screens and
 refine them. It covers components, screens, their layout and their
@@ -48,13 +48,22 @@ The MVP proves:
 - **States:** a name, a line on when the state applies, and only what it
   changes; drawn as frames beside the base and edited in place. States
   that hold together apply in the order written.
-- **Canvas:** the selected screen or component, its base and one frame
-  per state, with pan, zoom, inserting and reordering by drag, and undo.
+- **Canvas:** one screen or component at a time, its base and one frame
+  per state side by side; the item list switches between them. Instances
+  are inserted, reordered, moved into containers and resized on the
+  canvas, and copy is edited in place on it; props and layout are edited
+  in a side panel. An edit made in a state's frame changes that state,
+  not the base. Pan, zoom and undo.
 - **The spec lives with the code:** plain text files in the project's
   repository, which an agent reads and writes like any other code. The
   editor saves every edit to them as it is made and shows changes made
   outside it without a reload. A check reports anything that breaks the
   format or the composition rules.
+- **A command line for agents:** installed with the app and run without
+  it open. It checks the spec, with a stable code for each kind of error;
+  draws any screen or component, in any state, as a page an agent can
+  open or as a picture; explains the format and each primitive, from the
+  same catalog the editor uses; and opens the app on a spec.
 
 ## Ready to ship when
 
@@ -138,7 +147,8 @@ Done when every check under Ready to ship holds.
 
 Next, in this order: data models that screens show and instances bind to;
 interactions, which enter and exit states and change data; and flows,
-screens joined by those interactions.
+screens joined by those interactions, with a view of many screens at once
+on the canvas.
 
 Later, in no fixed order: an agent interface with proposals Alberto
 approves, links to code and drift shown on the spec, a library of
