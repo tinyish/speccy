@@ -1,0 +1,583 @@
+[
+  {
+    "kit": "untitled",
+    "page": "Activity feeds",
+    "name": "Activity feed",
+    "nodeId": "1254:128631",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1254-128631",
+    "properties": {
+      "Divider": [
+        "Divider",
+        "Connector",
+        "False",
+        "Line"
+      ],
+      "Type": [
+        "Notifications",
+        "Messages"
+      ]
+    },
+    "notes": "Feed of activity items (notifications or messages) with divider/connector styles"
+  },
+  {
+    "kit": "untitled",
+    "page": "Alerts & notifications",
+    "name": "Alert",
+    "nodeId": "1130:81134",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1130-81134",
+    "properties": {
+      "Color": [
+        "Default",
+        "Gray",
+        "Error",
+        "Warning",
+        "Success",
+        "Brand"
+      ],
+      "Size": [
+        "Floating",
+        "Full-width"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Inline/banner alert"
+  },
+  {
+    "kit": "untitled",
+    "page": "Alerts & notifications",
+    "name": "Notification",
+    "nodeId": "1135:618",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1135-618",
+    "properties": {
+      "Type": [
+        "Primary icon",
+        "Image",
+        "Avatar",
+        "Gray icon",
+        "Error icon",
+        "Warning icon",
+        "Success icon",
+        "No icon",
+        "Progress indicator"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Toast-style notification"
+  },
+  {
+    "kit": "untitled",
+    "page": "Application navigation",
+    "name": "Sidebar navigation",
+    "nodeId": "1158:90768",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1158-90768",
+    "properties": {
+      "Open": [
+        "False",
+        "True"
+      ],
+      "Type": [
+        "Simple",
+        "Dual-tier",
+        "Slim",
+        "Sections dividers",
+        "Sections subheadings"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "App sidebar nav; Open applies to mobile drawer"
+  },
+  {
+    "kit": "untitled",
+    "page": "Application navigation",
+    "name": "Header navigation",
+    "nodeId": "1207:1678",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1207-1678",
+    "properties": {
+      "Type": [
+        "Simple",
+        "Dual-tier",
+        "Tabs",
+        "Centered"
+      ],
+      "Mobile open": [
+        "False",
+        "True"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Top app header nav"
+  },
+  {
+    "kit": "untitled",
+    "page": "Breadcrumbs",
+    "name": "Breadcrumbs",
+    "nodeId": "1122:153",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1122-153",
+    "properties": {
+      "Divider": [
+        "Chevron",
+        "Slash"
+      ],
+      "Type": [
+        "Text",
+        "Text with line",
+        "Button",
+        "Account dropdowns"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Calendars",
+    "name": "Calendar",
+    "nodeId": "8022:24550",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=8022-24550",
+    "properties": {
+      "Type": [
+        "Month view",
+        "Week view",
+        "Day view"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Full event calendar (month/week/day), built from internal _Calendar* parts"
+  },
+  {
+    "kit": "untitled",
+    "page": "Card headers",
+    "name": "Card header",
+    "nodeId": "1211:169",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1211-169",
+    "properties": {
+      "Avatar": [
+        "False",
+        "True"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Header row for cards/sections"
+  },
+  {
+    "kit": "untitled",
+    "page": "Charts",
+    "name": "Line and bar chart",
+    "nodeId": "1062:46989",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1062-46989",
+    "properties": {
+      "Legend": [
+        "False",
+        "Top",
+        "Right"
+      ],
+      "Axis labels": [
+        "False",
+        "True"
+      ],
+      "Chart style": [
+        "Line",
+        "Bar"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Charts",
+    "name": "Activity gauge",
+    "nodeId": "1078:155",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1078-155",
+    "properties": {
+      "Size": [
+        "xs",
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Legend": [
+        "False",
+        "Bottom",
+        "Right"
+      ]
+    },
+    "notes": "Concentric radial progress gauge"
+  },
+  {
+    "kit": "untitled",
+    "page": "Charts",
+    "name": "Pie chart",
+    "nodeId": "1084:114",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1084-114",
+    "properties": {
+      "Size": [
+        "xxs",
+        "xs",
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Legend": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Donut hole size is on internal _Pie chart"
+  },
+  {
+    "kit": "untitled",
+    "page": "Charts",
+    "name": "Radar chart",
+    "nodeId": "1084:7362",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1084-7362",
+    "properties": {
+      "Legend": [
+        "False",
+        "Right",
+        "Bottom"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Charts",
+    "name": "Chart marker",
+    "nodeId": "8100:193259",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=8100-193259",
+    "properties": {
+      "Type": [
+        "Line",
+        "Dash",
+        "Minimal"
+      ]
+    },
+    "notes": "Hover marker/tooltip line for charts"
+  },
+  {
+    "kit": "untitled",
+    "page": "Code snippets",
+    "name": "Code snippet",
+    "nodeId": "1234:243",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1234-243",
+    "properties": {
+      "Type": [
+        "Horizontal",
+        "Vertical",
+        "Vertical with tabs"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Color pickers",
+    "name": "Color picker",
+    "nodeId": "12423:52680",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12423-52680",
+    "properties": {
+      "Type": [
+        "Solid color",
+        "Gradient stops",
+        "Image upload",
+        "Color swatch",
+        "Saved swatches sm",
+        "Saved swatches md",
+        "Brand swatches",
+        "Gray swatches",
+        "Minimal picker",
+        "Hue slider",
+        "Transparency slider",
+        "Palette picker"
+      ]
+    },
+    "notes": "Type mixes whole pickers and individual picker sections (sliders, swatch rows)"
+  },
+  {
+    "kit": "untitled",
+    "page": "Color pickers",
+    "name": "Color picker dropdown",
+    "nodeId": "12424:15898",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12424-15898",
+    "properties": {
+      "Type": [
+        "Swatch sm",
+        "Swatch button",
+        "Swatch button link",
+        "Hex input",
+        "Select",
+        "Swatch md"
+      ],
+      "Open": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Trigger + popover color picker"
+  },
+  {
+    "kit": "untitled",
+    "page": "Color pickers",
+    "name": "Color picker modal",
+    "nodeId": "12427:142023",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12427-142023",
+    "properties": {
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Command menus",
+    "name": "Command bar",
+    "nodeId": "3307:407570",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3307-407570",
+    "properties": {
+      "Type": [
+        "Users",
+        "Actions",
+        "Users menu",
+        "Integrations menu",
+        "Command only",
+        "Empty state"
+      ],
+      "Text": [
+        "Default",
+        "Stacked"
+      ]
+    },
+    "notes": "Cmd+K style command palette"
+  },
+  {
+    "kit": "untitled",
+    "page": "Content dividers",
+    "name": "Content divider",
+    "nodeId": "1252:126874",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1252-126874",
+    "properties": {
+      "Type": [
+        "Heading",
+        "Text",
+        "Button",
+        "Button group icon",
+        "Button group",
+        "Button icon"
+      ],
+      "Style": [
+        "Single line",
+        "Dual line",
+        "Background fill"
+      ]
+    },
+    "notes": "Horizontal divider with centered content"
+  },
+  {
+    "kit": "untitled",
+    "page": "Date pickers",
+    "name": "Date picker dropdown",
+    "nodeId": "1150:16803",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1150-16803",
+    "properties": {
+      "Opened": [
+        "False",
+        "True"
+      ],
+      "Type": [
+        "Dual dates",
+        "Single date",
+        "Available times"
+      ],
+      "State": [
+        "Placeholder",
+        "Active"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Trigger button + calendar popover"
+  },
+  {
+    "kit": "untitled",
+    "page": "Date pickers",
+    "name": "Date picker modal",
+    "nodeId": "1547:269867",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1547-269867",
+    "properties": {
+      "Type": [
+        "Dual dates",
+        "Single date",
+        "Available times"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Empty states",
+    "name": "Empty state",
+    "nodeId": "1182:317",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1182-317",
+    "properties": {
+      "Icon": [
+        "Featured icon",
+        "Illustration",
+        "File type icon",
+        "Folder icon",
+        "Folder icon transparent",
+        "Users radius",
+        "Users row",
+        "Integrations"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Empty states",
+    "name": "Illustration",
+    "nodeId": "1182:1085",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1182-1085",
+    "properties": {
+      "Style": [
+        "Cloud",
+        "Box",
+        "Documents",
+        "Credit card"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "notes": "Empty-state illustration graphic; usable on its own"
+  },
+  {
+    "kit": "untitled",
+    "page": "File upload",
+    "name": "File upload",
+    "nodeId": "1175:101149",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1175-101149",
+    "properties": {
+      "Files queued": [
+        "True",
+        "False"
+      ],
+      "Type": [
+        "Progress bar",
+        "Progress fill"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Drop zone plus uploaded file list"
+  },
+  {
+    "kit": "untitled",
+    "page": "Filters",
+    "name": "Filters dropdown menu",
+    "nodeId": "12232:366410",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12232-366410",
+    "properties": {
+      "State": [
+        "Default",
+        "Hover",
+        "Focused",
+        "Open empty state",
+        "Open inactive filter",
+        "Open active filters",
+        "Active",
+        "Disabled"
+      ],
+      "Orientation": [
+        "Right aligned",
+        "Left aligned"
+      ]
+    },
+    "notes": "Filter button with dropdown; State encodes open/content too"
+  },
+  {
+    "kit": "untitled",
+    "page": "Filters",
+    "name": "Filters slideout menu",
+    "nodeId": "12232:375462",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12232-375462",
+    "properties": {
+      "State": [
+        "Empty state",
+        "Inactive filter",
+        "Active filters"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Side panel of filters"
+  },
+  {
+    "kit": "untitled",
+    "page": "Filters",
+    "name": "Filters bar",
+    "nodeId": "12232:376165",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12232-376165",
+    "properties": {
+      "Type": [
+        "Simple",
+        "Tabs and search",
+        "Tabs and date picker",
+        "Date filters",
+        "Dropdowns",
+        "Dropdowns and date picker",
+        "Advanced inactive filter",
+        "Advanced active filters"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Toolbar above tables/lists"
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "name": "link",
+  "about": "Text or a badge the user follows to another page or site.",
+  "category": "navigation",
+  "element": "a",
+  "props": {
+    "text": "text",
+    "to": "text"
+  },
+  "events": {
+    "press": null
+  },
+  "children": false,
+  "states": {},
+  "defaults": {
+    "text": "Read the docs",
+    "to": "/docs"
+  },
+  "render": {
+    "el": "a",
+    "text": "{text}",
+    "attrs": {
+      "href": "{to}"
+    }
+  },
+  "sources": {
+    "untitled": [
+      {
+        "name": "Mobile app store badge (store badge)",
+        "nodeId": "1303:2162",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1303-2162"
+      }
+    ]
+  }
+}

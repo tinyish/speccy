@@ -1,0 +1,122 @@
+{
+  "name": "progress",
+  "about": "Shows how far along a task is, or that something is loading when it can't say.",
+  "category": "feedback",
+  "element": "progress",
+  "props": {
+    "label": "text",
+    "value": "number",
+    "indeterminate": "bool"
+  },
+  "events": {},
+  "children": false,
+  "states": {
+    "indeterminate": {
+      "indeterminate": true
+    }
+  },
+  "defaults": {
+    "label": "Uploading files",
+    "value": 60,
+    "indeterminate": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:stretch;width:240px"
+    },
+    "children": [
+      {
+        "el": "div",
+        "class": "wf-row",
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-small wf-grow",
+            "text": "{label}"
+          },
+          {
+            "el": "span",
+            "class": "wf-small wf-muted",
+            "if": "!indeterminate",
+            "text": "{value}%"
+          }
+        ]
+      },
+      {
+        "el": "div",
+        "class": "wf-track",
+        "attrs": {
+          "role": "progressbar",
+          "aria-label": "{label}",
+          "aria-valuenow": "{value}"
+        },
+        "children": [
+          {
+            "el": "div",
+            "class": "wf-fill",
+            "if": "!indeterminate",
+            "attrs": {
+              "style": "width:{value}%"
+            }
+          },
+          {
+            "el": "div",
+            "class": "wf-fill",
+            "if": "indeterminate",
+            "attrs": {
+              "style": "width:30%;margin-left:35%"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Linear-determinate progress indicator",
+        "nodeId": "58005:7997",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-7997"
+      },
+      {
+        "name": "Linear-indeterminate progress indicator",
+        "nodeId": "58005:8284",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8284"
+      },
+      {
+        "name": "Circular-determinate progress indicator",
+        "nodeId": "58005:8459",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8459"
+      },
+      {
+        "name": "Circular-indeterminate progress indicator",
+        "nodeId": "58005:8525",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8525"
+      },
+      {
+        "name": "Loading indicator",
+        "nodeId": "58005:8555",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8555"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Progress bar",
+        "nodeId": "1085:57382",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1085-57382"
+      },
+      {
+        "name": "Progress circle",
+        "nodeId": "1084:2717",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1084-2717"
+      },
+      {
+        "name": "Loading indicator",
+        "nodeId": "1192:610",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1192-610"
+      }
+    ]
+  }
+}

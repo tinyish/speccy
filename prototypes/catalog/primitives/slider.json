@@ -1,0 +1,167 @@
+{
+  "name": "slider",
+  "about": "A handle the user drags along a track to set one number, or two handles, when range, to set a low and a high one.",
+  "category": "inputs",
+  "element": "input type=range (two role=slider handles on one track when range)",
+  "props": {
+    "label": "text",
+    "range": "bool",
+    "value": "number",
+    "start": "number",
+    "end": "number",
+    "min": "number",
+    "max": "number",
+    "step": "number",
+    "disabled": "bool"
+  },
+  "events": {
+    "change": "number",
+    "changeStart": "number",
+    "changeEnd": "number"
+  },
+  "children": false,
+  "states": {
+    "disabled": {
+      "disabled": true
+    }
+  },
+  "defaults": {
+    "label": "Volume",
+    "range": false,
+    "value": 60,
+    "start": 20,
+    "end": 80,
+    "min": 0,
+    "max": 100,
+    "step": 10,
+    "disabled": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:stretch;width:240px"
+    },
+    "children": [
+      {
+        "el": "div",
+        "class": "wf-row wf-gap",
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-label wf-grow",
+            "if": "label",
+            "text": "{label}"
+          },
+          {
+            "el": "span",
+            "class": "wf-small wf-muted",
+            "text": "{value}",
+            "if": "!range"
+          },
+          {
+            "el": "span",
+            "class": "wf-small wf-muted",
+            "if": "range",
+            "text": "{start} – {end}"
+          }
+        ]
+      },
+      {
+        "el": "div",
+        "class": "wf-track",
+        "classIf": {
+          "wf-disabled": "disabled"
+        },
+        "attrs": {
+          "style": "position:relative;margin:8px 0"
+        },
+        "children": [
+          {
+            "el": "div",
+            "class": "wf-fill",
+            "attrs": {
+              "style": "width:{(value - min) * 100 / (max - min)}%"
+            },
+            "if": "!range"
+          },
+          {
+            "el": "span",
+            "class": "wf-thumb",
+            "attrs": {
+              "role": "slider",
+              "aria-label": "{label}",
+              "aria-valuemin": "{min}",
+              "aria-valuemax": "{max}",
+              "aria-valuenow": "{value}",
+              "aria-disabled": "{disabled}"
+            },
+            "if": "!range"
+          },
+          {
+            "el": "div",
+            "class": "wf-fill",
+            "if": "range",
+            "attrs": {
+              "style": "position:absolute;top:0;bottom:0;left:{(start - min) * 100 / (max - min)}%;width:{(end - start) * 100 / (max - min)}%"
+            }
+          },
+          {
+            "el": "span",
+            "class": "wf-thumb",
+            "if": "range",
+            "attrs": {
+              "role": "slider",
+              "aria-label": "Minimum",
+              "aria-valuemin": "{min}",
+              "aria-valuemax": "{max}",
+              "aria-valuenow": "{start}",
+              "aria-disabled": "{disabled}",
+              "style": "position:absolute;top:50%;left:{(start - min) * 100 / (max - min)}%;margin:0;transform:translate(-50%,-50%)"
+            }
+          },
+          {
+            "el": "span",
+            "class": "wf-thumb",
+            "if": "range",
+            "attrs": {
+              "role": "slider",
+              "aria-label": "Maximum",
+              "aria-valuemin": "{min}",
+              "aria-valuemax": "{max}",
+              "aria-valuenow": "{end}",
+              "aria-disabled": "{disabled}",
+              "style": "position:absolute;top:50%;left:{(end - min) * 100 / (max - min)}%;margin:0;transform:translate(-50%,-50%)"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Standard slider",
+        "nodeId": "58008:10356",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58008-10356"
+      },
+      {
+        "name": "Centered slider",
+        "nodeId": "58008:10979",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58008-10979"
+      },
+      {
+        "name": "Range slider",
+        "nodeId": "58008:11810",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58008-11810"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Slider",
+        "nodeId": "1086:534",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1086-534"
+      }
+    ]
+  }
+}

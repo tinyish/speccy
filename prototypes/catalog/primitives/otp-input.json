@@ -1,0 +1,86 @@
+{
+  "name": "otp-input",
+  "about": "Boxes the user types a short verification code into, one digit each.",
+  "category": "inputs",
+  "element": "input autocomplete=one-time-code (one box per digit)",
+  "props": {
+    "label": "text",
+    "hint": "text",
+    "length": "number",
+    "value": "text",
+    "disabled": "bool"
+  },
+  "events": {
+    "change": "text",
+    "complete": "text"
+  },
+  "children": false,
+  "states": {
+    "disabled": {
+      "disabled": true
+    }
+  },
+  "defaults": {
+    "label": "Verification code",
+    "hint": "We sent a 6-digit code to your phone.",
+    "length": 6,
+    "value": "4821",
+    "disabled": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:flex-start"
+    },
+    "children": [
+      {
+        "el": "label",
+        "class": "wf-label",
+        "if": "label",
+        "text": "{label}"
+      },
+      {
+        "el": "div",
+        "class": "wf-row",
+        "classIf": {
+          "wf-disabled": "disabled"
+        },
+        "attrs": {
+          "role": "group",
+          "aria-label": "{label}",
+          "style": "gap:6px"
+        },
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-field",
+            "each": "length",
+            "text": "{value[index]}",
+            "classIf": {
+              "wf-selected": "index={value.length}"
+            },
+            "attrs": {
+              "style": "min-width:0;width:36px;height:44px;justify-content:center;font-size:18px"
+            }
+          }
+        ]
+      },
+      {
+        "el": "span",
+        "class": "wf-hint",
+        "if": "hint",
+        "text": "{hint}"
+      }
+    ]
+  },
+  "sources": {
+    "untitled": [
+      {
+        "name": "Verification code input field",
+        "nodeId": "1106:66757",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1106-66757"
+      }
+    ]
+  }
+}

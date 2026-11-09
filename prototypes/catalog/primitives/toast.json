@@ -1,0 +1,68 @@
+{
+  "name": "toast",
+  "about": "A brief message that pops up about something that just happened, with an optional action.",
+  "category": "feedback",
+  "element": "role=status (live region)",
+  "props": {
+    "text": "text",
+    "action": "text",
+    "dismissible": "bool"
+  },
+  "events": {
+    "action": null,
+    "close": null
+  },
+  "children": false,
+  "states": {},
+  "defaults": {
+    "text": "Project archived",
+    "action": "Undo",
+    "dismissible": true
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-overlay wf-row wf-gap wf-pad",
+    "attrs": {
+      "role": "status",
+      "style": "width:320px"
+    },
+    "children": [
+      {
+        "el": "span",
+        "class": "wf-grow",
+        "text": "{text}"
+      },
+      {
+        "el": "button",
+        "class": "wf-btn",
+        "if": "action",
+        "text": "{action}"
+      },
+      {
+        "el": "button",
+        "class": "wf-small",
+        "if": "dismissible",
+        "text": "✕",
+        "attrs": {
+          "aria-label": "Close"
+        }
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Snackbar",
+        "nodeId": "53977:33575",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53977-33575"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Notification",
+        "nodeId": "1135:618",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1135-618"
+      }
+    ]
+  }
+}

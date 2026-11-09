@@ -1,0 +1,135 @@
+{
+  "name": "input",
+  "about": "A field the user types a value into, on one line or, when multiline, several.",
+  "category": "inputs",
+  "element": "input (textarea when multiline)",
+  "props": {
+    "type": [
+      "text",
+      "password",
+      "number",
+      "date",
+      "time",
+      "color"
+    ],
+    "multiline": "bool",
+    "label": "text",
+    "hint": "text",
+    "placeholder": "text",
+    "value": "text",
+    "required": "bool",
+    "invalid": "bool",
+    "disabled": "bool"
+  },
+  "events": {
+    "change": "text"
+  },
+  "children": false,
+  "states": {
+    "invalid": {
+      "invalid": true,
+      "value": "",
+      "hint": "Enter your full name."
+    },
+    "disabled": {
+      "disabled": true
+    }
+  },
+  "defaults": {
+    "type": "text",
+    "multiline": false,
+    "label": "Full name",
+    "hint": "As it appears on your ID.",
+    "placeholder": "e.g. Ada Lovelace",
+    "value": "Ada Lovelace",
+    "required": true,
+    "invalid": false,
+    "disabled": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:stretch;width:240px"
+    },
+    "children": [
+      {
+        "el": "label",
+        "class": "wf-label",
+        "if": "label",
+        "text": "{label}",
+        "children": [
+          {
+            "el": "span",
+            "if": "required",
+            "text": " *"
+          }
+        ]
+      },
+      {
+        "el": "input",
+        "class": "wf-field",
+        "classIf": {
+          "wf-error": "invalid",
+          "wf-disabled": "disabled"
+        },
+        "attrs": {
+          "type": "{type}",
+          "value": "{value}",
+          "placeholder": "{placeholder}",
+          "required": "{required}",
+          "disabled": "{disabled}",
+          "aria-invalid": "{invalid}"
+        },
+        "if": "!multiline"
+      },
+      {
+        "el": "textarea",
+        "class": "wf-field",
+        "if": "multiline",
+        "text": "{value}",
+        "classIf": {
+          "wf-error": "invalid",
+          "wf-disabled": "disabled"
+        },
+        "attrs": {
+          "rows": "3",
+          "placeholder": "{placeholder}",
+          "required": "{required}",
+          "disabled": "{disabled}",
+          "aria-invalid": "{invalid}"
+        }
+      },
+      {
+        "el": "span",
+        "class": "wf-hint",
+        "if": "hint",
+        "text": "{hint}",
+        "classIf": {
+          "wf-error": "invalid"
+        }
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Text field",
+        "nodeId": "52798:24373",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52798-24373"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Input field",
+        "nodeId": "1090:57817",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1090-57817"
+      },
+      {
+        "name": "Textarea input field",
+        "nodeId": "1238:278",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1238-278"
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "name": "divider",
+  "about": "A line separating content, with an optional label.",
+  "category": "layout",
+  "element": "hr",
+  "props": {
+    "text": "text"
+  },
+  "events": {},
+  "children": false,
+  "states": {},
+  "defaults": {
+    "text": "Or"
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-row wf-gap",
+    "attrs": {
+      "role": "separator",
+      "style": "width:240px"
+    },
+    "children": [
+      {
+        "el": "hr",
+        "class": "wf-divider wf-grow"
+      },
+      {
+        "el": "span",
+        "class": "wf-small wf-muted",
+        "if": "text",
+        "text": "{text}"
+      },
+      {
+        "el": "hr",
+        "class": "wf-divider wf-grow",
+        "if": "text"
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Horizontal/Full-width",
+        "nodeId": "51816:5860",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5860"
+      },
+      {
+        "name": "Horizontal/Inset",
+        "nodeId": "51816:5868",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5868"
+      },
+      {
+        "name": "Horizontal/Middle-inset",
+        "nodeId": "51816:5870",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5870"
+      },
+      {
+        "name": "Horizontal/Divider with subhead",
+        "nodeId": "51816:5872",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5872"
+      },
+      {
+        "name": "Vertical/Full-width",
+        "nodeId": "51816:5862",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5862"
+      },
+      {
+        "name": "Vertical/Inset",
+        "nodeId": "51816:5864",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5864"
+      },
+      {
+        "name": "Vertical/Middle-inset",
+        "nodeId": "51816:5866",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5866"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Content divider",
+        "nodeId": "1252:126874",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1252-126874"
+      }
+    ]
+  }
+}

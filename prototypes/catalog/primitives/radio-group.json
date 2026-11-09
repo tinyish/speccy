@@ -1,0 +1,140 @@
+{
+  "name": "radio-group",
+  "about": "A set of options the user picks exactly one of, as radios or a row of joined buttons.",
+  "category": "selection",
+  "element": "role=radiogroup of input type=radio (or of buttons, as a segmented control)",
+  "props": {
+    "label": "text",
+    "options": "text[]",
+    "value": "text",
+    "orientation": [
+      "vertical",
+      "horizontal"
+    ],
+    "disabled": "bool"
+  },
+  "events": {
+    "change": "text"
+  },
+  "children": false,
+  "states": {
+    "disabled": {
+      "disabled": true
+    }
+  },
+  "defaults": {
+    "label": "Delivery",
+    "options": [
+      "Standard",
+      "Express",
+      "Pickup"
+    ],
+    "value": "Express",
+    "orientation": "vertical",
+    "disabled": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "classIf": {
+      "wf-disabled": "disabled"
+    },
+    "attrs": {
+      "role": "radiogroup",
+      "aria-label": "{label}",
+      "style": "align-items:flex-start",
+      "aria-orientation": "{orientation}"
+    },
+    "children": [
+      {
+        "el": "span",
+        "class": "wf-label",
+        "if": "label",
+        "text": "{label}"
+      },
+      {
+        "el": "div",
+        "class": "wf-gap",
+        "classIf": {
+          "wf-col": "orientation=vertical",
+          "wf-row": "orientation=horizontal"
+        },
+        "attrs": {
+          "style": "align-items:flex-start"
+        },
+        "children": [
+          {
+            "el": "label",
+            "class": "wf-row wf-gap",
+            "each": "options",
+            "attrs": {
+              "role": "radio"
+            },
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-box",
+                "classIf": {
+                  "wf-selected": "item={value}"
+                },
+                "attrs": {
+                  "style": "width:16px;height:16px;flex:none;display:inline-flex;align-items:center;justify-content:center;font-size:11px;line-height:1;border-radius:50%"
+                },
+                "children": [
+                  {
+                    "el": "span",
+                    "class": "wf-dot",
+                    "if": "item={value}",
+                    "attrs": {
+                      "style": "width:6px;height:6px"
+                    }
+                  }
+                ]
+              },
+              {
+                "el": "span",
+                "text": "{item}"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Radio buttons",
+        "nodeId": "51739:4608",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51739-4608"
+      },
+      {
+        "name": "Connected button group",
+        "nodeId": "57998:47111",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-47111"
+      },
+      {
+        "name": "Segmented button (baseline)",
+        "nodeId": "53923:36615",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-36615"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Radio group",
+        "nodeId": "1142:87213",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1142-87213"
+      },
+      {
+        "name": "Radio group item (sub-part: item)",
+        "nodeId": "124:2838",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=124-2838"
+      },
+      {
+        "name": "Button group",
+        "nodeId": "1046:10171",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1046-10171"
+      }
+    ]
+  }
+}

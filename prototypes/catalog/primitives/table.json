@@ -1,0 +1,140 @@
+{
+  "name": "table",
+  "about": "Rows and columns of records the user scans, sorts and selects rows in.",
+  "category": "data-display",
+  "element": "table",
+  "props": {
+    "rows": "model[]",
+    "columns": "text[]",
+    "selectable": "bool"
+  },
+  "events": {
+    "select": "model[]"
+  },
+  "children": true,
+  "states": {},
+  "defaults": {
+    "columns": [
+      "Name",
+      "Email",
+      "Role"
+    ],
+    "selectable": true,
+    "rows": [
+      {
+        "Name": "Maya Chen",
+        "Email": "maya@acme.co",
+        "Role": "Admin"
+      },
+      {
+        "Name": "Leo Park",
+        "Email": "leo@acme.co",
+        "Role": "Editor"
+      },
+      {
+        "Name": "Ana Ruiz",
+        "Email": "ana@acme.co",
+        "Role": "Viewer"
+      }
+    ]
+  },
+  "render": {
+    "el": "table",
+    "class": "wf-box",
+    "children": [
+      {
+        "el": "thead",
+        "children": [
+          {
+            "el": "tr",
+            "children": [
+              {
+                "el": "th",
+                "if": "selectable",
+                "children": [
+                  {
+                    "el": "span",
+                    "class": "wf-box",
+                    "attrs": {
+                      "style": "width:16px;height:16px;flex:none;display:inline-flex;align-items:center;justify-content:center;font-size:11px",
+                      "aria-label": "Select all"
+                    }
+                  }
+                ]
+              },
+              {
+                "el": "th",
+                "each": "columns",
+                "as": "col",
+                "text": "{col}"
+              },
+              {
+                "el": "th"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "el": "tbody",
+        "children": [
+          {
+            "el": "tr",
+            "each": "rows",
+            "as": "row",
+            "children": [
+              {
+                "el": "td",
+                "if": "selectable",
+                "children": [
+                  {
+                    "el": "span",
+                    "class": "wf-box",
+                    "attrs": {
+                      "style": "width:16px;height:16px;flex:none;display:inline-flex;align-items:center;justify-content:center;font-size:11px",
+                      "aria-label": "Select row"
+                    }
+                  }
+                ]
+              },
+              {
+                "el": "td",
+                "each": "columns",
+                "as": "col",
+                "text": "{row[col]}"
+              },
+              {
+                "el": "td",
+                "slot": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "untitled": [
+      {
+        "name": "Table",
+        "nodeId": "1227:110587",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1227-110587"
+      },
+      {
+        "name": "Table header cell (sub-part: header cell)",
+        "nodeId": "1221:107933",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1221-107933"
+      },
+      {
+        "name": "Table cell (sub-part: cell)",
+        "nodeId": "1222:107305",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1222-107305"
+      },
+      {
+        "name": "Table cell lead action (sub-part: row select)",
+        "nodeId": "9400:570197",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9400-570197"
+      }
+    ]
+  }
+}

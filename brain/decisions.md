@@ -86,3 +86,58 @@ define each carefully. In: `objects.md`.
 are no one-off elements, as Figma allows. Why: behavior is specced once,
 on the component, and every piece of a screen has a definition an agent
 and the code can point to. In: `objects.md`.
+
+## states-stack-in-order
+
+2026-11-06. When several states hold at once, all apply in the order
+they are written, and the later wins where two change the same thing.
+Why: simple and predictable, the order is visible in the file, and
+combinations (offline and error) need no states of their own. In:
+`objects.md`.
+
+## states-described-not-conditioned
+
+2026-11-06. A state has a name, a one-line description of when it
+applies, and its formal changes; there is no condition language, and
+interactions enter and exit states. Why: a formal condition adds little
+an agent can't read from a sentence, and it forced modelling everything
+a state depends on (being offline needed a fake data model). In:
+`objects.md`, `prototypes/spec-format`.
+
+## figma-auto-layout
+
+2026-11-07. Components and screens carry Figma's full auto layout: flow
+(row, column, stack, grid), wrap, alignment, gap, padding, clipping, and
+width and height as fill, hug or fixed pixels with minimums and maximums;
+screens name their device (desktop, tablet, mobile). Supersedes
+`arrangement-and-sizing`. Why: designers expect Figma's controls, and the
+editor needs real layout to be usable. In: `objects.md`,
+`prototypes/spec-format`.
+
+## no-pattern-primitives
+
+2026-11-07. The expanded primitives hold only reusable controls; patterns
+with app content (page headers, empty states, activity feeds, metrics and
+the like) are left out, and teams compose them from primitives. Why: their
+content is app-specific, so fixed props would rarely fit. In:
+`prototypes/catalog`.
+
+## primitives-bind-models
+
+2026-11-07. A primitive with a structured value (nested items, table
+rows, calendar items, chart data) takes a data model chosen by the
+instance that binds it, written `model` or `model[]`, instead of a new
+built-in type. Why: it reuses data models rather than starting a second
+type system. In: `prototypes/catalog`; the checker doesn't support it yet.
+
+## primitives-unique-behavior
+
+2026-11-08. A primitive must have capabilities and behavior unique enough
+to be its own thing; everything an end user can compose from primitives
+is not one. That leaves 25, from the Material 3 and Untitled UI kits:
+variants fold into one primitive as options (switch into checkbox,
+sheet into dialog, tooltip into popover, tag and badge into button), and
+composable ones (tabs, navigation, alert, card…) are listed as `composed`,
+the seed of a component library to build later. Why: a small set of
+primitives with real behavior keeps the spec close to code and leaves
+everything else to composition. In: `prototypes/catalog`.

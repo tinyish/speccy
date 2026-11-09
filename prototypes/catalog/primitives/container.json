@@ -1,0 +1,124 @@
+{
+  "name": "container",
+  "about": "A box that lays out other components. It can be pressed as a whole (a card, a nav item, a tab) and carry a role: a landmark, a tab list or tab panel, a live region.",
+  "category": "layout",
+  "element": "div (role from role; role=button when pressable, link when it also has href; aria-current from current, aria-selected on a tab, aria-expanded with aria-controls when it controls another container)",
+  "props": {
+    "pressable": "bool",
+    "href": "text",
+    "role": [
+      "none",
+      "navigation",
+      "toolbar",
+      "tablist",
+      "tab",
+      "tabpanel",
+      "alert",
+      "status",
+      "group",
+      "region"
+    ],
+    "current": [
+      "none",
+      "page",
+      "step"
+    ],
+    "selected": "bool",
+    "expanded": "bool",
+    "controls": "text"
+  },
+  "events": {
+    "press": null
+  },
+  "children": true,
+  "states": {},
+  "examples": {
+    "card": {
+      "pressable": true
+    },
+    "nav item, current": {
+      "pressable": true,
+      "current": "page"
+    },
+    "tab, selected": {
+      "role": "tab",
+      "pressable": true,
+      "selected": true
+    },
+    "navigation": {
+      "role": "navigation"
+    },
+    "alert": {
+      "role": "alert"
+    }
+  },
+  "defaults": {
+    "pressable": false,
+    "href": "",
+    "role": "none",
+    "current": "none",
+    "selected": false,
+    "expanded": false,
+    "controls": ""
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-row wf-gap wf-pad wf-box",
+    "classIf": {
+      "wf-pressable": "pressable",
+      "wf-selected": "selected",
+      "wf-box wf-selected": "current!=none"
+    },
+    "attrs": {
+      "style": "flex-wrap:wrap"
+    },
+    "attrsIf": {
+      "pressable": {
+        "role": "button",
+        "tabindex": 0
+      },
+      "href": {
+        "role": "link"
+      },
+      "!pressable": {
+        "role": null
+      },
+      "role!=none": {
+        "role": "{role}"
+      },
+      "current!=none": {
+        "aria-current": "{current}"
+      },
+      "controls": {
+        "aria-controls": "{controls}",
+        "aria-expanded": "{expanded}"
+      },
+      "role=tab": {
+        "aria-selected": "{selected}",
+        "aria-expanded": null
+      }
+    },
+    "slot": true
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Standard button group (layout group)",
+        "nodeId": "58424:8117",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58424-8117"
+      },
+      {
+        "name": "Chip groups (layout group)",
+        "nodeId": "57376:5501",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57376-5501"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Buttons/Social button group (layout group)",
+        "nodeId": "1256:132638",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1256-132638"
+      }
+    ]
+  }
+}

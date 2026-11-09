@@ -1,0 +1,847 @@
+[
+  {
+    "kit": "material",
+    "page": "Menu",
+    "name": "Menu",
+    "nodeId": "58966:3975",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58966-3975",
+    "properties": {
+      "Theme": [
+        "Standard",
+        "Vibrant"
+      ],
+      "Groups": [
+        "1",
+        "2",
+        "3"
+      ],
+      "Show scrollbar": [
+        "true",
+        "false"
+      ],
+      "Show section label": [
+        "true",
+        "false"
+      ],
+      "List 1 content": [
+        "<slot>"
+      ],
+      "List 2 content": [
+        "<slot>"
+      ],
+      "List 3 content": [
+        "<slot>"
+      ]
+    },
+    "notes": "Expressive menu container; list contents are slots filled with Menu item instances."
+  },
+  {
+    "kit": "material",
+    "page": "Menu",
+    "name": "Menu item/Standard",
+    "nodeId": "58966:4100",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58966-4100",
+    "properties": {
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled",
+        "Active"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "Show leading element": [
+        "true",
+        "false"
+      ],
+      "Show trailing element": [
+        "true",
+        "false"
+      ],
+      "Show divider": [
+        "true",
+        "false"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Content": [
+        "<slot>"
+      ]
+    },
+    "notes": "Menu row for Standard theme; lives in the Building blocks frame but has no internal prefix, used to fill Menu slots."
+  },
+  {
+    "kit": "material",
+    "page": "Menu",
+    "name": "Menu item/Vibrant",
+    "nodeId": "58966:4171",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58966-4171",
+    "properties": {
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled",
+        "Active"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "Show leading element": [
+        "true",
+        "false"
+      ],
+      "Show trailing element": [
+        "true",
+        "false"
+      ],
+      "Show divider": [
+        "true",
+        "false"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Content": [
+        "<slot>"
+      ]
+    },
+    "notes": "Menu row for Vibrant theme; same props as Standard."
+  },
+  {
+    "kit": "material",
+    "page": "Menu",
+    "name": "Menu (baseline)",
+    "nodeId": "54061:36963",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54061-36963",
+    "properties": {
+      "Density": [
+        "0",
+        "-2",
+        "-4"
+      ],
+      "Show scrollbar": [
+        "true",
+        "false"
+      ]
+    },
+    "notes": "Legacy baseline (pre-expressive) menu; list items edited per instance."
+  },
+  {
+    "kit": "material",
+    "page": "Navigation",
+    "name": "Navigation Rail",
+    "nodeId": "58016:36879",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58016-36879",
+    "properties": {
+      "Alignment": [
+        "Top",
+        "Middle"
+      ],
+      "Nav items": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "Show FAB": [
+        "true",
+        "false"
+      ],
+      "Show Menu": [
+        "true",
+        "false"
+      ],
+      "Segments": [
+        "<slot>"
+      ]
+    },
+    "notes": "Collapsed side rail; nav items via slot."
+  },
+  {
+    "kit": "material",
+    "page": "Navigation",
+    "name": "Navigation Rail: Expanded",
+    "nodeId": "58016:36670",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58016-36670",
+    "properties": {
+      "Type": [
+        "Docked",
+        "Floating"
+      ],
+      "Alignment": [
+        "Top",
+        "Middle"
+      ],
+      "Nav items": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "Show FAB": [
+        "true",
+        "false"
+      ],
+      "Show Menu": [
+        "true",
+        "false"
+      ],
+      "Segments": [
+        "<slot>"
+      ]
+    },
+    "notes": "Expanded rail, replaces the deprecated navigation drawer."
+  },
+  {
+    "kit": "material",
+    "page": "Navigation",
+    "name": "Navigation Bar: Horizontal items",
+    "nodeId": "58016:37236",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58016-37236",
+    "properties": {
+      "Nav items": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "notes": "Bottom nav bar for medium window size (icon beside label)."
+  },
+  {
+    "kit": "material",
+    "page": "Navigation",
+    "name": "Navigation Bar: Vertical items",
+    "nodeId": "58016:37259",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58016-37259",
+    "properties": {
+      "Nav items": [
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "notes": "Bottom nav bar for compact window size (icon above label)."
+  },
+  {
+    "kit": "material",
+    "page": "Navigation",
+    "name": "XR/XR Navigation Rail",
+    "nodeId": "57547:2577",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57547-2577",
+    "properties": {
+      "Configuration": [
+        "Embedded FAB",
+        "No FAB"
+      ],
+      "Elevation": [
+        "Surface container"
+      ],
+      "Show menu": [
+        "true",
+        "false"
+      ]
+    },
+    "notes": "Navigation rail adapted for XR."
+  },
+  {
+    "kit": "material",
+    "page": "Navigation",
+    "name": "XR/XR Navigation bar",
+    "nodeId": "57547:4795",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57547-4795",
+    "properties": {
+      "Segments": [
+        "3",
+        "4",
+        "5"
+      ],
+      "Configuration": [
+        "Icon & label"
+      ],
+      "Elevation": [
+        "Surface container"
+      ]
+    },
+    "notes": "Navigation bar adapted for XR."
+  },
+  {
+    "kit": "material",
+    "page": "Radio button",
+    "name": "Radio buttons",
+    "nodeId": "51739:4608",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51739-4608",
+    "properties": {
+      "Selected": [
+        "True",
+        "False"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "material",
+    "page": "Search",
+    "name": "Search bar",
+    "nodeId": "52977:33813",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52977-33813",
+    "properties": {
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Pressed"
+      ],
+      "Show avatar": [
+        "False",
+        "True"
+      ],
+      "Show leading icon": [
+        "true",
+        "false"
+      ],
+      "Show 1st trailing icon": [
+        "true",
+        "false"
+      ],
+      "Show 2nd trailing icon": [
+        "true",
+        "false"
+      ],
+      "Placeholder text": [
+        "<text>"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "material",
+    "page": "Search",
+    "name": "Search full-screen layout",
+    "nodeId": "59178:4963",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59178-4963",
+    "properties": {
+      "Configuration": [
+        "Input text",
+        "Supporting text"
+      ],
+      "Show trailing Icon": [
+        "true",
+        "false"
+      ],
+      "Show list items": [
+        "true",
+        "false"
+      ],
+      "Input text": [
+        "<text>"
+      ],
+      "Placeholder text": [
+        "<text>"
+      ]
+    },
+    "notes": "Search view expanded full-screen with result list."
+  },
+  {
+    "kit": "material",
+    "page": "Search",
+    "name": "Search docked layout",
+    "nodeId": "59178:4992",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59178-4992",
+    "properties": {
+      "Configuration": [
+        "Input text",
+        "Supporting text"
+      ],
+      "Show trailing Icon": [
+        "true",
+        "false"
+      ],
+      "Show list items": [
+        "true",
+        "false"
+      ],
+      "Input text": [
+        "<text>"
+      ],
+      "Placeholder text": [
+        "<text>"
+      ]
+    },
+    "notes": "Search view docked under the bar with result list."
+  },
+  {
+    "kit": "material",
+    "page": "Search",
+    "name": "Search full-screen layout (baseline)",
+    "nodeId": "52977:34015",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52977-34015",
+    "properties": {
+      "Configuration": [
+        "Input text",
+        "Supporting text"
+      ],
+      "Show list items": [
+        "true",
+        "false"
+      ],
+      "Input text": [
+        "<text>"
+      ],
+      "Placeholder text": [
+        "<text>"
+      ]
+    },
+    "notes": "Legacy baseline version."
+  },
+  {
+    "kit": "material",
+    "page": "Search",
+    "name": "Search docked layout (baseline)",
+    "nodeId": "52977:33958",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52977-33958",
+    "properties": {
+      "Configuration": [
+        "Supporting text",
+        "Input text"
+      ],
+      "Show list items": [
+        "true",
+        "false"
+      ],
+      "Input text": [
+        "<text>"
+      ],
+      "Placeholder text": [
+        "<text>"
+      ]
+    },
+    "notes": "Legacy baseline version."
+  },
+  {
+    "kit": "material",
+    "page": "Sheets",
+    "name": "Side Sheet",
+    "nodeId": "53198:27851",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53198-27851",
+    "properties": {
+      "Type": [
+        "Standard",
+        "Modal"
+      ],
+      "Show back": [
+        "False",
+        "True"
+      ],
+      "Show actions": [
+        "true",
+        "false"
+      ],
+      "Headline text": [
+        "<text>"
+      ],
+      "Content": [
+        "<slot>"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "material",
+    "page": "Sheets",
+    "name": "Bottom sheet",
+    "nodeId": "51827:5859",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51827-5859",
+    "properties": {
+      "Modal": [
+        "False",
+        "True"
+      ],
+      "Show drag handle": [
+        "true",
+        "false"
+      ],
+      "Content": [
+        "<slot>"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "material",
+    "page": "Sliders",
+    "name": "Standard slider",
+    "nodeId": "58008:10356",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58008-10356",
+    "properties": {
+      "Orientation": [
+        "Horizontal",
+        "Vertical"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Pressed",
+        "Disabled"
+      ],
+      "Value": [
+        "0",
+        "50",
+        "100"
+      ],
+      "Show value indicator": [
+        "true",
+        "false"
+      ],
+      "Show stops": [
+        "true",
+        "false"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance swap>"
+      ]
+    },
+    "notes": "Icon swap defaults to volume_up."
+  },
+  {
+    "kit": "material",
+    "page": "Sliders",
+    "name": "Centered slider",
+    "nodeId": "58008:10979",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58008-10979",
+    "properties": {
+      "Orientation": [
+        "Horizontal",
+        "Vertical"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Pressed",
+        "Disabled"
+      ],
+      "Value": [
+        "-50",
+        "0",
+        "+50"
+      ],
+      "Show value indicator": [
+        "true",
+        "false"
+      ],
+      "Show stops": [
+        "true",
+        "false"
+      ]
+    },
+    "notes": "Starts from the middle."
+  },
+  {
+    "kit": "material",
+    "page": "Sliders",
+    "name": "Range slider",
+    "nodeId": "58008:11810",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58008-11810",
+    "properties": {
+      "Orientation": [
+        "Horizontal"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Pressed",
+        "Disabled"
+      ],
+      "Value": [
+        "-50",
+        "0",
+        "+50"
+      ],
+      "Show value indicator": [
+        "true",
+        "false"
+      ],
+      "Show stops": [
+        "true",
+        "false"
+      ]
+    },
+    "notes": "Two handles."
+  },
+  {
+    "kit": "material",
+    "page": "Snackbar",
+    "name": "Snackbar",
+    "nodeId": "53977:33575",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53977-33575",
+    "properties": {
+      "Configuration": [
+        "Text only",
+        "Text & action",
+        "Text & longer action"
+      ],
+      "Lines": [
+        "One line",
+        "Two lines"
+      ],
+      "Show close affordance": [
+        "False",
+        "True"
+      ],
+      "Supporting text": [
+        "<text>"
+      ]
+    },
+    "notes": "The 'Lines' variant property has an empty name in Figma; named here for readability."
+  },
+  {
+    "kit": "material",
+    "page": "Switch",
+    "name": "Switch",
+    "nodeId": "54446:25289",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54446-25289",
+    "properties": {
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ],
+      "Icon": [
+        "False",
+        "True"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "material",
+    "page": "Tabs",
+    "name": "Tabs",
+    "nodeId": "54563:40023",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54563-40023",
+    "properties": {
+      "Style": [
+        "Primary",
+        "Secondary"
+      ],
+      "Configuration": [
+        "Fixed",
+        "Scrollable"
+      ],
+      "Layout": [
+        "Icon only",
+        "Label & icon",
+        "Label only"
+      ],
+      "Tab group": [
+        "<slot>"
+      ]
+    },
+    "notes": "Tab group slot takes the Primary/Secondary tab building-block sets."
+  },
+  {
+    "kit": "material",
+    "page": "Text fields",
+    "name": "Text field",
+    "nodeId": "52798:24373",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52798-24373",
+    "properties": {
+      "Style": [
+        "Filled",
+        "Outlined"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Error",
+        "Disabled"
+      ],
+      "Text configurations": [
+        "Input text",
+        "Label text",
+        "Placeholder text"
+      ],
+      "Leading icon": [
+        "False",
+        "True"
+      ],
+      "Trailing icon": [
+        "True",
+        "False"
+      ],
+      "Show supporting text": [
+        "true",
+        "false"
+      ],
+      "Label text": [
+        "<text>"
+      ],
+      "Placeholder text": [
+        "<text>"
+      ],
+      "Input text": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "material",
+    "page": "Toolbars",
+    "name": "Toolbar",
+    "nodeId": "58467:8206",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58467-8206",
+    "properties": {
+      "Configuration": [
+        "Floating",
+        "Docked"
+      ],
+      "Orientation": [
+        "Horizontal",
+        "Vertical"
+      ],
+      "Color": [
+        "Standard",
+        "Vibrant"
+      ],
+      "Content (standard)": [
+        "<slot>"
+      ],
+      "Content (vibrant)": [
+        "<slot>"
+      ]
+    },
+    "notes": "Docked replaces the bottom app bar; slots take the toolbar button building blocks."
+  },
+  {
+    "kit": "material",
+    "page": "Toolbars",
+    "name": "XR/XR Toolbar",
+    "nodeId": "58823:1688",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58823-1688",
+    "properties": {
+      "Elevation": [
+        "Surface container",
+        "Surface container high",
+        "Surface container highest",
+        "Tertiary container"
+      ],
+      "Orientation": [
+        "Horizontal",
+        "Vertical"
+      ],
+      "Show spatial FAB": [
+        "true",
+        "false"
+      ],
+      "Content": [
+        "<slot>"
+      ]
+    },
+    "notes": "Toolbar adapted for XR."
+  },
+  {
+    "kit": "material",
+    "page": "Tooltips",
+    "name": "Plain Tooltip",
+    "nodeId": "54061:33881",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54061-33881",
+    "properties": {
+      "Type": [
+        "Single line",
+        "Multi line"
+      ],
+      "Supporting text": [
+        "<text>"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "material",
+    "page": "Tooltips",
+    "name": "Rich Tooltip",
+    "nodeId": "54061:33872",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54061-33872",
+    "properties": {
+      "Show subhead": [
+        "true",
+        "false"
+      ],
+      "Show actions": [
+        "true",
+        "false"
+      ],
+      "Show secondary button": [
+        "true",
+        "false"
+      ],
+      "Subhead text": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ]
+    },
+    "notes": "Standalone component, no variants."
+  }
+]

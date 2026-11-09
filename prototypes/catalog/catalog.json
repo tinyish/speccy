@@ -1,0 +1,2158 @@
+{
+  "entries": [
+    {
+      "name": "button",
+      "about": "A control the user presses to run an action. It can stay selected like a toggle, carry a menu of related actions, or be removed, so small buttons also cover tags, chips and badges.",
+      "kind": "primitive",
+      "category": "actions",
+      "element": "button (aria-pressed when selected; icon-only when it has no text, named by label; plus a menu button, aria-haspopup=menu, when it has options; plus a remove button when removable)",
+      "existing": true,
+      "props": {
+        "text": "text",
+        "label": "text",
+        "leadingIcon": "text",
+        "trailingIcon": "text",
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "selected": "bool",
+        "disabled": "bool",
+        "options": "text[]",
+        "open": "bool",
+        "removable": "bool"
+      },
+      "events": {
+        "press": null,
+        "select": "text",
+        "remove": null
+      },
+      "children": false,
+      "states": [
+        "selected",
+        "disabled",
+        "open"
+      ],
+      "dropped": {
+        "material": [
+          "Show focus indicator",
+          "Type",
+          "State: Enabled/Hovered/Focused/Pressed",
+          "State: Enabled/Hovered/Focused/Presssed",
+          "Width",
+          "Color",
+          "Branded icon",
+          "Favicon",
+          "Style",
+          "Configuration",
+          "State: Enabled/Hovered/Focused/Pressed/Dragged",
+          "Selected"
+        ],
+        "untitled": [
+          "Loading text",
+          "Hierarchy",
+          "State: Default/Hover/Focused",
+          "Dark background",
+          "Social",
+          "Theme"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Button",
+            "nodeId": "57994:2227",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-2227"
+          },
+          {
+            "name": "Button - text",
+            "nodeId": "58650:8094",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58650-8094"
+          },
+          {
+            "name": "Button - elevated",
+            "nodeId": "58650:9294",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58650-9294"
+          },
+          {
+            "name": "Button - outline",
+            "nodeId": "58650:10213",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58650-10213"
+          },
+          {
+            "name": "Button - tonal",
+            "nodeId": "58651:11237",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58651-11237"
+          },
+          {
+            "name": "Icon button",
+            "nodeId": "57994:10081",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-10081"
+          },
+          {
+            "name": "Icon button - standard",
+            "nodeId": "58663:30358",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58663-30358"
+          },
+          {
+            "name": "Icon button - outline",
+            "nodeId": "58663:30359",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58663-30359"
+          },
+          {
+            "name": "Icon button - tonal",
+            "nodeId": "58665:33976",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58665-33976"
+          },
+          {
+            "name": "FAB",
+            "nodeId": "57998:43426",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-43426"
+          },
+          {
+            "name": "Extended FAB",
+            "nodeId": "57998:43095",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-43095"
+          },
+          {
+            "name": "Assistive chip (chip-shaped)",
+            "nodeId": "53923:28089",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-28089"
+          },
+          {
+            "name": "Suggestion chip (chip-shaped)",
+            "nodeId": "53923:28679",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-28679"
+          },
+          {
+            "name": "Toggle button",
+            "nodeId": "57994:2328",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-2328"
+          },
+          {
+            "name": "Toggle button - elevated",
+            "nodeId": "58653:13968",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58653-13968"
+          },
+          {
+            "name": "Toggle button - outline",
+            "nodeId": "58653:16237",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58653-16237"
+          },
+          {
+            "name": "Toggle button - tonal",
+            "nodeId": "58653:17539",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58653-17539"
+          },
+          {
+            "name": "Icon button togglable",
+            "nodeId": "57994:10368",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-10368"
+          },
+          {
+            "name": "Icon button togglable - tonal",
+            "nodeId": "58668:48104",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58668-48104"
+          },
+          {
+            "name": "Icon button togglable - outline",
+            "nodeId": "58668:45603",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58668-45603"
+          },
+          {
+            "name": "Icon button togglable - standard",
+            "nodeId": "58665:42416",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58665-42416"
+          },
+          {
+            "name": "Filter chip (chip-shaped)",
+            "nodeId": "53923:28270",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-28270"
+          },
+          {
+            "name": "Split button",
+            "nodeId": "57994:15751",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-15751"
+          },
+          {
+            "name": "Input chip",
+            "nodeId": "53923:27888",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-27888"
+          },
+          {
+            "name": "Badges",
+            "nodeId": "51592:4768",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51592-4768"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Buttons/Button",
+            "nodeId": "3287:427074",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3287-427074"
+          },
+          {
+            "name": "Buttons/Button destructive",
+            "nodeId": "6218:85578",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=6218-85578"
+          },
+          {
+            "name": "Buttons/Button utility",
+            "nodeId": "8003:526508",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=8003-526508"
+          },
+          {
+            "name": "Buttons/Button close X",
+            "nodeId": "2763:420129",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=2763-420129"
+          },
+          {
+            "name": "Buttons/Social button",
+            "nodeId": "1256:130788",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1256-130788"
+          },
+          {
+            "name": "Tag",
+            "nodeId": "3307:417515",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3307-417515"
+          },
+          {
+            "name": "Badge",
+            "nodeId": "1046:3819",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1046-3819"
+          },
+          {
+            "name": "Badge group (badge with message)",
+            "nodeId": "1046:8088",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1046-8088"
+          }
+        ]
+      },
+      "notes": "Consolidates button, toggle-button (its pressed state is selected) and split-button (its menu is options + open) on Alberto's call. Size is kept as a prop on his call; loading states were removed. Tag and badge are folded in too (Alberto's call): a small button, selected for a selected tag, removable for an input chip; tag's count goes into the text. Icons are in (Alberto's call): leadingIcon and trailingIcon name a Material Symbols glyph (its look stays in Figma), so the kits' icon and icon-swap properties map to them; with no text the button is icon-only, named by label. The menu and remove buttons draw expand_more and close."
+    },
+    {
+      "name": "date-picker",
+      "about": "Lets the user pick a date, or a start and end date, from a calendar or by typing.",
+      "kind": "primitive",
+      "category": "inputs",
+      "element": "input type=date (with calendar popup)",
+      "existing": false,
+      "props": {
+        "label": "text",
+        "value": "text[]",
+        "range": "bool",
+        "open": "bool"
+      },
+      "events": {
+        "change": "text[]"
+      },
+      "children": false,
+      "states": [
+        "open"
+      ],
+      "dropped": {
+        "material": [
+          "Show Clear button",
+          "Type: Day/Month/Year",
+          "Headline",
+          "Headline (plural)",
+          "Show clear button",
+          "Headline (range)",
+          "Type: Day/Year"
+        ],
+        "untitled": [
+          "Type: Available times",
+          "Breakpoint"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Docked input date picker [desktop]",
+            "nodeId": "51954:18567",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51954-18567"
+          },
+          {
+            "name": "Input date picker",
+            "nodeId": "51954:18540",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51954-18540"
+          },
+          {
+            "name": "Modal date picker",
+            "nodeId": "51954:18136",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51954-18136"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Date picker dropdown",
+            "nodeId": "1150:16803",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1150-16803"
+          },
+          {
+            "name": "Date picker modal",
+            "nodeId": "1547:269867",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1547-269867"
+          }
+        ]
+      },
+      "notes": "value holds one date, or start and end when range. Docked, dropdown, modal and input forms are one picker presented per breakpoint; day/month/year views are internal. Untitled Type=Available times (pick a time slot) dropped: a pattern on top."
+    },
+    {
+      "name": "file-upload",
+      "about": "A drop zone the user drags files onto or browses from, listing queued files with progress.",
+      "kind": "primitive",
+      "category": "inputs",
+      "element": "input type=file (with drop zone)",
+      "existing": false,
+      "props": {
+        "accept": "text",
+        "multiple": "bool",
+        "files": "text[]",
+        "disabled": "bool"
+      },
+      "events": {
+        "change": "text[]",
+        "remove": "text"
+      },
+      "children": false,
+      "states": [],
+      "dropped": {
+        "untitled": [
+          "Type",
+          "Breakpoint"
+        ]
+      },
+      "sources": {
+        "untitled": [
+          {
+            "name": "File upload",
+            "nodeId": "1175:101149",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1175-101149"
+          }
+        ]
+      },
+      "notes": "Untitled only (its Input field Type=File upload is the compact form)."
+    },
+    {
+      "name": "form",
+      "about": "Groups inputs the user fills in and submits together.",
+      "kind": "primitive",
+      "category": "inputs",
+      "element": "form",
+      "existing": true,
+      "props": {},
+      "events": {
+        "submit": null
+      },
+      "children": true,
+      "states": [],
+      "dropped": {},
+      "sources": {},
+      "notes": "No kit set; kept from primitives.json."
+    },
+    {
+      "name": "input",
+      "about": "A field the user types a value into, on one line or, when multiline, several.",
+      "kind": "primitive",
+      "category": "inputs",
+      "element": "input (textarea when multiline)",
+      "existing": true,
+      "props": {
+        "type": [
+          "text",
+          "password",
+          "number",
+          "date",
+          "time",
+          "color"
+        ],
+        "multiline": "bool",
+        "label": "text",
+        "hint": "text",
+        "placeholder": "text",
+        "value": "text",
+        "required": "bool",
+        "invalid": "bool",
+        "disabled": "bool"
+      },
+      "events": {
+        "change": "text"
+      },
+      "children": false,
+      "states": [
+        "invalid",
+        "disabled"
+      ],
+      "dropped": {
+        "material": [
+          "Style",
+          "State: Enabled/Hovered/Focused",
+          "Text configurations",
+          "Leading icon",
+          "Trailing icon"
+        ],
+        "untitled": [
+          "Help icon",
+          "🔀 Icon swap",
+          "⬅️ Icon leading",
+          "Size",
+          "Type: Default/Leading dropdown/Trailing dropdown/Leading text/Payment input/… (+5)",
+          "State: Focused",
+          "↳ Help icon",
+          "Resize handle",
+          "Type"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Text field",
+            "nodeId": "52798:24373",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52798-24373"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Input field",
+            "nodeId": "1090:57817",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1090-57817"
+          },
+          {
+            "name": "Textarea input field",
+            "nodeId": "1238:278",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1238-278"
+          }
+        ]
+      },
+      "notes": "checkbox and radio move out of input to their own entries. Untitled Type packs compound inputs: OTP and file upload have their own entries; leading/trailing dropdown, payment, tags and trailing button are composed. textarea is folded in (Alberto's call): multiline draws a textarea, with the same label, hint, value and states; type applies to one line only. Color is an input type (Alberto's call), so colour pickers compose from it."
+    },
+    {
+      "name": "otp-input",
+      "about": "Boxes the user types a short verification code into, one digit each.",
+      "kind": "primitive",
+      "category": "inputs",
+      "element": "input autocomplete=one-time-code (one box per digit)",
+      "existing": false,
+      "props": {
+        "label": "text",
+        "hint": "text",
+        "length": "number",
+        "value": "text",
+        "disabled": "bool"
+      },
+      "events": {
+        "change": "text",
+        "complete": "text"
+      },
+      "children": false,
+      "states": [
+        "disabled"
+      ],
+      "dropped": {
+        "untitled": [
+          "Size"
+        ]
+      },
+      "sources": {
+        "untitled": [
+          {
+            "name": "Verification code input field",
+            "nodeId": "1106:66757",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1106-66757"
+          }
+        ]
+      },
+      "notes": "Untitled only. Split from input: focus moves box to box and it completes at length."
+    },
+    {
+      "name": "slider",
+      "about": "A handle the user drags along a track to set one number, or two handles, when range, to set a low and a high one.",
+      "kind": "primitive",
+      "category": "inputs",
+      "element": "input type=range (two role=slider handles on one track when range)",
+      "existing": false,
+      "props": {
+        "label": "text",
+        "range": "bool",
+        "value": "number",
+        "start": "number",
+        "end": "number",
+        "min": "number",
+        "max": "number",
+        "step": "number",
+        "disabled": "bool"
+      },
+      "events": {
+        "change": "number",
+        "changeStart": "number",
+        "changeEnd": "number"
+      },
+      "children": false,
+      "states": [
+        "disabled"
+      ],
+      "dropped": {
+        "material": [
+          "Orientation",
+          "Size",
+          "State: Enabled/Hovered/Pressed",
+          "Show value indicator",
+          "Show icon",
+          "Icon"
+        ],
+        "untitled": [
+          "Label"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Standard slider",
+            "nodeId": "58008:10356",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58008-10356"
+          },
+          {
+            "name": "Centered slider",
+            "nodeId": "58008:10979",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58008-10979"
+          },
+          {
+            "name": "Range slider",
+            "nodeId": "58008:11810",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58008-11810"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Slider",
+            "nodeId": "1086:534",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1086-534"
+          }
+        ]
+      },
+      "notes": "Material only. Centered slider is a slider whose min is below zero. Show stops means a step. range-slider is folded in (Alberto's call): range draws two handles on one track for start and end, which fire changeStart and changeEnd (the vocabulary has no number pair); one handle fires change."
+    },
+    {
+      "name": "checkbox",
+      "about": "A box the user ticks, or a switch they flip, to turn one option on or off.",
+      "kind": "primitive",
+      "category": "selection",
+      "element": "input type=checkbox (role=switch when role is switch)",
+      "existing": false,
+      "props": {
+        "role": [
+          "checkbox",
+          "switch"
+        ],
+        "label": "text",
+        "hint": "text",
+        "checked": "bool",
+        "indeterminate": "bool",
+        "invalid": "bool",
+        "disabled": "bool"
+      },
+      "events": {
+        "change": "bool"
+      },
+      "children": false,
+      "states": [
+        "checked",
+        "indeterminate",
+        "invalid",
+        "disabled"
+      ],
+      "dropped": {
+        "material": [
+          "Show focus indicator",
+          "State: Enabled/Hovered/Focused/Pressed",
+          "Icon"
+        ],
+        "untitled": [
+          "Size",
+          "Type: Radio",
+          "State: Default/Hover/Focused",
+          "Type",
+          "State: Default/Hover/Focus"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Checkboxes",
+            "nodeId": "51859:5628",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51859-5628"
+          },
+          {
+            "name": "Switch",
+            "nodeId": "54446:25289",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54446-25289"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Checkbox",
+            "nodeId": "1097:63652",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1097-63652"
+          },
+          {
+            "name": "Toggle",
+            "nodeId": "1102:4208",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1102-4208"
+          }
+        ]
+      },
+      "notes": "Today it is input type=checkbox; split out since it carries a bool and an indeterminate state. Untitled Type=Radio is the radio-group control. switch is folded in (Alberto's call): role switch draws the track and thumb and applies at once; same checked and change. indeterminate is for the checkbox role."
+    },
+    {
+      "name": "radio-group",
+      "about": "A set of options the user picks exactly one of, as radios or a row of joined buttons.",
+      "kind": "primitive",
+      "category": "selection",
+      "element": "role=radiogroup of input type=radio (or of buttons, as a segmented control)",
+      "existing": false,
+      "props": {
+        "label": "text",
+        "options": "text[]",
+        "value": "text",
+        "orientation": [
+          "vertical",
+          "horizontal"
+        ],
+        "disabled": "bool"
+      },
+      "events": {
+        "change": "text"
+      },
+      "children": false,
+      "states": [
+        "disabled"
+      ],
+      "dropped": {
+        "material": [
+          "State: Enabled/Hovered/Focused/Pressed",
+          "Show focus indicator",
+          "Type",
+          "Size",
+          "Density"
+        ],
+        "untitled": [
+          "Size",
+          "Type",
+          "Breakpoint",
+          "Badge",
+          "State: Default/Hover/Focused",
+          "Icon"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Radio buttons",
+            "nodeId": "51739:4608",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51739-4608"
+          },
+          {
+            "name": "Connected button group",
+            "nodeId": "57998:47111",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-47111"
+          },
+          {
+            "name": "Segmented button (baseline)",
+            "nodeId": "53923:36615",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-36615"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Radio group",
+            "nodeId": "1142:87213",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1142-87213"
+          },
+          {
+            "name": "Radio group item (sub-part: item)",
+            "nodeId": "124:2838",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=124-2838"
+          },
+          {
+            "name": "Button group",
+            "nodeId": "1046:10171",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1046-10171"
+          }
+        ]
+      },
+      "notes": "Material has a lone radio button; behaviour lives at the group. Untitled radio cards (icon, avatar, payment) are visual; its Type=Checkbox cards are a set of checkboxes. segmented-control is folded in (Alberto's call): the same single choice, so one entry and one template; a segmented control is a horizontal radio-group drawn as joined buttons."
+    },
+    {
+      "name": "select",
+      "about": "A field the user opens to pick one option, or several when multiple, from a list.",
+      "kind": "primitive",
+      "category": "selection",
+      "element": "select (role=listbox aria-multiselectable in a popup when multiple)",
+      "existing": true,
+      "props": {
+        "label": "text",
+        "hint": "text",
+        "placeholder": "text",
+        "options": "text[]",
+        "multiple": "bool",
+        "value": "text",
+        "values": "text[]",
+        "required": "bool",
+        "searchable": "bool",
+        "open": "bool",
+        "disabled": "bool"
+      },
+      "events": {
+        "change": "text[]"
+      },
+      "children": false,
+      "states": [
+        "open",
+        "disabled"
+      ],
+      "dropped": {
+        "untitled": [
+          "Scroll bar",
+          "🔀 Icon swap",
+          "↳ Help icon",
+          "Shortcut",
+          "Size",
+          "Type: Default/Icon leading/Avatar leading/Dot leading/Tags",
+          "State: Default/Focused"
+        ]
+      },
+      "sources": {
+        "untitled": [
+          {
+            "name": "Select",
+            "nodeId": "3281:377673",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3281-377673"
+          },
+          {
+            "name": "Multi-select",
+            "nodeId": "12206:577041",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12206-577041"
+          }
+        ]
+      },
+      "notes": "Untitled only (Material's exposed dropdown is not in the kit read). Type=Search filters options as you type, a combobox: kept as searchable rather than an entry with no set of its own. Type=Tags is multi-select. multi-select is folded in (Alberto's call): multiple picks into values and shows them as pills, with picked options ticked; change carries the picked options, one item when single."
+    },
+    {
+      "name": "link",
+      "about": "Text or a badge the user follows to another page or site.",
+      "kind": "primitive",
+      "category": "navigation",
+      "element": "a",
+      "existing": true,
+      "props": {
+        "text": "text",
+        "to": "text"
+      },
+      "events": {
+        "press": null
+      },
+      "children": false,
+      "states": [],
+      "dropped": {
+        "untitled": [
+          "Size",
+          "Style"
+        ]
+      },
+      "sources": {
+        "untitled": [
+          {
+            "name": "Mobile app store badge (store badge)",
+            "nodeId": "1303:2162",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1303-2162"
+          }
+        ]
+      },
+      "notes": "App store badges are links to a store page. Untitled's link-styled buttons stay buttons."
+    },
+    {
+      "name": "tree-view",
+      "about": "A nested list the user expands and collapses to browse and pick items, like folders.",
+      "kind": "primitive",
+      "category": "navigation",
+      "element": "role=tree",
+      "existing": false,
+      "props": {
+        "items": "model[]",
+        "value": "model",
+        "expanded": "model[]"
+      },
+      "events": {
+        "select": "model",
+        "toggle": "model"
+      },
+      "children": false,
+      "states": [],
+      "dropped": {
+        "untitled": [
+          "Type",
+          "Size"
+        ]
+      },
+      "sources": {
+        "untitled": [
+          {
+            "name": "Tree view",
+            "nodeId": "12451:566966",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12451-566966"
+          }
+        ]
+      },
+      "notes": "Untitled only. items as text[] cannot express depth; it needs a tree type. Items bind to a data model with a label and children of the same model."
+    },
+    {
+      "name": "progress",
+      "about": "Shows how far along a task is, or that something is loading when it can't say.",
+      "kind": "primitive",
+      "category": "feedback",
+      "element": "progress",
+      "existing": false,
+      "props": {
+        "label": "text",
+        "value": "number"
+      },
+      "events": {},
+      "children": false,
+      "states": [
+        "indeterminate"
+      ],
+      "dropped": {
+        "material": [
+          "Type",
+          "Thickness",
+          "Step",
+          "Show track",
+          "Steps",
+          "Show container"
+        ],
+        "untitled": [
+          "Size",
+          "Shape",
+          "Style"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Linear-determinate progress indicator",
+            "nodeId": "58005:7997",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-7997"
+          },
+          {
+            "name": "Linear-indeterminate progress indicator",
+            "nodeId": "58005:8284",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8284"
+          },
+          {
+            "name": "Circular-determinate progress indicator",
+            "nodeId": "58005:8459",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8459"
+          },
+          {
+            "name": "Circular-indeterminate progress indicator",
+            "nodeId": "58005:8525",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8525"
+          },
+          {
+            "name": "Loading indicator",
+            "nodeId": "58005:8555",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8555"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Progress bar",
+            "nodeId": "1085:57382",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1085-57382"
+          },
+          {
+            "name": "Progress circle",
+            "nodeId": "1084:2717",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1084-2717"
+          },
+          {
+            "name": "Loading indicator",
+            "nodeId": "1192:610",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1192-610"
+          }
+        ]
+      },
+      "notes": "Linear, circular, wavy and spinners are one control: a value, or none when indeterminate. Material splits its expressive loading indicator from progress; behaviour is the same."
+    },
+    {
+      "name": "toast",
+      "about": "A brief message that pops up about something that just happened, with an optional action.",
+      "kind": "primitive",
+      "category": "feedback",
+      "element": "role=status (live region)",
+      "existing": false,
+      "props": {
+        "text": "text",
+        "action": "text",
+        "dismissible": "bool"
+      },
+      "events": {
+        "action": null,
+        "close": null
+      },
+      "children": false,
+      "states": [],
+      "dropped": {
+        "material": [
+          "Lines"
+        ],
+        "untitled": [
+          "Type",
+          "Breakpoint"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Snackbar",
+            "nodeId": "53977:33575",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53977-33575"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Notification",
+            "nodeId": "1135:618",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1135-618"
+          }
+        ]
+      },
+      "notes": "Material Snackbar and Untitled Notification. Untitled's icon, avatar and image types are visual; its progress type puts a progress inside."
+    },
+    {
+      "name": "dialog",
+      "about": "A window over the page, centred or sliding in from an edge, that asks the user to read, decide or fill something in; modal ones block the page behind a backdrop.",
+      "kind": "primitive",
+      "category": "overlays",
+      "element": "dialog (modal, with a backdrop) or a non-modal panel; on an edge unless placement is center",
+      "existing": true,
+      "props": {
+        "open": "bool",
+        "title": "text",
+        "text": "text",
+        "placement": [
+          "center",
+          "left",
+          "right",
+          "bottom"
+        ],
+        "modal": "bool"
+      },
+      "events": {
+        "close": null
+      },
+      "children": true,
+      "states": [
+        "open"
+      ],
+      "dropped": {
+        "material": [
+          "Show divider",
+          "Icon",
+          "Show secondary action",
+          "Elevation",
+          "Show icon",
+          "Show back",
+          "Show actions",
+          "Show drag handle"
+        ],
+        "untitled": [
+          "Type",
+          "Breakpoint"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Basic dialog",
+            "nodeId": "50723:10929",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=50723-10929"
+          },
+          {
+            "name": "List dialog",
+            "nodeId": "52112:28937",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52112-28937"
+          },
+          {
+            "name": "Scrollable list dialog",
+            "nodeId": "52112:29186",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52112-29186"
+          },
+          {
+            "name": "XR/XR Dialog (XR)",
+            "nodeId": "58108:87558",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58108-87558"
+          },
+          {
+            "name": "Side Sheet",
+            "nodeId": "53198:27851",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53198-27851"
+          },
+          {
+            "name": "Bottom sheet",
+            "nodeId": "51827:5859",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51827-5859"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Modal",
+            "nodeId": "4057:415205",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=4057-415205"
+          },
+          {
+            "name": "Slide out menu",
+            "nodeId": "1240:137582",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1240-137582"
+          }
+        ]
+      },
+      "notes": "List and scrollable-list dialogs differ only in content. Untitled Modal's 51 Types are content examples (sign-up, invite, payment…) composed from primitives. sheet is folded in (Alberto's call): placement puts it centred or on the left, right or bottom edge (side, bottom and slide-out sheets); a non-modal one has no backdrop and leaves the page usable."
+    },
+    {
+      "name": "menu",
+      "about": "A list of actions or choices the user opens from a button, or by right-clicking an area, and picks one from.",
+      "kind": "primitive",
+      "category": "overlays",
+      "element": "role=menu (from a button, or opened by contextmenu on the area it wraps)",
+      "existing": false,
+      "props": {
+        "items": "text[]",
+        "value": "text",
+        "searchable": "bool",
+        "open": "bool",
+        "trigger": [
+          "click",
+          "contextmenu"
+        ]
+      },
+      "events": {
+        "select": "text",
+        "close": null
+      },
+      "children": true,
+      "states": [
+        "open"
+      ],
+      "dropped": {
+        "material": [
+          "Theme",
+          "Show scrollbar",
+          "State",
+          "Show leading element",
+          "Show trailing element",
+          "Show divider",
+          "Show focus indicator",
+          "Content",
+          "Density",
+          "Color",
+          "Segments"
+        ],
+        "untitled": [
+          "Scrollbar",
+          "Chevron dropdown",
+          "Type: Button simple/Button advanced/Button link/Icon simple/Icon advanced/… (+7)",
+          "Type"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Menu",
+            "nodeId": "58966:3975",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58966-3975"
+          },
+          {
+            "name": "Menu item/Standard (sub-part: item)",
+            "nodeId": "58966:4100",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58966-4100"
+          },
+          {
+            "name": "Menu item/Vibrant (sub-part: item)",
+            "nodeId": "58966:4171",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58966-4171"
+          },
+          {
+            "name": "Menu (baseline) (baseline)",
+            "nodeId": "54061:36963",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54061-36963"
+          },
+          {
+            "name": "FAB menu (opened from a FAB)",
+            "nodeId": "57998:42986",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-42986"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Dropdown menu",
+            "nodeId": "3281:383083",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3281-383083"
+          },
+          {
+            "name": "Context menu",
+            "nodeId": "11547:540792",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=11547-540792"
+          }
+        ]
+      },
+      "notes": "Untitled Dropdown menu Type sets the trigger (button, icon, avatar, account card); its Search types filter items. A menu item's Selected is the checked item (value). FAB menu is a menu opened from a FAB. context-menu is folded in (Alberto's call): trigger contextmenu opens it by right-click or long-press on the area it wraps, its children; a click menu hangs off its button and has none."
+    },
+    {
+      "name": "popover",
+      "about": "A small panel anchored to a control: opened by a click, with text and actions, until the user dismisses it; or, on hover or focus, a short tooltip.",
+      "kind": "primitive",
+      "category": "overlays",
+      "element": "[popover] role=dialog (non-modal); role=tooltip when trigger is hover",
+      "existing": false,
+      "props": {
+        "title": "text",
+        "text": "text",
+        "open": "bool",
+        "trigger": [
+          "click",
+          "hover"
+        ]
+      },
+      "events": {
+        "close": null
+      },
+      "children": true,
+      "states": [
+        "open"
+      ],
+      "dropped": {
+        "material": [
+          "Type"
+        ],
+        "untitled": [
+          "Arrow",
+          "Cursor",
+          "Open",
+          "Tooltip"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Rich Tooltip",
+            "nodeId": "54061:33872",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54061-33872"
+          },
+          {
+            "name": "Plain Tooltip",
+            "nodeId": "54061:33881",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54061-33881"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Tooltip",
+            "nodeId": "1052:489",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1052-489"
+          },
+          {
+            "name": "Help icon (help-icon trigger)",
+            "nodeId": "1054:13",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1054-13"
+          }
+        ]
+      },
+      "notes": "Material Rich Tooltip: it holds actions and stays open, so it is a popover, not a tooltip. tooltip is folded in (Alberto's call): a hover popover is the tooltip, shown on hover or focus with its text only (no title, no actions). Rich Tooltip is the click popover: it holds actions and stays open."
+    },
+    {
+      "name": "list",
+      "about": "A column of items the user scans, selects, reorders or swipes for actions.",
+      "kind": "primitive",
+      "category": "data-display",
+      "element": "ul",
+      "existing": true,
+      "props": {
+        "selectable": "bool",
+        "reorderable": "bool"
+      },
+      "events": {
+        "select": "text",
+        "reorder": "text[]",
+        "swipe": "text"
+      },
+      "children": true,
+      "states": [
+        "selected"
+      ],
+      "dropped": {
+        "material": [
+          "Show divider",
+          "Type: Standard/Segmented (filled)/Expandable",
+          "Multi-line",
+          "Show trailing element",
+          "Show leading element",
+          "Show focus indicator",
+          "Alignment",
+          "State",
+          "State-layer",
+          "Show trailing supporting text",
+          "Show leading avatar",
+          "Show leading icon",
+          "Show image",
+          "Show video thumbnail",
+          "Show checkbox",
+          "Show radio button",
+          "Show switch",
+          "Swap divider type",
+          "Overline",
+          "Headline",
+          "Trailing supporting text",
+          "Supporting text",
+          "Condition",
+          "Leading",
+          "Trailing",
+          "Show overline",
+          "Show supporting text"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "List",
+            "nodeId": "59106:13028",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13028"
+          },
+          {
+            "name": "List item (sub-part: item)",
+            "nodeId": "59106:13183",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13183"
+          },
+          {
+            "name": "List Item - Swipe (sub-part: swipe item)",
+            "nodeId": "59106:13321",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13321"
+          },
+          {
+            "name": "List (baseline) (baseline)",
+            "nodeId": "51964:62995",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-62995"
+          },
+          {
+            "name": "List: -2 Density (baseline) (baseline)",
+            "nodeId": "51964:63008",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-63008"
+          },
+          {
+            "name": "List: -4 Density (baseline) (baseline)",
+            "nodeId": "51964:63021",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-63021"
+          },
+          {
+            "name": "List item/List Item: 0 Density (baseline) (baseline item)",
+            "nodeId": "51964:63037",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-63037"
+          },
+          {
+            "name": "List item/List Item: -2 Density (baseline) (baseline item)",
+            "nodeId": "51964:65924",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-65924"
+          },
+          {
+            "name": "List item/List Item: -4 Density (baseline) (baseline item)",
+            "nodeId": "51964:68562",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-68562"
+          }
+        ]
+      },
+      "notes": "Material only. Drag and swipe lists add behaviour (reorder, reveal actions); items hold checkbox, radio or switch by composition. Expandable lists are accordions."
+    },
+    {
+      "name": "table",
+      "about": "Rows and columns of records the user scans, sorts and selects rows in.",
+      "kind": "primitive",
+      "category": "data-display",
+      "element": "table",
+      "existing": false,
+      "props": {
+        "rows": "model[]",
+        "columns": "text[]",
+        "selectable": "bool"
+      },
+      "events": {
+        "select": "model[]"
+      },
+      "children": true,
+      "states": [],
+      "dropped": {
+        "untitled": [
+          "Example",
+          "Breakpoint",
+          "Dividers",
+          "Size",
+          "Text",
+          "Type",
+          "State"
+        ]
+      },
+      "sources": {
+        "untitled": [
+          {
+            "name": "Table",
+            "nodeId": "1227:110587",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1227-110587"
+          },
+          {
+            "name": "Table header cell (sub-part: header cell)",
+            "nodeId": "1221:107933",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1221-107933"
+          },
+          {
+            "name": "Table cell (sub-part: cell)",
+            "nodeId": "1222:107305",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1222-107305"
+          },
+          {
+            "name": "Table cell lead action (sub-part: row select)",
+            "nodeId": "9400:570197",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9400-570197"
+          }
+        ]
+      },
+      "notes": "Untitled only. Cells are composition (avatar, badge, progress, actions). A Radio lead action makes selection single. Cell State Hover/selected conflates hover with selection: dropped. Rows bind to a data model; columns name its fields."
+    },
+    {
+      "name": "text",
+      "about": "A piece of text.",
+      "kind": "primitive",
+      "category": "data-display",
+      "element": "p",
+      "existing": true,
+      "props": {
+        "text": "text"
+      },
+      "events": {},
+      "children": false,
+      "states": [],
+      "dropped": {},
+      "sources": {},
+      "notes": "No kit set; kept from primitives.json."
+    },
+    {
+      "name": "container",
+      "about": "A box that lays out other components. It can be pressed as a whole (a card, a nav item, a tab) and carry a role: a landmark, a tab list or tab panel, a live region.",
+      "kind": "primitive",
+      "category": "layout",
+      "element": "div (role from role; role=button when pressable, link when it also has href; aria-current from current, aria-selected on a tab, aria-expanded with aria-controls when it controls another container)",
+      "existing": true,
+      "props": {
+        "pressable": "bool",
+        "href": "text",
+        "role": [
+          "none",
+          "navigation",
+          "toolbar",
+          "tablist",
+          "tab",
+          "tabpanel",
+          "alert",
+          "status",
+          "group",
+          "region"
+        ],
+        "current": [
+          "none",
+          "page",
+          "step"
+        ],
+        "selected": "bool",
+        "expanded": "bool",
+        "controls": "text"
+      },
+      "events": {
+        "press": null
+      },
+      "children": true,
+      "states": [],
+      "dropped": {
+        "material": [
+          "Show 5th button",
+          "Show 6th button",
+          "Show 7th button",
+          "Type",
+          "Size",
+          "Color",
+          "Button type",
+          "Layout"
+        ],
+        "untitled": [
+          "Size",
+          "Style",
+          "Theme"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Standard button group (layout group)",
+            "nodeId": "58424:8117",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58424-8117"
+          },
+          {
+            "name": "Chip groups (layout group)",
+            "nodeId": "57376:5501",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57376-5501"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Buttons/Social button group (layout group)",
+            "nodeId": "1256:132638",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1256-132638"
+          }
+        ]
+      },
+      "notes": "Button, chip and social-button groups only lay their items out; single-row vs wrap is container layout. Pressable containers and roles are in (Alberto's call): pressable (a button, or a link with href) covers cards and nav items; role gives landmarks, toolbars, tabs and tab panels, and live regions (alert, status); current, selected, expanded and controls carry aria-current, aria-selected, aria-expanded and aria-controls. How these combine is in the README's composition rules."
+    },
+    {
+      "name": "divider",
+      "about": "A line separating content, with an optional label.",
+      "kind": "primitive",
+      "category": "layout",
+      "element": "hr",
+      "existing": false,
+      "props": {
+        "text": "text"
+      },
+      "events": {},
+      "children": false,
+      "states": [],
+      "dropped": {
+        "untitled": [
+          "Type: Button/Button group icon/Button group/Button icon",
+          "Style"
+        ]
+      },
+      "sources": {
+        "material": [
+          {
+            "name": "Horizontal/Full-width",
+            "nodeId": "51816:5860",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5860"
+          },
+          {
+            "name": "Horizontal/Inset",
+            "nodeId": "51816:5868",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5868"
+          },
+          {
+            "name": "Horizontal/Middle-inset",
+            "nodeId": "51816:5870",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5870"
+          },
+          {
+            "name": "Horizontal/Divider with subhead",
+            "nodeId": "51816:5872",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5872"
+          },
+          {
+            "name": "Vertical/Full-width",
+            "nodeId": "51816:5862",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5862"
+          },
+          {
+            "name": "Vertical/Inset",
+            "nodeId": "51816:5864",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5864"
+          },
+          {
+            "name": "Vertical/Middle-inset",
+            "nodeId": "51816:5866",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5866"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Content divider",
+            "nodeId": "1252:126874",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1252-126874"
+          }
+        ]
+      },
+      "notes": "Direction and inset are visual. Untitled button types put buttons in the divider: composed."
+    },
+    {
+      "name": "image",
+      "about": "A picture, with a fallback (such as initials) shown when it has no source or it fails to load.",
+      "kind": "primitive",
+      "category": "media",
+      "element": "img (fallback when there is no src or it fails)",
+      "existing": false,
+      "props": {
+        "src": "text",
+        "alt": "text",
+        "fallback": "text"
+      },
+      "events": {},
+      "children": false,
+      "states": [
+        "broken"
+      ],
+      "dropped": {
+        "untitled": [
+          "Size",
+          "Border",
+          "Supporting text",
+          "Type: Avatar/Count"
+        ]
+      },
+      "sources": {
+        "untitled": [
+          {
+            "name": "Avatar",
+            "nodeId": "11008:45389",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=11008-45389"
+          },
+          {
+            "name": "Avatar profile photo",
+            "nodeId": "1217:108477",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1217-108477"
+          },
+          {
+            "name": "Avatar label group (with name beside)",
+            "nodeId": "82:2793",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=82-2793"
+          },
+          {
+            "name": "Status icon (sub-part: status)",
+            "nodeId": "11008:45024",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=11008-45024"
+          }
+        ]
+      },
+      "notes": "Replaces avatar (Alberto's call): an avatar is an image whose fallback is initials. Its status dot, verified mark and name beside it are composed; size and shape are style."
+    },
+    {
+      "name": "video",
+      "about": "A video the user plays and pauses.",
+      "kind": "primitive",
+      "category": "media",
+      "element": "video",
+      "existing": false,
+      "props": {
+        "src": "text",
+        "playing": "bool"
+      },
+      "events": {
+        "play": null,
+        "pause": null
+      },
+      "children": false,
+      "states": [
+        "playing"
+      ],
+      "dropped": {
+        "untitled": [
+          "Overlay action",
+          "Actions bar",
+          "Size"
+        ]
+      },
+      "sources": {
+        "untitled": [
+          {
+            "name": "Video player 16:9",
+            "nodeId": "9264:576771",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9264-576771"
+          }
+        ]
+      },
+      "notes": "Untitled only."
+    }
+  ],
+  "composed": [
+    {
+      "name": "toolbar",
+      "about": "A bar of related actions the user moves through with arrow keys.",
+      "builtFrom": [
+        "container",
+        "button"
+      ],
+      "sources": {
+        "material": [
+          {
+            "name": "Toolbar",
+            "nodeId": "58467:8206",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58467-8206"
+          },
+          {
+            "name": "XR/XR Toolbar (XR)",
+            "nodeId": "58823:1688",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58823-1688"
+          },
+          {
+            "name": "Bottom app bar (deprecated: replaced by docked toolbar)",
+            "nodeId": "51159:5105",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51159-5105"
+          }
+        ]
+      }
+    },
+    {
+      "name": "search",
+      "about": "A field the user types a query into, picking a suggestion or submitting the query.",
+      "builtFrom": [
+        "input",
+        "button",
+        "menu"
+      ],
+      "sources": {
+        "material": [
+          {
+            "name": "Search bar",
+            "nodeId": "52977:33813",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52977-33813"
+          },
+          {
+            "name": "Search full-screen layout",
+            "nodeId": "59178:4963",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59178-4963"
+          },
+          {
+            "name": "Search docked layout",
+            "nodeId": "59178:4992",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59178-4992"
+          },
+          {
+            "name": "Search full-screen layout (baseline) (baseline)",
+            "nodeId": "52977:34015",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52977-34015"
+          },
+          {
+            "name": "Search docked layout (baseline) (baseline)",
+            "nodeId": "52977:33958",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52977-33958"
+          }
+        ]
+      }
+    },
+    {
+      "name": "time-picker",
+      "about": "Lets the user pick a time of day on a dial or by typing.",
+      "builtFrom": [
+        "select",
+        "input"
+      ],
+      "sources": {
+        "material": [
+          {
+            "name": "Dial picker",
+            "nodeId": "52949:27916",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52949-27916"
+          },
+          {
+            "name": "Keyboard picker",
+            "nodeId": "52949:28053",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52949-28053"
+          }
+        ]
+      }
+    },
+    {
+      "name": "color-picker",
+      "about": "Lets the user pick a colour from swatches, sliders or a hex value. Its hex field is an input of type color.",
+      "builtFrom": [
+        "slider",
+        "button",
+        "input",
+        "popover"
+      ],
+      "sources": {
+        "untitled": [
+          {
+            "name": "Color picker",
+            "nodeId": "12423:52680",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12423-52680"
+          },
+          {
+            "name": "Color picker dropdown",
+            "nodeId": "12424:15898",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12424-15898"
+          },
+          {
+            "name": "Color picker modal",
+            "nodeId": "12427:142023",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12427-142023"
+          }
+        ]
+      }
+    },
+    {
+      "name": "breadcrumbs",
+      "about": "The trail of pages above the current one; the user follows one back up.",
+      "builtFrom": [
+        "link",
+        "list"
+      ],
+      "sources": {
+        "untitled": [
+          {
+            "name": "Breadcrumbs",
+            "nodeId": "1122:153",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1122-153"
+          }
+        ]
+      }
+    },
+    {
+      "name": "navigation",
+      "about": "The app's main destinations; the user picks one, and on small screens opens it as a drawer or menu.",
+      "builtFrom": [
+        "list",
+        "button",
+        "link"
+      ],
+      "sources": {
+        "material": [
+          {
+            "name": "Navigation Rail",
+            "nodeId": "58016:36879",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58016-36879"
+          },
+          {
+            "name": "Navigation Rail: Expanded",
+            "nodeId": "58016:36670",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58016-36670"
+          },
+          {
+            "name": "Navigation Bar: Horizontal items",
+            "nodeId": "58016:37236",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58016-37236"
+          },
+          {
+            "name": "Navigation Bar: Vertical items",
+            "nodeId": "58016:37259",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58016-37259"
+          },
+          {
+            "name": "XR/XR Navigation Rail (XR)",
+            "nodeId": "57547:2577",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57547-2577"
+          },
+          {
+            "name": "XR/XR Navigation bar (XR)",
+            "nodeId": "57547:4795",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57547-4795"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Sidebar navigation",
+            "nodeId": "1158:90768",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1158-90768"
+          },
+          {
+            "name": "Header navigation",
+            "nodeId": "1207:1678",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1207-1678"
+          }
+        ]
+      }
+    },
+    {
+      "name": "pagination",
+      "about": "Numbered pages and previous/next; the user moves between pages of results.",
+      "builtFrom": [
+        "button"
+      ],
+      "sources": {
+        "untitled": [
+          {
+            "name": "Pagination",
+            "nodeId": "1115:68622",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1115-68622"
+          }
+        ]
+      }
+    },
+    {
+      "name": "stepper",
+      "about": "Shows the steps of a flow and which one the user is on.",
+      "builtFrom": [
+        "list",
+        "text"
+      ],
+      "sources": {
+        "untitled": [
+          {
+            "name": "Progress steps / Progress minimal icons connected",
+            "nodeId": "1139:79128",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1139-79128"
+          },
+          {
+            "name": "Progress steps / Progress minimal icons",
+            "nodeId": "1139:79149",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1139-79149"
+          },
+          {
+            "name": "Progress steps / Progress text with line",
+            "nodeId": "1139:79465",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1139-79465"
+          },
+          {
+            "name": "Progress steps / Progress icons centered",
+            "nodeId": "1141:76669",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1141-76669"
+          },
+          {
+            "name": "Progress steps / Progress icons with text",
+            "nodeId": "1254:144290",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1254-144290"
+          }
+        ]
+      }
+    },
+    {
+      "name": "tabs",
+      "about": "A row of tabs the user switches between to show one panel at a time.",
+      "builtFrom": [
+        "radio-group",
+        "container"
+      ],
+      "sources": {
+        "material": [
+          {
+            "name": "Tabs",
+            "nodeId": "54563:40023",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54563-40023"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Horizontal tabs",
+            "nodeId": "1118:69893",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1118-69893"
+          },
+          {
+            "name": "Vertical tabs",
+            "nodeId": "1397:9880",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1397-9880"
+          }
+        ]
+      }
+    },
+    {
+      "name": "alert",
+      "about": "A message in the page or across its top telling the user something they should know, with optional actions.",
+      "builtFrom": [
+        "container",
+        "text",
+        "button"
+      ],
+      "sources": {
+        "untitled": [
+          {
+            "name": "Alert",
+            "nodeId": "1130:81134",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1130-81134"
+          },
+          {
+            "name": "Banner",
+            "nodeId": "1130:89371",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1130-89371"
+          }
+        ]
+      }
+    },
+    {
+      "name": "command-palette",
+      "about": "A keyboard-summoned box the user types into to find and run commands or jump to things.",
+      "builtFrom": [
+        "dialog",
+        "input",
+        "menu"
+      ],
+      "sources": {
+        "untitled": [
+          {
+            "name": "Command bar",
+            "nodeId": "3307:407570",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3307-407570"
+          }
+        ]
+      }
+    },
+    {
+      "name": "accordion",
+      "about": "A heading the user opens and closes to show or hide its content.",
+      "builtFrom": [
+        "button",
+        "container"
+      ],
+      "sources": {
+        "material": [
+          {
+            "name": "List item - Accordion",
+            "nodeId": "59106:13316",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13316"
+          }
+        ]
+      }
+    },
+    {
+      "name": "card",
+      "about": "A box grouping content about one thing, which the user may press as a whole.",
+      "builtFrom": [
+        "container"
+      ],
+      "sources": {
+        "material": [
+          {
+            "name": "Stacked card",
+            "nodeId": "52346:27573",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52346-27573"
+          },
+          {
+            "name": "Horizontal card",
+            "nodeId": "52350:27876",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52350-27876"
+          }
+        ]
+      }
+    },
+    {
+      "name": "avatar-group",
+      "about": "Overlapping avatars of several people, with a +N count and an add button.",
+      "builtFrom": [
+        "image"
+      ],
+      "sources": {
+        "untitled": [
+          {
+            "name": "Avatar group",
+            "nodeId": "1274:812",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1274-812"
+          }
+        ]
+      }
+    },
+    {
+      "name": "carousel",
+      "about": "A row of items the user swipes or steps through one at a time.",
+      "builtFrom": [
+        "container",
+        "button"
+      ],
+      "sources": {
+        "material": [
+          {
+            "name": "Carousel",
+            "nodeId": "53912:27480",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53912-27480"
+          },
+          {
+            "name": "Carousel - Full screen",
+            "nodeId": "54577:26060",
+            "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54577-26060"
+          }
+        ],
+        "untitled": [
+          {
+            "name": "Carousel image",
+            "nodeId": "1253:237",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1253-237"
+          },
+          {
+            "name": "Pagination dot group (sub-part: dot indicator)",
+            "nodeId": "1111:38",
+            "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1111-38"
+          }
+        ]
+      }
+    }
+  ],
+  "skipped": [
+    {
+      "kit": "untitled",
+      "name": "Illustration",
+      "nodeId": "1182:1085",
+      "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1182-1085",
+      "reason": "Pure illustration (empty-state art); no behaviour."
+    },
+    {
+      "kit": "untitled",
+      "name": "Filters dropdown menu",
+      "nodeId": "12232:366410",
+      "reason": "pattern (filters), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Filters slideout menu",
+      "nodeId": "12232:375462",
+      "reason": "pattern (filters), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Filters bar",
+      "nodeId": "12232:376165",
+      "reason": "pattern (filters), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Message action",
+      "nodeId": "9206:602532",
+      "reason": "pattern (message-composer), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Empty state",
+      "nodeId": "1182:317",
+      "reason": "pattern (empty-state), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Inline CTA",
+      "nodeId": "1255:131915",
+      "reason": "pattern (inline-cta), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Activity feed",
+      "nodeId": "1254:128631",
+      "reason": "pattern (activity-feed), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Message",
+      "nodeId": "1242:996",
+      "reason": "pattern (chat-message), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Metric item",
+      "nodeId": "1560:266217",
+      "reason": "pattern (metric), left out: teams build these from primitives"
+    },
+    {
+      "kit": "material",
+      "name": "App bar",
+      "nodeId": "58114:20565",
+      "reason": "pattern (page-header), left out: teams build these from primitives"
+    },
+    {
+      "kit": "material",
+      "name": "XR/XR App Bar (XR)",
+      "nodeId": "58108:88092",
+      "reason": "pattern (page-header), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Page header",
+      "nodeId": "1239:122640",
+      "reason": "pattern (page-header), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Section footer",
+      "nodeId": "3275:372571",
+      "reason": "pattern (section-footer), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Section header",
+      "nodeId": "1214:38",
+      "reason": "pattern (section-header), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Card header (card header)",
+      "nodeId": "1211:169",
+      "reason": "pattern (section-header), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Section label (settings section label)",
+      "nodeId": "5013:376534",
+      "reason": "pattern (section-header), left out: teams build these from primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Text editor",
+      "nodeId": "9292:559325",
+      "reason": "removed (rich-text-editor): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Text editor toolbar (sub-part: toolbar)",
+      "nodeId": "9291:557668",
+      "reason": "removed (rich-text-editor): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Text editor tooltip (sub-part: floating toolbar)",
+      "nodeId": "9291:557669",
+      "reason": "removed (rich-text-editor): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Text highlight (sub-part: selection highlight)",
+      "nodeId": "9291:558536",
+      "reason": "removed (rich-text-editor): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Line and bar chart",
+      "nodeId": "1062:46989",
+      "reason": "removed (chart): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Activity gauge",
+      "nodeId": "1078:155",
+      "reason": "removed (chart): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Pie chart",
+      "nodeId": "1084:114",
+      "reason": "removed (chart): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Radar chart",
+      "nodeId": "1084:7362",
+      "reason": "removed (chart): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Chart marker (sub-part: hover marker)",
+      "nodeId": "8100:193259",
+      "reason": "removed (chart): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Code snippet",
+      "nodeId": "1234:243",
+      "reason": "removed (code-block): Alberto dropped it from the primitives"
+    },
+    {
+      "kit": "untitled",
+      "name": "Buttons/Button loading icon (sub-part: loading spinner)",
+      "nodeId": "8993:429278",
+      "reason": "loading spinner: Alberto removed loading states"
+    },
+    {
+      "kit": "untitled",
+      "name": "Calendar",
+      "nodeId": "8022:24550",
+      "reason": "removed (calendar): Alberto dropped it from the primitives for now"
+    }
+  ]
+}

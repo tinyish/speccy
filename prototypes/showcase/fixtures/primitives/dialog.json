@@ -1,0 +1,213 @@
+{
+  "name": "dialog",
+  "about": "A window over the page, centred or sliding in from an edge, that asks the user to read, decide or fill something in; modal ones block the page behind a backdrop.",
+  "category": "overlays",
+  "element": "dialog (modal, with a backdrop) or a non-modal panel; on an edge unless placement is center",
+  "props": {
+    "open": "bool",
+    "title": "text",
+    "text": "text",
+    "placement": [
+      "center",
+      "left",
+      "right",
+      "bottom"
+    ],
+    "modal": "bool"
+  },
+  "events": {
+    "close": null
+  },
+  "children": true,
+  "states": {
+    "open": {
+      "open": true
+    }
+  },
+  "defaults": {
+    "open": false,
+    "title": "Delete project?",
+    "text": "This removes the project and its specs for everyone. You can't undo it.",
+    "placement": "center",
+    "modal": true
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-box",
+    "attrs": {
+      "style": "position:relative;width:460px;height:260px;overflow:hidden"
+    },
+    "children": [
+      {
+        "el": "div",
+        "class": "wf-col wf-gap wf-pad",
+        "attrs": {
+          "style": "align-items:flex-start"
+        },
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-muted",
+            "text": "Page content"
+          },
+          {
+            "el": "button",
+            "class": "wf-btn",
+            "text": "Open dialog"
+          }
+        ]
+      },
+      {
+        "el": "div",
+        "if": "open",
+        "attrs": {
+          "style": "display:contents"
+        },
+        "children": [
+          {
+            "el": "div",
+            "class": "wf-surface",
+            "if": "modal",
+            "attrs": {
+              "style": "position:absolute;inset:0;border:none;border-radius:0;opacity:.75"
+            }
+          },
+          {
+            "el": "div",
+            "class": "wf-col",
+            "attrs": {
+              "style": "position:absolute;inset:0;align-items:stretch"
+            },
+            "children": [
+              {
+                "el": "div",
+                "class": "wf-grow",
+                "if": "placement in center, bottom"
+              },
+              {
+                "el": "div",
+                "class": "wf-row",
+                "classIf": {
+                  "wf-grow": "placement in left, right"
+                },
+                "attrs": {
+                  "style": "align-items:stretch"
+                },
+                "children": [
+                  {
+                    "el": "div",
+                    "class": "wf-grow",
+                    "if": "placement in center, right"
+                  },
+                  {
+                    "el": "div",
+                    "class": "wf-overlay wf-col wf-gap wf-pad",
+                    "attrs": {
+                      "role": "dialog",
+                      "aria-modal": "{modal}",
+                      "aria-label": "{title}",
+                      "style": "width:260px;align-items:stretch"
+                    },
+                    "children": [
+                      {
+                        "el": "div",
+                        "class": "wf-row wf-gap",
+                        "children": [
+                          {
+                            "el": "span",
+                            "class": "wf-strong wf-grow",
+                            "text": "{title}"
+                          },
+                          {
+                            "el": "button",
+                            "class": "wf-btn",
+                            "text": "×",
+                            "attrs": {
+                              "aria-label": "Close"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "el": "span",
+                        "class": "wf-muted",
+                        "text": "{text}"
+                      },
+                      {
+                        "el": "div",
+                        "class": "wf-row wf-gap",
+                        "slot": true,
+                        "attrs": {
+                          "style": "justify-content:flex-end"
+                        }
+                      }
+                    ],
+                    "classIf": {
+                      "wf-grow": "placement=bottom"
+                    }
+                  },
+                  {
+                    "el": "div",
+                    "class": "wf-grow",
+                    "if": "placement in center, left"
+                  }
+                ]
+              },
+              {
+                "el": "div",
+                "class": "wf-grow",
+                "if": "placement=center"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Basic dialog",
+        "nodeId": "50723:10929",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=50723-10929"
+      },
+      {
+        "name": "List dialog",
+        "nodeId": "52112:28937",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52112-28937"
+      },
+      {
+        "name": "Scrollable list dialog",
+        "nodeId": "52112:29186",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52112-29186"
+      },
+      {
+        "name": "XR/XR Dialog (XR)",
+        "nodeId": "58108:87558",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58108-87558"
+      },
+      {
+        "name": "Side Sheet",
+        "nodeId": "53198:27851",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53198-27851"
+      },
+      {
+        "name": "Bottom sheet",
+        "nodeId": "51827:5859",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51827-5859"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Modal",
+        "nodeId": "4057:415205",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=4057-415205"
+      },
+      {
+        "name": "Slide out menu",
+        "nodeId": "1240:137582",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1240-137582"
+      }
+    ]
+  }
+}

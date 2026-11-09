@@ -1,0 +1,100 @@
+{
+  "name": "video",
+  "about": "A video the user plays and pauses.",
+  "category": "media",
+  "element": "video",
+  "props": {
+    "src": "text",
+    "playing": "bool"
+  },
+  "events": {
+    "play": null,
+    "pause": null
+  },
+  "children": false,
+  "states": {
+    "playing": {
+      "playing": true
+    }
+  },
+  "defaults": {
+    "src": "onboarding.mp4",
+    "playing": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-box wf-col",
+    "attrs": {
+      "role": "img",
+      "aria-label": "{src}",
+      "style": "width:320px;aspect-ratio:16/9;justify-content:center"
+    },
+    "children": [
+      {
+        "el": "span",
+        "class": "wf-avatar",
+        "if": "!playing",
+        "text": "▶",
+        "attrs": {
+          "aria-label": "Play",
+          "style": "width:44px;height:44px"
+        }
+      },
+      {
+        "el": "div",
+        "class": "wf-row wf-gap wf-pad",
+        "if": "playing",
+        "attrs": {
+          "style": "width:100%;margin-top:auto"
+        },
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-small",
+            "text": "❚❚",
+            "attrs": {
+              "aria-label": "Pause"
+            }
+          },
+          {
+            "el": "div",
+            "class": "wf-track wf-grow",
+            "attrs": {
+              "style": "min-width:0"
+            },
+            "children": [
+              {
+                "el": "div",
+                "class": "wf-fill",
+                "attrs": {
+                  "style": "width:40%"
+                }
+              },
+              {
+                "el": "span",
+                "class": "wf-thumb",
+                "attrs": {
+                  "style": "width:10px;height:10px;margin:0 -5px"
+                }
+              }
+            ]
+          },
+          {
+            "el": "span",
+            "class": "wf-small wf-muted",
+            "text": "0:42"
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "untitled": [
+      {
+        "name": "Video player 16:9",
+        "nodeId": "9264:576771",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9264-576771"
+      }
+    ]
+  }
+}

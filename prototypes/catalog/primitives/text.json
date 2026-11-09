@@ -1,0 +1,20 @@
+{
+  "name": "text",
+  "about": "A piece of text.",
+  "category": "data-display",
+  "element": "p",
+  "props": {
+    "text": "text"
+  },
+  "events": {},
+  "children": false,
+  "states": {},
+  "defaults": {
+    "text": "Your changes are saved automatically."
+  },
+  "render": {
+    "el": "p",
+    "text": "{text}"
+  },
+  "sources": {}
+}

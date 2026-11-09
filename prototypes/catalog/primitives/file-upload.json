@@ -1,0 +1,122 @@
+{
+  "name": "file-upload",
+  "about": "A drop zone the user drags files onto or browses from, listing queued files with progress.",
+  "category": "inputs",
+  "element": "input type=file (with drop zone)",
+  "props": {
+    "accept": "text",
+    "multiple": "bool",
+    "files": "text[]",
+    "disabled": "bool"
+  },
+  "events": {
+    "change": "text[]",
+    "remove": "text"
+  },
+  "children": false,
+  "states": {},
+  "defaults": {
+    "accept": ".pdf, .png, .jpg",
+    "multiple": true,
+    "files": [
+      "brief.pdf",
+      "hero.png",
+      "moodboard.jpg"
+    ],
+    "disabled": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:stretch;width:320px"
+    },
+    "children": [
+      {
+        "el": "label",
+        "class": "wf-box wf-col wf-gap wf-pad",
+        "classIf": {
+          "wf-disabled": "disabled"
+        },
+        "attrs": {
+          "style": "border-style:dashed;padding:16px"
+        },
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-icon"
+          },
+          {
+            "el": "span",
+            "text": "Drag files here, or ",
+            "children": [
+              {
+                "el": "u",
+                "text": "browse"
+              }
+            ]
+          },
+          {
+            "el": "input",
+            "attrs": {
+              "type": "file",
+              "accept": "{accept}",
+              "multiple": "{multiple}",
+              "disabled": "{disabled}",
+              "style": "display:none"
+            }
+          },
+          {
+            "el": "span",
+            "class": "wf-hint",
+            "if": "accept",
+            "text": "{accept}"
+          }
+        ]
+      },
+      {
+        "el": "ul",
+        "class": "wf-col wf-gap",
+        "attrs": {
+          "style": "align-items:stretch"
+        },
+        "children": [
+          {
+            "el": "li",
+            "class": "wf-surface wf-row wf-gap wf-pad",
+            "each": "files",
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-icon"
+              },
+              {
+                "el": "span",
+                "class": "wf-grow",
+                "text": "{item}"
+              },
+              {
+                "el": "button",
+                "class": "wf-small wf-muted",
+                "text": "✕",
+                "attrs": {
+                  "type": "button",
+                  "aria-label": "Remove {item}"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "untitled": [
+      {
+        "name": "File upload",
+        "nodeId": "1175:101149",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1175-101149"
+      }
+    ]
+  }
+}

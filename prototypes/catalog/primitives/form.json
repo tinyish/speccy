@@ -1,0 +1,22 @@
+{
+  "name": "form",
+  "about": "Groups inputs the user fills in and submits together.",
+  "category": "inputs",
+  "element": "form",
+  "props": {},
+  "events": {
+    "submit": null
+  },
+  "children": true,
+  "states": {},
+  "defaults": {},
+  "render": {
+    "el": "form",
+    "class": "wf-col wf-gap wf-pad wf-box",
+    "attrs": {
+      "style": "align-items:stretch"
+    },
+    "slot": true
+  },
+  "sources": {}
+}

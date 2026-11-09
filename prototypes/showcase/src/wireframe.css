@@ -1,0 +1,87 @@
+/* The wireframe classes of ../../catalog/RENDER.md, in Linear's dark control style (../../linear-tokens.md). Draw inside an element with class "wf". */
+:root {
+  --r: 6px;
+  --wf-ink: #f7f8f8;
+  --wf-text: #d0d6e0;
+  --wf-muted: #8a8f98;
+  --wf-faint: #8a8f98;
+  --wf-line: #34343a;
+  --wf-line-strong: #3e3e44;
+  --wf-soft: #23252a;
+  --wf-raised: #141516;
+  --wf-control: #1c1c1f;
+  --wf-overlay: #1c1c1f;
+  --wf-handle: #62666d;
+  --wf-accent: #7170ff;
+  --wf-accent-text: #828fff;
+  --wf-brand: #5e6ad2;
+  --wf-accent-bg: color-mix(in lch, #5e6ad2, transparent 80%);
+  --wf-error: #eb5757;
+  --wf-error-text: #f27a7a;
+  --wf-shadow-low: 0 2px 4px rgba(0, 0, 0, .1);
+  --wf-shadow-high: 0 0 0 1px #000, 0 7px 32px rgba(0, 0, 0, .35);
+}
+
+.wf { font-size: 13px; line-height: 1.5; letter-spacing: -.01em; color: var(--wf-text); }
+.wf :where(ul, ol) { margin: 0; padding: 0; list-style: none; }
+.wf :where(p, h1, h2, h3, h4, h5, h6, figure, pre, blockquote, fieldset) { margin: 0; }
+.wf :where(h1, h2, h3, h4, h5, h6) { color: var(--wf-ink); font-weight: 590; }
+.wf :where(button, input, select, textarea) { font: inherit; color: inherit; letter-spacing: inherit; }
+/* A plain button is just its content; wf-btn draws one. */
+.wf :where(button) { background: none; border: none; padding: 0; cursor: default; }
+.wf :where(table) { border-collapse: collapse; }
+.wf :where(th, td) { padding: 4px 8px; border-bottom: 1px solid var(--wf-soft); text-align: left; }
+.wf :where(th) { color: var(--wf-muted); font-weight: 510; font-size: 12px; }
+.wf :where(a) { color: var(--wf-accent-text); }
+.wf :where(code, pre) { font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace; font-size: 12px; letter-spacing: 0; }
+
+.wf-row, .wf-col { display: flex; align-items: center; }
+.wf-col { flex-direction: column; }
+.wf-gap { gap: 8px; }
+.wf-pad { padding: 8px; }
+.wf-grow { flex: 1 1 0; min-width: 0; }
+.wf-box { border: 1px solid var(--wf-line); border-radius: var(--r); }
+.wf-surface { border: 1px solid var(--wf-soft); border-radius: var(--r); background: var(--wf-raised); }
+.wf-overlay { border: 1px solid rgba(255, 255, 255, .08); border-radius: var(--r); background: var(--wf-overlay); box-shadow: var(--wf-shadow-high); }
+
+.wf-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--wf-line); border-radius: var(--r); background: var(--wf-control); box-shadow: var(--wf-shadow-low); color: var(--wf-ink); font-weight: 510; padding: 5px 12px; font-size: 12px; white-space: nowrap; cursor: default; }
+.wf-btn-sm { padding: 2px 8px; font-size: 11px; }
+.wf-btn-lg { padding: 9px 18px; font-size: 14px; }
+.wf-btn-icon { padding: 5px; }
+.wf-btn-sm.wf-btn-icon { padding: 2px; }
+.wf-btn-lg.wf-btn-icon { padding: 9px; }
+.wf-btn-primary { background: var(--wf-brand); border-color: var(--wf-brand); color: #fff; }
+.wf-field { display: flex; align-items: center; gap: 6px; min-width: 140px; min-height: 28px; border: 1px solid var(--wf-line); border-radius: var(--r); background: var(--wf-raised); color: var(--wf-ink); padding: 5px 8px; font-size: 12px; outline: none; }
+.wf-label { display: block; font-size: 12px; font-weight: 510; color: var(--wf-text); }
+.wf-hint { font-size: 12px; color: var(--wf-faint); }
+.wf-muted { color: var(--wf-muted); }
+.wf-strong { font-weight: 590; color: var(--wf-ink); }
+.wf-small { font-size: 12px; }
+
+.wf-icon { display: inline-block; flex: none; width: 16px; height: 16px; border-radius: 4px; background: var(--wf-line); }
+/* A Material Symbols glyph named by its text (the font is loaded by the page; without it the name shows). */
+.wf-symbol { display: inline-block; flex: none; font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 16px; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; direction: ltr; font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased; }
+.wf-btn-sm .wf-symbol { font-size: 14px; }
+.wf-btn-lg .wf-symbol { font-size: 20px; }
+.wf-avatar { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--wf-line); color: var(--wf-ink); font-size: 11px; font-weight: 510; overflow: hidden; }
+.wf-pill { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--wf-line); border-radius: 999px; padding: 1px 8px; font-size: 12px; font-weight: 510; white-space: nowrap; }
+.wf-dot { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--wf-handle); }
+
+/* A thumb placed after the fill sits at the fill's end. */
+.wf-track { display: flex; align-items: center; min-width: 160px; height: 4px; border-radius: 2px; background: var(--wf-line); }
+.wf-fill { height: 100%; border-radius: 2px; background: var(--wf-accent); }
+.wf-thumb { flex: none; width: 16px; height: 16px; margin: 0 -8px; border-radius: 50%; background: var(--wf-ink); box-shadow: 0 0 0 1px rgba(0, 0, 0, .4), 0 1px 3px rgba(0, 0, 0, .4); position: relative; }
+.wf-divider { align-self: stretch; height: 1px; margin: 0; border: none; background: var(--wf-soft); }
+.wf-row > .wf-divider { align-self: center; }
+
+.wf-pressable { border-color: var(--wf-line); background: var(--wf-raised); box-shadow: var(--wf-shadow-low); cursor: pointer; }
+.wf-selected { border-color: var(--wf-accent); background: var(--wf-accent-bg); color: var(--wf-ink); }
+.wf-dot.wf-selected { background: var(--wf-accent); }
+.wf-error { border-color: var(--wf-error); color: var(--wf-error-text); }
+.wf-disabled { opacity: .5; pointer-events: none; }
+/* Unbounded content never overflows, so the scroll area gets a height to clip at. */
+.wf-scroll { overflow: auto; max-height: 240px; }
+
+/* Showcase only: where a primitive's children go, and a node that couldn't be drawn. */
+.wf-slot { min-width: 64px; min-height: 28px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--wf-line); border-radius: var(--r); color: var(--wf-faint); font-size: 11px; padding: 4px 8px; }
+.wf-bad { display: inline-block; border: 1px solid var(--wf-error); background: rgba(235, 87, 87, .15); color: var(--wf-error-text); border-radius: var(--r); padding: 2px 6px; font-size: 11px; font-family: ui-monospace, Menlo, monospace; }

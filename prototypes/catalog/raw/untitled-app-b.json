@@ -1,0 +1,648 @@
+[
+  {
+    "kit": "untitled",
+    "page": "Inline CTAs",
+    "name": "Inline CTA",
+    "nodeId": "1255:131915",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1255-131915",
+    "properties": {
+      "Type": [
+        "Image",
+        "Actions",
+        "Email field",
+        "Change plan",
+        "Upgrade plan",
+        "Payment method",
+        "Receipt"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Inline call-to-action card embedded in app content (upgrade, payment, receipt, email capture)."
+  },
+  {
+    "kit": "untitled",
+    "page": "Loading indicators",
+    "name": "Loading indicator",
+    "nodeId": "1192:610",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1192-610",
+    "properties": {
+      "Style": [
+        "Dot circle",
+        "Line spinner",
+        "Line simple"
+      ],
+      "Size": [
+        "md",
+        "sm",
+        "lg",
+        "xl"
+      ]
+    },
+    "notes": "Spinner."
+  },
+  {
+    "kit": "untitled",
+    "page": "Messaging",
+    "name": "Message",
+    "nodeId": "1242:996",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1242-996",
+    "properties": {
+      "Type": [
+        "Message",
+        "Message reply",
+        "File",
+        "Audio",
+        "Image",
+        "Video",
+        "Link preview",
+        "Link minimal",
+        "Writing"
+      ],
+      "Sent": [
+        "False",
+        "True"
+      ],
+      "Actions panel": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Chat message bubble; Sent flips alignment/style; Writing is the typing indicator."
+  },
+  {
+    "kit": "untitled",
+    "page": "Messaging",
+    "name": "Message action",
+    "nodeId": "9206:602532",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9206-602532",
+    "properties": {
+      "Type": [
+        "Minimal",
+        "Textarea input",
+        "Advanced"
+      ]
+    },
+    "notes": "Chat composer / message input bar."
+  },
+  {
+    "kit": "untitled",
+    "page": "Metrics",
+    "name": "Metric item",
+    "nodeId": "1560:266217",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1560-266217",
+    "properties": {
+      "Actions": [
+        "False",
+        "True"
+      ],
+      "Type": [
+        "Simple",
+        "Icon 01",
+        "Icon 02",
+        "Icon 03",
+        "Icon 04",
+        "Chart 01",
+        "Chart 02",
+        "Chart 03",
+        "Chart 04"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "KPI / stat card, optionally with icon or mini chart."
+  },
+  {
+    "kit": "untitled",
+    "page": "Modals",
+    "name": "Modal",
+    "nodeId": "4057:415205",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=4057-415205",
+    "properties": {
+      "Type": [
+        "Stacked left aligned",
+        "Horizontal",
+        "Warning stacked left aligned",
+        "Warning horizontal",
+        "Destructive stacked left aligned",
+        "Destructive horizontal",
+        "Log in",
+        "Sign up 01",
+        "Sign up 02",
+        "Checkboxes",
+        "Toggles",
+        "Link field",
+        "Dropdown",
+        "Input field",
+        "Labels",
+        "Access request",
+        "Email invite",
+        "User invite",
+        "Stacked with team",
+        "Stacked with team and link",
+        "Stacked with team and invites",
+        "Verification code",
+        "2FA code",
+        "Password prompt",
+        "Centered photo",
+        "Centered photo carousel",
+        "Centered video carousel",
+        "Payment details",
+        "Payment details with image",
+        "Plan 01",
+        "Plan 02",
+        "Payment method",
+        "Date picker",
+        "File upload",
+        "Profile settings",
+        "User selection",
+        "Image crop",
+        "Form 01",
+        "Form 02",
+        "Calendar event",
+        "Banner appearance",
+        "Appearance settings",
+        "A.I. assistant",
+        "User settings",
+        "New project",
+        "Text editor",
+        "Share project",
+        "Create event",
+        "Integration",
+        "New message (empty state)",
+        "New message (filled)"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Dialog; Type is mostly a library of pre-built content examples (51) rather than structural variants."
+  },
+  {
+    "kit": "untitled",
+    "page": "Page headers",
+    "name": "Page header",
+    "nodeId": "1239:122640",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1239-122640",
+    "properties": {
+      "Style": [
+        "Simple",
+        "Avatar",
+        "Banner avatar",
+        "Banner simple",
+        "Banner avatar centered",
+        "Banner simple centered"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Top-of-page title block with breadcrumbs/actions; banner styles add a cover image."
+  },
+  {
+    "kit": "untitled",
+    "page": "Pagination",
+    "name": "Pagination dot group",
+    "nodeId": "1111:38",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1111-38",
+    "properties": {
+      "Size": [
+        "md",
+        "lg"
+      ],
+      "Style": [
+        "Dot",
+        "Line"
+      ],
+      "Framed": [
+        "True",
+        "False"
+      ]
+    },
+    "notes": "Dot/line page indicator, e.g. for carousels."
+  },
+  {
+    "kit": "untitled",
+    "page": "Pagination",
+    "name": "Pagination",
+    "nodeId": "1115:68622",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1115-68622",
+    "properties": {
+      "Type": [
+        "Page default",
+        "Page minimal center aligned",
+        "Card default",
+        "Card minimal right aligned",
+        "Card minimal left aligned",
+        "Card button group right aligned",
+        "Card button group left aligned",
+        "Card minimal center aligned",
+        "Card advanced",
+        "Card advanced center aligned"
+      ],
+      "Shape": [
+        "Square",
+        "Circle"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Numbered page navigation; Page = full width, Card = table/card footer."
+  },
+  {
+    "kit": "untitled",
+    "page": "Pagination",
+    "name": "Carousel image",
+    "nodeId": "1253:237",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1253-237",
+    "properties": {
+      "Size": [
+        "md",
+        "lg"
+      ]
+    },
+    "notes": "Image carousel with arrows and dot indicator."
+  },
+  {
+    "kit": "untitled",
+    "page": "Progress steps",
+    "name": "Progress steps / Progress minimal icons connected",
+    "nodeId": "1139:79128",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1139-79128",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Type": [
+        "Check",
+        "Number"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Stepper: icons joined by connector lines, no text."
+  },
+  {
+    "kit": "untitled",
+    "page": "Progress steps",
+    "name": "Progress steps / Progress minimal icons",
+    "nodeId": "1139:79149",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1139-79149",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Type": [
+        "Check",
+        "Number"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Stepper: icons only, unconnected."
+  },
+  {
+    "kit": "untitled",
+    "page": "Progress steps",
+    "name": "Progress steps / Progress text with line",
+    "nodeId": "1139:79465",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1139-79465",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Breakpoint": [
+        "Mobile",
+        "Desktop"
+      ]
+    },
+    "notes": "Stepper: step text over a progress line."
+  },
+  {
+    "kit": "untitled",
+    "page": "Progress steps",
+    "name": "Progress steps / Progress icons centered",
+    "nodeId": "1141:76669",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1141-76669",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Type": [
+        "Icon",
+        "Number",
+        "Featured icon"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Stepper: icons with centered title/description below."
+  },
+  {
+    "kit": "untitled",
+    "page": "Progress steps",
+    "name": "Progress steps / Progress icons with text",
+    "nodeId": "1254:144290",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1254-144290",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Type": [
+        "Icon",
+        "Number",
+        "Icon featured"
+      ]
+    },
+    "notes": "Stepper: icons with text beside (vertical list); no Breakpoint property."
+  },
+  {
+    "kit": "untitled",
+    "page": "Section footers",
+    "name": "Section footer",
+    "nodeId": "3275:372571",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3275-372571",
+    "properties": {
+      "Type": [
+        "Section",
+        "Card"
+      ],
+      "Button group": [
+        "True",
+        "False"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Footer row of a section or card with actions."
+  },
+  {
+    "kit": "untitled",
+    "page": "Section headers",
+    "name": "Section header",
+    "nodeId": "1214:38",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1214-38",
+    "properties": {
+      "Tabs": [
+        "False",
+        "True"
+      ],
+      "Type": [
+        "Buttons",
+        "Search",
+        "Button group"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Section title block with actions, optional tabs below."
+  },
+  {
+    "kit": "untitled",
+    "page": "Section headers",
+    "name": "Section label",
+    "nodeId": "5013:376534",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=5013-376534",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Actions": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Label + supporting text for a settings-style form section (left column)."
+  },
+  {
+    "kit": "untitled",
+    "page": "Slideout menus",
+    "name": "Slide out menu",
+    "nodeId": "1240:137582",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1240-137582",
+    "properties": {
+      "Type": [
+        "Placeholder",
+        "User profile",
+        "Messages",
+        "Message chat",
+        "Payment method",
+        "Payment details",
+        "Plan",
+        "Team members",
+        "Filters",
+        "File upload",
+        "Labels",
+        "Project details",
+        "Notification settings button groups",
+        "Notification settings checkboxes",
+        "Notifications",
+        "Order summary",
+        "Calendar event",
+        "User settings",
+        "A.I. assistant intro",
+        "A.I. assistant message",
+        "Share project",
+        "Create event",
+        "Integration"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Side drawer / sheet; Type is a library of content examples, Placeholder is the empty shell."
+  },
+  {
+    "kit": "untitled",
+    "page": "Tables",
+    "name": "Table header cell",
+    "nodeId": "1221:107933",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1221-107933",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Text": [
+        "False",
+        "True"
+      ],
+      "Checkbox": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Column header cell."
+  },
+  {
+    "kit": "untitled",
+    "page": "Tables",
+    "name": "Table cell",
+    "nodeId": "1222:107305",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1222-107305",
+    "properties": {
+      "Type": [
+        "Text",
+        "Avatar",
+        "File type icon",
+        "Payment method",
+        "Badge",
+        "Badges multiple",
+        "Trend positive",
+        "Trend negative",
+        "Avatar group",
+        "Select dropdown",
+        "Progress bar",
+        "Star ratings",
+        "Action buttons",
+        "Action icons",
+        "Action dropdown icon"
+      ],
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "State": [
+        "Default",
+        "Hover/selected"
+      ]
+    },
+    "notes": "Body cell; Type picks the cell content."
+  },
+  {
+    "kit": "untitled",
+    "page": "Tables",
+    "name": "Table",
+    "nodeId": "1227:110587",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1227-110587",
+    "properties": {
+      "Example": [
+        "Team members",
+        "Companies",
+        "Sales",
+        "Files"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ],
+      "Dividers": [
+        "Divider line",
+        "Alternating fills"
+      ]
+    },
+    "notes": "Full table; Example values are pre-built content examples, built from header/cell components."
+  },
+  {
+    "kit": "untitled",
+    "page": "Tables",
+    "name": "Table cell lead action",
+    "nodeId": "9400:570197",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9400-570197",
+    "properties": {
+      "Type": [
+        "Checkbox",
+        "Radio",
+        "Toggle"
+      ]
+    },
+    "notes": "Leading selection control for a table row."
+  },
+  {
+    "kit": "untitled",
+    "page": "Tabs",
+    "name": "Horizontal tabs",
+    "nodeId": "1118:69893",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1118-69893",
+    "properties": {
+      "Type": [
+        "Button brand",
+        "Button gray",
+        "Underline",
+        "Button border",
+        "Button minimal"
+      ],
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Full width": [
+        "False",
+        "True"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Horizontal tab bar; mobile collapses to a select."
+  },
+  {
+    "kit": "untitled",
+    "page": "Tabs",
+    "name": "Vertical tabs",
+    "nodeId": "1397:9880",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1397-9880",
+    "properties": {
+      "Type": [
+        "Button primary",
+        "Button gray",
+        "Line",
+        "Button border",
+        "Button minimal"
+      ],
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Vertical tab list."
+  },
+  {
+    "kit": "untitled",
+    "page": "Tree views",
+    "name": "Tree view",
+    "nodeId": "12451:566966",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12451-566966",
+    "properties": {
+      "Type": [
+        "Simple",
+        "Advanced"
+      ],
+      "Size": [
+        "sm",
+        "md"
+      ]
+    },
+    "notes": "Hierarchical expandable tree (file/folder navigation)."
+  }
+]

@@ -44,9 +44,9 @@ was chosen is in `decisions.md`.
 - **Rules**: conditions and validation, such as role-based visibility or
   field limits.
 - **Edge cases**: offline, timeouts, permission denied, long text, zero or
-  thousands of items. Not objects of their own: each is the condition
-  that puts a screen or component into a state ("when the network is
-  down"), so every edge case says what the UI does about it.
+  thousands of items. Not objects of their own: each is a state of a
+  screen or component, described by when it applies ("the device has no
+  connection"), so every edge case says what the UI does about it.
 - **Accessibility**: focus order, labels and keyboard paths: how the
   product behaves for someone not using a pointer or a screen.
 
@@ -84,32 +84,38 @@ TaskScreen
 
 ## Left to Figma
 
-How the product looks stays out of the spec: tokens (colors, type,
-spacing), styling, visual variants, alignment, gaps and padding,
-responsive layout, motion and contrast. Where one of them changes
-behavior, such as a menu that collapses on small screens, the behavior
-goes in the spec as a rule or a state; the look doesn't. The one piece of
-layout the spec keeps is arrangement and sizing, because what sits where,
-and what grows, shapes behavior.
+How the product looks stays out of the spec: tokens (colors, type),
+styling, visual variants, responsive layout, motion and contrast. Where
+one of them changes behavior, such as a menu that collapses on small
+screens, the behavior goes in the spec as a rule or a state; the look
+doesn't. Layout is the exception: the spec keeps it, because what sits
+where, and how big, shapes behavior.
 
-## Arrangement and sizing
+## Layout
 
-The only layout a component or screen carries. It sets, for its
-children, their direction (a row or a column), their order and nesting,
-and how each one sizes: it fills the space, fits its content, or is
-fixed. It has no pixel values, colors or spacing. A user can change it,
-and it is enough to say what sits where and what grows, which feeds
-behavior such as focus order and what stays visible.
+The layout a component or screen carries follows Figma's auto layout, so
+a designer meets the controls they know:
+
+- **What holds children** sets their flow (a row, a column, a stack
+  layered on top of each other, or a grid), wrapping, alignment, the gap
+  between them, padding and clipping.
+- **Every instance** sets its width and height: it fills the space, hugs
+  its content, or has a fixed size in pixels, with optional minimums and
+  maximums.
+- **A screen** names the device it is for: desktop, tablet or mobile.
+
+What sits where, and how big, feeds behavior such as focus order and
+what stays visible; a state can change layout as well as content.
 
 ```
-TaskScreen   column
-  Header     fit
-  TaskList   fill
-  Footer     fit
+TaskScreen   mobile, column
+  Header     width fill, height hug
+  TaskList   width fill, height fill
+  Footer     width fill, height hug
 
-Header       row
-  text       fill
-  button     fit
+Header       row, align center, gap 8, padding 12
+  text       width fill
+  button     width hug
 ```
 
 ## Screen states
@@ -117,19 +123,23 @@ Header       row
 A screen is defined once, as its base. Each of its states (empty,
 loading, error) is a named set of changes to that base: which instances
 show or hide, what data and copy they get, and which state each instance
-is in. A state says when it applies, its condition, and only what
-differs, so an agent reads exactly what changes and why.
+is in. A state has a name, a short description of when it applies,
+and only what differs, so an agent reads exactly what changes and why.
+There is no formal condition: people and agents read the description.
+An interaction can enter or leave a state. When several
+states hold at once, all of them apply, in the order they are written;
+if two change the same thing, the later one wins.
 
 ```
 TaskScreen
   base: Header, TaskList, Footer
 
-  state empty    when tasks is empty
+  state empty    "The tasks have loaded and there are none."
     hide TaskList
     show EmptyState "No tasks yet"
-  state offline  when network is down
+  state offline  "The device has no connection."
     show Banner "You're offline"
-  state error    when load fails
+  state error    "The tasks failed to load."
     TaskList → error
     show Retry
 ```

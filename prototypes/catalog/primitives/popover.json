@@ -1,0 +1,129 @@
+{
+  "name": "popover",
+  "about": "A small panel anchored to a control: opened by a click, with text and actions, until the user dismisses it; or, on hover or focus, a short tooltip.",
+  "category": "overlays",
+  "element": "[popover] role=dialog (non-modal); role=tooltip when trigger is hover",
+  "props": {
+    "title": "text",
+    "text": "text",
+    "open": "bool",
+    "trigger": [
+      "click",
+      "hover"
+    ]
+  },
+  "events": {
+    "close": null
+  },
+  "children": true,
+  "states": {
+    "open": {
+      "open": true
+    }
+  },
+  "defaults": {
+    "title": "Shared specs",
+    "text": "Invite your team to edit this spec with you.",
+    "open": false,
+    "trigger": "click"
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:flex-start"
+    },
+    "children": [
+      {
+        "el": "button",
+        "class": "wf-btn",
+        "text": "What's new",
+        "attrs": {
+          "aria-expanded": "{open}"
+        },
+        "if": "trigger=click"
+      },
+      {
+        "el": "span",
+        "class": "wf-icon",
+        "if": "trigger=hover",
+        "attrs": {
+          "role": "button",
+          "tabindex": "0",
+          "aria-label": "Help"
+        }
+      },
+      {
+        "el": "div",
+        "if": "open",
+        "attrs": {
+          "style": "display:contents"
+        },
+        "children": [
+          {
+            "el": "div",
+            "class": "wf-overlay wf-col wf-gap wf-pad",
+            "if": "trigger=click",
+            "attrs": {
+              "role": "dialog",
+              "style": "max-width:260px;align-items:flex-start"
+            },
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-strong",
+                "text": "{title}"
+              },
+              {
+                "el": "span",
+                "class": "wf-small",
+                "text": "{text}"
+              },
+              {
+                "el": "div",
+                "class": "wf-row wf-gap",
+                "slot": true
+              }
+            ]
+          },
+          {
+            "el": "div",
+            "class": "wf-overlay wf-pad wf-small",
+            "if": "trigger=hover",
+            "text": "{text}",
+            "attrs": {
+              "role": "tooltip",
+              "style": "max-width:200px"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Rich Tooltip",
+        "nodeId": "54061:33872",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54061-33872"
+      },
+      {
+        "name": "Plain Tooltip",
+        "nodeId": "54061:33881",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54061-33881"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Tooltip",
+        "nodeId": "1052:489",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1052-489"
+      },
+      {
+        "name": "Help icon (help-icon trigger)",
+        "nodeId": "1054:13",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1054-13"
+      }
+    ]
+  }
+}

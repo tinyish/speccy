@@ -1,0 +1,160 @@
+{
+  "name": "menu",
+  "about": "A list of actions or choices the user opens from a button, or by right-clicking an area, and picks one from.",
+  "category": "overlays",
+  "element": "role=menu (from a button, or opened by contextmenu on the area it wraps)",
+  "props": {
+    "items": "text[]",
+    "value": "text",
+    "searchable": "bool",
+    "open": "bool",
+    "trigger": [
+      "click",
+      "contextmenu"
+    ]
+  },
+  "events": {
+    "select": "text",
+    "close": null
+  },
+  "children": true,
+  "states": {
+    "open": {
+      "open": true
+    }
+  },
+  "defaults": {
+    "items": [
+      "Sort by name",
+      "Sort by date",
+      "Sort by size"
+    ],
+    "value": "Sort by date",
+    "searchable": false,
+    "open": false,
+    "trigger": "click"
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:flex-start"
+    },
+    "children": [
+      {
+        "el": "button",
+        "class": "wf-btn",
+        "text": "Sort ▾",
+        "classIf": {
+          "wf-selected": "open"
+        },
+        "attrs": {
+          "aria-haspopup": "menu",
+          "aria-expanded": "{open}"
+        },
+        "if": "trigger=click"
+      },
+      {
+        "el": "div",
+        "class": "wf-box wf-pad",
+        "if": "trigger=contextmenu",
+        "slot": true
+      },
+      {
+        "el": "div",
+        "class": "wf-overlay wf-col",
+        "if": "open",
+        "attrs": {
+          "role": "menu",
+          "style": "min-width:180px;align-items:stretch"
+        },
+        "children": [
+          {
+            "el": "div",
+            "class": "wf-pad",
+            "if": "searchable",
+            "children": [
+              {
+                "el": "input",
+                "class": "wf-field",
+                "attrs": {
+                  "placeholder": "Search",
+                  "style": "width:100%"
+                }
+              }
+            ]
+          },
+          {
+            "el": "div",
+            "class": "wf-pad wf-row wf-gap",
+            "each": "items",
+            "attrs": {
+              "role": "menuitemradio"
+            },
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-small",
+                "attrs": {
+                  "style": "width:12px"
+                },
+                "children": [
+                  {
+                    "el": "span",
+                    "if": "item={value}",
+                    "text": "✓"
+                  }
+                ]
+              },
+              {
+                "el": "span",
+                "text": "{item}"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Menu",
+        "nodeId": "58966:3975",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58966-3975"
+      },
+      {
+        "name": "Menu item/Standard (sub-part: item)",
+        "nodeId": "58966:4100",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58966-4100"
+      },
+      {
+        "name": "Menu item/Vibrant (sub-part: item)",
+        "nodeId": "58966:4171",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58966-4171"
+      },
+      {
+        "name": "Menu (baseline) (baseline)",
+        "nodeId": "54061:36963",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54061-36963"
+      },
+      {
+        "name": "FAB menu (opened from a FAB)",
+        "nodeId": "57998:42986",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-42986"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Dropdown menu",
+        "nodeId": "3281:383083",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3281-383083"
+      },
+      {
+        "name": "Context menu",
+        "nodeId": "11547:540792",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=11547-540792"
+      }
+    ]
+  }
+}

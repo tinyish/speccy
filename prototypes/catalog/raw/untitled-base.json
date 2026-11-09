@@ -1,0 +1,1187 @@
+[
+  {
+    "kit": "untitled",
+    "page": "Avatars",
+    "name": "Avatar label group",
+    "nodeId": "82:2793",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=82-2793",
+    "properties": {
+      "Supporting text": [
+        "<boolean>"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "notes": "Avatar with name and supporting text beside it."
+  },
+  {
+    "kit": "untitled",
+    "page": "Avatars",
+    "name": "Avatar profile photo",
+    "nodeId": "1217:108477",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1217-108477",
+    "properties": {
+      "Verified": [
+        "<boolean>"
+      ],
+      "Placeholder": [
+        "False",
+        "True"
+      ],
+      "Text": [
+        "False",
+        "True"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "notes": "Large profile-photo avatar with optional verified tick."
+  },
+  {
+    "kit": "untitled",
+    "page": "Avatars",
+    "name": "Avatar group",
+    "nodeId": "1274:812",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1274-812",
+    "properties": {
+      "More users": [
+        "<boolean>"
+      ],
+      "Add more button": [
+        "<boolean>"
+      ],
+      "Size": [
+        "xs",
+        "sm",
+        "md"
+      ]
+    },
+    "notes": "Overlapping stack of avatars with +N count and add button."
+  },
+  {
+    "kit": "untitled",
+    "page": "Avatars",
+    "name": "Status icon",
+    "nodeId": "11008:45024",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=11008-45024",
+    "properties": {
+      "Type": [
+        "Offline",
+        "Online",
+        "Avatar",
+        "Verified tick",
+        "Count"
+      ]
+    },
+    "notes": "Small status indicator placed on an avatar; mostly used inside Avatar."
+  },
+  {
+    "kit": "untitled",
+    "page": "Avatars",
+    "name": "Avatar",
+    "nodeId": "11008:45389",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=11008-45389",
+    "properties": {
+      "Status icon": [
+        "<boolean>"
+      ],
+      "Size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "2xl"
+      ],
+      "Border": [
+        "False",
+        "True"
+      ],
+      "Placeholder icon": [
+        "False",
+        "True"
+      ],
+      "Placeholder text": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Core avatar: image, initials or placeholder icon."
+  },
+  {
+    "kit": "untitled",
+    "page": "Badges",
+    "name": "Badge",
+    "nodeId": "1046:3819",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1046-3819",
+    "properties": {
+      "🔀 Flag swap": [
+        "<instance swap>"
+      ],
+      "🔀 Icon trailing swap": [
+        "<instance swap>"
+      ],
+      "🔀 Icon leading swap": [
+        "<instance swap>"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Type": [
+        "Pill color",
+        "Badge color",
+        "Badge modern"
+      ],
+      "Icon": [
+        "False",
+        "Dot",
+        "Country",
+        "X close",
+        "Avatar",
+        "Icon trailing",
+        "Icon leading",
+        "Only"
+      ],
+      "Color": [
+        "Gray",
+        "Brand",
+        "Error",
+        "Warning",
+        "Success",
+        "Slate",
+        "Sky",
+        "Blue",
+        "Indigo",
+        "Purple",
+        "Pink",
+        "Orange"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Badges",
+    "name": "Badge group",
+    "nodeId": "1046:8088",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1046-8088",
+    "properties": {
+      "Icon": [
+        "<boolean>"
+      ],
+      "Badge": [
+        "Leading",
+        "Trailing"
+      ],
+      "Size": [
+        "md",
+        "lg"
+      ],
+      "Type": [
+        "Pill color",
+        "Badge modern"
+      ],
+      "Color": [
+        "Gray",
+        "Brand",
+        "Error",
+        "Warning",
+        "Success"
+      ],
+      "State": [
+        "Default",
+        "Hover"
+      ]
+    },
+    "notes": "Pill with an inner badge plus message text (e.g. 'New feature' announcement)."
+  },
+  {
+    "kit": "untitled",
+    "page": "Button groups",
+    "name": "Button group",
+    "nodeId": "1046:10171",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1046-10171",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Icon": [
+        "False",
+        "Leading",
+        "Only"
+      ]
+    },
+    "notes": "Segmented row of joined buttons."
+  },
+  {
+    "kit": "untitled",
+    "page": "Buttons",
+    "name": "Buttons/Button",
+    "nodeId": "3287:427074",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3287-427074",
+    "properties": {
+      "⬅️ Icon leading": [
+        "<boolean>"
+      ],
+      "➡️ Icon trailing": [
+        "<boolean>"
+      ],
+      "🔀 Icon leading swap": [
+        "<instance swap>"
+      ],
+      "🔀 Icon trailing swap": [
+        "<instance swap>"
+      ],
+      "Loading text": [
+        "<boolean>"
+      ],
+      "Size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "Hierarchy": [
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Link color",
+        "Link gray"
+      ],
+      "State": [
+        "Default",
+        "Hover",
+        "Focused",
+        "Disabled",
+        "Loading"
+      ],
+      "Icon only": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Buttons",
+    "name": "Buttons/Social button",
+    "nodeId": "1256:130788",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1256-130788",
+    "properties": {
+      "Size": [
+        "md",
+        "lg"
+      ],
+      "Social": [
+        "Google",
+        "Facebook",
+        "Apple",
+        "Twitter",
+        "Figma",
+        "Dribbble"
+      ],
+      "Supporting text": [
+        "True",
+        "False"
+      ],
+      "Theme": [
+        "Brand",
+        "Gray",
+        "Color"
+      ],
+      "State": [
+        "Default",
+        "Hover",
+        "Focused"
+      ]
+    },
+    "notes": "Sign in with <provider> button."
+  },
+  {
+    "kit": "untitled",
+    "page": "Buttons",
+    "name": "Buttons/Social button group",
+    "nodeId": "1256:132638",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1256-132638",
+    "properties": {
+      "Size": [
+        "md",
+        "lg"
+      ],
+      "Style": [
+        "Buttons",
+        "Icons"
+      ],
+      "Theme": [
+        "Brand",
+        "Color",
+        "Gray"
+      ]
+    },
+    "notes": "Stack or row of social sign-in buttons."
+  },
+  {
+    "kit": "untitled",
+    "page": "Buttons",
+    "name": "Mobile app store badge",
+    "nodeId": "1303:2162",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1303-2162",
+    "properties": {
+      "Size": [
+        "md",
+        "lg"
+      ],
+      "Store": [
+        "Google Play",
+        "App Store",
+        "Mac App Store",
+        "Galaxy Store",
+        "AppGallery"
+      ],
+      "Style": [
+        "Brand",
+        "Outline"
+      ]
+    },
+    "notes": "Download-on-store badge."
+  },
+  {
+    "kit": "untitled",
+    "page": "Buttons",
+    "name": "Buttons/Button close X",
+    "nodeId": "2763:420129",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=2763-420129",
+    "properties": {
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Dark background": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Default",
+        "Hover",
+        "Focused"
+      ]
+    },
+    "notes": "Icon-only close button for modals, banners etc."
+  },
+  {
+    "kit": "untitled",
+    "page": "Buttons",
+    "name": "Buttons/Button destructive",
+    "nodeId": "6218:85578",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=6218-85578",
+    "properties": {
+      "⬅️ Icon leading": [
+        "<boolean>"
+      ],
+      "🔀 Icon leading swap": [
+        "<instance swap>"
+      ],
+      "➡️ Icon trailing": [
+        "<boolean>"
+      ],
+      "🔀 Icon trailing swap": [
+        "<instance swap>"
+      ],
+      "Loading text": [
+        "<boolean>"
+      ],
+      "Size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "Hierarchy": [
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Link"
+      ],
+      "State": [
+        "Default",
+        "Hover",
+        "Focused",
+        "Disabled",
+        "Loading"
+      ],
+      "Icon only": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Error-colored variant of Button."
+  },
+  {
+    "kit": "untitled",
+    "page": "Buttons",
+    "name": "Buttons/Button utility",
+    "nodeId": "8003:526508",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=8003-526508",
+    "properties": {
+      "🔀 Icon swap": [
+        "<instance swap>"
+      ],
+      "Size": [
+        "xs",
+        "sm"
+      ],
+      "Hierarchy": [
+        "Secondary",
+        "Tertiary"
+      ],
+      "State": [
+        "Default",
+        "Hover",
+        "Focused",
+        "Disabled"
+      ]
+    },
+    "notes": "Small icon-only utility button (toolbars, inline actions)."
+  },
+  {
+    "kit": "untitled",
+    "page": "Buttons",
+    "name": "Buttons/Button loading icon",
+    "nodeId": "8993:429278",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=8993-429278",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ]
+    },
+    "notes": "Spinner used inside buttons in the Loading state; borderline building block."
+  },
+  {
+    "kit": "untitled",
+    "page": "Checkboxes",
+    "name": "Checkbox",
+    "nodeId": "1097:63652",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1097-63652",
+    "properties": {
+      "Supporting text": [
+        "<boolean>"
+      ],
+      "Checked": [
+        "False",
+        "True"
+      ],
+      "Indeterminate": [
+        "False",
+        "True"
+      ],
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Type": [
+        "Checkbox",
+        "Radio"
+      ],
+      "Text": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Default",
+        "Hover",
+        "Focused",
+        "Disabled"
+      ]
+    },
+    "notes": "Checkbox or single radio with optional label; Type=Radio covers the radio button."
+  },
+  {
+    "kit": "untitled",
+    "page": "Dropdowns",
+    "name": "Dropdown menu",
+    "nodeId": "3281:383083",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3281-383083",
+    "properties": {
+      "Scrollbar": [
+        "<boolean>"
+      ],
+      "Chevron dropdown": [
+        "<boolean>"
+      ],
+      "Type": [
+        "Button simple",
+        "Button advanced",
+        "Button link",
+        "Icon simple",
+        "Icon advanced",
+        "Search simple",
+        "Search advanced",
+        "Integrations",
+        "Account button",
+        "Account avatar",
+        "Account card xs",
+        "Account card sm",
+        "Account card md",
+        "Account breadcrumb"
+      ],
+      "Open": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Trigger plus menu; Type picks the trigger style and menu content."
+  },
+  {
+    "kit": "untitled",
+    "page": "Dropdowns",
+    "name": "Context menu",
+    "nodeId": "11547:540792",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=11547-540792",
+    "properties": {
+      "Type": [
+        "Simple",
+        "Advanced"
+      ],
+      "Open": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Right-click style menu."
+  },
+  {
+    "kit": "untitled",
+    "page": "Inputs",
+    "name": "Input field",
+    "nodeId": "1090:57817",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1090-57817",
+    "properties": {
+      "Label": [
+        "<boolean>"
+      ],
+      "Hint text": [
+        "<boolean>"
+      ],
+      "Help icon": [
+        "<boolean>"
+      ],
+      "🔀 Icon swap": [
+        "<instance swap>"
+      ],
+      "↳ Required *": [
+        "<boolean>"
+      ],
+      "⬅️ Icon leading": [
+        "<boolean>"
+      ],
+      "Time selector": [
+        "<boolean>"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Type": [
+        "Default",
+        "Leading dropdown",
+        "Trailing dropdown",
+        "Leading text",
+        "Payment input",
+        "Tags inner",
+        "Tags outer",
+        "Trailing button",
+        "Password",
+        "Date and time",
+        "Number counter horizontal",
+        "Number counter vertical",
+        "OTP",
+        "File upload"
+      ],
+      "Destructive": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Placeholder",
+        "Filled",
+        "Focused",
+        "Disabled"
+      ]
+    },
+    "notes": "Text input with label/hint; Type covers many specialised inputs (password, payment, date, counter, file upload)."
+  },
+  {
+    "kit": "untitled",
+    "page": "Inputs",
+    "name": "Verification code input field",
+    "nodeId": "1106:66757",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1106-66757",
+    "properties": {
+      "Label": [
+        "<boolean>"
+      ],
+      "Hint text": [
+        "<boolean>"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Digits": [
+        "4",
+        "6"
+      ]
+    },
+    "notes": "OTP / verification code boxes."
+  },
+  {
+    "kit": "untitled",
+    "page": "Inputs",
+    "name": "Textarea input field",
+    "nodeId": "1238:278",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1238-278",
+    "properties": {
+      "Label": [
+        "<boolean>"
+      ],
+      "Hint text": [
+        "<boolean>"
+      ],
+      "↳ Required *": [
+        "<boolean>"
+      ],
+      "↳ Help icon": [
+        "<boolean>"
+      ],
+      "Resize handle": [
+        "<boolean>"
+      ],
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Type": [
+        "Default",
+        "Tags inner",
+        "Tags outer"
+      ],
+      "Destructive": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Placeholder",
+        "Default",
+        "Focused",
+        "Disabled"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Progress indicators",
+    "name": "Progress bar",
+    "nodeId": "1085:57382",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1085-57382",
+    "properties": {
+      "Progress": [
+        "0%",
+        "10%",
+        "20%",
+        "30%",
+        "40%",
+        "50%",
+        "60%",
+        "70%",
+        "80%",
+        "90%",
+        "100%"
+      ],
+      "Label": [
+        "False",
+        "Right",
+        "Bottom",
+        "Top floating",
+        "Bottom floating"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Progress indicators",
+    "name": "Progress circle",
+    "nodeId": "1084:2717",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1084-2717",
+    "properties": {
+      "Label": [
+        "<boolean>"
+      ],
+      "Size": [
+        "xxs",
+        "xs",
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Shape": [
+        "Circle",
+        "Half circle"
+      ]
+    },
+    "notes": "Circular or half-circle (gauge) progress."
+  },
+  {
+    "kit": "untitled",
+    "page": "Radio groups",
+    "name": "Radio group item",
+    "nodeId": "124:2838",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=124-2838",
+    "properties": {
+      "Badge": [
+        "<boolean>"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Type": [
+        "Icon simple",
+        "Icon card",
+        "Avatar",
+        "Payment icon",
+        "Radio button",
+        "Checkbox"
+      ],
+      "State": [
+        "Default",
+        "Hover",
+        "Focused"
+      ],
+      "Breakpoint": [
+        "Mobile",
+        "Desktop"
+      ]
+    },
+    "notes": "One selectable card/row in a radio group."
+  },
+  {
+    "kit": "untitled",
+    "page": "Radio groups",
+    "name": "Radio group",
+    "nodeId": "1142:87213",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1142-87213",
+    "properties": {
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Type": [
+        "Icon simple",
+        "Icon card",
+        "Avatar",
+        "Payment icon",
+        "Radio button",
+        "Checkbox"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Stack of Radio group items."
+  },
+  {
+    "kit": "untitled",
+    "page": "Select",
+    "name": "Select",
+    "nodeId": "3281:377673",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3281-377673",
+    "properties": {
+      "Label": [
+        "<boolean>"
+      ],
+      "Hint text": [
+        "<boolean>"
+      ],
+      "Supporting text": [
+        "<boolean>"
+      ],
+      "Scroll bar": [
+        "<boolean>"
+      ],
+      "🔀 Icon swap": [
+        "<instance swap>"
+      ],
+      "↳ Required *": [
+        "<boolean>"
+      ],
+      "↳ Help icon": [
+        "<boolean>"
+      ],
+      "Shortcut": [
+        "<boolean>"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Type": [
+        "Default",
+        "Icon leading",
+        "Avatar leading",
+        "Dot leading",
+        "Search",
+        "Tags"
+      ],
+      "State": [
+        "Placeholder",
+        "Default",
+        "Focused",
+        "Open",
+        "Disabled"
+      ]
+    },
+    "notes": "Single select / combobox (Type=Search) with menu."
+  },
+  {
+    "kit": "untitled",
+    "page": "Select",
+    "name": "Multi-select",
+    "nodeId": "12206:577041",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12206-577041",
+    "properties": {
+      "Label": [
+        "<boolean>"
+      ],
+      "Hint text": [
+        "<boolean>"
+      ],
+      "Supporting text": [
+        "<boolean>"
+      ],
+      "Scroll bar": [
+        "<boolean>"
+      ],
+      "↳ Required *": [
+        "<boolean>"
+      ],
+      "↳ Help icon": [
+        "<boolean>"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "State": [
+        "Default",
+        "Active",
+        "Focused",
+        "Open default",
+        "Open active",
+        "Search empty state",
+        "Disabled"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Sliders",
+    "name": "Slider",
+    "nodeId": "1086:534",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1086-534",
+    "properties": {
+      "Label": [
+        "False",
+        "Bottom",
+        "Top floating"
+      ],
+      "Right control": [
+        "25%",
+        "50%",
+        "75%",
+        "100%"
+      ],
+      "Left control": [
+        "0%",
+        "25%",
+        "50%",
+        "75%"
+      ]
+    },
+    "notes": "Range slider with two handles (left and right control positions)."
+  },
+  {
+    "kit": "untitled",
+    "page": "Tags",
+    "name": "Tag",
+    "nodeId": "3307:417515",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3307-417515",
+    "properties": {
+      "🔀 Flag swap": [
+        "<instance swap>"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Icon": [
+        "False",
+        "Country",
+        "Avatar",
+        "Dot"
+      ],
+      "Action": [
+        "X close",
+        "Text only",
+        "Count"
+      ],
+      "Checkbox": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Removable/selectable chip."
+  },
+  {
+    "kit": "untitled",
+    "page": "Text editors",
+    "name": "Text editor toolbar",
+    "nodeId": "9291:557668",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9291-557668",
+    "properties": {
+      "Dropdowns": [
+        "<boolean>"
+      ],
+      "Type": [
+        "Simple",
+        "Advanced"
+      ]
+    },
+    "notes": "Rich-text formatting toolbar."
+  },
+  {
+    "kit": "untitled",
+    "page": "Text editors",
+    "name": "Text editor tooltip",
+    "nodeId": "9291:557669",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9291-557669",
+    "properties": {
+      "Type": [
+        "Simple",
+        "Advanced"
+      ]
+    },
+    "notes": "Floating formatting toolbar shown on text selection."
+  },
+  {
+    "kit": "untitled",
+    "page": "Text editors",
+    "name": "Text highlight",
+    "nodeId": "9291:558536",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9291-558536",
+    "properties": {
+      "Tooltip": [
+        "<boolean>"
+      ]
+    },
+    "notes": "Standalone component: selected-text highlight with optional floating toolbar."
+  },
+  {
+    "kit": "untitled",
+    "page": "Text editors",
+    "name": "Text editor",
+    "nodeId": "9292:559325",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9292-559325",
+    "properties": {
+      "Scroll bar": [
+        "<boolean>"
+      ],
+      "Hint text": [
+        "<boolean>"
+      ],
+      "Type": [
+        "Default",
+        "Floating toolbar"
+      ],
+      "Size": [
+        "sm",
+        "md"
+      ]
+    },
+    "notes": "Rich-text editor field."
+  },
+  {
+    "kit": "untitled",
+    "page": "Toggles",
+    "name": "Toggle",
+    "nodeId": "1102:4208",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1102-4208",
+    "properties": {
+      "Supporting text": [
+        "<boolean>"
+      ],
+      "Type": [
+        "Default",
+        "Slim"
+      ],
+      "Pressed": [
+        "False",
+        "True"
+      ],
+      "Size": [
+        "sm",
+        "md"
+      ],
+      "Text": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Default",
+        "Hover",
+        "Focus",
+        "Disabled"
+      ]
+    },
+    "notes": "Switch with optional label."
+  },
+  {
+    "kit": "untitled",
+    "page": "Tooltips",
+    "name": "Tooltip",
+    "nodeId": "1052:489",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1052-489",
+    "properties": {
+      "Text": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "False",
+        "True"
+      ],
+      "Arrow": [
+        "None",
+        "Bottom left",
+        "Bottom right",
+        "Left",
+        "Right",
+        "Bottom center",
+        "Top center"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Tooltips",
+    "name": "Help icon",
+    "nodeId": "1054:13",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1054-13",
+    "properties": {
+      "Cursor": [
+        "<boolean>"
+      ],
+      "Open": [
+        "False",
+        "True"
+      ],
+      "Supporting text": [
+        "False",
+        "True"
+      ],
+      "Tooltip": [
+        "Top no arrow",
+        "Top arrow",
+        "Left",
+        "Top left",
+        "Bottom",
+        "Right",
+        "Top right"
+      ]
+    },
+    "notes": "Help (?) icon that opens a tooltip."
+  },
+  {
+    "kit": "untitled",
+    "page": "Video players",
+    "name": "Video player 16:9",
+    "nodeId": "9264:576771",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=9264-576771",
+    "properties": {
+      "Overlay action": [
+        "<boolean>"
+      ],
+      "Actions bar": [
+        "<boolean>"
+      ],
+      "Size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "Playing": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": ""
+  },
+  {
+    "kit": "untitled",
+    "page": "Banners",
+    "name": "Banner",
+    "nodeId": "1130:89371",
+    "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1130-89371",
+    "properties": {
+      "Icon": [
+        "<boolean>"
+      ],
+      "Type": [
+        "Text field",
+        "Single action",
+        "Dual action",
+        "Slim",
+        "Countdown"
+      ],
+      "Theme": [
+        "Default",
+        "Brand"
+      ],
+      "Size": [
+        "Floating",
+        "Full-width"
+      ],
+      "Breakpoint": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    "notes": "Page-level announcement banner."
+  }
+]

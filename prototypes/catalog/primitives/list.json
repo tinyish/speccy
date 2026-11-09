@@ -1,0 +1,129 @@
+{
+  "name": "list",
+  "about": "A column of items the user scans, selects, reorders or swipes for actions.",
+  "category": "data-display",
+  "element": "ul",
+  "props": {
+    "selectable": "bool",
+    "reorderable": "bool",
+    "selected": "bool"
+  },
+  "events": {
+    "select": "text",
+    "reorder": "text[]",
+    "swipe": "text"
+  },
+  "children": true,
+  "states": {
+    "selected": {
+      "selectable": true,
+      "selected": true
+    }
+  },
+  "defaults": {
+    "selectable": false,
+    "reorderable": false,
+    "selected": false
+  },
+  "render": {
+    "el": "ul",
+    "class": "wf-col wf-box",
+    "children": [
+      {
+        "el": "li",
+        "if": "selected",
+        "class": "wf-row wf-gap wf-pad wf-selected",
+        "attrs": {
+          "aria-selected": "{selected}",
+          "style": "width:100%"
+        },
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-icon",
+            "attrs": {
+              "aria-label": "Drag"
+            },
+            "if": "reorderable"
+          },
+          {
+            "el": "span",
+            "class": "wf-grow",
+            "text": "Selected item"
+          }
+        ]
+      },
+      {
+        "el": "li",
+        "class": "wf-row wf-gap wf-pad",
+        "attrs": {
+          "style": "width:100%"
+        },
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-icon",
+            "attrs": {
+              "aria-label": "Drag"
+            },
+            "if": "reorderable"
+          },
+          {
+            "el": "div",
+            "class": "wf-col wf-gap wf-grow",
+            "slot": true
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "List",
+        "nodeId": "59106:13028",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13028"
+      },
+      {
+        "name": "List item (sub-part: item)",
+        "nodeId": "59106:13183",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13183"
+      },
+      {
+        "name": "List Item - Swipe (sub-part: swipe item)",
+        "nodeId": "59106:13321",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13321"
+      },
+      {
+        "name": "List (baseline) (baseline)",
+        "nodeId": "51964:62995",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-62995"
+      },
+      {
+        "name": "List: -2 Density (baseline) (baseline)",
+        "nodeId": "51964:63008",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-63008"
+      },
+      {
+        "name": "List: -4 Density (baseline) (baseline)",
+        "nodeId": "51964:63021",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-63021"
+      },
+      {
+        "name": "List item/List Item: 0 Density (baseline) (baseline item)",
+        "nodeId": "51964:63037",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-63037"
+      },
+      {
+        "name": "List item/List Item: -2 Density (baseline) (baseline item)",
+        "nodeId": "51964:65924",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-65924"
+      },
+      {
+        "name": "List item/List Item: -4 Density (baseline) (baseline item)",
+        "nodeId": "51964:68562",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-68562"
+      }
+    ]
+  }
+}

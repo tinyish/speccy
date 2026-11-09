@@ -1,0 +1,262 @@
+{
+  "name": "tree-view",
+  "about": "A nested list the user expands and collapses to browse and pick items, like folders.",
+  "category": "navigation",
+  "element": "role=tree",
+  "props": {
+    "items": "model[]",
+    "value": "model",
+    "expanded": "model[]"
+  },
+  "events": {
+    "select": "model",
+    "toggle": "model"
+  },
+  "children": false,
+  "states": {},
+  "defaults": {
+    "items": [
+      {
+        "label": "src",
+        "children": [
+          {
+            "label": "components",
+            "children": [
+              {
+                "label": "Button.tsx"
+              }
+            ]
+          },
+          {
+            "label": "index.ts"
+          }
+        ]
+      },
+      {
+        "label": "docs",
+        "children": [
+          {
+            "label": "guide.md"
+          },
+          {
+            "label": "faq.md"
+          }
+        ]
+      },
+      {
+        "label": "package.json"
+      }
+    ],
+    "value": {
+      "label": "index.ts"
+    },
+    "expanded": [
+      {
+        "label": "src"
+      },
+      {
+        "label": "docs"
+      }
+    ]
+  },
+  "render": {
+    "el": "ul",
+    "class": "wf-col",
+    "attrs": {
+      "role": "tree",
+      "style": "align-items:stretch;width:220px"
+    },
+    "children": [
+      {
+        "el": "li",
+        "class": "wf-col",
+        "each": "items",
+        "as": "a",
+        "attrs": {
+          "role": "treeitem",
+          "style": "align-items:stretch"
+        },
+        "children": [
+          {
+            "el": "div",
+            "class": "wf-row wf-gap wf-pad wf-box",
+            "classIf": {
+              "wf-selected": "a={value}"
+            },
+            "attrs": {
+              "style": "border-color:transparent;padding:4px 8px"
+            },
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-small wf-muted",
+                "attrs": {
+                  "style": "width:10px"
+                },
+                "children": [
+                  {
+                    "el": "span",
+                    "if": "a.children",
+                    "children": [
+                      {
+                        "el": "span",
+                        "if": "a in {expanded}",
+                        "text": "▾"
+                      },
+                      {
+                        "el": "span",
+                        "if": "!a in {expanded}",
+                        "text": "▸"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "el": "span",
+                "text": "{a.label}"
+              }
+            ]
+          },
+          {
+            "el": "ul",
+            "class": "wf-col",
+            "if": "a in {expanded}",
+            "attrs": {
+              "role": "group",
+              "style": "padding-left:18px;align-items:stretch"
+            },
+            "children": [
+              {
+                "el": "li",
+                "class": "wf-col",
+                "each": "a.children",
+                "as": "b",
+                "attrs": {
+                  "role": "treeitem",
+                  "style": "align-items:stretch"
+                },
+                "children": [
+                  {
+                    "el": "div",
+                    "class": "wf-row wf-gap wf-pad wf-box",
+                    "classIf": {
+                      "wf-selected": "b={value}"
+                    },
+                    "attrs": {
+                      "style": "border-color:transparent;padding:4px 8px"
+                    },
+                    "children": [
+                      {
+                        "el": "span",
+                        "class": "wf-small wf-muted",
+                        "attrs": {
+                          "style": "width:10px"
+                        },
+                        "children": [
+                          {
+                            "el": "span",
+                            "if": "b.children",
+                            "children": [
+                              {
+                                "el": "span",
+                                "if": "b in {expanded}",
+                                "text": "▾"
+                              },
+                              {
+                                "el": "span",
+                                "if": "!b in {expanded}",
+                                "text": "▸"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "el": "span",
+                        "text": "{b.label}"
+                      }
+                    ]
+                  },
+                  {
+                    "el": "ul",
+                    "class": "wf-col",
+                    "if": "b in {expanded}",
+                    "attrs": {
+                      "role": "group",
+                      "style": "padding-left:18px;align-items:stretch"
+                    },
+                    "children": [
+                      {
+                        "el": "li",
+                        "class": "wf-col",
+                        "each": "b.children",
+                        "as": "c",
+                        "attrs": {
+                          "role": "treeitem",
+                          "style": "align-items:stretch"
+                        },
+                        "children": [
+                          {
+                            "el": "div",
+                            "class": "wf-row wf-gap wf-pad wf-box",
+                            "classIf": {
+                              "wf-selected": "c={value}"
+                            },
+                            "attrs": {
+                              "style": "border-color:transparent;padding:4px 8px"
+                            },
+                            "children": [
+                              {
+                                "el": "span",
+                                "class": "wf-small wf-muted",
+                                "attrs": {
+                                  "style": "width:10px"
+                                },
+                                "children": [
+                                  {
+                                    "el": "span",
+                                    "if": "c.children",
+                                    "children": [
+                                      {
+                                        "el": "span",
+                                        "if": "c in {expanded}",
+                                        "text": "▾"
+                                      },
+                                      {
+                                        "el": "span",
+                                        "if": "!c in {expanded}",
+                                        "text": "▸"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "el": "span",
+                                "text": "{c.label}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "untitled": [
+      {
+        "name": "Tree view",
+        "nodeId": "12451:566966",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12451-566966"
+      }
+    ]
+  }
+}

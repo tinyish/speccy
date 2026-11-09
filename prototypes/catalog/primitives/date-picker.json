@@ -1,0 +1,216 @@
+{
+  "name": "date-picker",
+  "about": "Lets the user pick a date, or a start and end date, from a calendar or by typing.",
+  "category": "inputs",
+  "element": "input type=date (with calendar popup)",
+  "props": {
+    "label": "text",
+    "value": "text[]",
+    "range": "bool",
+    "open": "bool"
+  },
+  "events": {
+    "change": "text[]"
+  },
+  "children": false,
+  "states": {
+    "open": {
+      "open": true
+    }
+  },
+  "defaults": {
+    "label": "Due date",
+    "value": [
+      "2026-11-14"
+    ],
+    "range": false,
+    "open": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:flex-start"
+    },
+    "children": [
+      {
+        "el": "label",
+        "class": "wf-label",
+        "if": "label",
+        "text": "{label}"
+      },
+      {
+        "el": "div",
+        "class": "wf-field wf-row wf-gap",
+        "classIf": {
+          "wf-selected": "open"
+        },
+        "attrs": {
+          "role": "combobox",
+          "aria-expanded": "{open}",
+          "style": "width:252px"
+        },
+        "children": [
+          {
+            "el": "span",
+            "each": "value",
+            "text": "{item}",
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-muted",
+                "if": "!last",
+                "text": " →"
+              }
+            ]
+          },
+          {
+            "el": "span",
+            "class": "wf-grow"
+          },
+          {
+            "el": "span",
+            "class": "wf-icon"
+          }
+        ]
+      },
+      {
+        "el": "div",
+        "class": "wf-overlay wf-col wf-gap wf-pad",
+        "if": "open",
+        "attrs": {
+          "role": "dialog",
+          "style": "align-items:stretch;width:252px"
+        },
+        "children": [
+          {
+            "el": "div",
+            "class": "wf-row wf-gap",
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-small",
+                "text": "‹"
+              },
+              {
+                "el": "span",
+                "class": "wf-grow wf-strong",
+                "text": "November 2026",
+                "attrs": {
+                  "style": "text-align:center"
+                }
+              },
+              {
+                "el": "span",
+                "class": "wf-small",
+                "text": "›"
+              }
+            ]
+          },
+          {
+            "el": "div",
+            "attrs": {
+              "role": "grid",
+              "style": "display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center"
+            },
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-small wf-muted",
+                "text": "M"
+              },
+              {
+                "el": "span",
+                "class": "wf-small wf-muted",
+                "text": "T"
+              },
+              {
+                "el": "span",
+                "class": "wf-small wf-muted",
+                "text": "W"
+              },
+              {
+                "el": "span",
+                "class": "wf-small wf-muted",
+                "text": "T"
+              },
+              {
+                "el": "span",
+                "class": "wf-small wf-muted",
+                "text": "F"
+              },
+              {
+                "el": "span",
+                "class": "wf-small wf-muted",
+                "text": "S"
+              },
+              {
+                "el": "span",
+                "class": "wf-small wf-muted",
+                "text": "S"
+              },
+              {
+                "el": "span",
+                "each": 6,
+                "attrs": {
+                  "aria-hidden": "true"
+                }
+              },
+              {
+                "el": "span",
+                "class": "wf-small wf-box",
+                "each": 30,
+                "text": "{item}",
+                "classIf": {
+                  "wf-selected": "item={value[0][8] * 10 + value[0][9]}",
+                  "wf-selected wf-strong": "item={value[1][8] * 10 + value[1][9]}"
+                },
+                "attrs": {
+                  "role": "gridcell",
+                  "style": "padding:3px 0;border-color:transparent"
+                }
+              }
+            ]
+          },
+          {
+            "el": "span",
+            "class": "wf-hint",
+            "if": "range",
+            "text": "Pick a start and an end date"
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Docked input date picker [desktop]",
+        "nodeId": "51954:18567",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51954-18567"
+      },
+      {
+        "name": "Input date picker",
+        "nodeId": "51954:18540",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51954-18540"
+      },
+      {
+        "name": "Modal date picker",
+        "nodeId": "51954:18136",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51954-18136"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Date picker dropdown",
+        "nodeId": "1150:16803",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1150-16803"
+      },
+      {
+        "name": "Date picker modal",
+        "nodeId": "1547:269867",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1547-269867"
+      }
+    ]
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "name": "checkbox",
+  "about": "A box the user ticks, or a switch they flip, to turn one option on or off.",
+  "category": "selection",
+  "element": "input type=checkbox (role=switch when role is switch)",
+  "props": {
+    "role": [
+      "checkbox",
+      "switch"
+    ],
+    "label": "text",
+    "hint": "text",
+    "checked": "bool",
+    "indeterminate": "bool",
+    "invalid": "bool",
+    "disabled": "bool"
+  },
+  "events": {
+    "change": "bool"
+  },
+  "children": false,
+  "states": {
+    "checked": {
+      "checked": true
+    },
+    "indeterminate": {
+      "indeterminate": true
+    },
+    "invalid": {
+      "invalid": true
+    },
+    "disabled": {
+      "disabled": true
+    }
+  },
+  "defaults": {
+    "role": "checkbox",
+    "label": "Remember me",
+    "hint": "Stay signed in on this device",
+    "checked": false,
+    "indeterminate": false,
+    "invalid": false,
+    "disabled": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:flex-start"
+    },
+    "children": [
+      {
+        "el": "label",
+        "class": "wf-row wf-gap",
+        "classIf": {
+          "wf-disabled": "disabled",
+          "wf-error": "invalid"
+        },
+        "attrs": {
+          "role": "{role}",
+          "aria-checked": "{checked}",
+          "aria-invalid": "{invalid}"
+        },
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-box",
+            "classIf": {
+              "wf-selected": "checked",
+              "wf-selected wf-strong": "indeterminate",
+              "wf-error": "invalid"
+            },
+            "attrs": {
+              "style": "width:16px;height:16px;flex:none;display:inline-flex;align-items:center;justify-content:center;font-size:11px;line-height:1"
+            },
+            "children": [
+              {
+                "el": "span",
+                "if": "checked",
+                "text": "✓"
+              },
+              {
+                "el": "span",
+                "if": "indeterminate",
+                "text": "–"
+              }
+            ],
+            "if": "role=checkbox"
+          },
+          {
+            "el": "span",
+            "class": "wf-pill wf-row",
+            "if": "role=switch",
+            "classIf": {
+              "wf-selected": "checked",
+              "wf-error": "invalid"
+            },
+            "attrs": {
+              "style": "width:36px;padding:2px"
+            },
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-grow",
+                "if": "checked"
+              },
+              {
+                "el": "span",
+                "class": "wf-thumb",
+                "attrs": {
+                  "style": "margin:0;width:14px;height:14px"
+                }
+              }
+            ]
+          },
+          {
+            "el": "span",
+            "text": "{label}"
+          }
+        ]
+      },
+      {
+        "el": "span",
+        "class": "wf-hint",
+        "if": "hint",
+        "text": "{hint}",
+        "classIf": {
+          "wf-error": "invalid"
+        }
+      }
+    ]
+  },
+  "sources": {
+    "material": [
+      {
+        "name": "Checkboxes",
+        "nodeId": "51859:5628",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51859-5628"
+      },
+      {
+        "name": "Switch",
+        "nodeId": "54446:25289",
+        "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54446-25289"
+      }
+    ],
+    "untitled": [
+      {
+        "name": "Checkbox",
+        "nodeId": "1097:63652",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1097-63652"
+      },
+      {
+        "name": "Toggle",
+        "nodeId": "1102:4208",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=1102-4208"
+      }
+    ]
+  }
+}

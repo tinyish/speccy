@@ -1,0 +1,225 @@
+{
+  "name": "select",
+  "about": "A field the user opens to pick one option, or several when multiple, from a list.",
+  "category": "selection",
+  "element": "select (role=listbox aria-multiselectable in a popup when multiple)",
+  "props": {
+    "label": "text",
+    "hint": "text",
+    "placeholder": "text",
+    "options": "text[]",
+    "multiple": "bool",
+    "value": "text",
+    "values": "text[]",
+    "required": "bool",
+    "searchable": "bool",
+    "open": "bool",
+    "disabled": "bool"
+  },
+  "events": {
+    "change": "text[]"
+  },
+  "children": false,
+  "states": {
+    "open": {
+      "open": true
+    },
+    "disabled": {
+      "disabled": true
+    }
+  },
+  "defaults": {
+    "label": "Country",
+    "hint": "Where you'll ship from",
+    "placeholder": "Choose a country",
+    "options": [
+      "Chile",
+      "Mexico",
+      "Spain",
+      "Portugal"
+    ],
+    "multiple": false,
+    "value": "Chile",
+    "values": [
+      "Chile",
+      "Spain"
+    ],
+    "required": true,
+    "searchable": false,
+    "open": false,
+    "disabled": false
+  },
+  "render": {
+    "el": "div",
+    "class": "wf-col wf-gap",
+    "attrs": {
+      "style": "align-items:stretch;width:260px"
+    },
+    "children": [
+      {
+        "el": "label",
+        "class": "wf-label",
+        "text": "{label}",
+        "children": [
+          {
+            "el": "span",
+            "if": "required",
+            "text": " *"
+          }
+        ]
+      },
+      {
+        "el": "div",
+        "class": "wf-field wf-row wf-gap",
+        "classIf": {
+          "wf-disabled": "disabled",
+          "wf-selected": "open"
+        },
+        "attrs": {
+          "role": "combobox",
+          "aria-expanded": "{open}",
+          "aria-disabled": "{disabled}"
+        },
+        "children": [
+          {
+            "el": "span",
+            "class": "wf-grow",
+            "if": "!multiple",
+            "children": [
+              {
+                "el": "span",
+                "if": "value",
+                "text": "{value}"
+              },
+              {
+                "el": "span",
+                "class": "wf-muted",
+                "if": "!value",
+                "text": "{placeholder}"
+              }
+            ]
+          },
+          {
+            "el": "span",
+            "class": "wf-row wf-gap wf-grow",
+            "if": "multiple",
+            "attrs": {
+              "style": "flex-wrap:wrap"
+            },
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-pill",
+                "each": "values",
+                "text": "{item} ✕"
+              },
+              {
+                "el": "span",
+                "class": "wf-muted",
+                "if": "!values",
+                "text": "{placeholder}"
+              }
+            ]
+          },
+          {
+            "el": "span",
+            "class": "wf-small wf-muted",
+            "text": "▾"
+          }
+        ]
+      },
+      {
+        "el": "div",
+        "class": "wf-overlay wf-col",
+        "if": "open",
+        "attrs": {
+          "role": "listbox",
+          "style": "align-items:stretch",
+          "aria-multiselectable": "{multiple}"
+        },
+        "children": [
+          {
+            "el": "div",
+            "class": "wf-pad",
+            "if": "searchable",
+            "children": [
+              {
+                "el": "input",
+                "class": "wf-field",
+                "attrs": {
+                  "placeholder": "Search",
+                  "style": "width:100%"
+                }
+              }
+            ]
+          },
+          {
+            "el": "div",
+            "class": "wf-pad",
+            "each": "options",
+            "text": "{item}",
+            "classIf": {
+              "wf-selected": "item={value}"
+            },
+            "attrs": {
+              "role": "option"
+            },
+            "if": "!multiple"
+          },
+          {
+            "el": "label",
+            "class": "wf-row wf-gap wf-pad",
+            "each": "options",
+            "if": "multiple",
+            "attrs": {
+              "role": "option"
+            },
+            "children": [
+              {
+                "el": "span",
+                "class": "wf-box",
+                "classIf": {
+                  "wf-selected": "item in {values}"
+                },
+                "attrs": {
+                  "style": "width:16px;height:16px;flex:none;display:inline-flex;align-items:center;justify-content:center;font-size:11px;line-height:1"
+                },
+                "children": [
+                  {
+                    "el": "span",
+                    "if": "item in {values}",
+                    "text": "✓"
+                  }
+                ]
+              },
+              {
+                "el": "span",
+                "text": "{item}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "el": "span",
+        "class": "wf-hint",
+        "if": "hint",
+        "text": "{hint}"
+      }
+    ]
+  },
+  "sources": {
+    "untitled": [
+      {
+        "name": "Select",
+        "nodeId": "3281:377673",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=3281-377673"
+      },
+      {
+        "name": "Multi-select",
+        "nodeId": "12206:577041",
+        "url": "https://www.figma.com/design/cSwRpauaKiABArOhGxWNTb/?node-id=12206-577041"
+      }
+    ]
+  }
+}

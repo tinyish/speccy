@@ -1,0 +1,2302 @@
+[
+  {
+    "kit": "material",
+    "page": "App bars",
+    "name": "App bar",
+    "nodeId": "58114:20565",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58114-20565",
+    "properties": {
+      "Image": [
+        "<instance>"
+      ],
+      "Show 1st trailing action": [
+        "true",
+        "false"
+      ],
+      "Show 2nd trailing action": [
+        "true",
+        "false"
+      ],
+      "Show 3rd trailing action": [
+        "true",
+        "false"
+      ],
+      "Configuration": [
+        "Small-centered",
+        "Small-image",
+        "Search",
+        "Small",
+        "Medium",
+        "Large"
+      ],
+      "Elevation": [
+        "Flat",
+        "On-scroll"
+      ]
+    },
+    "notes": "Top app bar; Configuration covers small, centered, image, search, medium and large."
+  },
+  {
+    "kit": "material",
+    "page": "App bars",
+    "name": "XR/XR App Bar",
+    "nodeId": "58108:88092",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58108-88092",
+    "properties": {
+      "Headline": [
+        "<text>"
+      ],
+      "Show 1st trailing icon": [
+        "true",
+        "false"
+      ],
+      "Show 2nd trailing icon": [
+        "true",
+        "false"
+      ],
+      "Show 3rd trailing icon": [
+        "true",
+        "false"
+      ],
+      "Show leading icon": [
+        "true",
+        "false"
+      ],
+      "Elevation": [
+        "Surface container",
+        "Surface container high",
+        "Surface container highest"
+      ],
+      "Configuration": [
+        "Center-aligned",
+        "Small"
+      ]
+    },
+    "notes": "Top app bar adapted for Android XR."
+  },
+  {
+    "kit": "material",
+    "page": "App bars",
+    "name": "Bottom app bar",
+    "nodeId": "51159:5105",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51159-5105",
+    "properties": {
+      "Show FAB": [
+        "true",
+        "false"
+      ],
+      "Icons": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "notes": "Bottom bar with up to four actions and an optional FAB."
+  },
+  {
+    "kit": "material",
+    "page": "Badges",
+    "name": "Badges",
+    "nodeId": "51592:4768",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51592-4768",
+    "properties": {
+      "Badge label": [
+        "<text>"
+      ],
+      "Size": [
+        "Large",
+        "Small"
+      ]
+    },
+    "notes": "Small is a dot, Large carries a count or label; sits on navigation destinations."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Segmented button",
+    "nodeId": "53923:36615",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-36615",
+    "properties": {
+      "Segments": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "Density": [
+        "0",
+        "-1",
+        "-2",
+        "-3"
+      ]
+    },
+    "notes": "Legacy (baseline) segmented button; segment states live in internal building-block sets."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Toggle button",
+    "nodeId": "57994:2328",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-2328",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Icon (selected)": [
+        "<instance>"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Filled toggle button for binary selections (M3 Expressive)."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Button",
+    "nodeId": "57994:2227",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-2227",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Filled common button; other color styles are separate sets (text, elevated, outline, tonal)."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Button - text",
+    "nodeId": "58650:8094",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58650-8094",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Text button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Button - elevated",
+    "nodeId": "58650:9294",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58650-9294",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Elevated button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Button - outline",
+    "nodeId": "58650:10213",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58650-10213",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Presssed",
+        "Disabled"
+      ]
+    },
+    "notes": "Outlined button; State value 'Presssed' is misspelled in the kit."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Button - tonal",
+    "nodeId": "58651:11237",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58651-11237",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "Large",
+        "Medium",
+        "Small",
+        "XLarge",
+        "XSmall"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Filled tonal button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Toggle button - elevated",
+    "nodeId": "58653:13968",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58653-13968",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Icon (selected)": [
+        "<instance>"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Elevated toggle button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Toggle button - outline",
+    "nodeId": "58653:16237",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58653-16237",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Icon (selected)": [
+        "<instance>"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Outlined toggle button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Toggle button - tonal",
+    "nodeId": "58653:17539",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58653-17539",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Show icon": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Icon (selected)": [
+        "<instance>"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Tonal toggle button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Icon button",
+    "nodeId": "57994:10081",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-10081",
+    "properties": {
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "Width": [
+        "Narrow",
+        "Default",
+        "Wide"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Filled icon button (default); other color styles are separate sets."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Icon button - standard",
+    "nodeId": "58663:30358",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58663-30358",
+    "properties": {
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "Large",
+        "Medium",
+        "Small",
+        "XLarge",
+        "XSmall"
+      ],
+      "Width": [
+        "Narrow",
+        "Default",
+        "Wide"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Standard (no container) icon button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Icon button - outline",
+    "nodeId": "58663:30359",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58663-30359",
+    "properties": {
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "Large",
+        "Medium",
+        "Small",
+        "XLarge",
+        "XSmall"
+      ],
+      "Width": [
+        "Narrow",
+        "Default",
+        "Wide"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Outlined icon button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Icon button - tonal",
+    "nodeId": "58665:33976",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58665-33976",
+    "properties": {
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "Large",
+        "Medium",
+        "Small",
+        "XLarge",
+        "XSmall"
+      ],
+      "Width": [
+        "Narrow",
+        "Default",
+        "Wide"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Tonal icon button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Icon button togglable",
+    "nodeId": "57994:10368",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-10368",
+    "properties": {
+      "Icon": [
+        "<instance>"
+      ],
+      "Icon (selected)": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "Width": [
+        "Narrow",
+        "Default",
+        "Wide"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Filled toggle icon button for on/off actions like favorite."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Icon button togglable - tonal",
+    "nodeId": "58668:48104",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58668-48104",
+    "properties": {
+      "Icon": [
+        "<instance>"
+      ],
+      "Icon (selected)": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "Width": [
+        "Narrow",
+        "Default",
+        "Wide"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Tonal toggle icon button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Icon button togglable - outline",
+    "nodeId": "58668:45603",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58668-45603",
+    "properties": {
+      "Icon": [
+        "<instance>"
+      ],
+      "Icon (selected)": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "Width": [
+        "Narrow",
+        "Default",
+        "Wide"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Outlined toggle icon button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Icon button togglable - standard",
+    "nodeId": "58665:42416",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58665-42416",
+    "properties": {
+      "Icon": [
+        "<instance>"
+      ],
+      "Icon (selected)": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "Width": [
+        "Narrow",
+        "Default",
+        "Wide"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Standard toggle icon button."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Split button",
+    "nodeId": "57994:15751",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57994-15751",
+    "properties": {
+      "Leading icon": [
+        "<instance>"
+      ],
+      "Show leading icon": [
+        "true",
+        "false"
+      ],
+      "Leading label text": [
+        "<text>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "Color": [
+        "Filled",
+        "Tonal",
+        "Elevated",
+        "Outlined"
+      ],
+      "Leading state": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ],
+      "Trailing state": [
+        "Enabled",
+        "Focused",
+        "Hovered",
+        "Pressed",
+        "Disabled",
+        "Selected"
+      ]
+    },
+    "notes": "Main action plus a trailing menu button; each half has its own state."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "FAB menu",
+    "nodeId": "57998:42986",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-42986",
+    "properties": {
+      "Show 4th segment": [
+        "true",
+        "false"
+      ],
+      "Show 5th segment": [
+        "true",
+        "false"
+      ],
+      "Show 6th segment": [
+        "true",
+        "false"
+      ],
+      "Show 3rd segment": [
+        "true",
+        "false"
+      ],
+      "Color": [
+        "Primary container",
+        "Secondary container",
+        "Tertiary container"
+      ],
+      "Segments": [
+        "3"
+      ]
+    },
+    "notes": "Menu of 2-6 actions opened from a FAB; one Segments variant, extra segments shown via booleans."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Extended FAB",
+    "nodeId": "57998:43095",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-43095",
+    "properties": {
+      "Label text": [
+        "<text>"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Size": [
+        "Small",
+        "Medium",
+        "Large"
+      ],
+      "Color": [
+        "Primary container",
+        "Secondary container",
+        "Tertiary container",
+        "Primary",
+        "Secondary",
+        "Tertiary"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed"
+      ]
+    },
+    "notes": "FAB with a text label for the screen's primary action."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "FAB",
+    "nodeId": "57998:43426",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-43426",
+    "properties": {
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Size": [
+        "Default",
+        "Medium",
+        "Large"
+      ],
+      "Color": [
+        "Primary container",
+        "Secondary container",
+        "Tertiary container",
+        "Primary",
+        "Secondary",
+        "Tertiary"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed"
+      ]
+    },
+    "notes": "Floating action button for the screen's primary action."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Connected button group",
+    "nodeId": "57998:47111",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57998-47111",
+    "properties": {
+      "Show 4th segment": [
+        "true",
+        "false"
+      ],
+      "Show 5th segment": [
+        "true",
+        "false"
+      ],
+      "Show 3rd segment": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ]
+    },
+    "notes": "Connected group of 2-5 segments to select options or switch views (replaces segmented button)."
+  },
+  {
+    "kit": "material",
+    "page": "Buttons",
+    "name": "Standard button group",
+    "nodeId": "58424:8117",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58424-8117",
+    "properties": {
+      "Show 5th button": [
+        "true",
+        "false"
+      ],
+      "Show 6th button": [
+        "true",
+        "false"
+      ],
+      "Show 7th button": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Round",
+        "Square"
+      ],
+      "Size": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "Color": [
+        "Filled",
+        "Tonal",
+        "Outline"
+      ],
+      "Button type": [
+        "Icon",
+        "Label"
+      ]
+    },
+    "notes": "Row of up to 7 adjacent buttons that react to each other."
+  },
+  {
+    "kit": "material",
+    "page": "Cards",
+    "name": "Stacked card",
+    "nodeId": "52346:27573",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52346-27573",
+    "properties": {
+      "Slot swap": [
+        "<instance>"
+      ],
+      "Show secondary action": [
+        "true",
+        "false"
+      ],
+      "Header text": [
+        "<text>"
+      ],
+      "Subhead text": [
+        "<text>"
+      ],
+      "Title text": [
+        "<text>"
+      ],
+      "Subtitle text": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ],
+      "Content": [
+        "<slot>"
+      ],
+      "Style": [
+        "Outlined",
+        "Elevated",
+        "Filled"
+      ],
+      "Layout": [
+        "Slot",
+        "Media & text"
+      ]
+    },
+    "notes": "Vertical card; Layout is a free content slot or media with text."
+  },
+  {
+    "kit": "material",
+    "page": "Cards",
+    "name": "Horizontal card",
+    "nodeId": "52350:27876",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52350-27876",
+    "properties": {
+      "Slot swap": [
+        "<instance>"
+      ],
+      "Header text": [
+        "<text>"
+      ],
+      "Subhead text": [
+        "<text>"
+      ],
+      "Content": [
+        "<slot>"
+      ],
+      "Style": [
+        "Outlined",
+        "Elevated",
+        "Filled"
+      ],
+      "Layout": [
+        "Slot",
+        "Media & text"
+      ]
+    },
+    "notes": "Horizontal card; Layout is a free content slot or media with text."
+  },
+  {
+    "kit": "material",
+    "page": "Carousel",
+    "name": "Carousel - Full screen",
+    "nodeId": "54577:26060",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=54577-26060",
+    "properties": {
+      "Context": [
+        "Mobile"
+      ],
+      "Layout": [
+        "Full screen"
+      ]
+    },
+    "notes": "Full-screen mobile carousel; a single variant."
+  },
+  {
+    "kit": "material",
+    "page": "Carousel",
+    "name": "Carousel",
+    "nodeId": "53912:27480",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53912-27480",
+    "properties": {
+      "Item 1": [
+        "<instance>"
+      ],
+      "Item 2": [
+        "<instance>"
+      ],
+      "Item 3": [
+        "<instance>"
+      ],
+      "Item 4": [
+        "<instance>"
+      ],
+      "Item 5": [
+        "<instance>"
+      ],
+      "Show 4th item": [
+        "true",
+        "false"
+      ],
+      "Show 5th item": [
+        "true",
+        "false"
+      ],
+      "Context": [
+        "Mobile",
+        "Tablet"
+      ],
+      "Layout": [
+        "Hero",
+        "Center-aligned hero",
+        "Multi-browse",
+        "Uncontained",
+        "Multi-aspect ratio"
+      ]
+    },
+    "notes": "Scrollable collection of up to 5 swappable items."
+  },
+  {
+    "kit": "material",
+    "page": "Checkboxes",
+    "name": "Checkboxes",
+    "nodeId": "51859:5628",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51859-5628",
+    "properties": {
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Selected",
+        "Unselected",
+        "Indeterminate",
+        "Error unselected",
+        "Error indeterminate",
+        "Error selected"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Disabled"
+      ]
+    },
+    "notes": "Checkbox control; Type mixes checked state with error."
+  },
+  {
+    "kit": "material",
+    "page": "Chips",
+    "name": "Suggestion chip",
+    "nodeId": "53923:28679",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-28679",
+    "properties": {
+      "Leading icon": [
+        "<instance>"
+      ],
+      "Label text": [
+        "<text>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Style": [
+        "Outlined",
+        "Elevated"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Dragged",
+        "Disabled"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "Show icon": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Dynamically generated suggestion; 'Show icon' is a variant, not a boolean."
+  },
+  {
+    "kit": "material",
+    "page": "Chips",
+    "name": "Filter chip",
+    "nodeId": "53923:28270",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-28270",
+    "properties": {
+      "Trailing icon": [
+        "<instance>"
+      ],
+      "Leading icon": [
+        "<instance>"
+      ],
+      "Label text": [
+        "<text>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Style": [
+        "Outlined",
+        "Elevated"
+      ],
+      "Configuration": [
+        "Label only",
+        "Label & leading icon"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Dragged",
+        "Disabled"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "Show trailing icon": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Tag that filters content; selectable."
+  },
+  {
+    "kit": "material",
+    "page": "Chips",
+    "name": "Assistive chip",
+    "nodeId": "53923:28089",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-28089",
+    "properties": {
+      "Leading icon": [
+        "<instance>"
+      ],
+      "Branded icon": [
+        "<instance>"
+      ],
+      "Favicon": [
+        "<instance>"
+      ],
+      "Label text": [
+        "<text>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Style": [
+        "Outlined",
+        "Elevated"
+      ],
+      "Configuration": [
+        "Label only",
+        "Label & icon",
+        "Label & favicon",
+        "Label & brand icon"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Dragged",
+        "Disabled"
+      ]
+    },
+    "notes": "Assist chip for smart or automated actions."
+  },
+  {
+    "kit": "material",
+    "page": "Chips",
+    "name": "Input chip",
+    "nodeId": "53923:27888",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=53923-27888",
+    "properties": {
+      "Leading icon": [
+        "<instance>"
+      ],
+      "Avatar": [
+        "<instance>"
+      ],
+      "Label text": [
+        "<text>"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Configuration": [
+        "Label only",
+        "Label & leading icon",
+        "Label & avatar"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Dragged"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ],
+      "Show closing icon": [
+        "false",
+        "true"
+      ]
+    },
+    "notes": "User-entered item such as a contact; optional close icon."
+  },
+  {
+    "kit": "material",
+    "page": "Chips",
+    "name": "Chip groups",
+    "nodeId": "57376:5501",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=57376-5501",
+    "properties": {
+      "Type": [
+        "Input chips",
+        "Assistive chips",
+        "Filter chips",
+        "Suggestion chips"
+      ],
+      "Layout": [
+        "Single row - scrollable",
+        "Multiple rows - overflow"
+      ]
+    },
+    "notes": "Preset row or wrapping set of one chip type."
+  },
+  {
+    "kit": "material",
+    "page": "Date & time pickers",
+    "name": "Docked input date picker [desktop]",
+    "nodeId": "51954:18567",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51954-18567",
+    "properties": {
+      "Show Clear button": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Day",
+        "Month",
+        "Year"
+      ]
+    },
+    "notes": "Docked (desktop) date picker dropdown; Type picks the day, month or year view."
+  },
+  {
+    "kit": "material",
+    "page": "Date & time pickers",
+    "name": "Input date picker",
+    "nodeId": "51954:18540",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51954-18540",
+    "properties": {
+      "Supporting text": [
+        "<text>"
+      ],
+      "Headline": [
+        "<text>"
+      ],
+      "Headline (plural)": [
+        "<text>"
+      ],
+      "Show clear button": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Single input",
+        "Range"
+      ]
+    },
+    "notes": "Modal date picker with text-field entry, single date or range."
+  },
+  {
+    "kit": "material",
+    "page": "Date & time pickers",
+    "name": "Modal date picker",
+    "nodeId": "51954:18136",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51954-18136",
+    "properties": {
+      "Headline": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ],
+      "Supporting text (range)": [
+        "<text>"
+      ],
+      "Headline (range)": [
+        "<text>"
+      ],
+      "Show clear button": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Day",
+        "Year",
+        "Full-screen (range)"
+      ]
+    },
+    "notes": "Modal calendar date picker; includes full-screen range."
+  },
+  {
+    "kit": "material",
+    "page": "Date & time pickers",
+    "name": "Dial picker",
+    "nodeId": "52949:27916",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52949-27916",
+    "properties": {
+      "Headline": [
+        "<text>"
+      ],
+      "Format": [
+        "12 hour",
+        "24 hour"
+      ],
+      "Orientation": [
+        "Vertical",
+        "Horizontal"
+      ]
+    },
+    "notes": "Time picker with a clock dial."
+  },
+  {
+    "kit": "material",
+    "page": "Date & time pickers",
+    "name": "Keyboard picker",
+    "nodeId": "52949:28053",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52949-28053",
+    "properties": {
+      "Headline": [
+        "<text>"
+      ],
+      "Format": [
+        "12 hour",
+        "24 hour"
+      ]
+    },
+    "notes": "Time picker with keyboard text entry."
+  },
+  {
+    "kit": "material",
+    "page": "Dialogs",
+    "name": "Basic dialog",
+    "nodeId": "50723:10929",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=50723-10929",
+    "properties": {
+      "Show divider": [
+        "true",
+        "false"
+      ],
+      "Title": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ],
+      "Content": [
+        "<slot>"
+      ],
+      "Icon": [
+        "True",
+        "False"
+      ]
+    },
+    "notes": "Modal dialog with title, text, optional content slot and actions."
+  },
+  {
+    "kit": "material",
+    "page": "Dialogs",
+    "name": "List dialog",
+    "nodeId": "52112:28937",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52112-28937",
+    "properties": {
+      "Title": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ],
+      "Content": [
+        "<slot>"
+      ],
+      "Icon": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Dialog whose content is a list."
+  },
+  {
+    "kit": "material",
+    "page": "Dialogs",
+    "name": "Scrollable list dialog",
+    "nodeId": "52112:29186",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=52112-29186",
+    "properties": {
+      "Title": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ],
+      "Content": [
+        "<slot>"
+      ],
+      "Icon": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Dialog with a scrolling list."
+  },
+  {
+    "kit": "material",
+    "page": "Dialogs",
+    "name": "XR/XR Dialog",
+    "nodeId": "58108:87558",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58108-87558",
+    "properties": {
+      "Headline text": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ],
+      "Icon": [
+        "<instance>"
+      ],
+      "Show secondary action": [
+        "true",
+        "false"
+      ],
+      "Show divider": [
+        "true",
+        "false"
+      ],
+      "Content": [
+        "<slot>"
+      ],
+      "Elevation": [
+        "Surface container high",
+        "Surface container highest"
+      ],
+      "Show icon": [
+        "True",
+        "False"
+      ]
+    },
+    "notes": "Dialog adapted for Android XR."
+  },
+  {
+    "kit": "material",
+    "page": "Dividers",
+    "name": "Vertical/Middle-inset",
+    "nodeId": "51816:5866",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5866",
+    "properties": {},
+    "notes": "Standalone component, no properties: vertical divider, middle inset."
+  },
+  {
+    "kit": "material",
+    "page": "Dividers",
+    "name": "Vertical/Inset",
+    "nodeId": "51816:5864",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5864",
+    "properties": {},
+    "notes": "Standalone component, no properties: vertical divider, inset."
+  },
+  {
+    "kit": "material",
+    "page": "Dividers",
+    "name": "Vertical/Full-width",
+    "nodeId": "51816:5862",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5862",
+    "properties": {},
+    "notes": "Standalone component, no properties: vertical divider, full length."
+  },
+  {
+    "kit": "material",
+    "page": "Dividers",
+    "name": "Horizontal/Divider with subhead",
+    "nodeId": "51816:5872",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5872",
+    "properties": {},
+    "notes": "Standalone component, no properties: horizontal divider with a subhead label."
+  },
+  {
+    "kit": "material",
+    "page": "Dividers",
+    "name": "Horizontal/Middle-inset",
+    "nodeId": "51816:5870",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5870",
+    "properties": {},
+    "notes": "Standalone component, no properties: horizontal divider, middle inset."
+  },
+  {
+    "kit": "material",
+    "page": "Dividers",
+    "name": "Horizontal/Inset",
+    "nodeId": "51816:5868",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5868",
+    "properties": {},
+    "notes": "Standalone component, no properties: horizontal divider, inset."
+  },
+  {
+    "kit": "material",
+    "page": "Dividers",
+    "name": "Horizontal/Full-width",
+    "nodeId": "51816:5860",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51816-5860",
+    "properties": {},
+    "notes": "Standalone component, no properties: horizontal divider, full width."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List item/List Item: -4 Density (baseline)",
+    "nodeId": "51964:68562",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-68562",
+    "properties": {
+      "State-layer": [
+        "<instance>"
+      ],
+      "Show trailing supporting text": [
+        "true",
+        "false"
+      ],
+      "Show divider": [
+        "true",
+        "false"
+      ],
+      "Show leading avatar": [
+        "true",
+        "false"
+      ],
+      "Show leading icon": [
+        "true",
+        "false"
+      ],
+      "Show image": [
+        "true",
+        "false"
+      ],
+      "Show video thumbnail": [
+        "true",
+        "false"
+      ],
+      "Show checkbox": [
+        "true",
+        "false"
+      ],
+      "Show radio button": [
+        "true",
+        "false"
+      ],
+      "Show switch": [
+        "true",
+        "false"
+      ],
+      "Swap divider type": [
+        "<instance>"
+      ],
+      "Overline": [
+        "<text>"
+      ],
+      "Headline": [
+        "<text>"
+      ],
+      "Trailing supporting text": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ],
+      "Condition": [
+        "1 line",
+        "2 line",
+        "3 line+"
+      ],
+      "Leading": [
+        "None",
+        "Monogram",
+        "Icon",
+        "Image",
+        "Video",
+        "Check Box",
+        "Radio Button",
+        "Switch"
+      ],
+      "Trailing": [
+        "None",
+        "Check Box",
+        "Icon",
+        "Radio Button",
+        "Switch"
+      ],
+      "Show overline": [
+        "False",
+        "True"
+      ],
+      "Show supporting text": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Legacy (baseline) list item at -4 density."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List item/List Item: -2 Density (baseline)",
+    "nodeId": "51964:65924",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-65924",
+    "properties": {
+      "State-layer": [
+        "<instance>"
+      ],
+      "Show trailing supporting text": [
+        "true",
+        "false"
+      ],
+      "Show divider": [
+        "true",
+        "false"
+      ],
+      "Show leading avatar": [
+        "true",
+        "false"
+      ],
+      "Show leading icon": [
+        "true",
+        "false"
+      ],
+      "Show image": [
+        "true",
+        "false"
+      ],
+      "Show video thumbnail": [
+        "true",
+        "false"
+      ],
+      "Show checkbox": [
+        "true",
+        "false"
+      ],
+      "Show radio button": [
+        "true",
+        "false"
+      ],
+      "Show switch": [
+        "true",
+        "false"
+      ],
+      "Swap divider type": [
+        "<instance>"
+      ],
+      "Overline": [
+        "<text>"
+      ],
+      "Headline": [
+        "<text>"
+      ],
+      "Trailing supporting text": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ],
+      "Condition": [
+        "1 line",
+        "2 line",
+        "3 line+"
+      ],
+      "Leading": [
+        "None",
+        "Monogram",
+        "Icon",
+        "Image",
+        "Video",
+        "Check Box",
+        "Radio Button",
+        "Switch"
+      ],
+      "Trailing": [
+        "None",
+        "Check Box",
+        "Icon",
+        "Radio Button",
+        "Switch"
+      ],
+      "Show overline": [
+        "False",
+        "True"
+      ],
+      "Show supporting text": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Legacy (baseline) list item at -2 density."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List item/List Item: 0 Density (baseline)",
+    "nodeId": "51964:63037",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-63037",
+    "properties": {
+      "State-layer": [
+        "<instance>"
+      ],
+      "Show trailing supporting text": [
+        "true",
+        "false"
+      ],
+      "Show divider": [
+        "true",
+        "false"
+      ],
+      "Show leading avatar": [
+        "true",
+        "false"
+      ],
+      "Show leading icon": [
+        "true",
+        "false"
+      ],
+      "Show image": [
+        "true",
+        "false"
+      ],
+      "Show video thumbnail": [
+        "true",
+        "false"
+      ],
+      "Show checkbox": [
+        "true",
+        "false"
+      ],
+      "Show radio button": [
+        "true",
+        "false"
+      ],
+      "Show switch": [
+        "true",
+        "false"
+      ],
+      "Swap divider type": [
+        "<instance>"
+      ],
+      "Overline": [
+        "<text>"
+      ],
+      "Headline": [
+        "<text>"
+      ],
+      "Trailing supporting text": [
+        "<text>"
+      ],
+      "Supporting text": [
+        "<text>"
+      ],
+      "Condition": [
+        "1 line",
+        "2 line",
+        "3 line+"
+      ],
+      "Leading": [
+        "None",
+        "Monogram",
+        "Icon",
+        "Image",
+        "Video",
+        "Check Box",
+        "Radio Button",
+        "Switch"
+      ],
+      "Trailing": [
+        "None",
+        "Check Box",
+        "Icon",
+        "Radio Button",
+        "Switch"
+      ],
+      "Show overline": [
+        "False",
+        "True"
+      ],
+      "Show supporting text": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Legacy (baseline) list item at default density."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List: -4 Density (baseline)",
+    "nodeId": "51964:63021",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-63021",
+    "properties": {},
+    "notes": "Standalone component, no properties: legacy (baseline) list of items at -4 density."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List: -2 Density (baseline)",
+    "nodeId": "51964:63008",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-63008",
+    "properties": {},
+    "notes": "Standalone component, no properties: legacy (baseline) list of items at -2 density."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List (baseline)",
+    "nodeId": "51964:62995",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=51964-62995",
+    "properties": {},
+    "notes": "Standalone component, no properties: legacy (baseline) list of items at default density."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List",
+    "nodeId": "59106:13028",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13028",
+    "properties": {
+      "Show divider": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Standard",
+        "Segmented (filled)",
+        "Expandable",
+        "Draggable",
+        "Swipable - standard",
+        "Swipable - segmented"
+      ],
+      "Multi-line": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "New (M3 Expressive) list."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List item",
+    "nodeId": "59106:13183",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13183",
+    "properties": {
+      "Show trailing element": [
+        "true",
+        "false"
+      ],
+      "Show leading element": [
+        "true",
+        "false"
+      ],
+      "Show focus indicator": [
+        "true",
+        "false"
+      ],
+      "Content": [
+        "<slot>"
+      ],
+      "Alignment": [
+        "Middle-aligned",
+        "Top-aligned"
+      ],
+      "State": [
+        "Enabled",
+        "Hovered",
+        "Focused",
+        "Pressed",
+        "Dragged",
+        "Disabled"
+      ],
+      "Selected": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "New (M3 Expressive) list item with leading/trailing elements; sits in a 'Building blocks > Container' frame but is not prefixed as internal."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List item - Accordion",
+    "nodeId": "59106:13316",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13316",
+    "properties": {
+      "Accordion": [
+        "Collapsed",
+        "Expanded"
+      ]
+    },
+    "notes": "Expandable list item; same 'Building blocks > Container' frame as List item."
+  },
+  {
+    "kit": "material",
+    "page": "Lists",
+    "name": "List Item - Swipe",
+    "nodeId": "59106:13321",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=59106-13321",
+    "properties": {
+      "Swipe state": [
+        "Default",
+        "Initiate reveal",
+        "Swipe Action",
+        "Revealed"
+      ]
+    },
+    "notes": "Swipe-to-reveal list item; same 'Building blocks > Container' frame as List item."
+  },
+  {
+    "kit": "material",
+    "page": "Loading & progress",
+    "name": "Linear-determinate progress indicator",
+    "nodeId": "58005:7997",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-7997",
+    "properties": {
+      "Type": [
+        "Flat",
+        "Wave"
+      ],
+      "Thickness": [
+        "4 dp",
+        "8 dp"
+      ],
+      "Progress": [
+        "0",
+        "10",
+        "20",
+        "50",
+        "80",
+        "100"
+      ]
+    },
+    "notes": "Linear bar showing known progress; flat or wavy."
+  },
+  {
+    "kit": "material",
+    "page": "Loading & progress",
+    "name": "Linear-indeterminate progress indicator",
+    "nodeId": "58005:8284",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8284",
+    "properties": {
+      "Type": [
+        "Flat",
+        "Wave"
+      ],
+      "Thickness": [
+        "4 dp",
+        "8 dp"
+      ],
+      "Step": [
+        "0",
+        "1",
+        "2"
+      ]
+    },
+    "notes": "Linear bar for unknown wait; Step is an animation frame."
+  },
+  {
+    "kit": "material",
+    "page": "Loading & progress",
+    "name": "Circular-determinate progress indicator",
+    "nodeId": "58005:8459",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8459",
+    "properties": {
+      "Type": [
+        "Flat",
+        "Wave"
+      ],
+      "Thickness": [
+        "4 dp",
+        "8 dp"
+      ],
+      "Progress": [
+        "0",
+        "10",
+        "30",
+        "50",
+        "80",
+        "100"
+      ]
+    },
+    "notes": "Circular indicator showing known progress; flat or wavy."
+  },
+  {
+    "kit": "material",
+    "page": "Loading & progress",
+    "name": "Circular-indeterminate progress indicator",
+    "nodeId": "58005:8525",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8525",
+    "properties": {
+      "Show track": [
+        "true",
+        "false"
+      ],
+      "Type": [
+        "Flat",
+        "Wave"
+      ],
+      "Thickness": [
+        "4 dp",
+        "8 dp"
+      ],
+      "Step": [
+        "1",
+        "2"
+      ]
+    },
+    "notes": "Circular indicator for unknown wait; Step is an animation frame."
+  },
+  {
+    "kit": "material",
+    "page": "Loading & progress",
+    "name": "Loading indicator",
+    "nodeId": "58005:8555",
+    "url": "https://www.figma.com/design/bteAzHXqWruFD9xnndiAGK/?node-id=58005-8555",
+    "properties": {
+      "Steps": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "Show container": [
+        "False",
+        "True"
+      ]
+    },
+    "notes": "Expressive shape-morphing loader for short waits; Steps are animation frames."
+  }
+]
