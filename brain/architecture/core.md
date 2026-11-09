@@ -164,7 +164,7 @@ in a frame is never mistaken for one of the editor's
 
 ## The editor
 
-One LiveView page in elixir-desktop's window (WebKit on macOS):
+One LiveView page in elixir-desktop's window (WKWebView on macOS):
 
 - **Item list**: the spec's screens, components and data models; picking
   one shows it on the canvas (`canvas-one-item`).
@@ -226,9 +226,12 @@ problems and the undo stack. Editors subscribe to it over Phoenix PubSub.
 
 ## The command line
 
-The `speccy` command runs the same release in command mode: it starts
-the application without the window, the endpoint or any workspace, runs
-one command on the pure core, prints and exits.
+The `speccy` command is a shell launcher in the bundle,
+`Contents/MacOS/speccy`, that runs the same release with `eval`
+(`RELEASE_DISTRIBUTION=none`): it loads the code without starting the
+application, so no window, endpoint or workspace starts; it runs one
+command on the pure core, prints and exits. The prototype answered in
+0.15 s, beside a running app too (`prototypes/cli-bundle`).
 
 - **`check [<spec>]`**: the problems, one per line with code, file, path
   and message, or as JSON with `--json`; exits non-zero on any error.
@@ -241,7 +244,12 @@ one command on the pure core, prints and exits.
   generated from the schemas and the primitives' interfaces.
 - **`icons <query> [--set] [--style] [--category]`**: the picker's
   search, printing references.
-- **`open [<spec>]`**: opens the app on a spec.
+- **`open [<spec>]`**: opens the app on a spec, handled by the launcher
+  without the release: it starts the host with the folder. A running
+  app's host takes it over its single-instance socket and the app gets
+  `{:open_file, [path]}` from `Desktop.Env`; a closed app starts with it,
+  passed on as `SPECCY_OPEN` by the release's `env.sh`, since the
+  release's `start` drops extra arguments.
 
 The app installs the command for the user (a link on their PATH, as code
 editors do), from the app's menu.
@@ -265,22 +273,21 @@ editors do), from the app's menu.
 
 ## Packaging
 
-A macOS app built with elixir-desktop, holding the Erlang release and
-the `speccy` command's launcher. macOS only for the MVP: its only user is
+A macOS app in elixir-desktop's host-first layout, built by
+`desktop_deployment`: a native WKWebView host (`desktop_webview`) in
+`Contents/MacOS/`, which starts the Erlang release in
+`Contents/Resources/beam/`, and the `speccy` launcher beside the host.
+The host runs single-instance. `desktop`, `desktop_webview` and
+`desktop_deployment` come from GitHub, and the host is built from source
+with Swift until it is published; the build's own steps are in the
+prototype's README. macOS only for the MVP: its only user is
 Alberto. `~/.speccy/` holds what belongs to the user and not to any
 project: the icon cache and recent specs.
 
 ## Prototype first
 
-1. **The command line from the app bundle.** Package an elixir-desktop
-   app whose release also starts in command mode from a shell launcher,
-   with no window. It settles the design if `speccy check` on a small
-   spec answers in under a second and `speccy open` reaches an app that
-   is already running; if the release can't start without the window, or
-   is too slow, the CLI becomes a separate escript or Burrito binary
-   built from the same core.
-2. **The canvas in elixir-desktop's own window.** Run the spike's canvas
-   hook inside elixir-desktop's WebKit view instead of Playwright's: pan,
+1. **The canvas in elixir-desktop's own window.** Run the spike's canvas
+   hook inside elixir-desktop's WKWebView host instead of Playwright's: pan,
    zoom, drag and typing in place, and the native menu and folder
    picker. If the view drops input or lags, the design keeps the same
    split but the hook works around the view.
@@ -299,7 +306,7 @@ repository, guarded by a test; the wireframe stylesheet as plain CSS
 under `.wf`, reset to the browser's defaults and inlined by render;
 frames drawn `inert`; editor marks in a layer above the frames; the CLI
 as the same release in command
-mode; fetching Material SVGs from the library's pinned version; macOS
+mode through `eval`, with `open` handed to the host; fetching Material SVGs from the library's pinned version; macOS
 only for the MVP; and the libraries named (Jason, JSV, file_system,
 Req).
 
