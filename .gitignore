@@ -14,3 +14,4 @@ brain/architecture/html/
 *.db
 # bd's concurrency gate: flock files beside .beads, never deleted
 *.gate.lock*
+.DS_Store

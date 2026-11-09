@@ -141,3 +141,21 @@ composable ones (tabs, navigation, alert, card…) are listed as `composed`,
 the seed of a component library to build later. Why: a small set of
 primitives with real behavior keeps the spec close to code and leaves
 everything else to composition. In: `prototypes/catalog`.
+
+## mvp-scope
+
+2026-11-08. The MVP is an editor for Alberto and coding agents only, and
+covers components, screens, their layout and their states; data models,
+interactions and flows come after it, in that order. Only the 24
+primitives ship: composed components are built in the editor. It is ready
+when speccy's own editor is specced in speccy. Why: the MVP is a test
+bench for how components and screens are defined, and composing the
+library and speccy's own screens is that test. In: `prd/mvp.md`.
+
+## agents-edit-files
+
+2026-11-08. In the MVP, agents read and write the spec's files directly,
+like code, and the editor shows their changes live; there is no agent
+interface. Why: the format trial showed an agent learns it from its
+files, so both kinds of author are proven with nothing agent-specific to
+build. In: `prd/mvp.md`.
