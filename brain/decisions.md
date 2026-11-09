@@ -242,6 +242,29 @@ are not ported. Why: primitives are built in, HEEx does what the
 template language was invented for, and one renderer can't drift from
 itself. In: `architecture/format.md`.
 
+## schemas-public-url
+
+2026-11-09. Every spec file's `$schema` is a public URL to its schema in
+speccy's GitHub repository, which is made public for it:
+`https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/<format>/<kind>.schema.json`. Why: editors fetch the schema to validate as someone
+types, from any machine the project is cloned to, with nothing generated
+in the project. Considered: schemas written into each spec and named by
+relative path; no `$schema` at all. Serving them raw from the `main`
+branch, a folder per format version, is the architect's call. In:
+`architecture/format.md`, `architecture/core.md`.
+
+## wireframes-apart-from-app
+
+2026-11-09. The app's own interface uses Phoenix's core components with
+Tailwind and daisyUI, its styles and components in one place. The
+primitives draw wireframes in a look of their own, from a stylesheet of
+their own that `speccy render` inlines. Why: a button drawn in a spec
+must never be mistaken for one of the editor's; Tailwind and daisyUI are
+what Phoenix ships with. Considered: the primitives as the app's own UI
+kit, one stylesheet for both. Frames drawn `inert` and the wireframe
+stylesheet resetting Tailwind's base styles inside a frame are the
+architect's calls. In: `architecture/core.md`.
+
 ## icon-primitive
 
 2026-11-09. `icon` is a primitive: one glyph, decorative unless labelled,
@@ -276,7 +299,7 @@ in-place editing run in the page as JS hooks, and only committed edits
 reach the server. The React prototypes are rewritten. Why: it keeps the
 way open for speccy to become a Clay-capable app, and the LiveView canvas
 spike (`prototypes/liveview-canvas`) committed edits in under 20 ms in
-Chromium and WebKit. In: `architecture/core.md` when it is written.
+Chromium and WebKit. In: `architecture/core.md`.
 
 ## canvas-renders-dom
 
@@ -287,7 +310,7 @@ frames in view, keep drags out of saved state, never store computed
 geometry. Why: penpot left the DOM for a Rust and Skia engine to draw
 large, effect-heavy vector files, which took it about two years; speccy
 draws wireframes of HTML primitives, few per view, and real HTML keeps
-the canvas close to code. In: `architecture/core.md` when it is written.
+the canvas close to code. In: `architecture/core.md`.
 
 ## canvas-one-item
 

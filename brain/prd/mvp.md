@@ -1,6 +1,6 @@
 # speccy MVP
 
-Status: draft
+Status: approved
 
 The first release of speccy: what ships in it, how we know it is ready,
 the milestones that build it, and what comes after. It is the one source

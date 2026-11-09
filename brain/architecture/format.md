@@ -17,6 +17,11 @@ takes, and the composition rules. Each error carries a stable code, the
 file, the path inside it and a message. `speccy explain` is generated
 from the schemas and the primitives' definitions. (`json-schema-format`)
 
+`$schema` is a public URL into speccy's repository, by format version and
+kind of file (`schemas-public-url`):
+`https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/<format>/<kind>.schema.json`, where `<kind>` is `manifest`, `component`, `screen` or
+`data`. The examples below shorten it to `…/<kind>.schema.json`.
+
 ## What stays in code
 
 speccy holds what a product does and how it is put together, not its
