@@ -108,7 +108,7 @@ into it are the two functions with IO, together the icon fetch that
 - `svg(ref, spec, cache_dir)`: the SVG for a reference, or `:missing`:
   a spec set's file from the loaded spec (only one the check accepts,
   `Icons.safe/1`), a library's from
-  `<cache_dir>/<library>/<version>/<name>[.<style>].svg`.
+  `<cache_dir>/<library>/<version>/<name>.<style>.svg`, the style resolved.
 - `fetch(ref, cache_dir)`: fetches a library icon from the library's
   pinned version with `Req` and writes it to the cache; one fetch at a
   time per reference. The default cache is `~/.speccy/icons/`.
