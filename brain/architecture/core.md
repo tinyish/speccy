@@ -204,12 +204,15 @@ editor -> canvas : the frames' diff
 
 The spike's LiveView and hook also run in desktop_webview's WKWebView
 (`prototypes/desktop-canvas`): driven by DOM events inside that view, a
-commit's round trip stays under 10 ms. A trackpad pinch may reach the
-page as WebKit's gesture events rather than the ctrl+wheel Chromium
-sends, so the hook should zoom on both. The app's menus are a
-`Desktop.Menu`, and File > Open… picks a spec folder with
-`DesktopWebview.Dialog.choose_directory`. The host gives menu items no
-key equivalents, so the page catches shortcuts such as ⌘O
+commit's round trip stays under 10 ms. Tried by hand in that window,
+trackpad pan and pinch, a two-finger swipe, mouse drag, typing in place
+(accents, emoji and IME included), the menu and the folder picker all
+work. A trackpad pinch reaches the page as WebKit's gesture events, not
+the ctrl+wheel Chromium sends (it zooms once per step only through the
+prototype's replay of them), so the hook zooms on both.
+The app's menus are a `Desktop.Menu`, and File > Open… picks a spec
+folder with `DesktopWebview.Dialog.choose_directory`. The host gives
+menu items no key equivalents, so the page catches shortcuts such as ⌘O
 (`decisions.md#shortcuts-in-page`).
 
 The same app also runs as a plain local web server in development, so
@@ -310,12 +313,7 @@ project: the icon cache and recent specs.
 
 ## Prototype first
 
-1. **Real input in elixir-desktop's own window.** Try by hand, in the
-   `prototypes/desktop-canvas` window, the checks its README lists: pan,
-   pinch, a two-finger swipe, drag, typing in place (accents and IME
-   included), the menu and the folder picker. If the view drops input or
-   lags, the design keeps the same split but the hook works around the
-   view.
+Nothing at the moment.
 
 ## The architect's calls
 

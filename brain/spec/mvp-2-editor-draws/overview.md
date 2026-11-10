@@ -44,6 +44,11 @@ is built:
   ids of its own.
 - **The workspace writes nothing.** Edits, undo and conflicts are
   milestone 3.
+- **The endpoint keeps other pages out.** LiveView checks origin in every
+  environment, and in the window the endpoint is a `Desktop.Endpoint`,
+  whose `Desktop.Auth` asks for the per-launch key the window's URL
+  carries (part 007). `core.md` doesn't say how the local server is
+  guarded.
 
 ## Design
 
@@ -216,8 +221,11 @@ Starts only after the prototype spec-6u4 has run, and takes its findings.
 The app in elixir-desktop's host-first layout, as `core.md` § Packaging
 says: the window on the editor page, a menu with Open (a folder picker)
 and recent specs kept in `~/.speccy/`, and `speccy open [<spec>]` handed
-to the host. Its program design is written when the prototype has run,
-as a part file added to this spec, and approved before it is built.
+to the host. The endpoint is a `Desktop.Endpoint` and LiveView checks
+origin, dev's `check_origin: false` included, so no other page on the
+machine can reach the editor and its files. Its program design is
+written when the prototype has run, as a part file added to this spec,
+and approved before it is built.
 
 ## Out of scope
 

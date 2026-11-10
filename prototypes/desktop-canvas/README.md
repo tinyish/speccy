@@ -106,7 +106,8 @@ What the view and the host change:
 - `Desktop.Window` adds its login key (`?k=…`) to the window's URL; the
   spike's endpoint, like the canvas spike's, doesn't check it.
 
-To try by hand, since the self-test's events are synthetic:
+Tried by hand, since the self-test's events are synthetic; Alberto ran
+all seven on 2026-11-10 and every one passed:
 
 1. Trackpad two-finger scroll pans smoothly, in both axes.
 2. Pinch zooms around the pointer, once per step (if it zooms twice as
