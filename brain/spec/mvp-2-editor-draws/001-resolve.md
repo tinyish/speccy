@@ -60,7 +60,8 @@ The steps, in order:
    own file. Where an instance's component variation (step 5) set the
    same prop, the frame's wins.
 5. **Expansion.** A component instance becomes a `:component` node: its
-   `layout` is the component root's, its `place` the instance's, and
+   `layout` is the component root's, its `place` the instance's over
+   the component's own `width` and `height`, and
    its children are the component's own resolved frame, in the
    instance's state and variation, with the instance's values as the
    component's props, and its slots filled: a holder's children are the instance's
