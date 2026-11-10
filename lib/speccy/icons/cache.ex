@@ -9,8 +9,13 @@ defmodule Speccy.Icons.Cache do
 
   alias Speccy.Icons
 
-  @doc "The per-user cache."
-  def dir, do: Path.expand("~/.speccy/icons")
+  @doc "The per-user cache, unless the `:icon_cache` setting names another."
+  def dir, do: Path.expand(Application.get_env(:speccy, :icon_cache, "~/.speccy/icons"))
+
+  @doc "Reference → SVG for each of `refs` that `svg/3` finds; the missing are left out."
+  def svgs(refs, spec, cache_dir \\ dir()) do
+    for ref <- refs, svg = svg(ref, spec, cache_dir), svg != :missing, into: %{}, do: {ref, svg}
+  end
 
   @doc "The SVG for a reference, or `:missing` when it doesn't resolve, isn't cached or isn't safe."
   def svg(ref, spec, cache_dir \\ dir()) do
@@ -32,21 +37,25 @@ defmodule Speccy.Icons.Cache do
   @doc """
   Fetches a library icon into the cache: `:ok` once it is there, or why
   not. One fetch at a time per icon; a second caller waits for the first
-  and finds it cached.
+  and finds it cached. `options` are Req's, such as a timeout.
   """
-  def fetch(ref, cache_dir \\ dir()) do
+  def fetch(ref, cache_dir \\ dir(), options \\ []) do
     with {:ok, {library, name, style}} <- Icons.resolve(ref, %{}) do
       path = path(cache_dir, library, name, style)
       url = String.replace(Icons.library(library)["svg"][style], "{name}", name)
 
       :global.trans({{__MODULE__, path}, self()}, fn ->
-        if File.exists?(path), do: :ok, else: download(url, path)
+        if File.exists?(path), do: :ok, else: download(url, path, options)
       end)
     end
   end
 
-  defp download(url, path) do
-    options = [url: url, decode_body: false] ++ Application.get_env(:speccy, __MODULE__, [])
+  defp download(url, path, options) do
+    options =
+      Keyword.merge(
+        [url: url, decode_body: false] ++ options,
+        Application.get_env(:speccy, __MODULE__, [])
+      )
 
     with {:ok, %{status: 200, body: svg}} <- Req.get(options),
          :ok <- safe(svg),

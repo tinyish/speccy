@@ -67,7 +67,6 @@ defmodule SpeccyWeb.DevController do
     dir = Path.join(@fixtures, Path.basename(params["spec"] || "tasks"))
     spec = Spec.new(Format.load(dir))
     path = params["file"] || Enum.find_value(Enum.sort(spec.items), &item_path/1)
-    json = spec.valid[path] || %{}
 
     frames =
       for {state, _variations} <- Spec.frames(spec, path),
@@ -78,37 +77,13 @@ defmodule SpeccyWeb.DevController do
       items: for({_, kind, p} <- Enum.sort(spec.items), kind != :data, do: p),
       spec_name: Path.basename(dir),
       frames: frames,
-      size: size(spec, json),
+      size: Spec.size(spec, path),
       # Library icons draw only once cached; the editor page fetches them.
-      icons:
-        for(
-          ref <- Enum.uniq(Enum.flat_map(frames, &Icons.refs(elem(&1, 1)))),
-          svg = Cache.svg(ref, spec),
-          svg != :missing,
-          into: %{},
-          do: {ref, svg}
-        ),
+      icons: Cache.svgs(Enum.flat_map(frames, &Icons.refs(elem(&1, 1))), spec),
       page_title: path
     )
   end
 
   defp item_path({_, :screen, path}), do: path
   defp item_path(_), do: nil
-
-  # A screen's device size, turned for landscape; nil for a component.
-  defp size(spec, %{"device" => device} = json) when is_map(spec.devices) do
-    case spec.devices[device] do
-      %{"width" => w, "height" => h} = d ->
-        turned =
-          json["orientation"] == "landscape" and
-            hd(d["orientations"] || ["portrait"]) == "portrait"
-
-        if turned, do: {h, w}, else: {w, h}
-
-      _ ->
-        nil
-    end
-  end
-
-  defp size(_spec, _json), do: nil
 end

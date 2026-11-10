@@ -19,6 +19,9 @@ directory; link it onto your PATH to call it as `speccy`.
 
 ```sh
 bin/speccy check [<path>] [--json]   # the problems in the spec at or above <path>
+bin/speccy render <item> [--state <s>] [--variation <v>] [--out <file>]
+                                     # a screen or component of the spec here as an HTML page,
+                                     # to <file> or a temp file, and its path printed
 bin/speccy explain [<topic>]         # the format, each primitive and every check code
 ```
 

@@ -46,7 +46,7 @@ defmodule Speccy.CLITest do
     assert {"No spec found" <> _, 2} = run(["check", dir])
     assert {"No such file or folder" <> _, 2} = run(["check", Path.join(dir, "nowhere")])
     assert {"Usage" <> _, 2} = run(["check", "--colour"])
-    assert {"Usage" <> _, 2} = run(["render", "Home"])
+    assert {"Usage" <> _, 2} = run(["nope"])
   end
 
   test "speccy, help and --help print the usage and exit 0" do
@@ -58,6 +58,8 @@ defmodule Speccy.CLITest do
     assert output =~ "## The spec folder"
     assert output =~ "priv/schemas/1/screen.schema.json`"
     assert output =~ "- `states`: States and variations"
+    assert output =~ "## Commands\n\n```\nUsage:\n"
+    assert output =~ "speccy render <item> [--state <s>] [--variation <v>] [--out <file>]"
     refute output =~ "The architect's calls"
   end
 

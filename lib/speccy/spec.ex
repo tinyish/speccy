@@ -134,6 +134,24 @@ defmodule Speccy.Spec do
 
   defp names(object), do: Enum.uniq(for {name, _} <- object || [], do: name)
 
+  @doc """
+  The size the frames of the valid item at `path` are drawn at: a screen's
+  device's `{width, height}`, turned for landscape; nil for a component,
+  or a device not known.
+  """
+  def size(spec, path) do
+    with %{"device" => device} = json <- spec.valid[path],
+         true <- is_map(spec.devices),
+         %{"width" => w, "height" => h} = d <- spec.devices[device] do
+      turned =
+        json["orientation"] == "landscape" and hd(d["orientations"] || ["portrait"]) == "portrait"
+
+      if turned, do: {h, w}, else: {w, h}
+    else
+      _ -> nil
+    end
+  end
+
   ## Targets
 
   @doc "What `use` names: `{:primitive, interface}`, `{:component, json}` or nil."

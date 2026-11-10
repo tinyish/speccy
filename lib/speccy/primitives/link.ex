@@ -3,6 +3,9 @@ defmodule Speccy.Primitives.Link do
 
   use Phoenix.Component
 
+  @debug_heex_annotations false
+  @debug_attributes false
+
   import Speccy.Draw, only: [text: 1]
   alias Speccy.Draw
 

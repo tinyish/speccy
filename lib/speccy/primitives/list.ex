@@ -3,6 +3,9 @@ defmodule Speccy.Primitives.List do
 
   use Phoenix.Component
 
+  @debug_heex_annotations false
+  @debug_attributes false
+
   def interface do
     %{
       name: "list",

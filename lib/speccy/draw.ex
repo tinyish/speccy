@@ -15,6 +15,11 @@ defmodule Speccy.Draw do
 
   use Phoenix.Component
 
+  # Drawn HTML is read as it is (`speccy render`), so no dev-only debug markup;
+  # each primitive's module sets the same.
+  @debug_heex_annotations false
+  @debug_attributes false
+
   alias Speccy.{Icons, Layout, Primitives}
 
   @css_path Path.expand("primitives/wireframe.css", __DIR__)

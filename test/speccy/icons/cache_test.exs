@@ -111,13 +111,7 @@ defmodule Speccy.Icons.CacheTest do
     tree = Resolve.frame(spec, "screens/TaskScreen.json", "problem")
     cache(dir, "add.outlined.svg", @add)
 
-    icons =
-      for ref <- Icons.refs(tree),
-          svg = Cache.svg(ref, spec, dir),
-          svg != :missing,
-          into: %{},
-          do: {ref, svg}
-
+    icons = Cache.svgs(Icons.refs(tree), spec, dir)
     html = render_component(&Draw.frame/1, tree: tree, icons: icons, size: nil)
 
     assert html =~ spec.svgs["assets/icons/app/alert.svg"]

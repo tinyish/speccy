@@ -3,6 +3,9 @@ defmodule Speccy.Primitives.DatePicker do
 
   use Phoenix.Component
 
+  @debug_heex_annotations false
+  @debug_attributes false
+
   import Speccy.Draw, only: [text: 1, present?: 1, list: 1]
 
   def interface do

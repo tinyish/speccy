@@ -9,11 +9,15 @@ defmodule Speccy.CLI do
   topic per section; the references beside it are generated from the code.
   """
 
-  alias Speccy.{Check, Devices, Format, Icons, Primitives, Schemas, Spec}
+  alias Speccy.{Check, Devices, Draw, Format, Icons, Primitives, Resolve, Schemas, Spec}
+  alias Speccy.Icons.Cache
 
   @usage """
   Usage:
     speccy check [<path>] [--json]   check the spec at or above <path> (default: here)
+    speccy render <item> [--state <s>] [--variation <v>] [--out <file>]
+                                     draw a screen or component of the spec here as an
+                                     HTML page, to <file> or a temp file, and print its path
     speccy explain [<topic>]         the format, each primitive and every check code
   """
 
@@ -38,6 +42,13 @@ defmodule Speccy.CLI do
     case OptionParser.parse(args, strict: [json: :boolean]) do
       {opts, [], []} -> check(".", opts[:json])
       {opts, [path], []} -> check(path, opts[:json])
+      _ -> {@usage, 2}
+    end
+  end
+
+  def run(["render" | args]) do
+    case OptionParser.parse(args, strict: [state: :string, variation: :string, out: :string]) do
+      {opts, [item], []} -> render(item, opts[:state], opts[:variation], opts[:out])
       _ -> {@usage, 2}
     end
   end
@@ -75,6 +86,99 @@ defmodule Speccy.CLI do
         " #{p.code}: #{String.replace(p.message, ~r/\s+/, " ")}\n"
       ]
     end) ++ ["#{count} in #{dir}\n"]
+  end
+
+  ## render
+
+  # Each library icon not cached gets this long to arrive, and no retry.
+  @fetch [receive_timeout: 2_000, connect_options: [timeout: 2_000], retry: false]
+
+  defp render(item, state, variation, out) do
+    with {:ok, dir} <- Format.find("."),
+         spec = Spec.new(Format.load(dir)),
+         {:ok, path} <- item(spec, item),
+         :ok <- known(spec, path, state, variation) do
+      tree = Resolve.frame(spec, path, state, variation)
+      refs = Icons.refs(tree)
+      # The release runs commands without starting the app, so Req's pool isn't up.
+      {:ok, _} = Application.ensure_all_started(:req)
+
+      (refs -- Map.keys(Cache.svgs(refs, spec)))
+      |> Task.async_stream(&Cache.fetch(&1, Cache.dir(), @fetch),
+        timeout: 5_000,
+        on_timeout: :kill_task
+      )
+      |> Stream.run()
+
+      title = Enum.join(Enum.reject([item, state, variation], &is_nil/1), " · ")
+
+      frame =
+        Draw.frame(%{
+          __changed__: nil,
+          tree: tree,
+          icons: Cache.svgs(refs, spec),
+          size: Spec.size(spec, path)
+        })
+
+      out =
+        Path.expand(
+          out ||
+            Path.join(
+              System.tmp_dir!(),
+              "speccy-#{Path.basename(path, ".json")}-#{System.unique_integer([:positive])}.html"
+            )
+        )
+
+      case File.write(out, page(title, frame)) do
+        :ok -> {"#{out}\n", 0}
+        {:error, why} -> {"Can't write #{out}: #{:file.format_error(why)}\n", 2}
+      end
+    else
+      :error -> {"No spec found: no speccy.json at or above #{File.cwd!()}\n", 2}
+      {:error, message} -> {message, 2}
+    end
+  end
+
+  # The first file, by path, of the screen or component named `name`.
+  defp item(spec, name) do
+    case Enum.sort(for {^name, kind, path} <- spec.items, kind != :data, do: path) do
+      [path | _] -> {:ok, path}
+      [] -> {:error, "No screen or component named #{name}\n"}
+    end
+  end
+
+  defp known(spec, path, state, variation) do
+    variations =
+      case List.keyfind(Spec.frames(spec, path), state, 0) do
+        {_, variations} -> variations
+        nil -> nil
+      end
+
+    cond do
+      (state || variation) && !spec.valid[path] ->
+        {:error, "#{path} fails its schema, so its states and variations can't be read\n"}
+
+      state && !variations ->
+        {:error, "No state #{state} in #{path}\n"}
+
+      variation && variation not in (variations || []) ->
+        {:error, "No variation #{variation} in #{path}#{state && " (state #{state})"}\n"}
+
+      true ->
+        :ok
+    end
+  end
+
+  defp page(title, frame) do
+    [
+      ~s(<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>),
+      Phoenix.HTML.Safe.to_iodata(title),
+      "</title>\n<style>\nbody { margin: 24px; background: #e6e8eb; }\n",
+      Draw.css(),
+      "</style>\n</head>\n<body>\n",
+      Phoenix.HTML.Safe.to_iodata(frame),
+      "\n</body>\n</html>\n"
+    ]
   end
 
   ## explain
@@ -125,7 +229,7 @@ defmodule Speccy.CLI do
       Enum.map_intersperse(@overview, "\n\n", &Map.fetch!(@sections, &1)),
       "\n\nThe schemas of format #{Schemas.format()}:\n\n",
       for(kind <- Schemas.kinds(), do: "- `#{Schemas.url(kind)}`\n"),
-      "\n",
+      "\n## Commands\n\n```\n#{@usage}```\n\n",
       topics()
     ]
   end

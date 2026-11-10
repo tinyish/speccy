@@ -3,6 +3,8 @@ defmodule Speccy.Primitives.Icon do
 
   use Phoenix.Component
 
+  @debug_heex_annotations false
+
   alias Speccy.Draw
 
   def interface do
