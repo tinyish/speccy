@@ -108,6 +108,9 @@ defmodule Speccy.Format do
   @doc "The layout keys, in format.md's order."
   def layout, do: @layout
 
+  @doc "An instance's size and placement keys, in format.md's order."
+  def place, do: @place
+
   @doc """
   The file at `path` (relative to the spec) as 2-space JSON with a trailing
   newline: `$schema` first, each object's keys in format.md's order, unknown

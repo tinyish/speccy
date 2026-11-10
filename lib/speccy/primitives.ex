@@ -43,8 +43,10 @@ defmodule Speccy.Primitives do
   @doc "Every primitive's module."
   def all, do: @modules
 
+  @by_name Map.new(@modules, &{&1.interface().name, &1})
+
   @doc "The module of the primitive called `name`, or nil."
-  def get(name), do: Enum.find(@modules, &(&1.interface().name == name))
+  def get(name), do: @by_name[name]
 
   @fields ~w(name about category element props events states defaults examples children slot pressable aria)a
 

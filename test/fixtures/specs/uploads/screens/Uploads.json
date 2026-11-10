@@ -42,8 +42,18 @@
       "type": "Folder",
       "sample": {
         "name": "Inbox",
-        "uploads": []
+        "uploads": [
+          {
+            "name": "notes.txt"
+          },
+          {
+            "name": "plan.txt"
+          }
+        ]
       }
+    },
+    "panel": {
+      "type": "text"
     }
   },
   "layout": "grid",
@@ -175,7 +185,7 @@
             "label": "Folder"
           },
           "bind": {
-            "panel": "folder.name"
+            "panel": "panel"
           }
         }
       ]
@@ -220,7 +230,8 @@
       },
       "repeat": {
         "each": "folder.uploads",
-        "as": "u"
+        "as": "u",
+        "limit": 1
       },
       "variation": "short"
     }

@@ -25,5 +25,23 @@
         }
       ]
     }
-  ]
+  ],
+  "states": {
+    "pressed": {
+      "about": "Pressed, as in its base.",
+      "children": [
+        {
+          "copy": "box"
+        }
+      ]
+    },
+    "busy": {
+      "about": "Busy, as in its base.",
+      "children": [
+        {
+          "copy": "box"
+        }
+      ]
+    }
+  }
 }

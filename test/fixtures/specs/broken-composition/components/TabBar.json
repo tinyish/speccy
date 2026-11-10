@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "TabBar",
+  "about": "A tab list whose tab leaves its panel to TabItem's default.",
+  "children": [
+    {
+      "id": "bar",
+      "use": "container",
+      "props": {
+        "role": "tablist"
+      },
+      "children": [
+        {
+          "id": "only",
+          "use": "TabItem"
+        }
+      ]
+    }
+  ]
+}

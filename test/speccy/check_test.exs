@@ -82,7 +82,8 @@ defmodule Speccy.CheckTest do
       {:"slot-misplaced", "screens/Layout.json", "/children/5/slot"}
     ],
     # Its /children/2, a menu holding a link, is fine: a menu isn't pressable.
-    # TabItem's `panel` defaults to a panel Overview has and Home hasn't.
+    # TabItem's `panel` defaults to a panel Overview has and Home hasn't;
+    # TabBar's TabItem leaves it to the default too, and is fine on Overview.
     "broken-composition" => [
       {:"pressable-in-pressable", "screens/Home.json", "/children/0/children/0"},
       {:"pressable-in-pressable", "screens/Home.json", "/children/1/children/0"},
@@ -91,7 +92,8 @@ defmodule Speccy.CheckTest do
       {:"controls-unresolved", "screens/Home.json", "/children/5"},
       {:"tab-outside-tablist", "screens/Home.json", "/children/5"},
       {:"tabpanel-without-tab", "screens/Home.json", "/children/6"},
-      {:"controls-unresolved", "screens/Home.json", "/children/7/props/controls"},
+      # Reported where its node is written, not at the prop (spec-eai, 001).
+      {:"controls-unresolved", "screens/Home.json", "/children/7"},
       {:"current-not-pressable", "screens/Home.json", "/children/8"},
       # Frame's holder is in a pressable shell in its base, though not in its
       # `flat` state.
@@ -101,19 +103,23 @@ defmodule Speccy.CheckTest do
       # on what can't be pressed, and `role` makes a tab outside a tablist.
       {:"current-not-pressable", "screens/Home.json", "/children/11"},
       {:"tab-outside-tablist", "screens/Home.json", "/children/12"},
+      # `controls` names an id inside an instance of Offer, not one of Home's.
+      {:"controls-unresolved", "screens/Home.json", "/children/13"},
       # Its tile, fine in the base, is pressable in `hover`, and so is its
       # face, through `inner`: faults the copy brings are reported in the
-      # state, at the copy or at the part's `inner` entry. Its copy of card
-      # adds nothing: the base reports its parts' faults.
+      # state, at the copy or at the part's `inner` entry (since spec-eai's
+      # 001, at the entry rather than its prop). Its copies of card and of
+      # lonely add nothing: the base reports their faults and their parts'.
       {:"pressable-in-pressable", "screens/Home.json", "/states/hover/children/0"},
+      {:"controls-unresolved", "screens/Home.json", "/states/hover/children/0/inner/face"},
       {:"pressable-in-pressable", "screens/Home.json", "/states/hover/children/0/inner/face"},
-      {:"tab-outside-tablist", "screens/Home.json", "/states/hover/children/0/inner/face"},
-      {:"controls-unresolved", "screens/Home.json",
-       "/states/hover/children/0/inner/face/props/controls"}
+      {:"tab-outside-tablist", "screens/Home.json", "/states/hover/children/0/inner/face"}
     ],
     # Thirty components deep: a prop passed all the way down makes the last
     # one's box pressable, and the chain sits in a pressable card. Then a
     # tree six deep and four wide, a button in each leaf, in a pressable card.
+    # Every component has two states copying its children: a check costs what
+    # is drawn, not every state of every level multiplied.
     "deep-nesting" => [
       {:"pressable-in-pressable", "screens/Deep.json", "/children/0"},
       {:"pressable-in-pressable", "screens/Deep.json", "/children/1/children/0"},
@@ -228,7 +234,9 @@ defmodule Speccy.CheckTest do
                &(&1.code == :"controls-unresolved" and &1.path == "/children/5")
              )
 
-    assert message =~ "overview, inside TabItem, at /props/panel/default"
+    # Nodes carry where they are written, not where each value came from
+    # (spec-eai, 001): the message points at TabItem's tab, not its default.
+    assert message =~ "overview, inside TabItem, at /children/0"
   end
 
   test "a fault a state's copy brings names the part's base path" do

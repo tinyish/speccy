@@ -20,5 +20,41 @@
       "id": "part4",
       "use": "Fan02"
     }
-  ]
+  ],
+  "states": {
+    "pressed": {
+      "about": "Pressed, as in its base.",
+      "children": [
+        {
+          "copy": "part1"
+        },
+        {
+          "copy": "part2"
+        },
+        {
+          "copy": "part3"
+        },
+        {
+          "copy": "part4"
+        }
+      ]
+    },
+    "busy": {
+      "about": "Busy, as in its base.",
+      "children": [
+        {
+          "copy": "part1"
+        },
+        {
+          "copy": "part2"
+        },
+        {
+          "copy": "part3"
+        },
+        {
+          "copy": "part4"
+        }
+      ]
+    }
+  }
 }

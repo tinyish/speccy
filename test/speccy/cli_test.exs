@@ -21,7 +21,8 @@ defmodule Speccy.CLITest do
     assert output =~
              "screens/Home.json /children/0/children/0 pressable-in-pressable: Something pressable is inside something pressable: button\n"
 
-    assert output =~ ~r/\n17 problems in .*broken-composition\n$/
+    # 18 since spec-eai's 001 added Home's /children/13 to the fixture.
+    assert output =~ ~r/\n18 problems in .*broken-composition\n$/
     assert {output, 1} = run(["check", Path.join(@specs, "invalid-json")])
     assert output =~ ~r/^\S+\.json invalid-json: /m
   end

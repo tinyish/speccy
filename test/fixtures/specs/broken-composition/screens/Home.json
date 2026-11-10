@@ -140,11 +140,20 @@
       "props": {
         "role": "tab"
       }
+    },
+    {
+      "id": "reach",
+      "use": "container",
+      "props": {
+        "pressable": true,
+        "expanded": true,
+        "controls": "claim"
+      }
     }
   ],
   "states": {
     "hover": {
-      "about": "The tile can be pressed, and so can its face.",
+      "about": "The tile can be pressed, and so can its face; the card and the lonely tab are as in the base.",
       "children": [
         {
           "copy": "tile",
@@ -163,6 +172,9 @@
         },
         {
           "copy": "card"
+        },
+        {
+          "copy": "lonely"
         }
       ]
     }

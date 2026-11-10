@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
   "screen": "Overview",
-  "about": "A TabItem whose default names a panel here, so nothing is wrong.",
+  "about": "A TabItem whose default names a panel here, directly and inside a TabBar, so nothing is wrong.",
   "device": "iphone-18-pro",
   "children": [
     {
@@ -16,6 +16,10 @@
           "use": "TabItem"
         }
       ]
+    },
+    {
+      "id": "bar",
+      "use": "TabBar"
     },
     {
       "id": "overview",

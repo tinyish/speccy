@@ -60,5 +60,18 @@
         "role": "tabpanel"
       }
     }
-  ]
+  ],
+  "states": {
+    "last": {
+      "about": "One upload left.",
+      "data": {
+        "left": 1
+      },
+      "children": [
+        {
+          "copy": "count"
+        }
+      ]
+    }
+  }
 }

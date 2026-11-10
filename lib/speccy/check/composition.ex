@@ -2,402 +2,185 @@ defmodule Speccy.Check.Composition do
   @moduledoc """
   The composition rules (`format.md` § The checker's rules): nothing
   pressable inside a pressable, a tab only in a tablist, a tabpanel named by
-  a tab's `controls`, `controls` naming an id in its file, `current` only on
-  pressables. They look through component instances.
-
-  A plain walk of each file, its base and every state, carrying whether it
-  is inside something pressable and inside a tablist. A component instance
-  is walked in place, with the values its instance gives its props, and
-  what the walk finds inside is reported at the instance. Each component is
-  also walked alone, with its props' defaults; what it reports alone isn't
-  reported again where it is used, and a `controls` set by a default is
-  checked there, not alone. What a copy in a state finds among its parts
-  is reported at the copy, or at its `inner` entry for the part, unless
-  the base finds it too. Primitives are read through their interfaces.
-  A value bound to data is unknown, and counts as set.
+  a tab's `controls`, `controls` naming an id where the tree is drawn,
+  `current` only on pressables. They run on the trees the canvas draws
+  (`decisions.md#composition-on-drawn-frames`): every frame of every screen
+  and component, as `Speccy.Resolve` resolves it. Primitives are read
+  through their interfaces.
   """
 
   import Speccy.Check, only: [problem: 4]
-  import Speccy.Spec, only: [target: 2, nodes: 1, base: 1, override: 2]
+  alias Speccy.{Format, Resolve, Spec}
 
   @doc "Every composition problem in the spec's components and screens."
   def run(spec) do
-    # Each component alone, those that use fewer components first, so one is
-    # walked after the ones it uses.
-    alone =
-      spec.components
-      |> Enum.sort_by(fn {name, _} -> Enum.count(spec.reaches[name]) end)
-      |> Enum.reduce(%{}, fn {name, json}, done ->
-        file = spec.paths[name]
-        env = Map.new(json["props"] || %{}, fn {p, decl} -> {p, default(decl, p, file, 0)} end)
-        # Alone, nothing says where it sits: not in a pressable, and its
-        # tabs are taken to be in a tablist.
-        items =
-          frames(walker(spec, done, file, json, env), json, %{pressable: false, tablist: true})
+    found =
+      for {path, json} <- spec.valid, kind = Format.kind(path), kind in [:screen, :component] do
+        frames =
+          for {state, _} <- Spec.frames(spec, path),
+              do: {state, rules(spec, Resolve.frame(spec, path, state), kind == :component)}
 
-        Map.put(done, name, %{
-          items: items,
-          tab?: :tab in items,
-          problems: MapSet.new(for {:problem, code, at, _} <- items, do: {code, at})
-        })
-      end)
-
-    components =
-      for {name, a} <- alone, do: report(a.items, spec.paths[name], spec.components[name], a.tab?)
-
-    screens =
-      for {path, json} <- spec.valid, Speccy.Format.kind(path) == :screen do
-        w = walker(spec, alone, path, json, %{})
-        report(frames(w, json, %{pressable: false, tablist: false}), path, json, true)
+        {path, json, frames}
       end
 
-    List.flatten(components ++ screens)
-  end
-
-  # `level` counts the component instances the walk is inside; `fills` is
-  # the instance being walked in place: its walker, slots and path.
-  defp walker(spec, alone, file, json, env) do
-    %{spec: spec, alone: alone, file: file, env: env, base: base(json)}
-    |> Map.merge(%{level: 0, fills: nil, stack: [], seen: MapSet.new()})
-  end
-
-  # What a walked file reports: its problems, its tabpanels no tab names
-  # (a component's only when it has tabs of its own; without, they count
-  # where it is used), and `controls` written in it naming no id in it.
-  defp report(items, file, json, panels?) do
-    ids = ids(json)
-    named = for {:controls, {:lit, v, _, _, _}, true} <- items, do: v
-    # A tab whose `controls` is bound to data may name any of them.
-    bound? = Enum.any?(items, &match?({:controls, {:unknown, _}, true}, &1))
-
-    for item <- items do
-      case item do
-        {:problem, code, at, detail} ->
-          problem(code, file, at, detail)
-
-        {:tabpanel, id, at} ->
-          if panels? and not bound? and id not in named,
-            do: problem(:"tabpanel-without-tab", file, at, id)
-
-        # A default is checked where its component is used (relay/6).
-        {:controls, {:lit, _, _, ["props", _, "default"], _}, _} ->
-          nil
-
-        {:controls, {:lit, v, ^file, at, _}, _} ->
-          if v not in ids, do: problem(:"controls-unresolved", file, at, v)
-
-        {:controls_default, v, at, detail} ->
-          if v not in ids, do: problem(:"controls-unresolved", file, at, detail)
-
-        _ ->
-          nil
+    # What each component's own frames find, by code and origin.
+    own =
+      for {path, _, frames} <- found, Format.kind(path) == :component, into: %{} do
+        {path, MapSet.new(for {_, fs} <- frames, f <- fs, do: {f.code, f.origin})}
       end
+
+    for {path, json, frames} <- found, f <- report(frames, json, own) do
+      problem(f.code, path, f.at, detail(spec, f))
     end
-    |> Enum.reject(&is_nil/1)
   end
 
-  ## Walking
+  # A state's copy reports only what it brings: what its base frame finds at
+  # the same base place is left to the base. Nor is what a component's own
+  # frames find reported again where it is used. One problem per code and place.
+  defp report(frames, json, own) do
+    base = MapSet.new(for {nil, fs} <- frames, f <- fs, do: {f.code, f.origin})
+    ids = Spec.base(json)
 
-  # The base and every state, each copy in a state as its base instance
-  # with the copy's settings laid over it. What the base finds is `seen`,
-  # and left to the base where a copy finds it again.
-  defp frames(w, json, ctx) do
-    base = walk(w, json["children"] || [], ["children"], ctx)
+    for(
+      {state, fs} <- frames,
+      f <- fs,
+      state == nil or {f.code, based(f.origin, ids)} not in base,
+      not Enum.any?(inside(f.origin), &({f.code, &1} in Map.get(own, hd(&1).file, []))),
+      do: f
+    )
+    |> Enum.uniq_by(&{&1.code, &1.at})
+  end
 
-    w = %{
-      w
-      | seen:
-          MapSet.new(base, fn
-            {:problem, code, at, _} -> {code, at}
-            item -> item
-          end)
+  # An origin's tails from its second entry: where it is in each component around it.
+  defp inside([_ | []]), do: []
+  defp inside([_ | rest]), do: [rest | inside(rest)]
+
+  # An origin with a copy, or a part its `inner` names, at its base path.
+  defp based([%{at: ["states" | _], id: id} = e | rest], ids) when is_map_key(ids, id),
+    do: [%{e | at: elem(ids[id], 1)} | rest]
+
+  defp based(origin, _ids), do: origin
+
+  ## The rules
+
+  defp rules(spec, tree, component?) do
+    # A component's own frame has no surroundings: its tabs are taken to be in a tablist.
+    seen =
+      walk(spec, tree, %{pressable: false, tablist: component?, copy: nil}, []) |> Enum.reverse()
+
+    tabs = for {n, %{role: "tab"} = f, _} <- seen, do: controls(n, f.i)
+    named = MapSet.new(tabs)
+
+    # Where each id is written, when some `controls` names one.
+    scopes =
+      if Enum.any?(seen, fn {n, f, _} -> is_binary(controls(n, f.i)) end),
+        do:
+          seen
+          |> Enum.group_by(fn {n, _, _} -> Enum.drop(n.origin, -1) end, fn {n, _, _} -> n.id end)
+          |> Map.new(fn {k, ids} -> {k, MapSet.new(ids)} end),
+        else: %{}
+
+    for {n, %{i: i} = f, inside} <- seen,
+        i != nil,
+        {code, what} <- [
+          f.pressable and inside.pressable and {:"pressable-in-pressable", n.use},
+          f.role == "tab" and not inside.tablist and {:"tab-outside-tablist", n.use},
+          f.role == "tabpanel" and (not component? or tabs != []) and :unknown not in tabs and
+            n.id not in named and {:"tabpanel-without-tab", n.use},
+          unresolved(n, i, component?, scopes),
+          current(n, i, f)
+        ],
+        do: finding(n, inside, code, what)
+  end
+
+  # A known `controls`, set away from its default, naming no id where the
+  # tree is drawn. A component's own frame leaves one it gets through `bind`
+  # to where it is used.
+  defp unresolved(n, i, component?, scopes) do
+    c = controls(n, i)
+
+    is_binary(c) and c != "" and c != i.defaults[i.aria["controls"]] and
+      not (component? and i.aria["controls"] in n.bound) and
+      not visible?(scopes, n.origin, c) and {:"controls-unresolved", c}
+  end
+
+  # A known `current`, set away from its default, on what can't be pressed.
+  defp current(n, i, f) do
+    k = i.aria["current"]
+
+    k != nil and k not in n.unknown and n.props[k] != i.defaults[k] and not f.pressable and
+      {:"current-not-pressable", n.use}
+  end
+
+  # Each node with its facts and what it is inside, in tree order (reversed).
+  defp walk(spec, node, inside, acc) do
+    f = facts(spec, node)
+    [e | _] = node.origin
+    # A copy in a state, whose parts are reported at it.
+    copy = if List.first(e.at) == "states" and "inner" not in e.at, do: e, else: inside.copy
+
+    within = %{
+      pressable: inside.pressable or f.pressable,
+      tablist: inside.tablist or f.role == "tablist",
+      copy: copy
     }
 
-    base ++
-      for {name, s} <- json["states"] || %{},
-          item <- walk(w, s["children"] || [], ["states", name, "children"], ctx),
-          do: item
+    Enum.reduce(node.children, [{node, f, inside} | acc], &walk(spec, &1, within, &2))
   end
 
-  defp walk(w, list, at, ctx) do
-    list
-    |> Enum.with_index()
-    |> Enum.flat_map(fn {node, i} ->
-      case node do
-        %{"copy" => id} ->
-          case w.base[id] do
-            nil ->
-              []
+  defp facts(spec, %{kind: :primitive} = n) do
+    {:primitive, i} = Spec.target(spec, n.use)
+    role = i.aria["role"]
 
-            {base, base_at} ->
-              copy_at = at ++ [i]
-
-              for item <- node(w, override(base, node), copy_at, base_at, ctx),
-                  mine <- under(item, w, node, copy_at, base_at),
-                  do: mine
-          end
-
-        node ->
-          node(w, node, at ++ [i], at ++ [i], ctx)
-      end
-    end)
-  end
-
-  # `at` is where the node is reported; `base_at` where its children are.
-  defp node(w, node, at, base_at, ctx) do
-    case target(w.spec, node["use"]) do
-      {:primitive, i} -> primitive(w, node, i, at, base_at, ctx)
-      {:component, json} -> instance(w, node, json, at, ctx)
-      nil -> fills(w, node, at, ctx, [])
-    end
-  end
-
-  defp primitive(w, node, i, at, base_at, ctx) do
-    value = &value(w, node, i, &1, at)
-
-    pressable? =
-      case i.pressable do
-        {:prop, prop} -> truthy?(value.(prop))
-        always -> always
-      end
-
-    role =
-      case i.aria["role"] && value.(i.aria["role"]) do
-        {:lit, v, _, _, _} when is_binary(v) -> v
-        _ -> nil
-      end
-
-    inner = %{
-      pressable: ctx.pressable or pressable?,
-      tablist: ctx.tablist or role == "tablist"
+    %{
+      i: i,
+      pressable:
+        case i.pressable do
+          {:prop, p} -> p in n.unknown or truthy?(n.props[p])
+          always -> always
+        end,
+      role: if(role && role not in n.unknown, do: n.props[role])
     }
-
-    here = [
-      pressable? and ctx.pressable and {:problem, :"pressable-in-pressable", at, node["use"]},
-      role == "tab" and :tab,
-      role == "tab" and not ctx.tablist and {:problem, :"tab-outside-tablist", at, nil},
-      role == "tabpanel" and {:tabpanel, node["id"], at},
-      i.aria["current"] && current(value.(i.aria["current"]), i, pressable?, at),
-      controls(i.aria["controls"] && value.(i.aria["controls"]), role)
-    ]
-
-    Enum.filter(here, & &1) ++
-      held(w, node["slot"], inner) ++
-      walk(w, node["children"] || [], base_at ++ ["children"], inner)
   end
 
-  # A slot's holder, inside a component walked in place: the instance's
-  # fills for it sit here, and belong to the instance's file.
-  defp held(%{fills: {outer, slots, at}}, slot, ctx) when is_binary(slot),
-    do:
-      for(item <- walk(outer, slots[slot] || [], at ++ ["slots", slot], ctx), do: {:outer, item})
+  defp facts(_spec, _n), do: %{i: nil, pressable: false, role: nil}
 
-  defp held(_w, _slot, _ctx), do: []
+  defp truthy?(v), do: v == true or (is_binary(v) and v != "")
 
-  # `current` set away from its default, on what can't be pressed.
-  defp current({:lit, v, origin, _, _}, i, false, at) when origin != :default,
-    do: v != i.defaults[i.aria["current"]] && {:problem, :"current-not-pressable", at, v}
+  # A node's `controls`: its value, `:unknown`, or nil.
+  defp controls(_n, nil), do: nil
 
-  defp current(_value, _i, _pressable?, _at), do: nil
-
-  defp controls({:lit, v, origin, _, _} = lit, role)
-       when is_binary(v) and v != "" and origin != :default,
-       do: {:controls, lit, role == "tab"}
-
-  defp controls({:unknown, _} = unknown, role), do: {:controls, unknown, role == "tab"}
-  defp controls(_value, _role), do: nil
-
-  # A component instance, walked in place with the instance's values.
-  defp instance(w, node, json, at, ctx) do
-    name = json["component"]
-    a = w.alone[name]
-
-    # A component not walked alone yet, or already being walked, is in a
-    # cycle (`component-cycle`): only its fills are walked.
-    if a == nil or name in w.stack do
-      fills(w, node, at, ctx, [])
-    else
-      file = w.spec.paths[name]
-
-      env =
-        Map.new(json["props"] || %{}, fn {prop, decl} ->
-          {prop, prop_value(w, node, prop, decl, at, file)}
-        end)
-
-      within = %{
-        w
-        | file: file,
-          env: env,
-          base: base(json),
-          level: w.level + 1,
-          fills: {w, node["slots"] || %{}, at},
-          stack: [name | w.stack]
-      }
-
-      # What sits in its slots is the instance's file's own; of what is
-      # inside the component, one problem per code is enough here.
-      {filled, inside} = Enum.split_with(frames(within, json, ctx), &match?({:outer, _}, &1))
-      found = for item <- inside, mine <- relay(item, w, node, at, name, a), do: mine
-      held = for {n, _} <- nodes(json), slot = n["slot"], do: slot
-
-      Enum.uniq_by(found, fn
-        {:problem, code, _, _} -> code
-        item -> item
-      end) ++ for({:outer, item} <- filled, do: item) ++ fills(w, node, at, ctx, held)
+  defp controls(n, i) do
+    case i.aria["controls"] do
+      nil -> nil
+      c -> if c in n.unknown, do: :unknown, else: n.props[c]
     end
   end
 
-  # What the walk inside an instance found, as the instance's file sees it.
-  defp relay({:problem, code, inner, _}, _w, _node, at, name, a) do
-    if {code, inner} in a.problems,
-      do: [],
-      else: [{:problem, code, at, "inside #{name}, at #{pointer(inner)}"}]
+  # Whether an id is written in the file the node is in, or in one around it
+  # where the tree is drawn: never inside another component instance.
+  defp visible?(scopes, origin, id),
+    do: Enum.any?(0..(length(origin) - 1)//1, &(id in Map.get(scopes, Enum.take(origin, &1), [])))
+
+  # A problem at the first entry of the node's origin, or at its copy when
+  # it is a part of one the copy's `inner` doesn't name.
+  defp finding(n, inside, code, what) do
+    [e | _] = n.origin
+
+    if inside.copy && List.first(e.at) == "children",
+      do: %{code: code, origin: n.origin, at: inside.copy.at, what: what, copy: inside.copy.id},
+      else: %{code: code, origin: n.origin, at: e.at, what: what, copy: nil}
   end
 
-  defp relay({:tabpanel, _, _}, _w, node, at, _name, a),
-    do: if(a.tab?, do: [], else: [{:tabpanel, node["id"], at}])
+  # What was found, and where it is inside its place.
+  defp detail(spec, %{origin: [e | rest]} = f) do
+    under = if f.copy, do: ["inside #{f.copy}, at #{pointer(e.at)}"], else: []
 
-  # The component's own default, where its instance leaves it unset: one
-  # naming no id in the component is checked in the instance's file.
-  defp relay(
-         {:controls, {:lit, v, file, ["props", _, "default"] = inner, level}, _} = item,
-         %{level: level} = w,
-         _node,
-         at,
-         name,
-         _a
-       ) do
-    if file == w.spec.paths[name] and v not in ids(w.spec.components[name]),
-      do: [item, {:controls_default, v, at, "#{v}, inside #{name}, at #{pointer(inner)}"}],
-      else: [item]
-  end
+    within =
+      for r <- rest, do: "inside #{spec.valid[r.file]["component"]}, at #{pointer(r.at)}"
 
-  # `controls` counts here when its value, or its bind to data, was written
-  # at this level or above.
-  defp relay({:controls, {:lit, _, _, _, level}, _} = item, w, _node, _at, _name, _a),
-    do: if(level <= w.level, do: [item], else: [])
-
-  defp relay({:controls, {:unknown, level}, _} = item, w, _node, _at, _name, _a),
-    do: if(level <= w.level, do: [item], else: [])
-
-  defp relay(:tab, _w, _node, _at, _name, _a), do: [:tab]
-  defp relay({:controls_default, _, _, _}, _w, _node, _at, _name, _a), do: []
-
-  # What the walk under a copy at `at`, of the base instance at `base_at`,
-  # found among its parts. Reported at the copy, or at its `inner` entry for
-  # the part, with the part's base path in the detail, as relay/6 words it.
-  defp under({:problem, code, p, _}, w, copy, at, base_at) when p != at do
-    {to, p} = place(w, copy, p, at, base_at)
-
-    if {code, p} in w.seen,
-      do: [],
-      else: [{:problem, code, to, "inside #{copy["copy"]}, at #{pointer(p)}"}]
-  end
-
-  defp under({:tabpanel, id, p}, w, copy, at, base_at) when p != at do
-    {to, p} = place(w, copy, p, at, base_at)
-    if {:tabpanel, id, p} in w.seen, do: [], else: [{:tabpanel, id, to}]
-  end
-
-  # A part's default is the base's too: an `inner` entry only sets props.
-  defp under({:controls_default, _, p, _}, _w, _copy, at, _base_at) when p != at, do: []
-
-  # A part's `controls` set in the copy's `inner` is written there.
-  defp under({:controls, {:lit, v, file, p, level}, tab?} = item, w, copy, at, base_at)
-       when file == w.file do
-    {node_p, rest} = Enum.split(p, -2)
-    {to, _} = place(w, copy, node_p, at, base_at)
-
-    if to != at and get_in(copy, Enum.drop(to ++ rest, length(at))) != nil,
-      do: [{:controls, {:lit, v, file, to ++ rest, level}, tab?}],
-      else: [item]
-  end
-
-  defp under(item, _w, _copy, _at, _base_at), do: [item]
-
-  # Where a part at `p` (in the base, or in the copy's slots) is reported,
-  # and its base path.
-  defp place(w, copy, p, at, base_at) do
-    p = if Enum.take(p, length(at)) == at, do: base_at ++ Enum.drop(p, length(at)), else: p
-    id = Enum.find_value(w.base, fn {id, {_, path}} -> path == p && id end)
-    if Map.has_key?(copy["inner"] || %{}, id), do: {at ++ ["inner", id], p}, else: {at, p}
-  end
-
-  # The fills of the slots not in `held`, in the instance's own place.
-  defp fills(w, node, at, ctx, held) do
-    for {slot, list} <- node["slots"] || %{},
-        slot not in held,
-        item <- walk(w, list, at ++ ["slots", slot], ctx),
-        do: item
+    Enum.join([f.what | under ++ within], ", ")
   end
 
   defp pointer(path), do: Enum.map_join(path, &"/#{&1}")
-
-  defp ids(json),
-    do: MapSet.new(for {node, _} <- nodes(json), id = node["id"] || node["copy"], do: id)
-
-  ## Values
-
-  # A prop's value where it is read: `{:lit, value, file, path, level}` with
-  # where it was written (`:default` for a primitive's own), `{:unknown, level}`
-  # when it comes from data bound at that level, nil when unset.
-  defp value(w, node, i, prop, at) do
-    state = with {_, s} <- List.keyfind(i.states, node["state"], 0), do: s.props
-
-    cond do
-      path = (node["bind"] || %{})[prop] ->
-        eval(path, w)
-
-      Map.has_key?(node["props"] || %{}, prop) ->
-        {:lit, node["props"][prop], w.file, at ++ ["props", prop], w.level}
-
-      is_map(state) and Map.has_key?(state, prop) ->
-        {:lit, state[prop], :default, nil, w.level}
-
-      Map.has_key?(i.defaults, prop) ->
-        {:lit, i.defaults[prop], :default, nil, w.level}
-
-      true ->
-        nil
-    end
-  end
-
-  defp prop_value(w, node, prop, decl, at, file) do
-    cond do
-      path = (node["bind"] || %{})[prop] ->
-        eval(path, w)
-
-      Map.has_key?(node["props"] || %{}, prop) ->
-        {:lit, node["props"][prop], w.file, at ++ ["props", prop], w.level}
-
-      true ->
-        default(decl, prop, file, w.level)
-    end
-  end
-
-  defp default(%{"default" => v}, prop, file, level),
-    do: {:lit, v, file, ["props", prop, "default"], level}
-
-  defp default(_decl, _prop, _file, _level), do: nil
-
-  # A bind path's value in the walker's `env`, into its fields; unknown, at
-  # the walker's level, outside it.
-  defp eval(path, w) do
-    [root | fields] = String.split(path, ".")
-
-    case Map.fetch(w.env, root) do
-      :error ->
-        {:unknown, w.level}
-
-      {:ok, {:lit, v, file, at, level}} ->
-        {:lit, Enum.reduce(fields, v, &((is_map(&2) && &2[&1]) || nil)), file, at, level}
-
-      {:ok, other} ->
-        other
-    end
-  end
-
-  defp truthy?({:unknown, _}), do: true
-  defp truthy?({:lit, v, _, _, _}), do: v == true or (is_binary(v) and v != "")
-  defp truthy?(_), do: false
 end

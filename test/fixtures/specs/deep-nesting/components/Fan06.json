@@ -11,5 +11,23 @@
         "text": "Go"
       }
     }
-  ]
+  ],
+  "states": {
+    "pressed": {
+      "about": "Pressed, as in its base.",
+      "children": [
+        {
+          "copy": "go"
+        }
+      ]
+    },
+    "busy": {
+      "about": "Busy, as in its base.",
+      "children": [
+        {
+          "copy": "go"
+        }
+      ]
+    }
+  }
 }

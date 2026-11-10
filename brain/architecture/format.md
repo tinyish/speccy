@@ -202,7 +202,12 @@ interactions (`mvp-scope`). Sample values are on screens
 
 A component has no data of its own: data reaches it through its props
 (`TaskRow` takes `task: Task`). Opened on its own, it shows placeholders
-for data props, such as `{task.title}`.
+for data props, such as `{task.title}`, and three placeholder rows for a
+repeat over one (`limit` rows when that is fewer). Its own frames have no
+surroundings, so the composition rules leave three things to where it is
+used: a tab in it is taken to be in a tablist, its tabpanels are checked
+only when it holds a tab, and a `controls` it gets through `bind` is not
+checked.
 
 ## Screen (`screens/<Name>.json`)
 
@@ -509,16 +514,27 @@ Beyond the schemas, the checker reports:
 - The composition rules of the catalog (`prototypes/catalog/README.md`):
   nothing pressable inside a pressable, a tab only in a tablist, a
   tabpanel named by a tab's `controls`, `controls` naming an existing id
-  of the file the tree is drawn in (never one inside a component instance),
-  `current` only on pressables and links. Pressable means what HTML
-  calls interactive content: button, link, every input control
+  of the file it is written in or of one around it where it is used (never
+  one inside another component instance), `current` only on pressables
+  and links. Pressable means what HTML calls interactive content: button, link, every input control
   (input, checkbox, radio-group, select, slider, date-picker,
   file-upload, otp-input), tree-view and video always; a
   container when `pressable`, a list or table when `selectable`, a toast
-  when it has an `action`. The rules look through component instances:
-  what a component holds counts where its instance sits. A value bound
-  to data counts as set: a bound `pressable` makes its container
-  pressable, and a tab whose `controls` is bound names some tabpanel. A
+  when it has an `action`. The rules run on what the canvas draws
+  (`composition-on-drawn-frames`): each screen's and component's base
+  and each of its states, every instance in the one state it is in and
+  every component instance drawn in place, with the screen's samples. A
+  value with nothing to show (data with no `sample`, a component's prop
+  with no default, opened on its own) counts as set: an unknown
+  `pressable` makes its container pressable, and a tab whose `controls` is unknown names every
+  tabpanel. A `controls` a component's default sets, left unset where
+  it is used, names an id where the tree is finally drawn. A problem is
+  reported where its node is written: inside a component instance, at
+  the instance; under a state's copy, at its `inner` entry for a part
+  it names, else at the copy. A fault a copy inherits unchanged from its
+  base is reported once, at the base, and one a component's own frames
+  report is not reported again where it is used. A combination no frame
+  draws is not checked. A
   menu is not pressable: its children are the area a context menu wraps,
   not its items.
 - Keys: no object writes the same key twice.
