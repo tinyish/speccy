@@ -32,6 +32,7 @@ defmodule SpeccyWeb.ConnCase do
   end
 
   setup _tags do
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    # The endpoint answers only to the local host.
+    {:ok, conn: %{Phoenix.ConnTest.build_conn() | host: "localhost"}}
   end
 end

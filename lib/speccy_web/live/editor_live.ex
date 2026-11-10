@@ -8,6 +8,9 @@ defmodule SpeccyWeb.EditorLive do
 
   Library icons not in the cache draw as their placeholder, are fetched in
   the background, and redraw as each arrives.
+
+  In the window (`SpeccyWeb.Window`), the page catches ⌘O and runs File >
+  Open… (`decisions.md#shortcuts-in-page`).
   """
   use SpeccyWeb, :live_view
 
@@ -30,7 +33,8 @@ defmodule SpeccyWeb.EditorLive do
         frames: [],
         chosen: %{},
         tried: MapSet.new(),
-        page_title: "No spec"
+        page_title: "No spec",
+        window: SpeccyWeb.Window.on?()
       )
 
     case given && Format.find(given) do
@@ -66,6 +70,12 @@ defmodule SpeccyWeb.EditorLive do
   def handle_event("variation", params, socket) do
     chosen = Map.put(socket.assigns.chosen, params["state"], params["variation"])
     {:noreply, socket |> assign(chosen: chosen) |> draw()}
+  end
+
+  # ⌘O, caught by the page in the window.
+  def handle_event("open", _params, socket) do
+    SpeccyWeb.Window.choose()
+    {:noreply, socket}
   end
 
   @impl true
@@ -158,12 +168,16 @@ defmodule SpeccyWeb.EditorLive do
   @impl true
   def render(%{dir: nil} = assigns) do
     ~H"""
+    <.shortcuts :if={@window} />
     <main class="hero min-h-screen bg-base-200">
       <div class="hero-content max-w-lg flex-col items-start">
         <h1 class="text-2xl font-semibold">
           {if @given, do: "No spec at or above #{@given}", else: "No spec open"}
         </h1>
-        <p>
+        <p :if={@window}>
+          Open one with File > Open… (⌘O). A spec's folder holds a <code class="font-mono">speccy.json</code>.
+        </p>
+        <p :if={!@window}>
           Open a spec by starting speccy with <code class="font-mono">SPECCY_OPEN</code>
           set to its folder, or by adding <code class="font-mono">?spec=&lt;folder&gt;</code>
           to this page's address. A spec's folder holds a <code class="font-mono">speccy.json</code>.
@@ -175,6 +189,7 @@ defmodule SpeccyWeb.EditorLive do
 
   def render(assigns) do
     ~H"""
+    <.shortcuts :if={@window} />
     <Layouts.flash_group flash={@flash} />
     <style>
       <%= raw(Draw.css()) %>
@@ -256,8 +271,8 @@ defmodule SpeccyWeb.EditorLive do
     </div>
 
     <script :type={Phoenix.LiveView.ColocatedHook} name=".Canvas">
-      // Pan (wheel, space-drag, middle-drag) and zoom (Cmd/Ctrl-wheel) as a
-      // CSS transform on the world, kept in the page.
+      // Pan (wheel, space-drag, middle-drag) and zoom (Cmd/Ctrl-wheel, pinch)
+      // as a CSS transform on the world, kept in the page.
       export default {
         mounted() {
           const view = {x: 40, y: 40, z: 1}
@@ -265,23 +280,37 @@ defmodule SpeccyWeb.EditorLive do
           const apply = () => world.style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.z})`
           apply()
 
+          // By a factor, keeping the point under the pointer where it is.
+          const zoom = (factor, clientX, clientY) => {
+            const r = this.el.getBoundingClientRect(), px = clientX - r.left, py = clientY - r.top
+            const z = Math.min(4, Math.max(0.1, view.z * factor))
+            view.x = px - (px - view.x) * z / view.z
+            view.y = py - (py - view.y) * z / view.z
+            view.z = z
+            apply()
+          }
+
           this.abort = new AbortController()
           const on = {signal: this.abort.signal}
 
           this.el.addEventListener("wheel", e => {
             e.preventDefault()
-            if (e.ctrlKey || e.metaKey) {
-              const r = this.el.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top
-              const z = Math.min(4, Math.max(0.1, view.z * Math.exp(-e.deltaY * 0.01)))
-              view.x = px - (px - view.x) * z / view.z
-              view.y = py - (py - view.y) * z / view.z
-              view.z = z
-            } else {
-              view.x -= e.deltaX
-              view.y -= e.deltaY
-            }
+            if (e.ctrlKey || e.metaKey) return zoom(Math.exp(-e.deltaY * 0.01), e.clientX, e.clientY)
+            view.x -= e.deltaX
+            view.y -= e.deltaY
             apply()
           }, {passive: false, ...on})
+
+          // WKWebView hands a trackpad pinch to the page as Safari's gesture
+          // events, not the ctrl+wheel Chromium sends; e.scale runs from 1.
+          let pinch = 1
+          this.el.addEventListener("gesturestart", e => { e.preventDefault(); pinch = 1 }, on)
+          this.el.addEventListener("gesturechange", e => {
+            e.preventDefault()
+            zoom(e.scale / pinch, e.clientX, e.clientY)
+            pinch = e.scale
+          }, on)
+          this.el.addEventListener("gestureend", e => e.preventDefault(), on)
 
           // Space is the canvas's, even with a button focused: kept from
           // scrolling the page and from pressing the button.
@@ -319,4 +348,24 @@ defmodule SpeccyWeb.EditorLive do
   end
 
   defp kinds, do: @kinds
+
+  # The host gives menu items no key equivalents: ⌘O is caught here.
+  defp shortcuts(assigns) do
+    ~H"""
+    <div id="shortcuts" phx-hook=".Shortcuts" hidden></div>
+    <script :type={Phoenix.LiveView.ColocatedHook} name=".Shortcuts">
+      export default {
+        mounted() {
+          this.abort = new AbortController()
+          window.addEventListener("keydown", e => {
+            if (!e.metaKey || e.key.toLowerCase() !== "o") return
+            e.preventDefault()
+            this.pushEvent("open", {})
+          }, {signal: this.abort.signal})
+        },
+        destroyed() { this.abort.abort() }
+      }
+    </script>
+    """
+  end
 end

@@ -1,0 +1,32 @@
+#!/bin/sh
+# Builds _build/prod/Speccy.app (core.md § Packaging): desktop_webview's host
+# from source with Swift, the release and its bundle, the host single-instance
+# so a `speccy open` reaches the running app, the `speccy` launcher beside the
+# host, and an ad-hoc signature over the lot.
+set -eu
+cd "$(dirname "$0")/.."
+export MIX_ENV=prod
+
+mix deps.get
+# The bundle needs an icon; speccy has none of its own yet.
+[ -f priv/icon.png ] || sips -s format png -z 1024 1024 \
+  /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericApplicationIcon.icns \
+  --out priv/icon.png >/dev/null
+bash deps/desktop_webview/scripts/build_macos.sh
+mix compile
+mix assets.deploy
+mix desktop.installer
+# The release keeps its own digested copies; the checkout's go.
+mix phx.digest.clean --all
+
+app=_build/prod/Speccy.app
+# desktop_deployment writes the host's ini without single-instance mode.
+sed -i '' 's/^mode = reconnect$/mode = reconnect\
+instances = single\
+instance_id = speccy/' "$app/Contents/Resources/DesktopWebView.ini"
+grep -q '^instances = single' "$app/Contents/Resources/DesktopWebView.ini"
+cp rel/speccy "$app/Contents/MacOS/speccy"
+codesign -f -s - --deep "$app"
+# The installer's .dmg and .pkg were packed before the steps above: only the .app is used.
+rm -f _build/prod/Speccy-*.dmg _build/prod/Speccy-*.pkg
+echo "Built $PWD/$app"

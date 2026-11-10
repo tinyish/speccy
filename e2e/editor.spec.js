@@ -38,7 +38,7 @@ test('an edit to a screen file from outside shows on the canvas without a reload
   expect(await page.evaluate(() => window.sameDocument)).toBe(true)
 })
 
-test('wheel, space-drag and middle-drag pan; Cmd/Ctrl-wheel zooms at the pointer', async ({ page }) => {
+test('wheel, space-drag and middle-drag pan; Cmd/Ctrl-wheel and pinch zoom at the pointer', async ({ page }) => {
   await open(page, copy())
   const frame = page.locator(base)
   const box = () => frame.boundingBox()
@@ -105,6 +105,21 @@ test('wheel, space-drag and middle-drag pan; Cmd/Ctrl-wheel zooms at the pointer
     await page.keyboard.up(key)
     await expect.poll(async () => (await box()).width).toBeCloseTo(a.width, 1)
   }
+
+  // A trackpad pinch in WKWebView comes as Safari's gesture events, scale from 1.
+  const a = await box()
+  await page.evaluate(({ x, y }) => {
+    const gesture = (type, scale) => {
+      const e = new Event(type, { bubbles: true, cancelable: true })
+      Object.defineProperties(e, { scale: { value: scale }, clientX: { value: x }, clientY: { value: y } })
+      document.getElementById('canvas').dispatchEvent(e)
+    }
+    gesture('gesturestart', 1); gesture('gesturechange', 1.2); gesture('gesturechange', 1.5); gesture('gestureend', 1.5)
+  }, { x, y })
+  await expect.poll(async () => (await box()).width).toBeCloseTo(a.width * 1.5, 1)
+  const b = await box()
+  expect(b.x).toBeCloseTo(x - (x - a.x) * 1.5, 1)
+  expect(b.y).toBeCloseTo(y - (y - a.y) * 1.5, 1)
 })
 
 // Every drawn node's box, relative to its frame's root and at its scale, in

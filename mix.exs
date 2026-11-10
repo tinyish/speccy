@@ -11,7 +11,11 @@ defmodule Speccy.MixProject do
       aliases: aliases(),
       deps: deps(),
       compilers: [:phoenix_live_view] ++ Mix.compilers(),
-      listeners: [Phoenix.CodeReloader]
+      listeners: [Phoenix.CodeReloader],
+      package: [name: "Speccy", name_long: "speccy", identifier: "dev.speccy.app"],
+      releases: [
+        speccy: [steps: [:assemble, &writable/1, &Desktop.Deployment.generate_installer/1]]
+      ]
     ]
   end
 
@@ -29,6 +33,12 @@ defmodule Speccy.MixProject do
     [
       preferred_envs: [precommit: :test]
     ]
+  end
+
+  # Homebrew's erts files are read-only, which stops the installer's ad-hoc codesign.
+  defp writable(release) do
+    {_, 0} = System.cmd("chmod", ["-R", "u+w", release.path])
+    release
   end
 
   # Specifies which paths to compile per environment.
@@ -67,7 +77,11 @@ defmodule Speccy.MixProject do
       {:jsv, "~> 0.27.0"},
       {:req, "~> 0.7"},
       {:file_system, "~> 1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      # The window, from GitHub: hex's desktop is old and the other two aren't on hex.
+      {:desktop, github: "elixir-desktop/desktop", override: true},
+      {:desktop_webview, github: "elixir-desktop/webview"},
+      {:desktop_deployment, github: "elixir-desktop/deployment", runtime: false}
     ]
   end
 

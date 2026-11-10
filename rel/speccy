@@ -1,0 +1,10 @@
+#!/bin/sh
+# The speccy command, shipped inside Speccy.app as Contents/MacOS/speccy and linked onto PATH.
+contents="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
+if [ "$1" = open ]; then
+  dir="$(cd "${2:-.}" && pwd)" || exit 1
+  # A running app takes the folder and this exits at once; otherwise this becomes the app.
+  nohup "$contents/MacOS/DesktopWebView" "$dir" >/dev/null 2>&1 &
+  exit 0
+fi
+RELEASE_DISTRIBUTION=none exec "$contents/Resources/beam/bin/speccy" eval 'Speccy.CLI.main(System.argv())' "$@"

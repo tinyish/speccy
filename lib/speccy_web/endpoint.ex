@@ -1,5 +1,6 @@
 defmodule SpeccyWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :speccy
+  # Finds the port the app picks at launch.
+  use Desktop.Endpoint, otp_app: :speccy
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -14,6 +15,8 @@ defmodule SpeccyWeb.Endpoint do
   socket "/live", Phoenix.LiveView.Socket,
     websocket: [connect_info: [session: @session_options]],
     longpoll: [connect_info: [session: @session_options]]
+
+  plug :local_host
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -47,4 +50,9 @@ defmodule SpeccyWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug SpeccyWeb.Router
+
+  # A page reached through DNS rebinding asks for its own host: refused, so it
+  # can't read the editor back. The sockets have the origin check instead.
+  defp local_host(%{host: host} = conn, _) when host in ["localhost", "127.0.0.1"], do: conn
+  defp local_host(conn, _), do: conn |> send_resp(403, "Forbidden") |> halt()
 end

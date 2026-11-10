@@ -54,3 +54,7 @@ speccy-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# What bin/build-app makes besides _build/prod: the bundle's stand-in icon
+/priv/icon.png
+/rel/macosx/
+/codesign.log

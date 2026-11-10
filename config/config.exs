@@ -19,7 +19,9 @@ config :speccy, SpeccyWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Speccy.PubSub,
-  live_view: [signing_salt: "utdQ4iRx"]
+  live_view: [signing_salt: "utdQ4iRx"],
+  # Its own hosts on any port: no other page in a browser drives the editor through its socket.
+  check_origin: ["//localhost", "//127.0.0.1"]
 
 # Configure LiveView
 config :phoenix_live_view,

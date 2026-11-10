@@ -26,6 +26,26 @@ the `tasks` fixture:
 d=$(mktemp -d)/tasks && cp -R test/fixtures/specs/tasks "$d" && echo "$d" && SPECCY_OPEN="$d" mix phx.server
 ```
 
+## The app
+
+speccy's own window: the editor in elixir-desktop's macOS app. Building it
+needs Xcode's Swift, since its host is built from source:
+
+```sh
+bin/build-app        # _build/prod/Speccy.app, the only thing it keeps (no .dmg or .pkg)
+ln -s "$PWD/_build/prod/Speccy.app/Contents/MacOS/speccy" ~/bin/speccy   # any folder on your PATH
+speccy open <spec folder>   # starts the app on it, or hands it to the running app
+```
+
+`speccy check`, `render` and `explain` run from the app too. File > Open…
+(or ⌘O) and File > Open Recent open another spec; the recent ones are kept
+in `~/.speccy/recent.json`. Copy `Speccy.app` wherever you like and link
+its `speccy` instead.
+
+In development, `SPECCY_WINDOW=1 mix phx.server` shows the editor in the
+same window, once `bin/build-app` (or `bash
+deps/desktop_webview/scripts/build_macos.sh`) has built the host.
+
 ## The command line
 
 `bin/speccy` runs the `speccy` command from this checkout, from any

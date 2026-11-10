@@ -18,6 +18,9 @@ defmodule Speccy.Application do
       SpeccyWeb.Endpoint
     ]
 
+    children =
+      if SpeccyWeb.Window.on?(), do: children ++ SpeccyWeb.Window.children(), else: children
+
     # See https://elixir.hexdocs.pm/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Speccy.Supervisor]

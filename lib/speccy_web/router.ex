@@ -4,6 +4,7 @@ defmodule SpeccyWeb.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
+    plug :window_key
     plug :fetch_live_flash
     plug :put_root_layout, html: {SpeccyWeb.Layouts, :root}
     plug :protect_from_forgery
@@ -13,6 +14,11 @@ defmodule SpeccyWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
   end
+
+  # In the window, a request needs the key its URL carries once per launch
+  # (`?k=`), then holds it in its session: no other page on the machine gets in.
+  defp window_key(conn, _),
+    do: if(SpeccyWeb.Window.on?(), do: Desktop.Auth.call(conn), else: conn)
 
   scope "/", SpeccyWeb do
     pipe_through :browser
