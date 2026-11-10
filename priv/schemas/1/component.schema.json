@@ -1,0 +1,899 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "$defs": {
+    "about": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "camel": {
+      "pattern": "^[a-z][A-Za-z0-9]*$",
+      "type": "string"
+    },
+    "componentState": {
+      "additionalProperties": false,
+      "properties": {
+        "about": {
+          "$ref": "#/$defs/about"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/$defs/entry"
+          },
+          "type": "array"
+        },
+        "variations": {
+          "additionalProperties": {
+            "$ref": "#/$defs/variation"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/camel"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "about"
+      ],
+      "type": "object"
+    },
+    "contentKey": {
+      "pattern": "^[a-z][A-Za-z0-9]*\\.[a-z][A-Za-z0-9]*$",
+      "type": "string"
+    },
+    "copy": {
+      "additionalProperties": false,
+      "properties": {
+        "absolute": {
+          "type": "boolean"
+        },
+        "column": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "columnSpan": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "constraints": {
+          "additionalProperties": false,
+          "properties": {
+            "horizontal": {
+              "enum": [
+                "left",
+                "right",
+                "center",
+                "left-right",
+                "scale"
+              ]
+            },
+            "vertical": {
+              "enum": [
+                "top",
+                "bottom",
+                "center",
+                "top-bottom",
+                "scale"
+              ]
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "copy": {
+          "$ref": "#/$defs/camel"
+        },
+        "height": {
+          "$ref": "#/$defs/size"
+        },
+        "inner": {
+          "additionalProperties": {
+            "additionalProperties": false,
+            "properties": {
+              "absolute": {
+                "type": "boolean"
+              },
+              "column": {
+                "minimum": 1,
+                "type": "integer"
+              },
+              "columnSpan": {
+                "minimum": 1,
+                "type": "integer"
+              },
+              "constraints": {
+                "additionalProperties": false,
+                "properties": {
+                  "horizontal": {
+                    "enum": [
+                      "left",
+                      "right",
+                      "center",
+                      "left-right",
+                      "scale"
+                    ]
+                  },
+                  "vertical": {
+                    "enum": [
+                      "top",
+                      "bottom",
+                      "center",
+                      "top-bottom",
+                      "scale"
+                    ]
+                  }
+                },
+                "required": [],
+                "type": "object"
+              },
+              "height": {
+                "$ref": "#/$defs/size"
+              },
+              "maxHeight": {
+                "$ref": "#/$defs/px"
+              },
+              "maxWidth": {
+                "$ref": "#/$defs/px"
+              },
+              "minHeight": {
+                "$ref": "#/$defs/px"
+              },
+              "minWidth": {
+                "$ref": "#/$defs/px"
+              },
+              "props": {
+                "additionalProperties": true,
+                "propertyNames": {
+                  "$ref": "#/$defs/camel"
+                },
+                "type": "object"
+              },
+              "row": {
+                "minimum": 1,
+                "type": "integer"
+              },
+              "rowSpan": {
+                "minimum": 1,
+                "type": "integer"
+              },
+              "state": {
+                "$ref": "#/$defs/camel"
+              },
+              "variation": {
+                "$ref": "#/$defs/camel"
+              },
+              "width": {
+                "$ref": "#/$defs/size"
+              },
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            },
+            "required": [],
+            "type": "object"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/camel"
+          },
+          "type": "object"
+        },
+        "maxHeight": {
+          "$ref": "#/$defs/px"
+        },
+        "maxWidth": {
+          "$ref": "#/$defs/px"
+        },
+        "minHeight": {
+          "$ref": "#/$defs/px"
+        },
+        "minWidth": {
+          "$ref": "#/$defs/px"
+        },
+        "props": {
+          "additionalProperties": true,
+          "propertyNames": {
+            "$ref": "#/$defs/camel"
+          },
+          "type": "object"
+        },
+        "row": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "rowSpan": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "state": {
+          "$ref": "#/$defs/camel"
+        },
+        "variation": {
+          "$ref": "#/$defs/camel"
+        },
+        "width": {
+          "$ref": "#/$defs/size"
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "copy"
+      ],
+      "type": "object"
+    },
+    "dataType": {
+      "else": {
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "if": {
+        "type": "string"
+      },
+      "then": {
+        "pattern": "^(text|bool|number|icon|text\\[\\]|[A-Z][A-Za-z0-9]*(\\[\\])?)$",
+        "type": "string"
+      }
+    },
+    "entry": {
+      "else": {
+        "$ref": "#/$defs/stateInstance"
+      },
+      "if": {
+        "required": [
+          "copy"
+        ],
+        "type": "object"
+      },
+      "then": {
+        "$ref": "#/$defs/copy"
+      }
+    },
+    "insets": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/px"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/px"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/px"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "type": "array"
+        }
+      ]
+    },
+    "instance": {
+      "additionalProperties": false,
+      "properties": {
+        "about": {
+          "$ref": "#/$defs/about"
+        },
+        "absolute": {
+          "type": "boolean"
+        },
+        "align": {
+          "enum": [
+            "top-left",
+            "top",
+            "top-right",
+            "left",
+            "center",
+            "right",
+            "bottom-left",
+            "bottom",
+            "bottom-right"
+          ]
+        },
+        "bind": {
+          "additionalProperties": {
+            "$ref": "#/$defs/path"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/camel"
+          },
+          "type": "object"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/$defs/instance"
+          },
+          "type": "array"
+        },
+        "clip": {
+          "type": "boolean"
+        },
+        "column": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "columnSpan": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "columns": {
+          "$ref": "#/$defs/tracks"
+        },
+        "constraints": {
+          "additionalProperties": false,
+          "properties": {
+            "horizontal": {
+              "enum": [
+                "left",
+                "right",
+                "center",
+                "left-right",
+                "scale"
+              ]
+            },
+            "vertical": {
+              "enum": [
+                "top",
+                "bottom",
+                "center",
+                "top-bottom",
+                "scale"
+              ]
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "gap": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "enum": [
+                "between",
+                "around",
+                "evenly"
+              ]
+            }
+          ]
+        },
+        "height": {
+          "$ref": "#/$defs/size"
+        },
+        "id": {
+          "$ref": "#/$defs/camel"
+        },
+        "layout": {
+          "enum": [
+            "row",
+            "column",
+            "stack",
+            "grid"
+          ]
+        },
+        "lineGap": {
+          "type": "number"
+        },
+        "maxHeight": {
+          "$ref": "#/$defs/px"
+        },
+        "maxWidth": {
+          "$ref": "#/$defs/px"
+        },
+        "minHeight": {
+          "$ref": "#/$defs/px"
+        },
+        "minWidth": {
+          "$ref": "#/$defs/px"
+        },
+        "padding": {
+          "$ref": "#/$defs/insets"
+        },
+        "props": {
+          "additionalProperties": true,
+          "propertyNames": {
+            "$ref": "#/$defs/camel"
+          },
+          "type": "object"
+        },
+        "repeat": {
+          "additionalProperties": false,
+          "properties": {
+            "as": {
+              "$ref": "#/$defs/camel"
+            },
+            "each": {
+              "$ref": "#/$defs/path"
+            },
+            "limit": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "each",
+            "as"
+          ],
+          "type": "object"
+        },
+        "row": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "rowSpan": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "rows": {
+          "$ref": "#/$defs/tracks"
+        },
+        "slot": {
+          "$ref": "#/$defs/camel"
+        },
+        "slots": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/$defs/instance"
+            },
+            "type": "array"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/camel"
+          },
+          "type": "object"
+        },
+        "state": {
+          "$ref": "#/$defs/camel"
+        },
+        "use": {
+          "$ref": "#/$defs/use"
+        },
+        "variation": {
+          "$ref": "#/$defs/camel"
+        },
+        "width": {
+          "$ref": "#/$defs/size"
+        },
+        "wrap": {
+          "type": "boolean"
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "use"
+      ],
+      "type": "object"
+    },
+    "pascal": {
+      "pattern": "^[A-Z][A-Za-z0-9]*$",
+      "type": "string"
+    },
+    "path": {
+      "pattern": "^[a-z][A-Za-z0-9]*(\\.[a-z][A-Za-z0-9]*)*$",
+      "type": "string"
+    },
+    "px": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "size": {
+      "anyOf": [
+        {
+          "enum": [
+            "fill",
+            "hug"
+          ]
+        },
+        {
+          "$ref": "#/$defs/px"
+        }
+      ]
+    },
+    "stateInstance": {
+      "additionalProperties": false,
+      "properties": {
+        "about": {
+          "$ref": "#/$defs/about"
+        },
+        "absolute": {
+          "type": "boolean"
+        },
+        "align": {
+          "enum": [
+            "top-left",
+            "top",
+            "top-right",
+            "left",
+            "center",
+            "right",
+            "bottom-left",
+            "bottom",
+            "bottom-right"
+          ]
+        },
+        "bind": {
+          "additionalProperties": {
+            "$ref": "#/$defs/path"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/camel"
+          },
+          "type": "object"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/$defs/entry"
+          },
+          "type": "array"
+        },
+        "clip": {
+          "type": "boolean"
+        },
+        "column": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "columnSpan": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "columns": {
+          "$ref": "#/$defs/tracks"
+        },
+        "constraints": {
+          "additionalProperties": false,
+          "properties": {
+            "horizontal": {
+              "enum": [
+                "left",
+                "right",
+                "center",
+                "left-right",
+                "scale"
+              ]
+            },
+            "vertical": {
+              "enum": [
+                "top",
+                "bottom",
+                "center",
+                "top-bottom",
+                "scale"
+              ]
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "gap": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "enum": [
+                "between",
+                "around",
+                "evenly"
+              ]
+            }
+          ]
+        },
+        "height": {
+          "$ref": "#/$defs/size"
+        },
+        "id": {
+          "$ref": "#/$defs/camel"
+        },
+        "layout": {
+          "enum": [
+            "row",
+            "column",
+            "stack",
+            "grid"
+          ]
+        },
+        "lineGap": {
+          "type": "number"
+        },
+        "maxHeight": {
+          "$ref": "#/$defs/px"
+        },
+        "maxWidth": {
+          "$ref": "#/$defs/px"
+        },
+        "minHeight": {
+          "$ref": "#/$defs/px"
+        },
+        "minWidth": {
+          "$ref": "#/$defs/px"
+        },
+        "padding": {
+          "$ref": "#/$defs/insets"
+        },
+        "props": {
+          "additionalProperties": true,
+          "propertyNames": {
+            "$ref": "#/$defs/camel"
+          },
+          "type": "object"
+        },
+        "repeat": {
+          "additionalProperties": false,
+          "properties": {
+            "as": {
+              "$ref": "#/$defs/camel"
+            },
+            "each": {
+              "$ref": "#/$defs/path"
+            },
+            "limit": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "each",
+            "as"
+          ],
+          "type": "object"
+        },
+        "row": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "rowSpan": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "rows": {
+          "$ref": "#/$defs/tracks"
+        },
+        "slot": {
+          "$ref": "#/$defs/camel"
+        },
+        "slots": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/$defs/entry"
+            },
+            "type": "array"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/camel"
+          },
+          "type": "object"
+        },
+        "state": {
+          "$ref": "#/$defs/camel"
+        },
+        "use": {
+          "$ref": "#/$defs/use"
+        },
+        "variation": {
+          "$ref": "#/$defs/camel"
+        },
+        "width": {
+          "$ref": "#/$defs/size"
+        },
+        "wrap": {
+          "type": "boolean"
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "use"
+      ],
+      "type": "object"
+    },
+    "tracks": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/px"
+              },
+              {
+                "enum": [
+                  "fill",
+                  "hug"
+                ]
+              }
+            ]
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      ]
+    },
+    "use": {
+      "pattern": "^([a-z][a-z0-9]*(-[a-z0-9]+)*|[A-Z][A-Za-z0-9]*)$",
+      "type": "string"
+    },
+    "variation": {
+      "additionalProperties": false,
+      "properties": {
+        "about": {
+          "$ref": "#/$defs/about"
+        },
+        "content": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/contentKey"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "about"
+      ],
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json"
+    },
+    "about": {
+      "$ref": "#/$defs/about"
+    },
+    "align": {
+      "enum": [
+        "top-left",
+        "top",
+        "top-right",
+        "left",
+        "center",
+        "right",
+        "bottom-left",
+        "bottom",
+        "bottom-right"
+      ]
+    },
+    "children": {
+      "items": {
+        "$ref": "#/$defs/instance"
+      },
+      "type": "array"
+    },
+    "clip": {
+      "type": "boolean"
+    },
+    "columns": {
+      "$ref": "#/$defs/tracks"
+    },
+    "component": {
+      "$ref": "#/$defs/pascal"
+    },
+    "gap": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "enum": [
+            "between",
+            "around",
+            "evenly"
+          ]
+        }
+      ]
+    },
+    "height": {
+      "$ref": "#/$defs/size"
+    },
+    "layout": {
+      "enum": [
+        "row",
+        "column",
+        "stack",
+        "grid"
+      ]
+    },
+    "lineGap": {
+      "type": "number"
+    },
+    "padding": {
+      "$ref": "#/$defs/insets"
+    },
+    "props": {
+      "additionalProperties": {
+        "else": {
+          "$ref": "#/$defs/dataType"
+        },
+        "if": {
+          "type": "object"
+        },
+        "then": {
+          "additionalProperties": false,
+          "properties": {
+            "about": {
+              "$ref": "#/$defs/about"
+            },
+            "default": true,
+            "type": {
+              "$ref": "#/$defs/dataType"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        }
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/camel"
+      },
+      "type": "object"
+    },
+    "rows": {
+      "$ref": "#/$defs/tracks"
+    },
+    "states": {
+      "additionalProperties": {
+        "$ref": "#/$defs/componentState"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/camel"
+      },
+      "type": "object"
+    },
+    "variations": {
+      "additionalProperties": {
+        "$ref": "#/$defs/variation"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/camel"
+      },
+      "type": "object"
+    },
+    "width": {
+      "$ref": "#/$defs/size"
+    },
+    "wrap": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "$schema",
+    "component",
+    "about"
+  ],
+  "title": "speccy component file, format 1",
+  "type": "object"
+}

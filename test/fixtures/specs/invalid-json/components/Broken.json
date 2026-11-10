@@ -1,0 +1,4 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Broken",
+  "about": "Cut off halfway through being written.",

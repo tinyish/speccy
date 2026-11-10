@@ -1,0 +1,48 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "TaskList",
+  "about": "Every task, one row each.",
+  "props": {
+    "tasks": "Task[]"
+  },
+  "layout": "column",
+  "children": [
+    {
+      "id": "rows",
+      "use": "list",
+      "width": "fill",
+      "height": "fill",
+      "children": [
+        {
+          "id": "row",
+          "use": "TaskRow",
+          "bind": {
+            "task": "task"
+          },
+          "repeat": {
+            "each": "tasks",
+            "as": "task"
+          },
+          "width": "fill"
+        }
+      ]
+    }
+  ],
+  "states": {
+    "stale": {
+      "about": "Showing the tasks last loaded, which may be out of date.",
+      "children": [
+        {
+          "id": "staleNote",
+          "use": "text",
+          "props": {
+            "text": "These may be out of date."
+          }
+        },
+        {
+          "copy": "rows"
+        }
+      ]
+    }
+  }
+}

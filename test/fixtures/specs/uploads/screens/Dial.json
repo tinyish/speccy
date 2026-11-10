@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "screen": "Dial",
+  "about": "How many uploads are left, on the round dial.",
+  "device": "dial",
+  "data": {
+    "left": {
+      "type": "number",
+      "sample": 3
+    }
+  },
+  "layout": "row",
+  "wrap": true,
+  "align": "center",
+  "lineGap": 4,
+  "clip": true,
+  "children": [
+    {
+      "id": "count",
+      "use": "progress",
+      "props": {
+        "label": "Uploads left"
+      },
+      "bind": {
+        "value": "left"
+      }
+    },
+    {
+      "id": "tabs",
+      "use": "Tabs"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Row",
+  "about": "One task.",
+  "props": {
+    "task": "Task",
+    "note": {
+      "type": "text",
+      "default": 5
+    },
+    "owner": "Nobody",
+    "home": "Board"
+  },
+  "children": [
+    {
+      "id": "title",
+      "use": "text",
+      "bind": {
+        "text": "task.title"
+      }
+    }
+  ],
+  "states": {
+    "busy": {
+      "about": "Saving.",
+      "children": [
+        {
+          "copy": "title"
+        }
+      ]
+    }
+  }
+}

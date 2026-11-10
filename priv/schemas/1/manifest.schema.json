@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/manifest.schema.json",
+  "$defs": {
+    "about": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "device": {
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "shape": {
+            "const": "round"
+          }
+        },
+        "required": [
+          "shape"
+        ]
+      },
+      "properties": {
+        "about": {
+          "$ref": "#/$defs/about"
+        },
+        "cornerRadius": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/px"
+            },
+            {
+              "items": {
+                "$ref": "#/$defs/px"
+              },
+              "maxItems": 4,
+              "minItems": 4,
+              "type": "array"
+            }
+          ]
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "input": {
+          "items": {
+            "enum": [
+              "touch",
+              "pointer",
+              "keyboard",
+              "rotary",
+              "dpad",
+              "gamepad",
+              "voice"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "orientations": {
+          "items": {
+            "$ref": "#/$defs/orientation"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "safeArea": {
+          "$ref": "#/$defs/insets"
+        },
+        "shape": {
+          "enum": [
+            "rect",
+            "round"
+          ]
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "about",
+        "width",
+        "height"
+      ],
+      "then": {
+        "properties": {
+          "cornerRadius": false
+        }
+      },
+      "type": "object"
+    },
+    "deviceName": {
+      "pattern": "^[a-z0-9-]+$",
+      "type": "string"
+    },
+    "insets": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/px"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/px"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        {
+          "items": {
+            "$ref": "#/$defs/px"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "type": "array"
+        }
+      ]
+    },
+    "orientation": {
+      "enum": [
+        "portrait",
+        "landscape"
+      ]
+    },
+    "px": {
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/manifest.schema.json"
+    },
+    "devices": {
+      "additionalProperties": {
+        "$ref": "#/$defs/device"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/deviceName"
+      },
+      "type": "object"
+    },
+    "format": {
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "$schema",
+    "format"
+  ],
+  "title": "speccy manifest file, format 1",
+  "type": "object"
+}

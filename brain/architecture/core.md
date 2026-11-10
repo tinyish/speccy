@@ -40,7 +40,7 @@ icons     "shipped indexes · ~/.speccy cache · spec sets"
 | **workspace** | Owns an open spec: reads its files, applies edits, writes them, keeps undo, watches the folder and re-checks on every change. | a GenServer in the app, one per open spec |
 | **editor** | The window's one page: the item list, the canvas with a frame per state, the props panel and the problems list. | a LiveView in the app |
 | **canvas** | Everything the hand feels: pan, zoom, selection outlines, drag previews and drop targets, resizing and typing in place. Sends only the finished edit. | a JS hook in the page |
-| **core** | Pure functions: decode and encode files, resolve a frame into a tree to draw, lay it out, check a spec, apply an edit, and the 25 primitives. No processes, no IO. | modules in the app, shared by the editor and the CLI |
+| **core** | Pure functions: decode and encode files, resolve a frame into a tree to draw, lay it out, check a spec, apply an edit, and the 25 primitives. No processes, and no IO beyond reading a spec folder. | modules in the app, shared by the editor and the CLI |
 | **cli** | `speccy check`, `render`, `explain`, `icons`, `open`. | the same release, started in command mode |
 | **icons** | Searches icons and hands back SVGs: supported libraries from shipped indexes and a per-user cache, the spec's own sets from its `assets/`. | core for the index and spec sets; a fetch on cache misses |
 
@@ -117,8 +117,10 @@ not a contract.
   composition rules need, such as pressable) and a HEEx function
   component that draws its wireframe from the props its interface
   declares. One registry module lists them. The checker, the props
-  panel, `speccy explain` and the JSON Schemas read the interface; the
-  canvas and `speccy render` draw with the components.
+  panel and `speccy explain` read the interface; the canvas and
+  `speccy render` draw with the components.
+- **Devices** (`Speccy.Devices`): the device presets as data, with the
+  fields a spec's own devices have ([format](format.md#devices)).
 - **Check** (`Speccy.Check`): runs the JSON Schemas on every file
   (`JSV`, draft 2020-12), then the rules no schema expresses
   ([format](format.md#the-checkers-rules)), and returns a list of
@@ -132,7 +134,9 @@ not a contract.
   change several files at once: promoting a prop writes the component
   and the screen that sets it, and undoes as one.
 - **Schemas** (`Speccy.Schemas`): builds the JSON Schema of each kind of
-  file from the format's definition and the primitives' interfaces. A
+  file from the format's definition. The schemas cover a file's structure
+  and how its values are written; which primitives and components exist
+  and what props each takes is the check's, in one place for both. A
   mix task writes them into the repository under `priv/schemas/<format>/`,
   and a test fails when what's written differs from what the code builds,
   so the files can't drift from the modules. Spec files name them by
@@ -234,14 +238,17 @@ command on the pure core, prints and exits. The prototype answered in
 0.15 s, beside a running app too (`prototypes/cli-bundle`).
 
 - **`check [<spec>]`**: the problems, one per line with code, file, path
-  and message, or as JSON with `--json`; exits non-zero on any error.
+  and message, or as JSON with `--json`; exits 1 on any error, 2 when no
+  spec is found.
 - **`render <item> [--state s] [--variation v] [--out f]`**: the frame
   as one self-contained HTML file (the wireframe stylesheet and every
   icon inlined), or a PNG when `--out` ends in `.png`, taken with the
   machine's Chrome in headless mode; with no Chrome, it says so and
   writes the HTML.
-- **`explain [<topic>]`**: the format and each primitive, as Markdown,
-  generated from the schemas and the primitives' interfaces.
+- **`explain [<topic>]`**: the format and each primitive, as Markdown:
+  the format's prose is `format.md` itself, embedded when compiled, one
+  topic per section; each primitive's interface, the device presets, the
+  icon libraries and the check codes are generated from the code.
 - **`icons <query> [--set] [--style] [--category]`**: the picker's
   search, printing references.
 - **`open [<spec>]`**: opens the app on a spec, handled by the launcher
@@ -253,6 +260,9 @@ command on the pure core, prints and exits. The prototype answered in
 
 The app installs the command for the user (a link on their PATH, as code
 editors do), from the app's menu.
+
+In a checkout, `bin/speccy` runs the same command through `mix run`
+(`Speccy.CLI.main/1`), for development and the agent eval.
 
 ## Icons
 
@@ -269,7 +279,11 @@ editors do), from the app's menu.
   picker at once. The checker refuses unsafe SVGs before anything inlines
   them.
 - An icon draws as inline SVG, so `currentColor` takes the wireframe's
-  colour.
+  colour. The drawing inlines a checked file's bytes unchanged, gives
+  each inlined copy its own ids (rewriting `id` and every `#…`
+  reference to them), and sizes the icon with CSS, so an icon can't
+  take another's gradients, clash with the page's ids or grow past its
+  box.
 
 ## Packaging
 
@@ -308,7 +322,7 @@ frames drawn `inert`; editor marks in a layer above the frames; the CLI
 as the same release in command
 mode through `eval`, with `open` handed to the host; fetching Material SVGs from the library's pinned version; macOS
 only for the MVP; and the libraries named (Jason, JSV, file_system,
-Req).
+Req, and OTP's xmerl to read spec SVGs).
 
 ## Open
 

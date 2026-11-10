@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/data.schema.json",
+  "data": "Task",
+  "about": "Something the user has to do.",
+  "fields": {
+    "title": {
+      "type": "text",
+      "about": "What to do, in a line."
+    },
+    "done": "bool"
+  }
+}

@@ -1,0 +1,36 @@
+#!/bin/bash
+# The agent eval (brain/architecture/testing.md § Evals): each request, or the
+# one named, run by a fresh `claude -p` on a temp copy of its spec, with only
+# `speccy` on its PATH, then checked by `speccy check` and its own assertions.
+root=$(cd "$(dirname "$0")/../.." && pwd)
+evals=$root/evals/agent
+failed=0
+
+for name in ${1:-$(cd "$evals" && ls -d */ | tr -d /)}; do
+  [ -f "$evals/$name/request" ] || { echo "no request $name" >&2; exit 2; }
+  tmp=$(mktemp -d)
+  fixture=$root/test/fixtures/specs/$(cat "$evals/$name/spec")
+  cp -R "$fixture" "$tmp/spec"
+  prompt="You are in a speccy spec: this folder. The \`speccy\` command is on your PATH: \`speccy explain\` explains the format (\`speccy explain <topic>\` for each part) and \`speccy check\` checks the spec. Edit the spec's files to do this, and leave \`speccy check\` passing: $(cat "$evals/$name/request")"
+
+  start=$SECONDS
+  (cd "$tmp/spec" && PATH="$root/bin:$PATH" claude -p "$prompt" \
+    --restricted --safe-mode --strict-mcp-config --permission-mode dontAsk --max-turns 40 \
+    --tools Read,Write,Edit,Glob,Grep,Bash \
+    --allowedTools Read Write Edit Glob Grep 'Bash(speccy:*)' \
+    --output-format stream-json --verbose </dev/null >"$tmp/transcript.jsonl" 2>&1)
+  took=$((SECONDS - start))
+
+  check=$(cd "$tmp/spec" && "$root/bin/speccy" check)
+  if [ $? -eq 0 ] && why=$(cd "$tmp/spec" && FIXTURE=$fixture bash "$evals/$name/assert"); then
+    verdict=pass
+  else
+    verdict=fail
+    failed=1
+  fi
+  cost=$(tail -1 "$tmp/transcript.jsonl" | jq -r '.total_cost_usd // "?"' 2>/dev/null)
+  echo "$verdict $name (${took}s, \$$cost) $tmp"
+  [ $verdict = fail ] && printf '%s\n%s\n' "$check" "$why" | sed 's/^/  /'
+done
+
+exit $failed

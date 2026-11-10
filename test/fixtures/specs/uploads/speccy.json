@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/manifest.schema.json",
+  "format": 1,
+  "devices": {
+    "kiosk": {
+      "about": "The shop's upload kiosk: a tall touch screen that also listens.",
+      "width": 1080,
+      "height": 1920,
+      "shape": "rect",
+      "cornerRadius": [
+        12,
+        12,
+        0,
+        0
+      ],
+      "input": [
+        "touch",
+        "voice"
+      ],
+      "safeArea": [
+        24,
+        0
+      ],
+      "orientations": [
+        "portrait",
+        "landscape"
+      ]
+    },
+    "dial": {
+      "about": "The kiosk's round status dial.",
+      "width": 240,
+      "height": 240,
+      "shape": "round",
+      "input": [
+        "rotary"
+      ],
+      "safeArea": 12
+    }
+  }
+}

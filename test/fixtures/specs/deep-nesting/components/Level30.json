@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Level30",
+  "about": "Level 30 of a deep chain, passing on down.",
+  "props": {
+    "on": {
+      "type": "bool",
+      "default": false
+    }
+  },
+  "children": [
+    {
+      "id": "box",
+      "use": "container",
+      "bind": {
+        "pressable": "on"
+      },
+      "children": [
+        {
+          "id": "go",
+          "use": "button",
+          "props": {
+            "text": "Go"
+          }
+        }
+      ]
+    }
+  ]
+}

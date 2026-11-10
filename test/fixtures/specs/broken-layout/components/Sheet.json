@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Sheet",
+  "about": "Tries to make a popover its slot, which only a container, list or dialog can be.",
+  "children": [
+    {
+      "id": "pop",
+      "use": "popover",
+      "slot": "body"
+    }
+  ]
+}

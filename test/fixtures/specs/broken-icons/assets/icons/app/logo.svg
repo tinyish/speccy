@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="Close (Esc)">
+  <title>Logo, not url(x)</title>
+  <desc>A square; see url(https://example.com) for the brand.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1" gradientTransform="rotate(45)">
+      <stop offset="0" stop-color="currentColor"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0.5"/>
+    </linearGradient>
+    <clipPath id="c"><circle cx="12" cy="12" r="10"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)" transform="translate(0 0) scale(1)">
+    <rect x="4" y="4" width="16" height="16" rx="2" fill="url(#g)"/>
+    <path d="M4 4h16" fill="none" stroke="currentColor" stroke-width="2"/>
+  </g>
+</svg>

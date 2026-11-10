@@ -1,0 +1,12 @@
+# TaskScreen has one new state, described and asking to sign in; without it,
+# TaskScreen is as it was, and nothing else changed.
+fail() { echo "$1"; exit 1; }
+changes=$(diff -rq "$FIXTURE" .)
+[ "$changes" = "Files $FIXTURE/screens/TaskScreen.json and ./screens/TaskScreen.json differ" ] || fail "expected only TaskScreen to change, got: $(echo $changes)"
+screen() { jq -e --slurpfile before "$FIXTURE/screens/TaskScreen.json" "$1" screens/TaskScreen.json >/dev/null || fail "TaskScreen: $2"; }
+new='((.states | keys) - ($before[0].states | keys)) as $new'
+
+screen "$new | \$new | length == 1" "it doesn't have exactly one new state"
+screen "$new | del(.states[\$new[0]]) == \$before[0]" "something else changed besides the new state"
+screen "$new | .states[\$new[0]].about | type == \"string\" and length > 0" "the new state has no about"
+screen "$new | any(.states[\$new[0]].children | .. | objects | (.props // {})[]; type == \"string\" and test(\"sign.?in|log.?in\"; \"i\"))" "nothing in the new state asks to sign in"

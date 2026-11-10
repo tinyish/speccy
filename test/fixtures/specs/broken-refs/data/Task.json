@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/data.schema.json",
+  "data": "Task",
+  "about": "Something to do.",
+  "fields": {
+    "title": "text",
+    "status": [
+      "open",
+      "closed"
+    ]
+  }
+}

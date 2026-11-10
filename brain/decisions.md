@@ -122,17 +122,20 @@ In: `architecture/format.md`.
 
 ## device-presets-and-custom
 
-2026-11-09. A screen's `device` names one of speccy's presets (about
-fourteen at launch: generic desktop, laptop, tablet, mobile, watch, round
-watch and tv, plus the current flagship of each major line, refreshed
-with speccy's releases and sized from vendor specs) or a device
+2026-11-09, amended 2026-11-09. A screen's `device` names one of
+speccy's presets (ten at launch, every one a real device: the current
+flagship of each major line of phones, tablets, laptops and watches,
+Apple's Studio Display and Apple TV 4K, refreshed with speccy's releases
+and sized from vendor specs; no generic sizes) or a device
 the spec defines once in `speccy.json`. A device has a size and may say
 its shape (rect, with an optional corner radius, or round), how it is
 operated (touch, pointer, keyboard, rotary, d-pad, gamepad, voice), its
 safe area and its orientations; a screen may pick an orientation. The
 MVP editor uses only the size. Why: watches and integrated devices need
 their own sizes, and how a device is operated shapes focus and input
-behavior. In: `architecture/format.md`, `prd/mvp.md`.
+behavior. Real devices only, because a real device's size, corners and
+safe area are facts anyone can check, where a generic one is a guess.
+In: `architecture/format.md`, `prd/mvp.md`.
 
 ## states-described-not-conditioned
 

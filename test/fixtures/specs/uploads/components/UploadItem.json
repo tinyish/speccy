@@ -1,0 +1,129 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "UploadItem",
+  "about": "One upload: its name, progress and a button to remove it.",
+  "props": {
+    "upload": "Upload",
+    "removeIcon": {
+      "type": "icon",
+      "about": "The remove button's icon.",
+      "default": "material/close"
+    },
+    "compact": {
+      "type": "bool",
+      "default": false
+    }
+  },
+  "width": 320,
+  "height": "hug",
+  "layout": "row",
+  "align": "left",
+  "gap": 8,
+  "padding": [
+    4,
+    8
+  ],
+  "clip": true,
+  "children": [
+    {
+      "id": "name",
+      "use": "text",
+      "bind": {
+        "text": "upload.name"
+      },
+      "width": "fill"
+    },
+    {
+      "id": "bar",
+      "use": "progress",
+      "props": {
+        "label": "Uploading",
+        "value": 40
+      }
+    },
+    {
+      "id": "remove",
+      "use": "button",
+      "props": {
+        "label": "Remove",
+        "text": ""
+      },
+      "bind": {
+        "leadingIcon": "removeIcon"
+      }
+    }
+  ],
+  "variations": {
+    "short": {
+      "about": "Where there is little room.",
+      "content": {
+        "remove.label": "Drop"
+      }
+    },
+    "long": {
+      "about": "Where there is room to spell it out.",
+      "content": {
+        "remove.label": "Remove this upload"
+      }
+    }
+  },
+  "states": {
+    "uploading": {
+      "about": "The file is on its way.",
+      "children": [
+        {
+          "copy": "name"
+        },
+        {
+          "copy": "bar",
+          "state": "indeterminate"
+        },
+        {
+          "copy": "remove"
+        }
+      ]
+    },
+    "done": {
+      "about": "The file arrived.",
+      "children": [
+        {
+          "copy": "name"
+        },
+        {
+          "id": "doneIcon",
+          "use": "icon",
+          "props": {
+            "icon": "material/check",
+            "label": "Done"
+          }
+        }
+      ]
+    },
+    "error": {
+      "about": "The file failed to arrive.",
+      "children": [
+        {
+          "copy": "name"
+        },
+        {
+          "id": "problem",
+          "use": "text",
+          "props": {
+            "text": "Upload failed"
+          }
+        },
+        {
+          "copy": "remove"
+        }
+      ],
+      "variations": {
+        "tooBig": {
+          "about": "The file is over the size limit.",
+          "content": {
+            "problem.text": "That file is too big."
+          }
+        }
+      }
+    }
+  }
+}

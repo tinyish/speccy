@@ -1,0 +1,35 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Tab",
+  "about": "One tab of a tab list, naming the panel it shows.",
+  "props": {
+    "label": "text",
+    "panel": "text"
+  },
+  "layout": "grid",
+  "columns": 1,
+  "rows": 1,
+  "lineGap": 0,
+  "children": [
+    {
+      "id": "tab",
+      "use": "container",
+      "props": {
+        "pressable": true,
+        "role": "tab"
+      },
+      "bind": {
+        "controls": "panel"
+      },
+      "children": [
+        {
+          "id": "label",
+          "use": "text",
+          "bind": {
+            "text": "label"
+          }
+        }
+      ]
+    }
+  ]
+}

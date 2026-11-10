@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "TabItem",
+  "about": "A tab, for a tab list to hold.",
+  "children": [
+    {
+      "id": "tab",
+      "use": "container",
+      "props": {
+        "pressable": true,
+        "role": "tab"
+      }
+    }
+  ]
+}

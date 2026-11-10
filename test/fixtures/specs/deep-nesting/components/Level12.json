@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Level12",
+  "about": "Level 12 of a deep chain, passing on down.",
+  "props": {
+    "on": {
+      "type": "bool",
+      "default": false
+    }
+  },
+  "children": [
+    {
+      "id": "next",
+      "use": "Level13",
+      "bind": {
+        "on": "on"
+      }
+    }
+  ]
+}

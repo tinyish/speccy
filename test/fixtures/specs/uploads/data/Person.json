@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/data.schema.json",
+  "data": "Person",
+  "about": "Someone who uses the kiosk.",
+  "fields": {
+    "name": "text",
+    "photo": "text"
+  }
+}

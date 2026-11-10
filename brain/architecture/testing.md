@@ -21,9 +21,9 @@ with the milestone that first needs them.
     (`resolve-is-total`).
   - Edit: an operation on a fixture gives the expected files, compared
     as JSON.
-  - Primitives: every primitive in the registry draws each of its
-    interface's examples, and its interface passes the schema for
-    interfaces.
+  - Primitives: every interface has the required fields and only
+    `format.md`'s types, and, once primitives draw, every primitive
+    draws each of its interface's examples.
   - Schemas: what `Speccy.Schemas` builds equals what is in
     `priv/schemas/`; the drift guard.
   Never covers files on disk, processes or the page.

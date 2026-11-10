@@ -16,10 +16,11 @@ data outside a function call (`core.md` § What carries the weight).
 
 ## pure-core
 
-Modules under `lib/speccy/` other than the workspace, the icon fetch and
-the CLI do no IO, start no process and read no environment; they take
-the spec and return data. Anything that touches a file, the network or
-time lives in those three or in `lib/speccy_web/`.
+Modules under `lib/speccy/` other than the workspace, the icon fetch,
+the CLI and `Speccy.Format`'s `find` and `load` do no IO, start no
+process and read no environment; they take the spec and return data.
+Anything that touches a file, the network or time lives in those or in
+`lib/speccy_web/`.
 
 ## format-md-is-the-format
 
@@ -103,11 +104,23 @@ Every check code is a kebab-case atom in one list in `Speccy.Check`,
 with its message; a code is never renamed once a milestone that uses it
 has landed. Each code has a test that triggers it.
 
+## untrusted-input-allowlists
+
+A check on untrusted content, such as a spec's SVGs or anything else the
+app inlines into a page, accepts a closed list of what is known safe and
+refuses the rest; it never lists known-bad patterns.
+
 ## no-sleeps
 
 Code and tests wait on a message or a condition with a timeout, never a
 fixed sleep: the workspace's watcher events, the canvas's redraws and
 the icon fetch included.
+
+## fixtures-cover-the-format
+
+The clean fixtures under `test/fixtures/specs/` hold, between them, at
+least one of every kind of object and every key in `format.md`'s
+tables, so the key-order, round-trip and check tests see them all.
 
 ## named-dependencies
 

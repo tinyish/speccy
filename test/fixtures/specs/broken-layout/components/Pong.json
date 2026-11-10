@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Pong",
+  "about": "Uses Ping, which uses it.",
+  "children": [
+    {
+      "id": "ping",
+      "use": "Ping"
+    },
+    {
+      "id": "full",
+      "use": "container",
+      "slot": "body",
+      "children": [
+        {
+          "id": "inside",
+          "use": "text"
+        }
+      ]
+    }
+  ]
+}

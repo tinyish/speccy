@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/data.schema.json",
+  "data": "Folder",
+  "about": "Where uploads land.",
+  "fields": {
+    "name": "text",
+    "uploads": "Upload[]"
+  }
+}

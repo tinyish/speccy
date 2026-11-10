@@ -54,8 +54,8 @@ The MVP proves:
   own layout and their own states, and used as instances anywhere.
 - **Screens:** made only of component instances, each for a device,
   with copy set on each instance. A device is one of a handful of
-  presets (desktop, laptop, tablet, phone, watch and TV sizes, and the
-  current flagship phones, tablets, laptops and watches) or
+  presets, each a real current device (phones, a tablet, a laptop, a
+  desktop display, watches and a TV), or
   one the spec defines with its own size, such as a watch or the display
   of an appliance. The editor draws each screen at its device's size.
 - **Data shapes:** data models, each a set of fields; a screen says
@@ -129,7 +129,7 @@ The MVP proves:
 
 ### 1. The format and its check
 
-Status:
+Status: built
 
 The format for components, screens, layout and states, with the 25
 primitives and the composition rules, and a check anyone can run on a

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Fan02",
+  "about": "Level 2 of a tree four wide.",
+  "layout": "row",
+  "children": [
+    {
+      "id": "part1",
+      "use": "Fan03"
+    },
+    {
+      "id": "part2",
+      "use": "Fan03"
+    },
+    {
+      "id": "part3",
+      "use": "Fan03"
+    },
+    {
+      "id": "part4",
+      "use": "Fan03"
+    }
+  ]
+}

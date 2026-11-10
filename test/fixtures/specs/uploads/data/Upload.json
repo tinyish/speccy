@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/data.schema.json",
+  "data": "Upload",
+  "about": "A file someone is sending.",
+  "fields": {
+    "name": "text",
+    "size": {
+      "type": "number",
+      "about": "In bytes; the screen shows it formatted."
+    },
+    "status": {
+      "type": [
+        "uploading",
+        "done",
+        "error"
+      ],
+      "about": "Where the upload is."
+    },
+    "length": [
+      "short",
+      "long"
+    ],
+    "tags": "text[]",
+    "kind": "icon",
+    "starred": "bool",
+    "owner": "Person"
+  }
+}

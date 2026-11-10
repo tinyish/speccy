@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Fan06",
+  "about": "Level 6 of a tree four wide.",
+  "layout": "row",
+  "children": [
+    {
+      "id": "go",
+      "use": "button",
+      "props": {
+        "text": "Go"
+      }
+    }
+  ]
+}

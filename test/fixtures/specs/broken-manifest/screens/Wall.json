@@ -1,0 +1,6 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "screen": "Wall",
+  "about": "On a device the unreadable manifest defines.",
+  "device": "wall"
+}

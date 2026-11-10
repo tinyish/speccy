@@ -1,0 +1,4 @@
+{"children":[{"bind":{"icon":"icon"},"use":"icon","id":"icon"},{"bind":{"text":"message"},"width":"fill","use":"text","id":"message"}],
+ "align":"left","layout":"row",
+ "props":{"message":"text","icon":{"default":"app/alert","about":"What kind of notice it is.","type":"icon"}},
+ "about":"A notice across the screen about something that affects all of it.","component":"Banner","$schema":"https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json"}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "screen": "Layout",
+  "about": "Layout fields where they don't go.",
+  "device": "studio-display",
+  "children": [
+    {
+      "id": "words",
+      "use": "text",
+      "layout": "row"
+    },
+    {
+      "id": "go",
+      "use": "button",
+      "children": [
+        {
+          "id": "label",
+          "use": "text"
+        }
+      ]
+    },
+    {
+      "id": "grid",
+      "use": "container",
+      "layout": "grid",
+      "wrap": true,
+      "columns": 2,
+      "children": [
+        {
+          "id": "cell",
+          "use": "text",
+          "column": 2,
+          "columnSpan": 2
+        }
+      ]
+    },
+    {
+      "id": "col",
+      "use": "container",
+      "columns": 2,
+      "children": [
+        {
+          "id": "placed",
+          "use": "text",
+          "column": 1
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "use": "text",
+      "x": 5
+    },
+    {
+      "id": "slotted",
+      "use": "container",
+      "slot": "body"
+    },
+    {
+      "id": "loop",
+      "use": "Ping"
+    }
+  ]
+}

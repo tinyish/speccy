@@ -1,0 +1,49 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Card",
+  "about": "Every icon reference gone wrong.",
+  "props": {
+    "glyph": {
+      "type": "icon",
+      "default": "material/not_an_icon"
+    }
+  },
+  "children": [
+    {
+      "id": "rounded",
+      "use": "icon",
+      "props": {
+        "icon": "material/home:rounded"
+      }
+    },
+    {
+      "id": "styled",
+      "use": "icon",
+      "props": {
+        "icon": "app/logo:filled"
+      }
+    },
+    {
+      "id": "elsewhere",
+      "use": "icon",
+      "props": {
+        "icon": "brand/logo"
+      }
+    },
+    {
+      "id": "missing",
+      "use": "button",
+      "props": {
+        "leadingIcon": "app/missing"
+      }
+    }
+  ],
+  "variations": {
+    "loud": {
+      "about": "Names a set that isn't there.",
+      "content": {
+        "rounded.icon": "nope/home"
+      }
+    }
+  }
+}

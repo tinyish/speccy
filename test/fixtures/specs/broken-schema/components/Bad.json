@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "props": {
+    "x": "txt"
+  },
+  "children": [
+    {
+      "id": "Bad Id",
+      "use": "Bu ton",
+      "width": "wide"
+    }
+  ],
+  "colour": "red"
+}

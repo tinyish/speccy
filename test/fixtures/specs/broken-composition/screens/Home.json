@@ -1,0 +1,114 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "screen": "Home",
+  "about": "Every composition rule broken.",
+  "device": "iphone-18-pro",
+  "children": [
+    {
+      "id": "card",
+      "use": "container",
+      "props": {
+        "pressable": true
+      },
+      "children": [
+        {
+          "id": "buy",
+          "use": "button",
+          "props": {
+            "text": "Buy"
+          }
+        }
+      ]
+    },
+    {
+      "id": "promo",
+      "use": "container",
+      "props": {
+        "pressable": true
+      },
+      "children": [
+        {
+          "id": "offer",
+          "use": "Offer"
+        }
+      ]
+    },
+    {
+      "id": "actions",
+      "use": "menu",
+      "children": [
+        {
+          "id": "more",
+          "use": "link"
+        }
+      ]
+    },
+    {
+      "id": "people",
+      "use": "list",
+      "props": {
+        "selectable": true
+      },
+      "children": [
+        {
+          "id": "deal",
+          "use": "Offer"
+        }
+      ]
+    },
+    {
+      "id": "lonely",
+      "use": "container",
+      "props": {
+        "pressable": true,
+        "role": "tab"
+      }
+    },
+    {
+      "id": "tabItem",
+      "use": "TabItem"
+    },
+    {
+      "id": "panel",
+      "use": "container",
+      "props": {
+        "role": "tabpanel"
+      }
+    },
+    {
+      "id": "toggle",
+      "use": "container",
+      "props": {
+        "pressable": true,
+        "expanded": true,
+        "controls": "nowhere"
+      }
+    },
+    {
+      "id": "here",
+      "use": "container",
+      "props": {
+        "current": "page"
+      }
+    },
+    {
+      "id": "framed",
+      "use": "Frame",
+      "slots": {
+        "body": [
+          {
+            "id": "inner",
+            "use": "button",
+            "props": {
+              "text": "Go"
+            }
+          },
+          {
+            "id": "nested",
+            "use": "Frame"
+          }
+        ]
+      }
+    }
+  ]
+}

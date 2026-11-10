@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Tabs",
+  "about": "A tab list with the one panel it shows, all in one.",
+  "children": [
+    {
+      "id": "list",
+      "use": "container",
+      "props": {
+        "role": "tablist"
+      },
+      "children": [
+        {
+          "id": "first",
+          "use": "container",
+          "props": {
+            "pressable": true,
+            "role": "tab",
+            "selected": true,
+            "controls": "p1"
+          },
+          "children": [
+            {
+              "id": "firstLabel",
+              "use": "text",
+              "props": {
+                "text": "First"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p1",
+      "use": "container",
+      "props": {
+        "role": "tabpanel"
+      },
+      "children": [
+        {
+          "id": "body",
+          "use": "text",
+          "props": {
+            "text": "The first panel."
+          }
+        }
+      ]
+    }
+  ]
+}

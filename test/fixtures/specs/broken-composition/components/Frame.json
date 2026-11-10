@@ -1,0 +1,34 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Frame",
+  "about": "A pressable shell around what a screen puts in it.",
+  "children": [
+    {
+      "id": "shell",
+      "use": "container",
+      "props": {
+        "pressable": true
+      },
+      "children": [
+        {
+          "id": "body",
+          "use": "container",
+          "slot": "body"
+        }
+      ]
+    }
+  ],
+  "states": {
+    "flat": {
+      "about": "Not pressable as a whole, in this state.",
+      "children": [
+        {
+          "copy": "shell",
+          "props": {
+            "pressable": false
+          }
+        }
+      ]
+    }
+  }
+}

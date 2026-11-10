@@ -1,0 +1,114 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "screen": "TaskScreen",
+  "about": "The user's tasks: add, complete and delete them.",
+  "device": "iphone-18-pro",
+  "data": {
+    "tasks": {
+      "type": "Task[]",
+      "sample": [
+        {
+          "title": "Buy milk",
+          "done": false
+        },
+        {
+          "title": "Call Sam",
+          "done": true
+        }
+      ]
+    }
+  },
+  "layout": "column",
+  "children": [
+    {
+      "id": "header",
+      "use": "Header",
+      "props": {
+        "title": "Tasks"
+      },
+      "width": "fill"
+    },
+    {
+      "id": "list",
+      "use": "TaskList",
+      "bind": {
+        "tasks": "tasks"
+      },
+      "width": "fill",
+      "height": "fill"
+    }
+  ],
+  "states": {
+    "loading": {
+      "about": "The tasks are loading.",
+      "children": [
+        {
+          "copy": "header"
+        },
+        {
+          "id": "loading",
+          "use": "progress",
+          "props": {
+            "label": "Loading your tasks"
+          },
+          "state": "indeterminate",
+          "width": "fill"
+        }
+      ]
+    },
+    "empty": {
+      "about": "The tasks have loaded and there are none.",
+      "data": {
+        "tasks": []
+      },
+      "children": [
+        {
+          "copy": "header"
+        },
+        {
+          "id": "empty",
+          "use": "EmptyState",
+          "props": {
+            "message": "No tasks yet. Add one above."
+          },
+          "width": "fill"
+        }
+      ]
+    },
+    "problem": {
+      "about": "Something stops the list from working.",
+      "children": [
+        {
+          "copy": "header"
+        },
+        {
+          "id": "banner",
+          "use": "Banner",
+          "props": {
+            "message": "Something went wrong."
+          },
+          "width": "fill"
+        },
+        {
+          "copy": "list",
+          "state": "stale"
+        }
+      ],
+      "variations": {
+        "offline": {
+          "about": "The device has no connection.",
+          "content": {
+            "banner.message": "You're offline. Changes will sync when you're back.",
+            "banner.icon": "app/offline"
+          }
+        },
+        "error": {
+          "about": "The tasks failed to load.",
+          "content": {
+            "banner.message": "We couldn't load your tasks."
+          }
+        }
+      }
+    }
+  }
+}

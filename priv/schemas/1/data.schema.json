@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/data.schema.json",
+  "$defs": {
+    "about": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "camel": {
+      "pattern": "^[a-z][A-Za-z0-9]*$",
+      "type": "string"
+    },
+    "dataType": {
+      "else": {
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "if": {
+        "type": "string"
+      },
+      "then": {
+        "pattern": "^(text|bool|number|icon|text\\[\\]|[A-Z][A-Za-z0-9]*(\\[\\])?)$",
+        "type": "string"
+      }
+    },
+    "pascal": {
+      "pattern": "^[A-Z][A-Za-z0-9]*$",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/data.schema.json"
+    },
+    "about": {
+      "$ref": "#/$defs/about"
+    },
+    "data": {
+      "$ref": "#/$defs/pascal"
+    },
+    "fields": {
+      "additionalProperties": {
+        "else": {
+          "$ref": "#/$defs/dataType"
+        },
+        "if": {
+          "type": "object"
+        },
+        "then": {
+          "additionalProperties": false,
+          "properties": {
+            "about": {
+              "$ref": "#/$defs/about"
+            },
+            "type": {
+              "$ref": "#/$defs/dataType"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        }
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/camel"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "data",
+    "about"
+  ],
+  "title": "speccy data file, format 1",
+  "type": "object"
+}

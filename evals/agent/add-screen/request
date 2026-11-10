@@ -1,0 +1,1 @@
+Add a Settings screen for the phone, with the Header titled "Settings" and a sign-out button, and a state for when signing out fails that shows a Banner saying so.

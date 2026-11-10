@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/data.schema.json",
+  "data": "Item",
+  "about": "Something with an icon.",
+  "fields": {
+    "name": "text",
+    "kind": "icon"
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "screen": "Board",
+  "about": "Every reference gone wrong.",
+  "device": "iphone-18-pro",
+  "data": {
+    "tasks": {
+      "type": "Task[]",
+      "sample": [
+        {
+          "title": 5
+        }
+      ]
+    },
+    "first": {
+      "type": "Task",
+      "sample": {
+        "title": "One"
+      }
+    },
+    "t": {
+      "type": "Row",
+      "sample": 5
+    }
+  },
+  "children": [
+    {
+      "id": "ghost",
+      "use": "Ghost"
+    },
+    {
+      "id": "label",
+      "use": "text",
+      "props": {
+        "colour": "red",
+        "text": 5
+      }
+    },
+    {
+      "id": "save",
+      "use": "button",
+      "state": "pressed"
+    },
+    {
+      "id": "rows",
+      "use": "list",
+      "children": [
+        {
+          "id": "row",
+          "use": "Row",
+          "bind": {
+            "task": "t",
+            "state": "t.status"
+          },
+          "repeat": {
+            "each": "tasks",
+            "as": "t"
+          },
+          "variation": "loud",
+          "slots": {
+            "body": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "dup",
+      "use": "text",
+      "props": {
+        "text": "a"
+      },
+      "bind": {
+        "text": "first.title"
+      }
+    },
+    {
+      "id": "dup",
+      "use": "checkbox",
+      "bind": {
+        "checked": "first.title"
+      }
+    },
+    {
+      "id": "lost",
+      "use": "text",
+      "bind": {
+        "text": "tasks.title"
+      }
+    },
+    {
+      "id": "each",
+      "use": "list",
+      "children": [
+        {
+          "id": "one",
+          "use": "text",
+          "repeat": {
+            "each": "nothing",
+            "as": "x"
+          }
+        }
+      ]
+    },
+    {
+      "id": "single",
+      "use": "list",
+      "children": [
+        {
+          "id": "two",
+          "use": "text",
+          "repeat": {
+            "each": "first",
+            "as": "y"
+          }
+        }
+      ]
+    },
+    {
+      "id": "task",
+      "use": "Task"
+    },
+    {
+      "id": "board",
+      "use": "Board"
+    },
+    {
+      "id": "typo",
+      "use": "buton"
+    },
+    {
+      "id": "rowTitle",
+      "use": "text",
+      "bind": {
+        "text": "t.title"
+      }
+    }
+  ],
+  "states": {
+    "broken": {
+      "about": "Points at what isn't there.",
+      "data": {
+        "missing": []
+      },
+      "children": [
+        {
+          "copy": "nobody"
+        },
+        {
+          "copy": "rows",
+          "inner": {
+            "nope": {
+              "width": "fill"
+            }
+          }
+        }
+      ],
+      "variations": {
+        "odd": {
+          "about": "Names an instance the state lacks.",
+          "content": {
+            "ghost.text": "Boo"
+          }
+        }
+      }
+    }
+  }
+}

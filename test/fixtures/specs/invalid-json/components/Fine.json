@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Fine",
+  "about": "Loads beside a broken file.",
+  "children": [
+    {
+      "id": "message",
+      "use": "text"
+    }
+  ]
+}

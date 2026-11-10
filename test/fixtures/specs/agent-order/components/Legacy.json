@@ -1,0 +1,1 @@
+{"on":{"retry.press":[{"emit":"retry"}]},"children":[{"x-note":"kept","use":"button","id":"retry","props":{"text":"Try again"}}],"events":{"retry":null},"about":"Written in an older format, with keys speccy doesn't know.","component":"Legacy","$schema":"https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json"}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Header",
+  "about": "A screen's title, with a field and a button to add a task.",
+  "props": {
+    "title": "text"
+  },
+  "layout": "row",
+  "align": "left",
+  "children": [
+    {
+      "id": "title",
+      "use": "text",
+      "bind": {
+        "text": "title"
+      },
+      "width": "fill"
+    },
+    {
+      "id": "draft",
+      "use": "input",
+      "props": {
+        "label": "New task",
+        "placeholder": "What needs doing?",
+        "value": ""
+      }
+    },
+    {
+      "id": "add",
+      "use": "button",
+      "props": {
+        "text": "Add",
+        "leadingIcon": "material/add"
+      }
+    }
+  ],
+  "states": {
+    "blank": {
+      "about": "The field is empty, so there is nothing to add.",
+      "children": [
+        {
+          "copy": "title"
+        },
+        {
+          "copy": "draft"
+        },
+        {
+          "copy": "add",
+          "state": "disabled"
+        }
+      ]
+    }
+  }
+}

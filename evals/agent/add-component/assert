@@ -1,0 +1,19 @@
+# A new TaskCount, taking the tasks or describing its count, used on TaskScreen right
+# after the header; without it, TaskScreen is as it was, and nothing else changed.
+fail() { echo "$1"; exit 1; }
+changes=$(diff -rq "$FIXTURE" . | sort)
+expected=$(printf '%s\n' "Files $FIXTURE/screens/TaskScreen.json and ./screens/TaskScreen.json differ" "Only in ./components: TaskCount.json" | sort)
+[ "$changes" = "$expected" ] || fail "expected a new TaskCount and a changed TaskScreen, got: $(echo $changes)"
+screen() { jq -e --slurpfile before "$FIXTURE/screens/TaskScreen.json" "$1" screens/TaskScreen.json >/dev/null || fail "TaskScreen: $2"; }
+
+screen '[.children[].use] | .[index("Header") + 1] == "TaskCount"' "TaskCount isn't right after the header"
+# Its copies in states go with it.
+screen '(.children[] | select(.use == "TaskCount") | .id) as $id
+  | del(.children[] | select(.use == "TaskCount")) | del(.states[]?.children[]? | select(.copy == $id))
+  | . == $before[0]' "something else changed besides adding TaskCount"
+# A count is computed, so it may be bound from the tasks or shown as an example literal
+# whose about says how it's worked out (format.md, What stays in code).
+jq -e 'any(.props[]?; . == "Task[]" or .type? == "Task[]")' components/TaskCount.json >/dev/null ||
+  jq -e 'any(.children[] | select(.use == "TaskCount") | .bind // {} | .[]; . == "tasks")' screens/TaskScreen.json >/dev/null ||
+  jq -e '[.. | objects | .about? // empty | strings] | any(test("count|left|remain|number"; "i"))' components/TaskCount.json >/dev/null ||
+  fail "TaskCount neither takes the tasks nor says in an about how its count is worked out"

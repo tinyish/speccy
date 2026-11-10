@@ -1,0 +1,74 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "TaskRow",
+  "about": "One task: mark it done, or delete it after confirming.",
+  "props": {
+    "task": "Task"
+  },
+  "layout": "row",
+  "align": "left",
+  "children": [
+    {
+      "id": "done",
+      "use": "checkbox",
+      "props": {
+        "hint": ""
+      },
+      "bind": {
+        "label": "task.title",
+        "checked": "task.done"
+      },
+      "width": "fill"
+    },
+    {
+      "id": "delete",
+      "use": "button",
+      "props": {
+        "text": "Delete"
+      }
+    },
+    {
+      "id": "confirm",
+      "use": "dialog",
+      "props": {
+        "title": "Delete this task?",
+        "text": "This can't be undone."
+      },
+      "layout": "row",
+      "align": "right",
+      "children": [
+        {
+          "id": "cancel",
+          "use": "button",
+          "props": {
+            "text": "Cancel"
+          }
+        },
+        {
+          "id": "yes",
+          "use": "button",
+          "props": {
+            "text": "Delete"
+          }
+        }
+      ]
+    }
+  ],
+  "states": {
+    "confirming": {
+      "about": "Asking whether to delete the task.",
+      "children": [
+        {
+          "copy": "done"
+        },
+        {
+          "copy": "delete"
+        },
+        {
+          "copy": "confirm",
+          "state": "open"
+        }
+      ]
+    }
+  }
+}

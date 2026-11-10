@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "screen": "Board",
+  "about": "Icons in samples and state data that don't resolve.",
+  "device": "iphone-18-pro",
+  "data": {
+    "items": {
+      "type": "Item[]",
+      "sample": [
+        {
+          "name": "Fine",
+          "kind": "material/home:filled"
+        },
+        {
+          "name": "Gone",
+          "kind": "material/not_an_icon"
+        }
+      ]
+    }
+  },
+  "children": [
+    {
+      "id": "card",
+      "use": "Card"
+    }
+  ],
+  "states": {
+    "odd": {
+      "about": "Its data names a style a spec's set doesn't take.",
+      "data": {
+        "items": [
+          {
+            "name": "Logo",
+            "kind": "app/logo:outlined"
+          }
+        ]
+      }
+    }
+  }
+}

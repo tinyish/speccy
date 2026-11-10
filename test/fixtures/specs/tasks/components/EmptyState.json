@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "EmptyState",
+  "about": "Says there is nothing here yet.",
+  "props": {
+    "message": "text"
+  },
+  "layout": "column",
+  "align": "center",
+  "children": [
+    {
+      "id": "message",
+      "use": "text",
+      "bind": {
+        "text": "message"
+      }
+    }
+  ]
+}

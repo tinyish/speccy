@@ -1,0 +1,13 @@
+# One new screen and nothing else changed; it is for a phone, has the
+# Header titled "Settings" and a sign-out button, and one state with a Banner.
+fail() { echo "$1"; exit 1; }
+changes=$(diff -rq "$FIXTURE" .)
+screen=$(printf '%s\n' "$changes" | sed -n 's|^Only in \./screens: \(.*\.json\)$|screens/\1|p')
+[ "$(printf '%s\n' "$changes" | wc -l)" -eq 1 ] && [ -n "$screen" ] || fail "expected only a new screen, got: $(echo $changes)"
+has() { jq -e "$1" "$screen" >/dev/null || fail "$screen: $2"; }
+
+has '.device | IN("iphone-18-pro", "iphone-18-pro-max", "pixel-11-pro", "galaxy-s26")' "its device isn't a phone"
+has 'any(.children | .. | objects; .use == "Header" and .props.title == "Settings")' 'no Header titled "Settings"'
+has 'any(.children | .. | objects; .use == "button" and (.props.text // "" | test("sign.?out"; "i")))' "no sign-out button"
+has '(.states | length) == 1' "it doesn't have one state"
+has 'any(.states[].children | .. | objects; .use == "Banner")' "its state holds no Banner"

@@ -14,8 +14,10 @@ they type. The checker (`speccy check`, and the app on every change) runs
 the schemas first, then the rules no schema can express: references
 across files, prop values against what each primitive and component
 takes, and the composition rules. Each error carries a stable code, the
-file, the path inside it and a message. `speccy explain` is generated
-from the schemas and the primitives' definitions. (`json-schema-format`)
+file, the path inside it and a message. `speccy explain` prints this
+document's sections, with references generated from the code: each
+primitive's interface, the devices, the codes and the icon libraries.
+(`json-schema-format`)
 
 `$schema` is a public URL into speccy's repository, by format version and
 kind of file (`schemas-public-url`):
@@ -59,10 +61,12 @@ A spec is a folder in the project's repository:
 - **Primitives are not in the spec.** They are built into speccy as code,
   one Elixir module each: its interface as data (about, element, props
   and their types, events, states, defaults, examples) and a HEEx function
-  component that draws its wireframe. The checker, `speccy explain`, the
-  props panel and the schemas read the interface from the modules, and
+  component that draws its wireframe. The checker, `speccy explain` and the
+  props panel read the interface from the modules, and
   the canvas and `speccy render` draw with the same components
-  (`primitives-in-code`).
+  (`primitives-in-code`). A primitive's defaults are what an unset prop
+  means (a toast with no `action` has none); sample content for
+  drawing it lives in its examples.
 
 ## Names
 
@@ -77,6 +81,7 @@ A spec is a folder in the project's repository:
 - Icon sets and icons: lowercase, digits, `-` and `_` (`app`,
   `sync-done`, `wifi_off`), from their folder and file names. A spec's
   set can't take the name of a library speccy supports (`material`).
+- Devices: lowercase, digits and `-` (`apple-tv-4k`), like presets.
 
 ## Types
 
@@ -87,7 +92,7 @@ What a prop or a field holds:
 | `text`       | A string: copy.                                                 |
 | `bool`       | true or false.                                                  |
 | `number`     | A number.                                                       |
-| `icon`       | An icon: `<set>/<name>`, or `<set>/<name>:<style>` (see Icons). |
+| `icon`       | An icon: `<set>/<name>`, or `<set>/<name>:<style>` (see Icons). Unset: no icon; there is no empty reference. |
 | `text[]`     | A list of strings.                                              |
 | `["a", "b"]` | One of these strings.                                           |
 | `<Model>`    | One item of a data model (`Task`).                              |
@@ -122,26 +127,22 @@ defines in `speccy.json` under `devices` (`device-presets-and-custom`):
 | Key               |                                                                                                                                                                         |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `about`           | A line on what it is. Required.                                                                                                                                         |
-| `width`, `height` | Its screen in pixels, in its first orientation. Required.                                                                                                               |
+| `width`, `height` | Its screen in CSS pixels (points, dp), in its first orientation. Required.                                                                                                               |
 | `shape`           | `rect` or `round`. Unset: `rect`.                                                                                                                                       |
 | `cornerRadius`    | With `rect`: its corners' radius in pixels, one for all or `[top-left, top-right, bottom-right, bottom-left]`, in its first orientation. Unset: 0.                      |
 | `input`           | How people operate it, any of `touch`, `pointer`, `keyboard`, `rotary` (a crown or dial), `dpad` (a remote or arrow keys), `gamepad` (a game controller), `voice`.      |
 | `safeArea`        | Insets the system covers (a notch, a home indicator, a bezel): pixels, `[vertical, horizontal]` or `[top, right, bottom, left]`, in its first orientation. Unset: none. |
 | `orientations`    | Which it supports, first being its own: `portrait`, `landscape`. Turning swaps width and height and rotates the safe area. Unset: only the one its size implies.        |
 
-Presets have the same fields and ship with speccy, about fourteen at
-launch (`device-presets-and-custom`):
-
-- **Generic:** `desktop`, `laptop`, `tablet`, `mobile`, `watch` (rect),
-  `watch-round` and `tv`. `tv` is a 1920×1080 landscape screen for games
-  and TV apps, operated by `gamepad` and `dpad`, with a 5% safe area for
-  overscan.
-- **Current flagships:** an iPhone and a large iPhone, a Pixel, a Galaxy,
-  an iPad, a MacBook, an Apple Watch and a round Wear OS watch, named
-  after the model.
+Presets have the same fields and ship with speccy, ten at launch, each a
+real device named after its model (`device-presets-and-custom`): an
+iPhone and a large iPhone, a Pixel, a Galaxy, an iPad, a MacBook, Apple's
+Studio Display, an Apple Watch, a round Wear OS watch, and Apple TV 4K,
+a 1920×1080 landscape screen operated by `dpad`, `gamepad` and `voice`,
+inside tvOS's safe area for overscan. There are no generic sizes.
 
 Sizes, safe areas and corner radii come from the vendors' specs when the
-code is written, and the flagships are refreshed with speccy's releases.
+code is written, and the presets are refreshed with speccy's releases.
 A spec's device can't take a preset's name. The MVP's editor uses only a
 device's size; `shape`, `cornerRadius`, `input`, `safeArea` and
 `orientations` are checked and kept, and drawn once the editor supports
@@ -196,6 +197,7 @@ interactions (`mvp-scope`). Sample values are on screens
 | `width`, `height` | The root's own size, when every instance should share it.                                                                                |
 | layout fields     | How the root arranges `children` (see Layout).                                                                                           |
 | `children`        | Its instances.                                                                                                                           |
+| `variations`      | The base's variations (see States and variations).                                                                                       |
 | `states`          | Its states (see States).                                                                                                                 |
 
 A component has no data of its own: data reaches it through its props
@@ -209,7 +211,7 @@ for data props, such as `{task.title}`.
   "$schema": "…/screen.schema.json",
   "screen": "TaskScreen",
   "about": "The user's tasks: add, complete and delete them.",
-  "device": "mobile",
+  "device": "iphone-18-pro",
   "data": {
     "tasks": {
       "type": "Task[]",
@@ -234,6 +236,7 @@ for data props, such as `{task.title}`.
 | `data`        | Name → `{ type, sample }`: what the screen shows, and the sample values the canvas draws. `sample` must fit `type`. |
 | layout fields | How the screen arranges `children`.                                                                                 |
 | `children`    | Its instances.                                                                                                      |
+| `variations`  | The base's variations.                                                                                              |
 | `states`      | Its states.                                                                                                         |
 
 ## Instance
@@ -271,6 +274,7 @@ copy of a base instance (see States).
 | `x`, `y`                                         | With `absolute`: pixels from its container's top-left.                                                                                                                                                                                         |
 | `constraints`                                    | With `absolute`: `{ "horizontal": …, "vertical": … }`, how it follows its container's size. Horizontal: `left`, `right`, `center`, `left-right`, `scale`; vertical: `top`, `bottom`, `center`, `top-bottom`, `scale`. Unset: `left` and `top`. |
 | layout fields                                    | Only on primitives that hold children (container, list, form, dialog, menu, popover).                                                                                                                                                          |
+| `children`                                       | Only on primitives that hold children: its instances, arranged by its layout fields.                                                                                                                                                          |
 
 ## Layout
 
@@ -369,8 +373,9 @@ the copy names it in `inner`, by id, with the same fields a copy can set:
 }
 ```
 
-A base instance is copied at most once per state, and a copy keeps its
-base's id. Membership is explicit: an instance added to the base appears
+A copy is written `copy` first, then the fields it sets in the order
+of the Instance table, then `inner`. A base instance is copied at most
+once per state, and a copy keeps its base's id. Membership is explicit: an instance added to the base appears
 in no state until it is copied there; the editor can offer to copy it
 into states, as an action the user takes (`state-membership-explicit`).
 
@@ -458,9 +463,16 @@ icons` and the checker work offline. The SVGs themselves are fetched
   its file, `<name>.svg`. These sets have names only, so the picker
   filters them by name, not by style or category.
 
-A spec's SVG is untrusted: the checker reports, and the app won't draw,
-one that has scripts, event attributes, `foreignObject` or references to
-anything outside the file. What `speccy explain icon` asks of a drawn
+A spec's SVG is untrusted, and the app inlines it into a page, so the
+checker accepts only what a drawn icon needs and reports, and the app
+won't draw, anything else: one `svg` root and nothing after it, UTF-8,
+no DOCTYPE, entities or processing instructions, and only the shape
+elements and attributes an icon uses (paths, basic shapes, groups,
+`defs`, gradients, clip paths, masks, `title`, `desc`; no `use`, `symbol`
+or `class`),
+with references only inside the file (`#…`). No `<style>`, CSS
+functions other than `url(#…)`, scripts, event attributes,
+`foreignObject` or animation. What `speccy explain icon` asks of a drawn
 icon: a `0 0 24 24` viewBox, one colour drawn as `currentColor`, no
 fixed width or height.
 
@@ -491,11 +503,19 @@ Beyond the schemas, the checker reports:
   grid; grid placement fields only on a grid's children, within its
   tracks when they are counted; `x`, `y` and `constraints` only with
   `absolute`; `slot` only inside a component, on a
-  childless holder; a component used inside itself, directly or not.
+  container, list or dialog with no children of its own; a component used inside itself, directly or not.
 - The composition rules of the catalog (`prototypes/catalog/README.md`):
   nothing pressable inside a pressable, a tab only in a tablist, a
   tabpanel named by a tab's `controls`, `controls` naming an existing id,
-  `current` only on pressables and links.
+  `current` only on pressables and links. Pressable means what HTML
+  calls interactive content: button, link, every input control
+  (input, checkbox, radio-group, select, slider, date-picker,
+  file-upload, otp-input), tree-view and video always; a
+  container when `pressable`, a list or table when `selectable`, a toast
+  when it has an `action`. The rules look through component instances:
+  what a component holds counts where its instance sits. A menu is not
+  pressable: its children are the area a context menu wraps, not its
+  items.
 - Files: names match items, names are unique, `format` is one the app
   reads; a screen's `device` names a preset or a spec device, and its
   `orientation` is one that device has.
@@ -541,7 +561,7 @@ error shape and code style; how files are written; `assets/` as a
 folder; icon reference syntax and the default style; shipping each
 library's index and caching its SVGs per version; the rules for a drawn
 SVG; spec sets filtering by name only; device fields and their names,
-and how turning a device changes its size and safe area; the `tv`
+and how turning a device changes its size and safe area; the `apple-tv-4k`
 preset's size, input and safe area.
 
 ## Open

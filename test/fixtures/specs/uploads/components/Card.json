@@ -1,0 +1,54 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Card",
+  "about": "A titled panel whose body a screen fills.",
+  "props": {
+    "title": "text",
+    "size": {
+      "type": [
+        "sm",
+        "lg"
+      ],
+      "about": "How much room it takes.",
+      "default": "sm"
+    }
+  },
+  "layout": "column",
+  "wrap": false,
+  "padding": 16,
+  "children": [
+    {
+      "id": "title",
+      "use": "text",
+      "bind": {
+        "text": "title"
+      }
+    },
+    {
+      "id": "body",
+      "use": "container",
+      "slot": "body",
+      "width": "fill",
+      "layout": "column",
+      "gap": 4
+    }
+  ],
+  "states": {
+    "collapsed": {
+      "about": "Folded to its title.",
+      "children": [
+        {
+          "copy": "title"
+        }
+      ],
+      "variations": {
+        "quiet": {
+          "about": "Nothing new inside.",
+          "content": {
+            "title.text": "All quiet"
+          }
+        }
+      }
+    }
+  }
+}

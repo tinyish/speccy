@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Offer",
+  "about": "A deal with a button to claim it.",
+  "children": [
+    {
+      "id": "claim",
+      "use": "button",
+      "props": {
+        "text": "Claim"
+      }
+    }
+  ]
+}

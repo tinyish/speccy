@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Ping",
+  "about": "Uses Pong, which uses it.",
+  "children": [
+    {
+      "id": "pong",
+      "use": "Pong"
+    }
+  ]
+}

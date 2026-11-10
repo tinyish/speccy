@@ -1,0 +1,12 @@
+{"states":{
+  "loading":{"children":[{"copy":"header"},{"props":{"label":"Loading your tasks"},"state":"indeterminate","width":"fill","use":"progress","id":"loading"}],"about":"The tasks are loading."},
+  "empty":{"children":[{"copy":"header"},{"props":{"message":"No tasks yet. Add one above."},"width":"fill","use":"EmptyState","id":"empty"}],"data":{"tasks":[]},"about":"The tasks have loaded and there are none."},
+  "problem":{"variations":{
+     "offline":{"content":{"banner.message":"You're offline. Changes will sync when you're back.","banner.icon":"app/offline"},"about":"The device has no connection."},
+     "error":{"content":{"banner.message":"We couldn't load your tasks."},"about":"The tasks failed to load."}},
+   "children":[{"copy":"header"},{"props":{"message":"Something went wrong."},"width":"fill","use":"Banner","id":"banner"},{"state":"stale","copy":"list"}],
+   "about":"Something stops the list from working."}},
+ "children":[{"props":{"title":"Tasks"},"width":"fill","use":"Header","id":"header"},{"bind":{"tasks":"tasks"},"height":"fill","width":"fill","use":"TaskList","id":"list"}],
+ "layout":"column",
+ "data":{"tasks":{"sample":[{"title":"Buy milk","done":false},{"title":"Call Sam","done":true}],"type":"Task[]"}},
+ "device":"iphone-18-pro","about":"The user's tasks: add, complete and delete them.","screen":"TaskScreen","$schema":"https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json"}

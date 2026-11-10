@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Banner",
+  "about": "A notice across the screen about something that affects all of it.",
+  "props": {
+    "message": "text",
+    "icon": {
+      "type": "icon",
+      "about": "What kind of notice it is.",
+      "default": "app/alert"
+    }
+  },
+  "layout": "row",
+  "align": "left",
+  "children": [
+    {
+      "id": "icon",
+      "use": "icon",
+      "bind": {
+        "icon": "icon"
+      }
+    },
+    {
+      "id": "message",
+      "use": "text",
+      "bind": {
+        "text": "message"
+      },
+      "width": "fill"
+    }
+  ]
+}

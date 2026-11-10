@@ -1,0 +1,283 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "screen": "Uploads",
+  "about": "Everything being uploaded, and where it lands.",
+  "device": "kiosk",
+  "orientation": "landscape",
+  "data": {
+    "files": {
+      "type": "Upload[]",
+      "sample": [
+        {
+          "name": "brief.pdf",
+          "size": 2400000,
+          "status": "uploading",
+          "length": "short",
+          "tags": [
+            "work"
+          ],
+          "kind": "material/description",
+          "starred": false,
+          "owner": {
+            "name": "Maya",
+            "photo": "maya.jpg"
+          }
+        },
+        {
+          "name": "hero.png",
+          "size": 800000,
+          "status": "done",
+          "length": "long",
+          "tags": [],
+          "kind": "material/image:filled",
+          "starred": true,
+          "owner": {
+            "name": "Leo",
+            "photo": "leo.jpg"
+          }
+        }
+      ]
+    },
+    "folder": {
+      "type": "Folder",
+      "sample": {
+        "name": "Inbox",
+        "uploads": []
+      }
+    }
+  },
+  "layout": "grid",
+  "columns": [
+    "fill",
+    240
+  ],
+  "rows": 2,
+  "align": "top",
+  "gap": 16,
+  "lineGap": 8,
+  "padding": 16,
+  "children": [
+    {
+      "id": "card",
+      "use": "Card",
+      "props": {
+        "title": "Uploads",
+        "size": "lg"
+      },
+      "slots": {
+        "body": [
+          {
+            "id": "list",
+            "use": "list",
+            "props": {
+              "selectable": false
+            },
+            "layout": "column",
+            "gap": 4,
+            "children": [
+              {
+                "id": "item",
+                "about": "One row per upload, in the state its upload is in.",
+                "use": "UploadItem",
+                "bind": {
+                  "upload": "f",
+                  "state": "f.status",
+                  "variation": "f.length"
+                },
+                "repeat": {
+                  "each": "files",
+                  "as": "f",
+                  "limit": 5
+                },
+                "width": "fill",
+                "minWidth": 200,
+                "maxWidth": 600,
+                "minHeight": 40,
+                "maxHeight": 80
+              }
+            ]
+          }
+        ]
+      },
+      "column": 1,
+      "row": 1,
+      "rowSpan": 2
+    },
+    {
+      "id": "badge",
+      "use": "icon",
+      "props": {
+        "icon": "material/upload:outlined",
+        "label": "Uploading"
+      },
+      "column": 2,
+      "row": 1,
+      "absolute": true,
+      "x": 8,
+      "y": 8,
+      "constraints": {
+        "horizontal": "right",
+        "vertical": "top"
+      }
+    },
+    {
+      "id": "side",
+      "use": "container",
+      "props": {
+        "role": "tablist"
+      },
+      "column": 2,
+      "row": 2,
+      "layout": "row",
+      "wrap": true,
+      "align": "center",
+      "gap": "between",
+      "lineGap": 4,
+      "padding": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "clip": false,
+      "children": [
+        {
+          "id": "recentTab",
+          "use": "Tab",
+          "props": {
+            "label": "Recent",
+            "panel": "recent"
+          }
+        },
+        {
+          "id": "folderTab",
+          "use": "container",
+          "props": {
+            "pressable": true,
+            "role": "tab",
+            "current": "page",
+            "controls": "recent"
+          },
+          "children": [
+            {
+              "id": "folderName",
+              "use": "text",
+              "bind": {
+                "text": "folder.name"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recent",
+      "use": "container",
+      "props": {
+        "role": "tabpanel"
+      },
+      "column": 1,
+      "row": 2,
+      "columnSpan": 2,
+      "layout": "grid",
+      "columns": 1,
+      "rows": [
+        "hug"
+      ],
+      "children": [
+        {
+          "id": "hint",
+          "use": "input",
+          "props": {
+            "label": "Search uploads"
+          },
+          "state": "disabled"
+        }
+      ]
+    },
+    {
+      "id": "pick",
+      "use": "UploadItem",
+      "bind": {
+        "upload": "u"
+      },
+      "repeat": {
+        "each": "folder.uploads",
+        "as": "u"
+      },
+      "variation": "short"
+    }
+  ],
+  "variations": {
+    "busy": {
+      "about": "Many uploads at once.",
+      "content": {
+        "card.title": "Uploading…"
+      }
+    }
+  },
+  "states": {
+    "empty": {
+      "about": "Nothing is being uploaded.",
+      "data": {
+        "files": []
+      },
+      "children": [
+        {
+          "copy": "card",
+          "props": {
+            "title": "No uploads"
+          },
+          "state": "collapsed",
+          "variation": "quiet",
+          "width": "fill",
+          "height": 400,
+          "minWidth": 100,
+          "maxWidth": 900,
+          "minHeight": 100,
+          "maxHeight": 800,
+          "column": 1,
+          "row": 1,
+          "columnSpan": 2,
+          "rowSpan": 1,
+          "inner": {
+            "list": {
+              "props": {
+                "selectable": false
+              },
+              "width": "fill"
+            }
+          }
+        },
+        {
+          "copy": "badge",
+          "absolute": true,
+          "x": 16,
+          "y": 16,
+          "constraints": {
+            "horizontal": "left-right",
+            "vertical": "bottom"
+          }
+        },
+        {
+          "id": "nothing",
+          "use": "text",
+          "props": {
+            "text": "Drop files here."
+          },
+          "column": 1,
+          "row": 2
+        }
+      ],
+      "variations": {
+        "returning": {
+          "about": "Someone who has uploaded before.",
+          "content": {
+            "card.title": "Welcome back",
+            "nothing.text": "Drop more files here."
+          }
+        }
+      }
+    }
+  }
+}

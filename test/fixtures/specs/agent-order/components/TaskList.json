@@ -1,0 +1,3 @@
+{"states":{"stale":{"children":[{"props":{"text":"These may be out of date."},"use":"text","id":"staleNote"},{"copy":"rows"}],"about":"Showing the tasks last loaded, which may be out of date."}},
+ "children":[{"children":[{"repeat":{"as":"task","each":"tasks"},"width":"fill","bind":{"task":"task"},"use":"TaskRow","id":"row"}],"height":"fill","width":"fill","use":"list","id":"rows"}],
+ "layout":"column","props":{"tasks":"Task[]"},"about":"Every task, one row each.","component":"TaskList","$schema":"https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json"}

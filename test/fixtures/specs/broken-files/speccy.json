@@ -1,0 +1,1 @@
+{"$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/manifest.schema.json", "format": 2, "devices": {"iphone-18-pro": {"about": "Takes a preset's name.", "width": 400, "height": 800}, "wall": {"about": "A wall display.", "width": 800, "height": 600}}}

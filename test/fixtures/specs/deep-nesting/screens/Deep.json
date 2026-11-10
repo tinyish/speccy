@@ -1,0 +1,41 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/screen.schema.json",
+  "screen": "Deep",
+  "about": "A chain of thirty components, two ways, and a tree six deep and four wide.",
+  "device": "iphone-18-pro",
+  "children": [
+    {
+      "id": "on",
+      "use": "Level01",
+      "props": {
+        "on": true
+      }
+    },
+    {
+      "id": "card",
+      "use": "container",
+      "props": {
+        "pressable": true
+      },
+      "children": [
+        {
+          "id": "chain",
+          "use": "Level01"
+        }
+      ]
+    },
+    {
+      "id": "tree",
+      "use": "container",
+      "props": {
+        "pressable": true
+      },
+      "children": [
+        {
+          "id": "fan",
+          "use": "Fan01"
+        }
+      ]
+    }
+  ]
+}
