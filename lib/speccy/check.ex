@@ -7,14 +7,30 @@ defmodule Speccy.Check do
 
   The schemas run in `Speccy.Check.Schema`, the composition rules in
   `Speccy.Check.Composition`, the icon rules in `Speccy.Check.Icons`; the
-  rest are here. The rules read only files
+  rest are here. They read the spec through `Speccy.Spec`, and only files
   that pass their schema; an item whose file doesn't is still known by name,
   for its own kind, so nothing that uses it is reported for it. Primitives
   are read through their interfaces, never by name.
   """
 
-  alias Speccy.{Devices, Format, Icons, Primitives, Schemas}
-  alias Speccy.Check.{Composition, Schema}
+  import Speccy.Spec,
+    only: [
+      base: 1,
+      holder: 2,
+      holds?: 1,
+      name_key: 1,
+      nodes: 1,
+      override: 2,
+      props: 1,
+      slots: 1,
+      states: 1,
+      target: 2,
+      type: 1,
+      variations: 2
+    ]
+
+  alias Speccy.{Devices, Format, Icons, Schemas}
+  alias Speccy.Check.Composition
   alias Speccy.Check.Icons, as: IconRules
 
   @codes [
@@ -80,19 +96,17 @@ defmodule Speccy.Check do
   @doc "Every code with its message, in one list."
   def codes, do: @codes
 
-  @doc "Every problem in `spec`, sorted by file, path (segment by segment, indexes as numbers) and code."
-  def run(%{files: files, icons: icons}) do
-    {broken, read} = Enum.split_with(files, &match?({_, {:error, _}}, &1))
-    # Before plain/1, which keeps only a doubled key's last value.
-    doubled = Enum.flat_map(read, fn {path, json} -> doubled(path, json, []) end)
-    read = Map.new(read, fn {path, json} -> {path, plain(json)} end)
-    schema = Map.new(read, fn {path, json} -> {path, Schema.problems(path, json)} end)
-    spec = index(files, read, Map.filter(read, &(schema[elem(&1, 0)] == [])), icons)
-
-    (Enum.map(broken, fn {path, {:error, why}} -> problem(:"invalid-json", path, [], why) end) ++
-       doubled ++
-       Enum.concat(Map.values(schema)) ++
-       files(spec) ++ IconRules.run(icons, spec.icons) ++ items(spec) ++ Composition.run(spec))
+  @doc """
+  Every problem in `spec` (a `Speccy.Spec`), sorted by file, path (segment
+  by segment, indexes as numbers) and code.
+  """
+  def run(spec) do
+    # From `ordered`: `read` keeps only a doubled key's last value.
+    (for({path, {:error, why}} <- spec.ordered, do: problem(:"invalid-json", path, [], why)) ++
+       Enum.flat_map(spec.ordered, fn {path, json} -> doubled(path, json, []) end) ++
+       Enum.concat(Map.values(spec.schema)) ++
+       files(spec) ++
+       IconRules.run(spec.svgs, spec.icons) ++ items(spec) ++ Composition.run(spec))
     |> Enum.uniq_by(&{&1.code, &1.file, &1.path})
     |> Enum.sort_by(&{&1.file, segments(&1.path), &1.code})
   end
@@ -101,78 +115,6 @@ defmodule Speccy.Check do
   defp segments(path) do
     for s <- String.split(path, "/"),
         do: if(s =~ ~r/^\d+$/, do: String.to_integer(s), else: s)
-  end
-
-  ## The spec's index
-
-  defp index(files, read, valid, icons) do
-    items =
-      for {path, json} <- read,
-          kind = Format.kind(path),
-          kind != :manifest,
-          is_map(json) and is_binary(json[name_key(kind)]),
-          do: {json[name_key(kind)], kind, path}
-
-    by_kind = fn kind ->
-      for {name, ^kind, path} <- items, valid[path], into: %{}, do: {name, {path, valid[path]}}
-    end
-
-    manifest = valid["speccy.json"]
-    components = by_kind.(:component)
-
-    %{
-      read: read,
-      valid: valid,
-      items: items,
-      # Names per kind, files that fail their schema included.
-      known:
-        Map.new(
-          [:component, :data],
-          &{&1, for({name, ^&1, _} <- items, into: MapSet.new(), do: name)}
-        ),
-      paths: Map.new(components, fn {name, {path, _}} -> {name, path} end),
-      components: Map.new(components, fn {name, {_, json}} -> {name, json} end),
-      models:
-        Map.new(by_kind.(:data), fn {name, {_, json}} ->
-          {name, Map.new(json["fields"] || %{}, fn {f, t} -> {f, type(t)} end)}
-        end),
-      # A manifest that can't be read or fails its schema says nothing about devices.
-      devices:
-        if(manifest || !Map.has_key?(files, "speccy.json"),
-          do: Map.merge((manifest || %{})["devices"] || %{}, Map.new(Devices.all())),
-          else: :unknown
-        ),
-      reaches: reaches(components),
-      icons: Icons.sets(icons)
-    }
-  end
-
-  defp name_key(:component), do: "component"
-  defp name_key(:screen), do: "screen"
-  defp name_key(:data), do: "data"
-
-  # Each component → every component reachable through its instances.
-  defp reaches(components) do
-    uses =
-      Map.new(components, fn {name, {_, json}} ->
-        {name,
-         for(
-           {node, _} <- nodes(json),
-           node["use"] in Map.keys(components),
-           uniq: true,
-           do: node["use"]
-         )}
-      end)
-
-    Map.new(uses, fn {name, direct} -> {name, closure(direct, uses, MapSet.new())} end)
-  end
-
-  defp closure([], _uses, seen), do: seen
-
-  defp closure([name | rest], uses, seen) do
-    if name in seen,
-      do: closure(rest, uses, seen),
-      else: closure(uses[name] ++ rest, uses, MapSet.put(seen, name))
   end
 
   ## Files
@@ -676,8 +618,7 @@ defmodule Speccy.Check do
     own = for {node, p} <- nodes(json), id = node["id"], do: {{nil, id}, p}
 
     copies =
-      for {name, state} <- json["states"] || %{},
-          {node, p} <- nodes(state["children"] || [], ["states", name, "children"]),
+      for {node, ["states", name | _] = p} <- nodes(json),
           id = node["copy"],
           do: {{name, id}, p}
 
@@ -687,51 +628,10 @@ defmodule Speccy.Check do
         do: problem(:"duplicate-id", env.file, p, id)
   end
 
-  ## Reading targets
-
-  @doc false
-  def target(spec, use) do
-    cond do
-      !is_binary(use) -> nil
-      module = Primitives.get(use) -> {:primitive, module.interface()}
-      json = spec.components[use] -> {:component, json}
-      true -> nil
-    end
-  end
-
-  defp holds?({:primitive, i}), do: i.children
-  defp holds?({:component, _}), do: false
-  defp holds?(nil), do: nil
-
-  defp props({:primitive, i}), do: Map.new(i.props)
-  defp props({:component, json}), do: Map.new(json["props"] || %{}, fn {k, v} -> {k, type(v)} end)
-  defp props(nil), do: %{}
-
-  defp states({:primitive, i}), do: Enum.map(i.states, &elem(&1, 0))
-  defp states({:component, json}), do: Map.keys(json["states"] || %{})
-
-  defp variations({:primitive, _}, _state), do: []
-  defp variations({:component, json}, nil), do: Map.keys(json["variations"] || %{})
-
-  defp variations({:component, json}, state),
-    do: Map.keys(get_in(json, ["states", state, "variations"]) || %{})
-
   defp all_variations(target),
     do: Enum.flat_map([nil | states(target)], &variations(target, &1))
 
-  defp slots({:component, json}), do: for({node, _} <- nodes(json), s = node["slot"], do: s)
-  defp slots(_), do: []
-
-  # The layout a slot's fills sit in: its holder in the component.
-  defp holder({:component, json}, slot),
-    do: Enum.find_value(nodes(json), fn {node, _} -> node["slot"] == slot && node end)
-
-  defp holder(_, _), do: nil
-
   ## Values and types
-
-  defp type(%{"type" => t}), do: t
-  defp type(t), do: t
 
   defp fits?(v, "text", _), do: is_binary(v)
   defp fits?(v, "bool", _), do: is_boolean(v)
@@ -761,55 +661,6 @@ defmodule Speccy.Check do
 
   ## Helpers
 
-  # id → {instance, path} for the base's instances, at any depth.
-  @doc false
-  def base(json),
-    do: Map.new(nodes(json["children"] || [], ["children"]), fn {n, p} -> {n["id"], {n, p}} end)
-
-  # Every instance (and copy) in a file or a list of them, with its path.
-  @doc false
-  def nodes(%{} = json) do
-    nodes(json["children"] || [], ["children"]) ++
-      for {name, s} <- json["states"] || %{},
-          n <- nodes(s["children"] || [], ["states", name, "children"]),
-          do: n
-  end
-
-  def nodes(list) when is_list(list), do: nodes(list, [])
-
-  defp nodes(list, at) do
-    list
-    |> Enum.with_index()
-    |> Enum.flat_map(fn {node, i} ->
-      p = at ++ [i]
-
-      [{node, p}] ++
-        nodes(node["children"] || [], p ++ ["children"]) ++
-        Enum.flat_map(node["slots"] || %{}, fn {s, fills} -> nodes(fills, p ++ ["slots", s]) end)
-    end)
-  end
-
-  # A base instance with a copy's (or an `inner` entry's) settings laid
-  # over it, and the copy's `inner` laid over its children.
-  @doc false
-  def override(base, set) do
-    inner = set["inner"] || %{}
-
-    base
-    |> Map.merge(Map.drop(set, ["copy", "inner", "props"]))
-    |> Map.put("props", Map.merge(base["props"] || %{}, set["props"] || %{}))
-    |> Map.update("children", nil, &inner(&1, inner))
-    |> Map.update("slots", nil, fn slots ->
-      Map.new(slots, fn {k, v} -> {k, inner(v, inner)} end)
-    end)
-    |> Map.reject(fn {_, v} -> v == nil end)
-  end
-
-  defp inner(nodes, inner) when inner == %{}, do: nodes
-
-  defp inner(nodes, inner),
-    do: Enum.map(nodes, &override(&1, Map.put(inner[&1["id"]] || %{}, "inner", inner)))
-
   # Each key an object writes more than once, at that key.
   defp doubled(file, %Jason.OrderedObject{values: values}, at) do
     keys = Enum.map(values, &elem(&1, 0))
@@ -825,12 +676,6 @@ defmodule Speccy.Check do
     do: list |> Enum.with_index() |> Enum.flat_map(fn {v, i} -> doubled(file, v, at ++ [i]) end)
 
   defp doubled(_file, _value, _at), do: []
-
-  defp plain(%Jason.OrderedObject{values: values}),
-    do: Map.new(values, fn {k, v} -> {k, plain(v)} end)
-
-  defp plain(list) when is_list(list), do: Enum.map(list, &plain/1)
-  defp plain(value), do: value
 
   @doc "A problem: `code`, `file`, `path` (a list of keys and indexes) and a detail for its message."
   def problem(code, file, path, detail) do

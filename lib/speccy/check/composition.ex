@@ -17,7 +17,8 @@ defmodule Speccy.Check.Composition do
   A value bound to data is unknown, and counts as set.
   """
 
-  import Speccy.Check, only: [problem: 4, target: 2, nodes: 1, base: 1, override: 2]
+  import Speccy.Check, only: [problem: 4]
+  import Speccy.Spec, only: [target: 2, nodes: 1, base: 1, override: 2]
 
   @doc "Every composition problem in the spec's components and screens."
   def run(spec) do

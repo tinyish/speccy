@@ -9,7 +9,7 @@ defmodule Speccy.CLI do
   topic per section; the references beside it are generated from the code.
   """
 
-  alias Speccy.{Check, Devices, Format, Icons, Primitives, Schemas}
+  alias Speccy.{Check, Devices, Format, Icons, Primitives, Schemas, Spec}
 
   @usage """
   Usage:
@@ -51,7 +51,7 @@ defmodule Speccy.CLI do
 
   defp check(path, json?) do
     with true <- File.exists?(path), {:ok, dir} <- Format.find(path) do
-      problems = Check.run(Format.load(dir))
+      problems = Check.run(Spec.new(Format.load(dir)))
 
       {if(json?, do: [Jason.encode!(problems, pretty: true), "\n"], else: lines(problems, dir)),
        if(problems == [], do: 0, else: 1)}

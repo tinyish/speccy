@@ -12,7 +12,9 @@ reads Implementation.
 
 The core works on the files' decoded JSON, key order kept, and nothing
 else: no structs or schemas mirroring the format, no cache of derived
-data outside a function call (`core.md` § What carries the weight).
+data outside a function call (`core.md` § What carries the weight) but
+one: `Speccy.Spec`, the one reading of a spec, rebuilt on every load and
+never written to.
 
 ## pure-core
 

@@ -1,11 +1,11 @@
 defmodule Speccy.CheckTest do
   use ExUnit.Case, async: true
 
-  alias Speccy.{Check, Format}
+  alias Speccy.{Check, Format, Spec}
 
   @specs "test/fixtures/specs"
 
-  defp check(name), do: Check.run(Format.load(Path.join(@specs, name)))
+  defp check(name), do: Check.run(Spec.new(Format.load(Path.join(@specs, name))))
   defp found(name), do: Enum.map(check(name), &{&1.code, &1.file, &1.path})
 
   # Every problem each broken fixture holds, as {code, file, path}.
