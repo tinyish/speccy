@@ -69,6 +69,9 @@ holds a spec is dropped when read. It touches a file, so it lives in
   `check_origin: false` goes. Without the window there is no key, so the
   origin check is what keeps another page in a browser from driving the
   editor.
+- The endpoint refuses a request whose `Host` isn't `localhost` or
+  `127.0.0.1`, in every environment, so a page reached through DNS
+  rebinding can't read the editor back (Alberto, 2026-11-10).
 
 ### Pinch
 
@@ -87,7 +90,8 @@ ctrl+wheel (`core.md` § The editor): the canvas hook (part 006) zooms on
 - **Keeping other pages out**, `Phoenix.ConnTest` with the auth plug on:
   a request without the key is refused with 401; one with
   `Desktop.Auth.login_key/0` gets the page, and the next request in that
-  session needs no key. LiveView's socket refuses a foreign origin.
+  session needs no key. LiveView's socket refuses a foreign origin. A
+  request with another `Host` is refused.
 - **By hand**, the host can't run in the suite: the checks in Done when.
 
 ## Done when
