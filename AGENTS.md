@@ -10,5 +10,6 @@ whom lives in `brain/prd/seed.md`; how it is set up and run, in
 `README.md`. How work is done is the shared process, loaded in every
 session.
 
-`brain/architecture/core.md` is kept in sync by hand: a change that alters
-what it describes updates it in the same change.
+`brain/architecture/core.md` is frozen while the MVP is built, as the
+process says. Once the MVP is built it is kept in sync by hand: a change
+that alters what it describes updates it in the same change.

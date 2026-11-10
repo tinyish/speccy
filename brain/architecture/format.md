@@ -492,7 +492,9 @@ Beyond the schemas, the checker reports:
 - Bound states: a `state` or `variation` bound to data reads a field
   whose type is one of the component's state (or variation) names, as an
   enum (`["uploading", "done", "error"]`), and every sample value names
-  one; a field that can be empty means the base.
+  one; a field that can be empty means the base. A variation written
+  beside a bound `state` is one of the base's, since the state can be
+  any; for a state's own variation, bind the variation too.
 - Copies: `inner` names only instances inside the copied one; a copy's
   `props` are props its component declares; a prop's `default` fits its
   type.

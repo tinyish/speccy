@@ -349,3 +349,21 @@ know how editors handle files changed on disk; a merge engine (penpot's
 rebase, or Ink & Switch's Automerge) would be a feature to build for a
 case autosave makes rare. Considered and dropped: merging change records
 with Automerge later. In: `architecture/format.md`, `prd/mvp.md`.
+
+## composition-on-drawn-frames
+
+2026-11-09. The composition rules (nothing pressable inside a pressable,
+tabs in tablists and the rest) run on the trees the canvas draws: every
+screen and component, its base and each state, each instance in the one
+state it is in, with the screen's sample data. They replace the check's
+own walk of every component in every state. Why: the check and the
+canvas share one expansion and can't disagree, a problem is always
+reported on something drawn, at the place its source names, and the
+cost is the size of what is drawn. Accepted: a combination no frame
+draws is not reported where it would occur (a card whose `hover` state
+holds a button, inside something pressable on a screen with no instance
+in `hover`); the card's own frame for that state is still checked.
+Considered: also resolving every instance in each of its component's
+states; keeping the separate walk with a cache. In:
+`spec/mvp-2-editor-draws/`, and `architecture/format.md` when
+milestone 2 lands.

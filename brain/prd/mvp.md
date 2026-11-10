@@ -145,7 +145,9 @@ Status:
 
 The editor opens a project's spec and draws its screens and components on
 the canvas from the primitives' wireframes, the base and each state side
-by side, and redraws when the files change.
+by side, and redraws when the files change. The command line draws any
+frame as a page an agent can open. The desktop window comes last, once
+the canvas works in a browser.
 
 Done when an agent's edit to a screen appears on the canvas without a
 reload.
