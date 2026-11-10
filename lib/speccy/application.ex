@@ -11,6 +11,8 @@ defmodule Speccy.Application do
       SpeccyWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:speccy, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Speccy.PubSub},
+      {Registry, keys: :unique, name: Speccy.Workspace.Registry},
+      {DynamicSupervisor, name: Speccy.Workspace.Supervisor},
       # Start a worker by calling: Speccy.Worker.start_link(arg)
       # {Speccy.Worker, arg},
       # Start to serve requests, typically the last entry
