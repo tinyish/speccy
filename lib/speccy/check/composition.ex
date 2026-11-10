@@ -10,8 +10,11 @@ defmodule Speccy.Check.Composition do
   is walked in place, with the values its instance gives its props, and
   what the walk finds inside is reported at the instance. Each component is
   also walked alone, with its props' defaults; what it reports alone isn't
-  reported again where it is used. Primitives are read through their
-  interfaces. A value bound to data is unknown, and counts as set.
+  reported again where it is used, and a `controls` set by a default is
+  checked there, not alone. What a copy in a state finds among its parts
+  is reported at the copy, or at its `inner` entry for the part, unless
+  the base finds it too. Primitives are read through their interfaces.
+  A value bound to data is unknown, and counts as set.
   """
 
   import Speccy.Check, only: [problem: 4, target: 2, nodes: 1, base: 1, override: 2]
@@ -54,15 +57,17 @@ defmodule Speccy.Check.Composition do
   # the instance being walked in place: its walker, slots and path.
   defp walker(spec, alone, file, json, env) do
     %{spec: spec, alone: alone, file: file, env: env, base: base(json)}
-    |> Map.merge(%{level: 0, fills: nil, stack: []})
+    |> Map.merge(%{level: 0, fills: nil, stack: [], seen: MapSet.new()})
   end
 
   # What a walked file reports: its problems, its tabpanels no tab names
   # (a component's only when it has tabs of its own; without, they count
   # where it is used), and `controls` written in it naming no id in it.
   defp report(items, file, json, panels?) do
-    ids = MapSet.new(for {node, _} <- nodes(json), id = node["id"] || node["copy"], do: id)
+    ids = ids(json)
     named = for {:controls, {:lit, v, _, _, _}, true} <- items, do: v
+    # A tab whose `controls` is bound to data may name any of them.
+    bound? = Enum.any?(items, &match?({:controls, {:unknown, _}, true}, &1))
 
     for item <- items do
       case item do
@@ -70,10 +75,18 @@ defmodule Speccy.Check.Composition do
           problem(code, file, at, detail)
 
         {:tabpanel, id, at} ->
-          if panels? and id not in named, do: problem(:"tabpanel-without-tab", file, at, id)
+          if panels? and not bound? and id not in named,
+            do: problem(:"tabpanel-without-tab", file, at, id)
+
+        # A default is checked where its component is used (relay/6).
+        {:controls, {:lit, _, _, ["props", _, "default"], _}, _} ->
+          nil
 
         {:controls, {:lit, v, ^file, at, _}, _} ->
           if v not in ids, do: problem(:"controls-unresolved", file, at, v)
+
+        {:controls_default, v, at, detail} ->
+          if v not in ids, do: problem(:"controls-unresolved", file, at, detail)
 
         _ ->
           nil
@@ -85,14 +98,24 @@ defmodule Speccy.Check.Composition do
   ## Walking
 
   # The base and every state, each copy in a state as its base instance
-  # with the copy's settings laid over it.
+  # with the copy's settings laid over it. What the base finds is `seen`,
+  # and left to the base where a copy finds it again.
   defp frames(w, json, ctx) do
-    ([{json["children"] || [], ["children"]}] ++
-       for(
-         {name, s} <- json["states"] || %{},
-         do: {s["children"] || [], ["states", name, "children"]}
-       ))
-    |> Enum.flat_map(fn {list, at} -> walk(w, list, at, ctx) end)
+    base = walk(w, json["children"] || [], ["children"], ctx)
+
+    w = %{
+      w
+      | seen:
+          MapSet.new(base, fn
+            {:problem, code, at, _} -> {code, at}
+            item -> item
+          end)
+    }
+
+    base ++
+      for {name, s} <- json["states"] || %{},
+          item <- walk(w, s["children"] || [], ["states", name, "children"], ctx),
+          do: item
   end
 
   defp walk(w, list, at, ctx) do
@@ -102,8 +125,15 @@ defmodule Speccy.Check.Composition do
       case node do
         %{"copy" => id} ->
           case w.base[id] do
-            nil -> []
-            {base, base_at} -> node(w, override(base, node), at ++ [i], base_at, ctx)
+            nil ->
+              []
+
+            {base, base_at} ->
+              copy_at = at ++ [i]
+
+              for item <- node(w, override(base, node), copy_at, base_at, ctx),
+                  mine <- under(item, w, node, copy_at, base_at),
+                  do: mine
           end
 
         node ->
@@ -173,6 +203,7 @@ defmodule Speccy.Check.Composition do
        when is_binary(v) and v != "" and origin != :default,
        do: {:controls, lit, role == "tab"}
 
+  defp controls({:unknown, _} = unknown, role), do: {:controls, unknown, role == "tab"}
   defp controls(_value, _role), do: nil
 
   # A component instance, walked in place with the instance's values.
@@ -219,17 +250,77 @@ defmodule Speccy.Check.Composition do
   defp relay({:problem, code, inner, _}, _w, _node, at, name, a) do
     if {code, inner} in a.problems,
       do: [],
-      else: [{:problem, code, at, "inside #{name}, at #{Enum.map_join(inner, &"/#{&1}")}"}]
+      else: [{:problem, code, at, "inside #{name}, at #{pointer(inner)}"}]
   end
 
   defp relay({:tabpanel, _, _}, _w, node, at, _name, a),
     do: if(a.tab?, do: [], else: [{:tabpanel, node["id"], at}])
 
-  # `controls` counts here when its value was written at this level or above.
+  # The component's own default, where its instance leaves it unset: one
+  # naming no id in the component is checked in the instance's file.
+  defp relay(
+         {:controls, {:lit, v, file, ["props", _, "default"] = inner, level}, _} = item,
+         %{level: level} = w,
+         _node,
+         at,
+         name,
+         _a
+       ) do
+    if file == w.spec.paths[name] and v not in ids(w.spec.components[name]),
+      do: [item, {:controls_default, v, at, "#{v}, inside #{name}, at #{pointer(inner)}"}],
+      else: [item]
+  end
+
+  # `controls` counts here when its value, or its bind to data, was written
+  # at this level or above.
   defp relay({:controls, {:lit, _, _, _, level}, _} = item, w, _node, _at, _name, _a),
     do: if(level <= w.level, do: [item], else: [])
 
+  defp relay({:controls, {:unknown, level}, _} = item, w, _node, _at, _name, _a),
+    do: if(level <= w.level, do: [item], else: [])
+
   defp relay(:tab, _w, _node, _at, _name, _a), do: [:tab]
+  defp relay({:controls_default, _, _, _}, _w, _node, _at, _name, _a), do: []
+
+  # What the walk under a copy at `at`, of the base instance at `base_at`,
+  # found among its parts. Reported at the copy, or at its `inner` entry for
+  # the part, with the part's base path in the detail, as relay/6 words it.
+  defp under({:problem, code, p, _}, w, copy, at, base_at) when p != at do
+    {to, p} = place(w, copy, p, at, base_at)
+
+    if {code, p} in w.seen,
+      do: [],
+      else: [{:problem, code, to, "inside #{copy["copy"]}, at #{pointer(p)}"}]
+  end
+
+  defp under({:tabpanel, id, p}, w, copy, at, base_at) when p != at do
+    {to, p} = place(w, copy, p, at, base_at)
+    if {:tabpanel, id, p} in w.seen, do: [], else: [{:tabpanel, id, to}]
+  end
+
+  # A part's default is the base's too: an `inner` entry only sets props.
+  defp under({:controls_default, _, p, _}, _w, _copy, at, _base_at) when p != at, do: []
+
+  # A part's `controls` set in the copy's `inner` is written there.
+  defp under({:controls, {:lit, v, file, p, level}, tab?} = item, w, copy, at, base_at)
+       when file == w.file do
+    {node_p, rest} = Enum.split(p, -2)
+    {to, _} = place(w, copy, node_p, at, base_at)
+
+    if to != at and get_in(copy, Enum.drop(to ++ rest, length(at))) != nil,
+      do: [{:controls, {:lit, v, file, to ++ rest, level}, tab?}],
+      else: [item]
+  end
+
+  defp under(item, _w, _copy, _at, _base_at), do: [item]
+
+  # Where a part at `p` (in the base, or in the copy's slots) is reported,
+  # and its base path.
+  defp place(w, copy, p, at, base_at) do
+    p = if Enum.take(p, length(at)) == at, do: base_at ++ Enum.drop(p, length(at)), else: p
+    id = Enum.find_value(w.base, fn {id, {_, path}} -> path == p && id end)
+    if Map.has_key?(copy["inner"] || %{}, id), do: {at ++ ["inner", id], p}, else: {at, p}
+  end
 
   # The fills of the slots not in `held`, in the instance's own place.
   defp fills(w, node, at, ctx, held) do
@@ -239,17 +330,22 @@ defmodule Speccy.Check.Composition do
         do: item
   end
 
+  defp pointer(path), do: Enum.map_join(path, &"/#{&1}")
+
+  defp ids(json),
+    do: MapSet.new(for {node, _} <- nodes(json), id = node["id"] || node["copy"], do: id)
+
   ## Values
 
   # A prop's value where it is read: `{:lit, value, file, path, level}` with
-  # where it was written (`:default` for a primitive's own), :unknown when it
-  # comes from data, nil when unset.
+  # where it was written (`:default` for a primitive's own), `{:unknown, level}`
+  # when it comes from data bound at that level, nil when unset.
   defp value(w, node, i, prop, at) do
     state = with {_, s} <- List.keyfind(i.states, node["state"], 0), do: s.props
 
     cond do
       path = (node["bind"] || %{})[prop] ->
-        eval(path, w.env)
+        eval(path, w)
 
       Map.has_key?(node["props"] || %{}, prop) ->
         {:lit, node["props"][prop], w.file, at ++ ["props", prop], w.level}
@@ -268,7 +364,7 @@ defmodule Speccy.Check.Composition do
   defp prop_value(w, node, prop, decl, at, file) do
     cond do
       path = (node["bind"] || %{})[prop] ->
-        eval(path, w.env)
+        eval(path, w)
 
       Map.has_key?(node["props"] || %{}, prop) ->
         {:lit, node["props"][prop], w.file, at ++ ["props", prop], w.level}
@@ -283,13 +379,14 @@ defmodule Speccy.Check.Composition do
 
   defp default(_decl, _prop, _file, _level), do: nil
 
-  # A bind path's value in `env`, into its fields; :unknown outside it.
-  defp eval(path, env) do
+  # A bind path's value in the walker's `env`, into its fields; unknown, at
+  # the walker's level, outside it.
+  defp eval(path, w) do
     [root | fields] = String.split(path, ".")
 
-    case Map.fetch(env, root) do
+    case Map.fetch(w.env, root) do
       :error ->
-        :unknown
+        {:unknown, w.level}
 
       {:ok, {:lit, v, file, at, level}} ->
         {:lit, Enum.reduce(fields, v, &((is_map(&2) && &2[&1]) || nil)), file, at, level}
@@ -299,7 +396,7 @@ defmodule Speccy.Check.Composition do
     end
   end
 
-  defp truthy?(:unknown), do: true
+  defp truthy?({:unknown, _}), do: true
   defp truthy?({:lit, v, _, _, _}), do: v == true or (is_binary(v) and v != "")
   defp truthy?(_), do: false
 end

@@ -262,7 +262,7 @@ copy of a base instance (see States).
 | `use`                                            | A primitive or a component. Required.                                                                                                                                                                                                          |
 | `props`                                          | Prop → literal value. Copy goes here.                                                                                                                                                                                                          |
 | `bind`                                           | Prop → path. In a component, a path starts at one of its props; in a screen, at one of its data; inside a `repeat`, also at its `as`. Paths go into fields with `.` (`task.title`). A prop is either literal or bound, not both.               |
-| `repeat`                                         | `{ "each": <path to a list>, "as": <name>, "limit": <n>? }`: one copy per item, at most `limit`.                                                                                                                                               |
+| `repeat`                                         | `{ "each": <path to a list>, "as": <name>, "limit": <n>? }`: one copy per item, at most `limit`. `each` is read from outside the repeat, so it never starts at its own `as`; `as` may reuse a name already in scope, which it hides inside the repeat. |
 | `state`                                          | The one state of its component or primitive it is in (see States). Unset: the base. Can be bound like a prop (`"bind": { "state": "u.status" }`), so each repeated row takes its state from its own data.                                      |
 | `variation`                                      | A variation of that state, or of the component's base. Can be bound the same way.                                                                                                                                                              |
 | `slots`                                          | Slot name → instances, for a component with slots (`named-slots`).                                                                                                                                                                             |
@@ -506,16 +506,20 @@ Beyond the schemas, the checker reports:
   container, list or dialog with no children of its own; a component used inside itself, directly or not.
 - The composition rules of the catalog (`prototypes/catalog/README.md`):
   nothing pressable inside a pressable, a tab only in a tablist, a
-  tabpanel named by a tab's `controls`, `controls` naming an existing id,
+  tabpanel named by a tab's `controls`, `controls` naming an existing id
+  of the file the tree is drawn in (never one inside a component instance),
   `current` only on pressables and links. Pressable means what HTML
   calls interactive content: button, link, every input control
   (input, checkbox, radio-group, select, slider, date-picker,
   file-upload, otp-input), tree-view and video always; a
   container when `pressable`, a list or table when `selectable`, a toast
   when it has an `action`. The rules look through component instances:
-  what a component holds counts where its instance sits. A menu is not
-  pressable: its children are the area a context menu wraps, not its
-  items.
+  what a component holds counts where its instance sits. A value bound
+  to data counts as set: a bound `pressable` makes its container
+  pressable, and a tab whose `controls` is bound names some tabpanel. A
+  menu is not pressable: its children are the area a context menu wraps,
+  not its items.
+- Keys: no object writes the same key twice.
 - Files: names match items, names are unique, `format` is one the app
   reads; a screen's `device` names a preset or a spec device, and its
   `orientation` is one that device has.

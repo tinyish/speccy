@@ -7,6 +7,10 @@
     "left": {
       "type": "number",
       "sample": 3
+    },
+    "sel": {
+      "type": "text",
+      "sample": "shown"
     }
   },
   "layout": "row",
@@ -28,6 +32,33 @@
     {
       "id": "tabs",
       "use": "Tabs"
+    },
+    {
+      "id": "picker",
+      "use": "container",
+      "props": {
+        "role": "tablist"
+      },
+      "children": [
+        {
+          "id": "pickTab",
+          "use": "container",
+          "props": {
+            "pressable": true,
+            "role": "tab"
+          },
+          "bind": {
+            "controls": "sel"
+          }
+        }
+      ]
+    },
+    {
+      "id": "shown",
+      "use": "container",
+      "props": {
+        "role": "tabpanel"
+      }
     }
   ]
 }

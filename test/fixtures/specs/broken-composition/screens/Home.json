@@ -109,6 +109,62 @@
           }
         ]
       }
+    },
+    {
+      "id": "tile",
+      "use": "container",
+      "children": [
+        {
+          "id": "face",
+          "use": "container"
+        },
+        {
+          "id": "go",
+          "use": "button",
+          "props": {
+            "text": "Go"
+          }
+        }
+      ]
+    },
+    {
+      "id": "spotHere",
+      "use": "Spot",
+      "props": {
+        "current": "page"
+      }
+    },
+    {
+      "id": "spotTab",
+      "use": "Spot",
+      "props": {
+        "role": "tab"
+      }
     }
-  ]
+  ],
+  "states": {
+    "hover": {
+      "about": "The tile can be pressed, and so can its face.",
+      "children": [
+        {
+          "copy": "tile",
+          "props": {
+            "pressable": true
+          },
+          "inner": {
+            "face": {
+              "props": {
+                "pressable": true,
+                "role": "tab",
+                "controls": "nowhere"
+              }
+            }
+          }
+        },
+        {
+          "copy": "card"
+        }
+      ]
+    }
+  }
 }

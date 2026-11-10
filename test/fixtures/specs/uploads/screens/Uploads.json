@@ -167,6 +167,16 @@
               }
             }
           ]
+        },
+        {
+          "id": "folderPanelTab",
+          "use": "Tab",
+          "props": {
+            "label": "Folder"
+          },
+          "bind": {
+            "panel": "folder.name"
+          }
         }
       ]
     },
@@ -194,6 +204,13 @@
           "state": "disabled"
         }
       ]
+    },
+    {
+      "id": "inFolder",
+      "use": "container",
+      "props": {
+        "role": "tabpanel"
+      }
     },
     {
       "id": "pick",

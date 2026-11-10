@@ -19,6 +19,7 @@ defmodule Speccy.Check do
 
   @codes [
     "invalid-json": "The file can't be read as JSON",
+    "duplicate-key": "Its object has this key more than once",
     "wrong-schema": "`$schema` isn't the URL of this kind of file's schema",
     "missing-key": "A required key is missing",
     "unknown-key": "This object doesn't take this key",
@@ -79,20 +80,27 @@ defmodule Speccy.Check do
   @doc "Every code with its message, in one list."
   def codes, do: @codes
 
-  @layout ~w(layout wrap columns rows align gap lineGap padding clip)
-
-  @doc "Every problem in `spec`, sorted by file, path and code."
+  @doc "Every problem in `spec`, sorted by file, path (segment by segment, indexes as numbers) and code."
   def run(%{files: files, icons: icons}) do
     {broken, read} = Enum.split_with(files, &match?({_, {:error, _}}, &1))
+    # Before plain/1, which keeps only a doubled key's last value.
+    doubled = Enum.flat_map(read, fn {path, json} -> doubled(path, json, []) end)
     read = Map.new(read, fn {path, json} -> {path, plain(json)} end)
     schema = Map.new(read, fn {path, json} -> {path, Schema.problems(path, json)} end)
     spec = index(files, read, Map.filter(read, &(schema[elem(&1, 0)] == [])), icons)
 
     (Enum.map(broken, fn {path, {:error, why}} -> problem(:"invalid-json", path, [], why) end) ++
+       doubled ++
        Enum.concat(Map.values(schema)) ++
        files(spec) ++ IconRules.run(icons, spec.icons) ++ items(spec) ++ Composition.run(spec))
     |> Enum.uniq_by(&{&1.code, &1.file, &1.path})
-    |> Enum.sort_by(&{&1.file, &1.path, &1.code})
+    |> Enum.sort_by(&{&1.file, segments(&1.path), &1.code})
+  end
+
+  # A path's segments, indexes as numbers, so /children/2 sorts before /children/10.
+  defp segments(path) do
+    for s <- String.split(path, "/"),
+        do: if(s =~ ~r/^\d+$/, do: String.to_integer(s), else: s)
   end
 
   ## The spec's index
@@ -357,9 +365,9 @@ defmodule Speccy.Check do
     end)
   end
 
-  defp instance(env, node, p, parent, scope) do
+  defp instance(env, node, p, parent, outer) do
     target = target(env.spec, node["use"])
-    scope = repeat_scope(env, node["repeat"], scope)
+    scope = repeat_scope(env, node["repeat"], outer)
     holds = holds?(target)
 
     [
@@ -375,7 +383,7 @@ defmodule Speccy.Check do
       settings(env, node, node, target, p, parent),
       binds(env, node, target, p, scope),
       with %{"each" => each} <- node["repeat"] do
-        case path_type(env, each, scope) do
+        case path_type(env, each, outer) do
           :error ->
             problem(:"repeat-unresolved", env.file, p ++ ["repeat", "each"], each)
 
@@ -404,7 +412,7 @@ defmodule Speccy.Check do
       if(holds == false,
         do:
           for(
-            key <- @layout,
+            key <- Format.layout(),
             Map.has_key?(node, key),
             do: problem(:"layout-on-leaf", env.file, p ++ [key], key)
           )
@@ -801,6 +809,22 @@ defmodule Speccy.Check do
 
   defp inner(nodes, inner),
     do: Enum.map(nodes, &override(&1, Map.put(inner[&1["id"]] || %{}, "inner", inner)))
+
+  # Each key an object writes more than once, at that key.
+  defp doubled(file, %Jason.OrderedObject{values: values}, at) do
+    keys = Enum.map(values, &elem(&1, 0))
+
+    for(
+      k <- Enum.uniq(keys -- Enum.uniq(keys)),
+      do: problem(:"duplicate-key", file, at ++ [k], k)
+    ) ++
+      Enum.flat_map(values, fn {k, v} -> doubled(file, v, at ++ [k]) end)
+  end
+
+  defp doubled(file, list, at) when is_list(list),
+    do: list |> Enum.with_index() |> Enum.flat_map(fn {v, i} -> doubled(file, v, at ++ [i]) end)
+
+  defp doubled(_file, _value, _at), do: []
 
   defp plain(%Jason.OrderedObject{values: values}),
     do: Map.new(values, fn {k, v} -> {k, plain(v)} end)

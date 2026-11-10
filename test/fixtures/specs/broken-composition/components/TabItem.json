@@ -2,6 +2,13 @@
   "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
   "component": "TabItem",
   "about": "A tab, for a tab list to hold.",
+  "props": {
+    "panel": {
+      "type": "text",
+      "about": "The panel it shows, where the tab is used.",
+      "default": "overview"
+    }
+  },
   "children": [
     {
       "id": "tab",
@@ -9,6 +16,9 @@
       "props": {
         "pressable": true,
         "role": "tab"
+      },
+      "bind": {
+        "controls": "panel"
       }
     }
   ]

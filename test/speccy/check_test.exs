@@ -13,6 +13,7 @@ defmodule Speccy.CheckTest do
     "broken-files" => [
       {:"name-mismatch", "components/Banner.json", "/component"},
       {:"invalid-json", "components/Broken.json", ""},
+      {:"duplicate-key", "components/Echo.json", "/props/label"},
       {:"invalid-json", "components/Folder.json", ""},
       {:"duplicate-name", "components/Twin.json", "/component"},
       {:"duplicate-name", "data/Twin.json", "/data"},
@@ -43,9 +44,6 @@ defmodule Speccy.CheckTest do
       {:"unknown-use", "screens/Board.json", "/children/0/use"},
       {:"unknown-prop", "screens/Board.json", "/children/1/props/colour"},
       {:"prop-type", "screens/Board.json", "/children/1/props/text"},
-      {:"unknown-use", "screens/Board.json", "/children/10/use"},
-      {:"unknown-use", "screens/Board.json", "/children/11/use"},
-      {:"bind-unresolved", "screens/Board.json", "/children/12/bind/text"},
       {:"unknown-state", "screens/Board.json", "/children/2/state"},
       {:"bound-state-type", "screens/Board.json", "/children/3/children/0/bind/state"},
       {:"unknown-slot", "screens/Board.json", "/children/3/children/0/slots/body"},
@@ -57,6 +55,10 @@ defmodule Speccy.CheckTest do
       {:"repeat-unresolved", "screens/Board.json", "/children/7/children/0/repeat/each"},
       {:"repeat-not-list", "screens/Board.json", "/children/8/children/0/repeat/each"},
       {:"unknown-use", "screens/Board.json", "/children/9/use"},
+      {:"unknown-use", "screens/Board.json", "/children/10/use"},
+      {:"unknown-use", "screens/Board.json", "/children/11/use"},
+      {:"bind-unresolved", "screens/Board.json", "/children/12/bind/text"},
+      {:"repeat-unresolved", "screens/Board.json", "/children/13/children/0/repeat/each"},
       {:"unknown-type", "screens/Board.json", "/data/t/type"},
       {:"sample-type", "screens/Board.json", "/data/tasks/sample"},
       {:"unknown-copy", "screens/Board.json", "/states/broken/children/0/copy"},
@@ -80,11 +82,13 @@ defmodule Speccy.CheckTest do
       {:"slot-misplaced", "screens/Layout.json", "/children/5/slot"}
     ],
     # Its /children/2, a menu holding a link, is fine: a menu isn't pressable.
+    # TabItem's `panel` defaults to a panel Overview has and Home hasn't.
     "broken-composition" => [
       {:"pressable-in-pressable", "screens/Home.json", "/children/0/children/0"},
       {:"pressable-in-pressable", "screens/Home.json", "/children/1/children/0"},
       {:"pressable-in-pressable", "screens/Home.json", "/children/3/children/0"},
       {:"tab-outside-tablist", "screens/Home.json", "/children/4"},
+      {:"controls-unresolved", "screens/Home.json", "/children/5"},
       {:"tab-outside-tablist", "screens/Home.json", "/children/5"},
       {:"tabpanel-without-tab", "screens/Home.json", "/children/6"},
       {:"controls-unresolved", "screens/Home.json", "/children/7/props/controls"},
@@ -92,7 +96,20 @@ defmodule Speccy.CheckTest do
       # Frame's holder is in a pressable shell in its base, though not in its
       # `flat` state.
       {:"pressable-in-pressable", "screens/Home.json", "/children/9/slots/body/0"},
-      {:"pressable-in-pressable", "screens/Home.json", "/children/9/slots/body/1"}
+      {:"pressable-in-pressable", "screens/Home.json", "/children/9/slots/body/1"},
+      # Spot passes its props to its box: set by an instance, `current` lands
+      # on what can't be pressed, and `role` makes a tab outside a tablist.
+      {:"current-not-pressable", "screens/Home.json", "/children/11"},
+      {:"tab-outside-tablist", "screens/Home.json", "/children/12"},
+      # Its tile, fine in the base, is pressable in `hover`, and so is its
+      # face, through `inner`: faults the copy brings are reported in the
+      # state, at the copy or at the part's `inner` entry. Its copy of card
+      # adds nothing: the base reports its parts' faults.
+      {:"pressable-in-pressable", "screens/Home.json", "/states/hover/children/0"},
+      {:"pressable-in-pressable", "screens/Home.json", "/states/hover/children/0/inner/face"},
+      {:"tab-outside-tablist", "screens/Home.json", "/states/hover/children/0/inner/face"},
+      {:"controls-unresolved", "screens/Home.json",
+       "/states/hover/children/0/inner/face/props/controls"}
     ],
     # Thirty components deep: a prop passed all the way down makes the last
     # one's box pressable, and the chain sits in a pressable card. Then a
@@ -202,5 +219,25 @@ defmodule Speccy.CheckTest do
              )
 
     assert message =~ "inside Offer"
+  end
+
+  test "a `controls` default naming no id is reported where its component is used" do
+    assert %{message: message} =
+             Enum.find(
+               check("broken-composition"),
+               &(&1.code == :"controls-unresolved" and &1.path == "/children/5")
+             )
+
+    assert message =~ "overview, inside TabItem, at /props/panel/default"
+  end
+
+  test "a fault a state's copy brings names the part's base path" do
+    assert %{message: message} =
+             Enum.find(
+               check("broken-composition"),
+               &(&1.code == :"pressable-in-pressable" and &1.path == "/states/hover/children/0")
+             )
+
+    assert message =~ "inside tile, at /children/10/children/1"
   end
 end

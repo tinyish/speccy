@@ -20,7 +20,16 @@ defmodule Speccy.CLI do
   @doc "Runs the command in `argv`, prints its output and halts with its exit status."
   def main(argv) do
     {output, status} = run(argv)
-    IO.write(if(status == 2, do: :stderr, else: :stdio), output)
+    # A closed pipe (`speccy check | head`) fails the write: exit quietly, same status,
+    # with the logger off so the tty writer's crash report isn't printed either.
+    :logger.set_primary_config(:level, :none)
+
+    try do
+      IO.write(if(status == 2, do: :stderr, else: :stdio), output)
+    catch
+      _, _ -> :ok
+    end
+
     System.halt(status)
   end
 

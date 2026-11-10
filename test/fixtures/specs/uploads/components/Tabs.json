@@ -2,6 +2,13 @@
   "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
   "component": "Tabs",
   "about": "A tab list with the one panel it shows, all in one.",
+  "props": {
+    "shown": {
+      "type": "text",
+      "about": "The panel the second tab shows.",
+      "default": "p1"
+    }
+  },
   "children": [
     {
       "id": "list",
@@ -28,6 +35,17 @@
               }
             }
           ]
+        },
+        {
+          "id": "second",
+          "use": "container",
+          "props": {
+            "pressable": true,
+            "role": "tab"
+          },
+          "bind": {
+            "controls": "shown"
+          }
         }
       ]
     },

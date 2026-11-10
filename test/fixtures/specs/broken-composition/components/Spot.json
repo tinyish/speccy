@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json",
+  "component": "Spot",
+  "about": "A box that takes its current and its role from where it is used.",
+  "props": {
+    "current": {
+      "type": [
+        "none",
+        "page"
+      ],
+      "about": "Whether it is the current page."
+    },
+    "role": {
+      "type": [
+        "none",
+        "tab"
+      ],
+      "about": "What it is to assistive tech."
+    }
+  },
+  "children": [
+    {
+      "id": "box",
+      "use": "container",
+      "bind": {
+        "current": "current",
+        "role": "role"
+      }
+    }
+  ]
+}
