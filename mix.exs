@@ -67,7 +67,6 @@ defmodule Speccy.MixProject do
       {:jsv, "~> 0.27.0"},
       {:req, "~> 0.7"},
       {:file_system, "~> 1.1"},
-      {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"}
     ]
   end

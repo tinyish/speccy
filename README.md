@@ -12,6 +12,20 @@ Elixir 1.17 or later, then:
 mix setup
 ```
 
+## The editor
+
+```sh
+SPECCY_OPEN=<spec folder> mix phx.server   # then http://localhost:4000
+```
+
+The page opens the spec at or above `SPECCY_OPEN`, or at `?spec=<folder>`
+in its address, and redraws when its files change. To try it on a copy of
+the `tasks` fixture:
+
+```sh
+d=$(mktemp -d)/tasks && cp -R test/fixtures/specs/tasks "$d" && echo "$d" && SPECCY_OPEN="$d" mix phx.server
+```
+
 ## The command line
 
 `bin/speccy` runs the `speccy` command from this checkout, from any
@@ -33,6 +47,14 @@ is found.
 ```sh
 mix test        # everything, in seconds
 mix precommit   # compile with warnings as errors, unused deps, format, tests
+```
+
+End to end, the editor in Playwright's WebKit against the app served on
+port 4011 (started for the run, or one already there reused):
+
+```sh
+cd e2e && npm install && npx playwright install webkit   # once
+npm test
 ```
 
 After a change to the format or the primitives, regenerate the schemas

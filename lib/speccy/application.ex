@@ -9,7 +9,6 @@ defmodule Speccy.Application do
   def start(_type, _args) do
     children = [
       SpeccyWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:speccy, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Speccy.PubSub},
       {Registry, keys: :unique, name: Speccy.Workspace.Registry},
       {DynamicSupervisor, name: Speccy.Workspace.Supervisor},

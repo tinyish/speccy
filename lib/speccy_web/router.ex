@@ -17,7 +17,7 @@ defmodule SpeccyWeb.Router do
   scope "/", SpeccyWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", EditorLive
   end
 
   # Pages for judging the wireframes by eye.

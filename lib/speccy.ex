@@ -1,9 +1,6 @@
 defmodule Speccy do
   @moduledoc """
-  Speccy keeps the contexts that define your domain
-  and business logic.
-
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
+  speccy: one visual spec that designers and coding agents both write. The
+  core is under `Speccy.`, the editor under `SpeccyWeb.`.
   """
 end
