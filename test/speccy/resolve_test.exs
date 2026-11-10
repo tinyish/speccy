@@ -54,6 +54,21 @@ defmodule Speccy.ResolveTest do
     assert ats(one(hover, "go")) == [["children", 10, "children", 1]]
   end
 
+  test "a component instance takes its component's size unless it sets its own" do
+    tree = Resolve.frame(spec("uploads"), "screens/Uploads.json")
+
+    # UploadItem is 320 wide and hugs; `pick` sets neither.
+    assert one(tree, "pick").place == %{"width" => 320, "height" => "hug"}
+    assert hd(all(tree, "item")).place["width"] == "fill"
+  end
+
+  test "a copy's offsets replace the base's as a set" do
+    tree = Resolve.frame(spec("uploads"), "screens/Uploads.json", "empty")
+
+    assert Map.take(one(tree, "badge").place, ~w(left right top bottom centerX centerY)) ==
+             %{"left" => 16, "right" => 16, "bottom" => 16}
+  end
+
   test "a state's data replaces a sample" do
     spec = spec("uploads")
     assert one(Resolve.frame(spec, "screens/Dial.json"), "count").props["value"] == 3

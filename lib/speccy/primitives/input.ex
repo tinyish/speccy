@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Input do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1, present?: 1]
+
   def interface do
     %{
       name: "input",
@@ -49,5 +53,43 @@ defmodule Speccy.Primitives.Input do
       pressable: true,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <div class={["wf-control", @props["disabled"] == true && "wf-off"]} style={@style} {@data}>
+      <span :if={present?(@props["label"])} class="wf-label">
+        {text(@props["label"])}<span :if={@props["required"] == true} aria-hidden="true"> *</span>
+      </span>
+      <textarea
+        :if={@props["multiline"] == true}
+        class={["wf-field", @props["invalid"] == true && "wf-invalid"]}
+        aria-label={text(@props["label"])}
+        placeholder={text(@props["placeholder"])}
+        required={@props["required"] == true}
+        disabled={@props["disabled"] == true}
+        aria-invalid={@props["invalid"] == true && "true"}
+      >{text(@props["value"])}</textarea>
+      <div
+        :if={@props["multiline"] != true}
+        class={["wf-field", @props["invalid"] == true && "wf-invalid"]}
+      >
+        <input
+          type={
+            if @props["type"] in ~w(text password number date time color),
+              do: @props["type"],
+              else: "text"
+          }
+          aria-label={text(@props["label"])}
+          value={text(@props["value"])}
+          placeholder={text(@props["placeholder"])}
+          required={@props["required"] == true}
+          disabled={@props["disabled"] == true}
+          aria-invalid={@props["invalid"] == true && "true"}
+        />
+      </div>
+      <span :if={present?(@props["hint"])} class="wf-hint">{text(@props["hint"])}</span>
+    </div>
+    """
   end
 end

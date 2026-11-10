@@ -275,9 +275,9 @@ copy of a base instance (see States).
 | `width`, `height`                                | `fill`, `hug` or a number of pixels. Unset: `hug`.                                                                                                                                                                                             |
 | `minWidth`, `maxWidth`, `minHeight`, `maxHeight` | Pixels.                                                                                                                                                                                                                                        |
 | `column`, `row`, `columnSpan`, `rowSpan`         | In a grid: the track it starts at (from 1) and how many it spans. Unset: the next free cell, spanning 1.                                                                                                                                       |
-| `absolute`                                       | true: out of its container's flow (Figma's "ignore auto layout"), placed by `x`, `y` and `constraints`.                                                                                                                                        |
-| `x`, `y`                                         | With `absolute`: pixels from its container's top-left.                                                                                                                                                                                         |
-| `constraints`                                    | With `absolute`: `{ "horizontal": …, "vertical": … }`, how it follows its container's size. Horizontal: `left`, `right`, `center`, `left-right`, `scale`; vertical: `top`, `bottom`, `center`, `top-bottom`, `scale`. Unset: `left` and `top`. |
+| `absolute`                                       | true: out of its container's flow (Figma's "ignore auto layout"), placed by the offsets below.                                                                                                                                                 |
+| `left`, `right`, `top`, `bottom`                 | With `absolute`: pixels from that edge of its container. `left` and `right` together stretch it between them, and so do `top` and `bottom`. An axis with no offset is at 0 from the left, or the top.                                          |
+| `centerX`, `centerY`                             | With `absolute`: pixels from its container's middle on that axis, 0 for centred. Not beside `left` or `right` (`top` or `bottom`) on the same axis.                                                                                            |
 | layout fields                                    | Only on primitives that hold children (container, list, form, dialog, menu, popover).                                                                                                                                                          |
 | `children`                                       | Only on primitives that hold children: its instances, arranged by its layout fields.                                                                                                                                                          |
 
@@ -365,7 +365,8 @@ children. It may differ only in:
   states and variations it is in;
 - its place: where it sits among the state's instances (inside the
   state's own containers too), `width`, `height`, the min and max sizes,
-  grid placement, and `absolute` with `x`, `y` and `constraints`;
+  grid placement, and `absolute` with its offsets, which replace the
+  base's as a set;
 - its text and icons, in one of its state's variations (below).
 
 A copied container brings its children, linked. To change one of them,
@@ -508,8 +509,8 @@ Beyond the schemas, the checker reports:
 - Placement: layout fields only on what holds children; `wrap` only on a
   row or column, `columns`, `rows` and `lineGap` without `wrap` only on a
   grid; grid placement fields only on a grid's children, within its
-  tracks when they are counted; `x`, `y` and `constraints` only with
-  `absolute`; `slot` only inside a component, on a
+  tracks when they are counted; `left`, `right`, `top`, `bottom`,
+  `centerX` and `centerY` only with `absolute`; `slot` only inside a component, on a
   container, list or dialog with no children of its own; a component used inside itself, directly or not.
 - The composition rules of the catalog (`prototypes/catalog/README.md`):
   nothing pressable inside a pressable, a tab only in a tablist, a
@@ -566,6 +567,10 @@ Reserved for what comes after it: a data model's operations and a
 screen's `from` (where data comes from); a component's `events` and
 `local`, and `on` (interactions); flows; links to code. Primitives
 already list their `events`, unused until interactions.
+
+A gap, not reserved: Figma's `scale` constraint, which keeps an absolute
+instance's position and size in proportion to its container's, has no
+counterpart.
 
 ## The architect's calls
 

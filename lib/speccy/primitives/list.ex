@@ -1,6 +1,8 @@
 defmodule Speccy.Primitives.List do
   @moduledoc false
 
+  use Phoenix.Component
+
   def interface do
     %{
       name: "list",
@@ -20,5 +22,18 @@ defmodule Speccy.Primitives.List do
       pressable: {:prop, "selectable"},
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <ul
+      role={@props["selectable"] == true && "listbox"}
+      class={(@props["selectable"] == true and @props["selected"] == true) && "wf-picked"}
+      style={@style}
+      {@data}
+    >
+      {render_slot(@inner_block)}
+    </ul>
+    """
   end
 end

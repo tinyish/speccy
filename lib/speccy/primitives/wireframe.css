@@ -1,0 +1,623 @@
+/* The primitives' wireframes: boxes, lines, text and icons in one grey
+   ink. Every rule is under .wf, every class is wf-… (conventions.md#app-ui-the-phoenix-way). */
+
+/* Back to the browser's defaults, so the app's own styles never reach a
+   frame. An icon's SVG keeps its presentation attributes. */
+.wf,
+.wf :where(:not(svg, svg *)) {
+  all: revert;
+}
+
+.wf {
+  --wf-ink: #5f6368;
+  --wf-line: #a3a8ae;
+  --wf-wash: #e6e8eb;
+  --wf-paper: #fff;
+  --wf-radius: 6px;
+  position: relative;
+  background: var(--wf-paper);
+  color: var(--wf-ink);
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-align: left;
+}
+
+.wf,
+.wf :where(*) {
+  box-sizing: border-box;
+}
+
+.wf :where(p, ul, ol, li, hr, form, h1, h2, h3, h4, h5, h6, table) {
+  margin: 0;
+  padding: 0;
+}
+
+.wf :where(ul, ol) {
+  list-style: none;
+}
+
+.wf :where(button, input, select, textarea) {
+  font: inherit;
+  color: inherit;
+}
+
+.wf [hidden] {
+  display: none !important;
+}
+
+/* A screen at its device's size clips; a frame that hugs grows. */
+.wf.wf-sized {
+  overflow: clip;
+}
+
+.wf .wf-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.wf .wf-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wf .wf-muted {
+  color: var(--wf-line);
+}
+
+.wf .wf-strong {
+  font-weight: 600;
+}
+
+.wf .wf-small {
+  font-size: 12px;
+}
+
+/* An icon: its SVG, or a box with its name. */
+.wf .wf-glyph {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.wf .wf-glyph > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wf .wf-glyph.wf-missing {
+  width: auto;
+  min-width: 20px;
+  padding: 0 3px;
+  border: 1px dashed var(--wf-line);
+  border-radius: 3px;
+  font-size: 9px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Buttons. */
+.wf .wf-btn {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 4px 12px;
+  border: 1px solid var(--wf-line);
+  border-radius: var(--wf-radius);
+  background: var(--wf-paper);
+  white-space: nowrap;
+}
+
+.wf .wf-btn .wf-glyph:not(.wf-missing) {
+  width: 16px;
+  height: 16px;
+}
+
+.wf .wf-btn.wf-sm {
+  min-height: 24px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.wf .wf-btn.wf-lg {
+  min-height: 40px;
+  padding: 8px 18px;
+  font-size: 15px;
+}
+
+.wf .wf-btn.wf-square {
+  aspect-ratio: 1;
+  padding: 4px;
+}
+
+.wf .wf-group {
+  display: inline-flex;
+  gap: 2px;
+}
+
+/* A popup under what opens it. */
+.wf .wf-anchor {
+  position: relative;
+}
+
+.wf .wf-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: max(160px, 100%);
+  margin-top: 4px;
+  padding: 4px 0;
+  border: 1px solid var(--wf-line);
+  border-radius: var(--wf-radius);
+  background: var(--wf-paper);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+}
+
+.wf .wf-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.wf .wf-mark {
+  width: 12px;
+  flex: none;
+}
+
+/* Fields: a label, the box and a hint. */
+.wf .wf-control {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf .wf-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.wf .wf-hint {
+  font-size: 12px;
+  color: var(--wf-line);
+}
+
+.wf .wf-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 180px;
+  min-height: 30px;
+  padding: 4px 8px;
+  border: 1px solid var(--wf-line);
+  border-radius: var(--wf-radius);
+  background: var(--wf-paper);
+}
+
+.wf .wf-field > input,
+.wf textarea.wf-field {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  padding: 0;
+  outline: none;
+  background: none;
+}
+
+.wf textarea.wf-field {
+  min-height: 64px;
+  padding: 4px 8px;
+  border: 1px solid var(--wf-line);
+  resize: none;
+}
+
+.wf .wf-invalid {
+  border: 2px solid var(--wf-ink);
+}
+
+.wf .wf-invalid + .wf-hint,
+.wf .wf-invalid .wf-hint {
+  color: var(--wf-ink);
+  font-weight: 600;
+}
+
+.wf .wf-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  border: 1px solid var(--wf-line);
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.wf .wf-grow {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Checkboxes, switches and radios. */
+.wf .wf-choice {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.wf .wf-check,
+.wf .wf-radio,
+.wf .wf-switch {
+  appearance: none;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 1px 0 0;
+  border: 1.5px solid var(--wf-ink);
+  border-radius: 3px;
+  background: var(--wf-paper);
+}
+
+.wf .wf-radio {
+  border-radius: 50%;
+}
+
+.wf .wf-check:checked,
+.wf .wf-radio:checked {
+  background: var(--wf-ink);
+  box-shadow: inset 0 0 0 3px var(--wf-paper);
+}
+
+.wf .wf-check.wf-mixed {
+  background: linear-gradient(var(--wf-ink), var(--wf-ink)) center / 8px 2px no-repeat;
+}
+
+.wf .wf-check.wf-invalid,
+.wf .wf-switch.wf-invalid {
+  outline: 1px dashed var(--wf-ink);
+  outline-offset: 2px;
+}
+
+.wf .wf-switch {
+  width: 30px;
+  border-radius: 8px;
+  background: radial-gradient(circle at 7px 50%, var(--wf-ink) 4px, transparent 4.5px);
+}
+
+.wf .wf-switch:checked {
+  background: radial-gradient(circle at calc(100% - 7px) 50%, var(--wf-paper) 4px, var(--wf-ink) 4.5px);
+}
+
+/* Tracks: a slider's and a progress bar's. */
+.wf .wf-track {
+  position: relative;
+  min-width: 180px;
+  height: 4px;
+  margin: 7px 0;
+  border-radius: 2px;
+  background: var(--wf-wash);
+}
+
+.wf .wf-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 2px;
+  background: var(--wf-ink);
+}
+
+.wf .wf-thumb {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--wf-ink);
+  border-radius: 50%;
+  background: var(--wf-paper);
+  translate: -50% -50%;
+}
+
+/* One box per digit. */
+.wf .wf-digit {
+  width: 32px;
+  height: 38px;
+  border: 1px solid var(--wf-line);
+  border-radius: var(--wf-radius);
+  background: var(--wf-paper);
+  font-size: 16px;
+  text-align: center;
+}
+
+/* A month: seven columns of days. */
+.wf .wf-month {
+  display: grid;
+  grid-template-columns: repeat(7, 28px);
+  gap: 2px;
+  padding: 8px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.wf .wf-month > .wf-strong {
+  grid-column: 1 / -1;
+  margin-bottom: 4px;
+}
+
+.wf .wf-month > .wf-on {
+  border-radius: 50%;
+  background: var(--wf-ink);
+  color: var(--wf-paper);
+}
+
+/* Something dropped or pressed onto: a drop zone, a context menu's area. */
+.wf .wf-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 240px;
+  padding: 16px;
+  border: 1.5px dashed var(--wf-line);
+  border-radius: var(--wf-radius);
+  text-align: center;
+}
+
+.wf .wf-area {
+  min-width: 120px;
+  min-height: 48px;
+  border: 1px dashed var(--wf-line);
+  border-radius: var(--wf-radius);
+}
+
+.wf .wf-files {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf .wf-files > li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border: 1px solid var(--wf-line);
+  border-radius: var(--wf-radius);
+}
+
+/* A list with an item selected: its first. */
+.wf .wf-picked > :first-child {
+  outline: 2px solid var(--wf-ink);
+  outline-offset: 2px;
+  background: var(--wf-wash);
+}
+
+/* Something pressed as a whole: a card, a nav item, a tab. */
+.wf .wf-press {
+  border: 1px solid var(--wf-line);
+  border-radius: var(--wf-radius);
+}
+
+.wf .wf-press.wf-on {
+  border: 2px solid var(--wf-ink);
+}
+
+/* Links. */
+.wf .wf-link {
+  color: var(--wf-ink);
+  text-decoration: underline;
+}
+
+/* A tree. */
+.wf .wf-tree ul {
+  padding-left: 16px;
+}
+
+.wf .wf-tree .wf-option {
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Tables. */
+.wf .wf-table {
+  border-collapse: collapse;
+}
+
+.wf .wf-table :where(th, td) {
+  padding: 4px 12px 4px 0;
+  border-bottom: 1px solid var(--wf-wash);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.wf .wf-table th {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.wf .wf-table .wf-blank {
+  display: inline-block;
+  width: 64px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--wf-wash);
+}
+
+/* A line, across a column or down a row. */
+.wf .wf-divider {
+  align-self: stretch;
+  min-width: 1px;
+  min-height: 1px;
+  border: none;
+  background: var(--wf-line);
+}
+
+.wf .wf-divider-text {
+  display: flex;
+  min-width: 160px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  font-size: 12px;
+  color: var(--wf-line);
+}
+
+.wf .wf-divider-text::before,
+.wf .wf-divider-text::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--wf-line);
+}
+
+/* Images and video: a crossed box. */
+.wf .wf-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 64px;
+  min-height: 64px;
+  padding: 8px;
+  border: 1px solid var(--wf-line);
+  background:
+    linear-gradient(to top right, transparent calc(50% - 0.5px), var(--wf-line) 50%, transparent calc(50% + 0.5px)),
+    linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--wf-line) 50%, transparent calc(50% + 0.5px)),
+    var(--wf-wash);
+  font-size: 12px;
+  text-align: center;
+}
+
+.wf .wf-media.wf-video {
+  width: 240px;
+  aspect-ratio: 16 / 9;
+}
+
+.wf .wf-media.wf-fallback {
+  width: 64px;
+  border-radius: 50%;
+  background: var(--wf-wash);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.wf .wf-play {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* Surfaces: a toast, a dialog, a popover. */
+.wf .wf-surface {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid var(--wf-line);
+  border-radius: 8px;
+  background: var(--wf-paper);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+}
+
+.wf .wf-toast {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.wf .wf-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.wf .wf-heading > :first-child {
+  flex: 1;
+}
+
+.wf .wf-dialog {
+  min-width: 280px;
+  max-width: 440px;
+}
+
+/* An open dialog over a screen, where its placement says; in a frame that
+   hugs, it stays in the flow so the frame grows around it. */
+.wf.wf-sized .wf-dialog {
+  position: absolute;
+  z-index: 2;
+}
+
+.wf.wf-sized .wf-dialog.wf-modal {
+  box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.2), 0 2px 8px rgb(0 0 0 / 0.12);
+}
+
+.wf.wf-sized .wf-at-center {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+.wf.wf-sized .wf-at-left,
+.wf.wf-sized .wf-at-right {
+  top: 0;
+  bottom: 0;
+  border-radius: 0;
+}
+
+.wf.wf-sized .wf-at-left {
+  left: 0;
+}
+
+.wf.wf-sized .wf-at-right {
+  right: 0;
+}
+
+.wf.wf-sized .wf-at-bottom {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.wf .wf-popup.wf-surface {
+  min-width: 200px;
+  max-width: 280px;
+  padding: 12px;
+}
+
+.wf .wf-tooltip {
+  min-width: 0;
+  padding: 4px 8px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+/* A node that couldn't be drawn, and why. */
+.wf .wf-error {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border: 1.5px dashed var(--wf-ink);
+  border-radius: 4px;
+  font: 11px ui-monospace, Menlo, monospace;
+}
+
+/* Marks any part can carry, last so they win: on (selected, checked,
+   current), off (disabled). */
+.wf .wf-on {
+  background: var(--wf-wash);
+  border-color: var(--wf-ink);
+  color: var(--wf-ink);
+}
+
+.wf .wf-off {
+  opacity: 0.45;
+}

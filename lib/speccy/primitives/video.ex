@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Video do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1]
+
   def interface do
     %{
       name: "video",
@@ -17,5 +21,22 @@ defmodule Speccy.Primitives.Video do
       pressable: true,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <div
+      role="img"
+      aria-label={text(@props["src"])}
+      class="wf-media wf-video"
+      style={@style}
+      {@data}
+    >
+      <span class="wf-play" aria-hidden="true">
+        {if @props["playing"] == true, do: "❚❚", else: "▶︎"}
+      </span>
+      <span>{text(@props["src"])}</span>
+    </div>
+    """
   end
 end

@@ -171,9 +171,10 @@ defmodule Speccy.Schemas do
           ~w(copy),
           Map.merge(settings(), %{
             "copy" => ref("camel"),
-            "inner" => names("camel", object([], settings()))
+            "inner" => names("camel", placed(object([], settings())))
           })
-        ),
+        )
+        |> placed(),
       "variation" =>
         object(~w(about), %{
           "about" => ref("about"),
@@ -235,6 +236,15 @@ defmodule Speccy.Schemas do
         "children" => list(child)
       })
     )
+    |> placed()
+  end
+
+  # Centred on an axis is neither edge of it.
+  defp placed(object) do
+    Map.put(object, "dependentSchemas", %{
+      "centerX" => %{"properties" => %{"left" => false, "right" => false}},
+      "centerY" => %{"properties" => %{"top" => false, "bottom" => false}}
+    })
   end
 
   # What a linked copy, or an `inner` entry, may set: props, state and
@@ -255,13 +265,12 @@ defmodule Speccy.Schemas do
       "columnSpan" => %{"type" => "integer", "minimum" => 1},
       "rowSpan" => %{"type" => "integer", "minimum" => 1},
       "absolute" => %{"type" => "boolean"},
-      "x" => %{"type" => "number"},
-      "y" => %{"type" => "number"},
-      "constraints" =>
-        object([], %{
-          "horizontal" => %{"enum" => ~w(left right center left-right scale)},
-          "vertical" => %{"enum" => ~w(top bottom center top-bottom scale)}
-        })
+      "left" => %{"type" => "number"},
+      "right" => %{"type" => "number"},
+      "top" => %{"type" => "number"},
+      "bottom" => %{"type" => "number"},
+      "centerX" => %{"type" => "number"},
+      "centerY" => %{"type" => "number"}
     }
   end
 

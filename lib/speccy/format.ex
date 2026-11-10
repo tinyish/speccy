@@ -55,7 +55,7 @@ defmodule Speccy.Format do
   end
 
   @layout ~w(layout wrap columns rows align gap lineGap padding clip)
-  @place ~w(width height minWidth maxWidth minHeight maxHeight column row columnSpan rowSpan absolute x y constraints)
+  @place ~w(width height minWidth maxWidth minHeight maxHeight column row columnSpan rowSpan absolute left right top bottom centerX centerY)
   @instances {:list, :instance}
 
   # Each kind of object: its keys in format.md's table order, and the kind of
@@ -89,13 +89,11 @@ defmodule Speccy.Format do
          @place ++ @layout ++ ~w(children inner),
        %{
          "repeat" => :repeat,
-         "constraints" => :constraints,
          "slots" => {:map, @instances},
          "children" => @instances,
          "inner" => {:map, :instance}
        }},
     repeat: {~w(each as limit), %{}},
-    constraints: {~w(horizontal vertical), %{}},
     state:
       {~w(about data children variations),
        %{"children" => @instances, "variations" => {:map, :variation}}},

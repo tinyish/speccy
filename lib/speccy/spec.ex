@@ -209,12 +209,17 @@ defmodule Speccy.Spec do
     end)
   end
 
+  @offsets ~w(left right top bottom centerX centerY)
+
   @doc """
   A base instance with a copy's (or an `inner` entry's) settings laid
   over it, and the copy's `inner` laid over its children.
   """
   def override(base, set) do
     inner = set["inner"] || %{}
+    # A copy's offsets replace the base's as a set.
+    base =
+      if Enum.any?(@offsets, &Map.has_key?(set, &1)), do: Map.drop(base, @offsets), else: base
 
     base
     |> Map.merge(Map.drop(set, ["copy", "inner", "props"]))

@@ -8,6 +8,13 @@
       "id": "Bad Id",
       "use": "Bu ton",
       "width": "wide"
+    },
+    {
+      "id": "pinned",
+      "use": "text",
+      "absolute": true,
+      "left": 8,
+      "centerX": 0
     }
   ],
   "colour": "red"

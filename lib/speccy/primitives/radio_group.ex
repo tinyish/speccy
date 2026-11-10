@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.RadioGroup do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1, present?: 1, list: 1]
+
   def interface do
     %{
       name: "radio-group",
@@ -31,5 +35,30 @@ defmodule Speccy.Primitives.RadioGroup do
       pressable: true,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <div
+      role="radiogroup"
+      aria-label={text(@props["label"])}
+      class={["wf-control", @props["disabled"] == true && "wf-off"]}
+      style={@style}
+      {@data}
+    >
+      <span :if={present?(@props["label"])} class="wf-label">{text(@props["label"])}</span>
+      <div class={if @props["orientation"] == "horizontal", do: "wf-row", else: "wf-col"}>
+        <label :for={option <- list(@props["options"])} class="wf-choice">
+          <input
+            type="radio"
+            class="wf-radio"
+            checked={option == @props["value"]}
+            disabled={@props["disabled"] == true}
+          />
+          <span>{text(option)}</span>
+        </label>
+      </div>
+    </div>
+    """
   end
 end

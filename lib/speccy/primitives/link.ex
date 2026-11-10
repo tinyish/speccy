@@ -1,6 +1,11 @@
 defmodule Speccy.Primitives.Link do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1]
+  alias Speccy.Draw
+
   def interface do
     %{
       name: "link",
@@ -17,5 +22,19 @@ defmodule Speccy.Primitives.Link do
       pressable: true,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <a
+      class="wf-link"
+      href={Draw.href(@props["to"])}
+      title={text(@props["to"])}
+      style={@style}
+      {@data}
+    >
+      {text(@props["text"])}
+    </a>
+    """
   end
 end

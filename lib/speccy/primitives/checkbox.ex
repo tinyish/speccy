@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Checkbox do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1, present?: 1]
+
   def interface do
     %{
       name: "checkbox",
@@ -44,5 +48,29 @@ defmodule Speccy.Primitives.Checkbox do
       pressable: true,
       aria: %{"role" => "role"}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <label class={["wf-choice", @props["disabled"] == true && "wf-off"]} style={@style} {@data}>
+      <input
+        type="checkbox"
+        role={@props["role"] == "switch" && "switch"}
+        class={[
+          if(@props["role"] == "switch", do: "wf-switch", else: "wf-check"),
+          @props["indeterminate"] == true && "wf-mixed",
+          @props["invalid"] == true && "wf-invalid"
+        ]}
+        checked={@props["checked"] == true}
+        disabled={@props["disabled"] == true}
+        aria-checked={@props["indeterminate"] == true && "mixed"}
+        aria-invalid={@props["invalid"] == true && "true"}
+      />
+      <span :if={present?(@props["label"]) or present?(@props["hint"])} class="wf-control">
+        <span>{text(@props["label"])}</span>
+        <span :if={present?(@props["hint"])} class="wf-hint">{text(@props["hint"])}</span>
+      </span>
+    </label>
+    """
   end
 end

@@ -35,8 +35,13 @@ defmodule Speccy.Check.Schema do
     do: for(key <- missing, do: problem(:"missing-key", file, unit, key, key))
 
   defp leaf(%{kind: kind, ctx: %{property: key}}, unit, file)
-       when kind in [:additionalProperties, :properties],
-       do: [problem(:"unknown-key", file, unit, key, key)]
+       when kind in [:additionalProperties, :properties] do
+    # A key the object takes, but not beside another (`centerX` beside `left`).
+    case Regex.run(~r{/dependentSchemas/(\w+)$}, unit.schemaLocation, capture: :all_but_first) do
+      [beside] -> [problem(:"bad-value", file, unit, key, "#{key} beside #{beside}")]
+      nil -> [problem(:"unknown-key", file, unit, key, key)]
+    end
+  end
 
   defp leaf(%{kind: kind, message: message}, unit, file) do
     def_name = Regex.run(~r{.*/\$defs/(\w+)}, unit.schemaLocation, capture: :all_but_first)

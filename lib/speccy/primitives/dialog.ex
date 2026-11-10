@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Dialog do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1, present?: 1]
+
   def interface do
     %{
       name: "dialog",
@@ -31,5 +35,30 @@ defmodule Speccy.Primitives.Dialog do
       pressable: false,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    p = assigns.props
+    placement = if p["placement"] in ~w(left right bottom), do: p["placement"], else: "center"
+    assigns = assign(assigns, placement: placement)
+
+    ~H"""
+    <div
+      role="dialog"
+      aria-modal={@props["modal"] == true && "true"}
+      aria-label={text(@props["title"])}
+      class={["wf-surface wf-dialog", "wf-at-#{@placement}", @props["modal"] == true && "wf-modal"]}
+      hidden={@props["open"] != true}
+      style={@item}
+      {@data}
+    >
+      <div class="wf-heading">
+        <span class="wf-strong">{text(@props["title"])}</span>
+        <button type="button" aria-label="Close">×</button>
+      </div>
+      <p :if={present?(@props["text"])}>{text(@props["text"])}</p>
+      <div style={@box}>{render_slot(@inner_block)}</div>
+    </div>
+    """
   end
 end

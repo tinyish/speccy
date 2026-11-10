@@ -123,12 +123,8 @@
       "column": 2,
       "row": 1,
       "absolute": true,
-      "x": 8,
-      "y": 8,
-      "constraints": {
-        "horizontal": "right",
-        "vertical": "top"
-      }
+      "right": 8,
+      "top": 8
     },
     {
       "id": "side",
@@ -280,12 +276,9 @@
         {
           "copy": "badge",
           "absolute": true,
-          "x": 16,
-          "y": 16,
-          "constraints": {
-            "horizontal": "left-right",
-            "vertical": "bottom"
-          }
+          "left": 16,
+          "right": 16,
+          "bottom": 16
         },
         {
           "id": "nothing",
@@ -293,8 +286,9 @@
           "props": {
             "text": "Drop files here."
           },
-          "column": 1,
-          "row": 2
+          "absolute": true,
+          "centerX": 0,
+          "centerY": 0
         }
       ],
       "variations": {

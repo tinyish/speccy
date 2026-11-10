@@ -20,6 +20,16 @@ defmodule SpeccyWeb.Router do
     get "/", PageController, :home
   end
 
+  # Pages for judging the wireframes by eye.
+  if Application.compile_env(:speccy, :dev_routes) do
+    scope "/dev", SpeccyWeb do
+      pipe_through :browser
+
+      get "/primitives", DevController, :primitives
+      get "/frame", DevController, :frame
+    end
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", SpeccyWeb do
   #   pipe_through :api

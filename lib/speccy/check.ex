@@ -82,7 +82,8 @@ defmodule Speccy.Check do
       "`columns` and `rows`, and `lineGap` without `wrap`, only go on a grid",
     "grid-placement-off-grid": "Grid placement only goes on a grid's children",
     "outside-tracks": "The placement is outside the grid's tracks",
-    "position-without-absolute": "`x`, `y` and `constraints` only go with `absolute`",
+    "position-without-absolute":
+      "`left`, `right`, `top`, `bottom`, `centerX` and `centerY` only go with `absolute`",
     "slot-misplaced":
       "`slot` only goes inside a component, on a container, list or dialog with no children of its own",
     "component-cycle": "The component is used inside itself",
@@ -429,7 +430,7 @@ defmodule Speccy.Check do
       if(!node["absolute"],
         do:
           for(
-            key <- ~w(x y constraints),
+            key <- ~w(left right top bottom centerX centerY),
             Map.has_key?(set, key),
             do: problem(:"position-without-absolute", env.file, p ++ [key], key)
           )

@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Toast do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1, present?: 1]
+
   def interface do
     %{
       name: "toast",
@@ -21,5 +25,17 @@ defmodule Speccy.Primitives.Toast do
       pressable: {:prop, "action"},
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <div role="status" class="wf-surface wf-toast" style={@style} {@data}>
+      <span class="wf-grow">{text(@props["text"])}</span>
+      <button :if={present?(@props["action"])} type="button" class="wf-btn wf-sm">
+        {text(@props["action"])}
+      </button>
+      <button :if={@props["dismissible"] == true} type="button" aria-label="Dismiss">×</button>
+    </div>
+    """
   end
 end

@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.OtpInput do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1, present?: 1]
+
   def interface do
     %{
       name: "otp-input",
@@ -30,5 +34,31 @@ defmodule Speccy.Primitives.OtpInput do
       pressable: true,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    p = assigns.props
+    # Within reason: a spec's number is drawn, not trusted.
+    length = if is_number(p["length"]), do: p["length"] |> trunc() |> max(1) |> min(12), else: 6
+    value = text(p["value"])
+    assigns = assign(assigns, digits: for(i <- 0..(length - 1), do: String.at(value, i)))
+
+    ~H"""
+    <div class={["wf-control", @props["disabled"] == true && "wf-off"]} style={@style} {@data}>
+      <span :if={present?(@props["label"])} class="wf-label">{text(@props["label"])}</span>
+      <div class="wf-row" role="group" aria-label={text(@props["label"])}>
+        <input
+          :for={{digit, i} <- Enum.with_index(@digits)}
+          class="wf-digit"
+          inputmode="numeric"
+          maxlength="1"
+          autocomplete={i == 0 && "one-time-code"}
+          value={digit}
+          disabled={@props["disabled"] == true}
+        />
+      </div>
+      <span :if={present?(@props["hint"])} class="wf-hint">{text(@props["hint"])}</span>
+    </div>
+    """
   end
 end

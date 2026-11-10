@@ -43,9 +43,32 @@
     },
     "copy": {
       "additionalProperties": false,
+      "dependentSchemas": {
+        "centerX": {
+          "properties": {
+            "left": false,
+            "right": false
+          }
+        },
+        "centerY": {
+          "properties": {
+            "bottom": false,
+            "top": false
+          }
+        }
+      },
       "properties": {
         "absolute": {
           "type": "boolean"
+        },
+        "bottom": {
+          "type": "number"
+        },
+        "centerX": {
+          "type": "number"
+        },
+        "centerY": {
+          "type": "number"
         },
         "column": {
           "minimum": 1,
@@ -54,31 +77,6 @@
         "columnSpan": {
           "minimum": 1,
           "type": "integer"
-        },
-        "constraints": {
-          "additionalProperties": false,
-          "properties": {
-            "horizontal": {
-              "enum": [
-                "left",
-                "right",
-                "center",
-                "left-right",
-                "scale"
-              ]
-            },
-            "vertical": {
-              "enum": [
-                "top",
-                "bottom",
-                "center",
-                "top-bottom",
-                "scale"
-              ]
-            }
-          },
-          "required": [],
-          "type": "object"
         },
         "copy": {
           "$ref": "#/$defs/camel"
@@ -89,9 +87,32 @@
         "inner": {
           "additionalProperties": {
             "additionalProperties": false,
+            "dependentSchemas": {
+              "centerX": {
+                "properties": {
+                  "left": false,
+                  "right": false
+                }
+              },
+              "centerY": {
+                "properties": {
+                  "bottom": false,
+                  "top": false
+                }
+              }
+            },
             "properties": {
               "absolute": {
                 "type": "boolean"
+              },
+              "bottom": {
+                "type": "number"
+              },
+              "centerX": {
+                "type": "number"
+              },
+              "centerY": {
+                "type": "number"
               },
               "column": {
                 "minimum": 1,
@@ -101,33 +122,11 @@
                 "minimum": 1,
                 "type": "integer"
               },
-              "constraints": {
-                "additionalProperties": false,
-                "properties": {
-                  "horizontal": {
-                    "enum": [
-                      "left",
-                      "right",
-                      "center",
-                      "left-right",
-                      "scale"
-                    ]
-                  },
-                  "vertical": {
-                    "enum": [
-                      "top",
-                      "bottom",
-                      "center",
-                      "top-bottom",
-                      "scale"
-                    ]
-                  }
-                },
-                "required": [],
-                "type": "object"
-              },
               "height": {
                 "$ref": "#/$defs/size"
+              },
+              "left": {
+                "type": "number"
               },
               "maxHeight": {
                 "$ref": "#/$defs/px"
@@ -148,6 +147,9 @@
                 },
                 "type": "object"
               },
+              "right": {
+                "type": "number"
+              },
               "row": {
                 "minimum": 1,
                 "type": "integer"
@@ -159,17 +161,14 @@
               "state": {
                 "$ref": "#/$defs/camel"
               },
+              "top": {
+                "type": "number"
+              },
               "variation": {
                 "$ref": "#/$defs/camel"
               },
               "width": {
                 "$ref": "#/$defs/size"
-              },
-              "x": {
-                "type": "number"
-              },
-              "y": {
-                "type": "number"
               }
             },
             "required": [],
@@ -179,6 +178,9 @@
             "$ref": "#/$defs/camel"
           },
           "type": "object"
+        },
+        "left": {
+          "type": "number"
         },
         "maxHeight": {
           "$ref": "#/$defs/px"
@@ -199,6 +201,9 @@
           },
           "type": "object"
         },
+        "right": {
+          "type": "number"
+        },
         "row": {
           "minimum": 1,
           "type": "integer"
@@ -210,17 +215,14 @@
         "state": {
           "$ref": "#/$defs/camel"
         },
+        "top": {
+          "type": "number"
+        },
         "variation": {
           "$ref": "#/$defs/camel"
         },
         "width": {
           "$ref": "#/$defs/size"
-        },
-        "x": {
-          "type": "number"
-        },
-        "y": {
-          "type": "number"
         }
       },
       "required": [
@@ -284,6 +286,20 @@
     },
     "instance": {
       "additionalProperties": false,
+      "dependentSchemas": {
+        "centerX": {
+          "properties": {
+            "left": false,
+            "right": false
+          }
+        },
+        "centerY": {
+          "properties": {
+            "bottom": false,
+            "top": false
+          }
+        }
+      },
       "properties": {
         "about": {
           "$ref": "#/$defs/about"
@@ -313,6 +329,15 @@
           },
           "type": "object"
         },
+        "bottom": {
+          "type": "number"
+        },
+        "centerX": {
+          "type": "number"
+        },
+        "centerY": {
+          "type": "number"
+        },
         "children": {
           "items": {
             "$ref": "#/$defs/instance"
@@ -332,31 +357,6 @@
         },
         "columns": {
           "$ref": "#/$defs/tracks"
-        },
-        "constraints": {
-          "additionalProperties": false,
-          "properties": {
-            "horizontal": {
-              "enum": [
-                "left",
-                "right",
-                "center",
-                "left-right",
-                "scale"
-              ]
-            },
-            "vertical": {
-              "enum": [
-                "top",
-                "bottom",
-                "center",
-                "top-bottom",
-                "scale"
-              ]
-            }
-          },
-          "required": [],
-          "type": "object"
         },
         "gap": {
           "anyOf": [
@@ -385,6 +385,9 @@
             "stack",
             "grid"
           ]
+        },
+        "left": {
+          "type": "number"
         },
         "lineGap": {
           "type": "number"
@@ -431,6 +434,9 @@
           ],
           "type": "object"
         },
+        "right": {
+          "type": "number"
+        },
         "row": {
           "minimum": 1,
           "type": "integer"
@@ -460,6 +466,9 @@
         "state": {
           "$ref": "#/$defs/camel"
         },
+        "top": {
+          "type": "number"
+        },
         "use": {
           "$ref": "#/$defs/use"
         },
@@ -471,12 +480,6 @@
         },
         "wrap": {
           "type": "boolean"
-        },
-        "x": {
-          "type": "number"
-        },
-        "y": {
-          "type": "number"
         }
       },
       "required": [
@@ -512,6 +515,20 @@
     },
     "stateInstance": {
       "additionalProperties": false,
+      "dependentSchemas": {
+        "centerX": {
+          "properties": {
+            "left": false,
+            "right": false
+          }
+        },
+        "centerY": {
+          "properties": {
+            "bottom": false,
+            "top": false
+          }
+        }
+      },
       "properties": {
         "about": {
           "$ref": "#/$defs/about"
@@ -541,6 +558,15 @@
           },
           "type": "object"
         },
+        "bottom": {
+          "type": "number"
+        },
+        "centerX": {
+          "type": "number"
+        },
+        "centerY": {
+          "type": "number"
+        },
         "children": {
           "items": {
             "$ref": "#/$defs/entry"
@@ -560,31 +586,6 @@
         },
         "columns": {
           "$ref": "#/$defs/tracks"
-        },
-        "constraints": {
-          "additionalProperties": false,
-          "properties": {
-            "horizontal": {
-              "enum": [
-                "left",
-                "right",
-                "center",
-                "left-right",
-                "scale"
-              ]
-            },
-            "vertical": {
-              "enum": [
-                "top",
-                "bottom",
-                "center",
-                "top-bottom",
-                "scale"
-              ]
-            }
-          },
-          "required": [],
-          "type": "object"
         },
         "gap": {
           "anyOf": [
@@ -613,6 +614,9 @@
             "stack",
             "grid"
           ]
+        },
+        "left": {
+          "type": "number"
         },
         "lineGap": {
           "type": "number"
@@ -659,6 +663,9 @@
           ],
           "type": "object"
         },
+        "right": {
+          "type": "number"
+        },
         "row": {
           "minimum": 1,
           "type": "integer"
@@ -688,6 +695,9 @@
         "state": {
           "$ref": "#/$defs/camel"
         },
+        "top": {
+          "type": "number"
+        },
         "use": {
           "$ref": "#/$defs/use"
         },
@@ -699,12 +709,6 @@
         },
         "wrap": {
           "type": "boolean"
-        },
-        "x": {
-          "type": "number"
-        },
-        "y": {
-          "type": "number"
         }
       },
       "required": [

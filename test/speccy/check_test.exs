@@ -30,6 +30,8 @@ defmodule Speccy.CheckTest do
       {:"bad-name", "components/Bad.json", "/children/0/id"},
       {:"bad-name", "components/Bad.json", "/children/0/use"},
       {:"bad-value", "components/Bad.json", "/children/0/width"},
+      # Centred on an axis, so pinned to neither of its edges (spec-eai, 002).
+      {:"bad-value", "components/Bad.json", "/children/1/left"},
       {:"unknown-key", "components/Bad.json", "/colour"},
       {:"missing-key", "components/Bad.json", "/component"},
       {:"unknown-type", "components/Bad.json", "/props/x"},
@@ -78,7 +80,8 @@ defmodule Speccy.CheckTest do
       {:"wrap-not-flow", "screens/Layout.json", "/children/2/wrap"},
       {:"grid-placement-off-grid", "screens/Layout.json", "/children/3/children/0/column"},
       {:"grid-field-off-grid", "screens/Layout.json", "/children/3/columns"},
-      {:"position-without-absolute", "screens/Layout.json", "/children/4/x"},
+      # `x` became `left` with the offsets format change (spec-eai, 002).
+      {:"position-without-absolute", "screens/Layout.json", "/children/4/left"},
       {:"slot-misplaced", "screens/Layout.json", "/children/5/slot"}
     ],
     # Its /children/2, a menu holding a link, is fine: a menu isn't pressable.

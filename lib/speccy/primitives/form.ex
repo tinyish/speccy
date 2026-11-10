@@ -1,6 +1,8 @@
 defmodule Speccy.Primitives.Form do
   @moduledoc false
 
+  use Phoenix.Component
+
   def interface do
     %{
       name: "form",
@@ -17,5 +19,11 @@ defmodule Speccy.Primitives.Form do
       pressable: false,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <form style={@style} {@data}>{render_slot(@inner_block)}</form>
+    """
   end
 end

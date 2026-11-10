@@ -35,7 +35,6 @@ defmodule Speccy.SchemasTest do
       # Only a linked copy has copy and inner; only an instance has the rest.
       instance: [defs["instance"], defs["copy"]],
       repeat: [instance["repeat"]],
-      constraints: [instance["constraints"]],
       # Only a screen's state has data.
       state: [defs["componentState"], defs["screenState"]],
       variation: [defs["variation"]]

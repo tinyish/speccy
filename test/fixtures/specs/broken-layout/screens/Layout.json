@@ -49,7 +49,7 @@
     {
       "id": "free",
       "use": "text",
-      "x": 5
+      "left": 5
     },
     {
       "id": "slotted",

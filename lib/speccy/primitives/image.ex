@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Image do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1, present?: 1]
+
   def interface do
     %{
       name: "image",
@@ -26,5 +30,20 @@ defmodule Speccy.Primitives.Image do
       pressable: false,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <div
+      role="img"
+      aria-label={text(@props["alt"])}
+      class={["wf-media", !present?(@props["src"]) && "wf-fallback"]}
+      title={text(@props["src"])}
+      style={@style}
+      {@data}
+    >
+      {if present?(@props["src"]), do: text(@props["alt"]), else: text(@props["fallback"])}
+    </div>
+    """
   end
 end

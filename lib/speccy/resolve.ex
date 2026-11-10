@@ -228,6 +228,8 @@ defmodule Speccy.Resolve do
       bound: bound,
       unknown: unknown,
       state: state,
+      # The component's own size, unless the instance sets its own.
+      place: Map.merge(Map.take(json, ~w(width height)), :maps.with(Format.place(), n)),
       layout: Map.take(json, Format.layout()),
       children: children(inner, list, at)
     })

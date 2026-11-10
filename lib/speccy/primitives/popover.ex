@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Popover do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1, present?: 1]
+
   def interface do
     %{
       name: "popover",
@@ -26,5 +30,30 @@ defmodule Speccy.Primitives.Popover do
       pressable: false,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <div class="wf-anchor" style={@item} {@data}>
+      <button
+        type="button"
+        class={["wf-btn wf-square", @props["open"] == true && "wf-on"]}
+        aria-expanded={@props["trigger"] != "hover" && to_string(@props["open"] == true)}
+        aria-label={text(@props["title"])}
+      >
+        {if @props["trigger"] == "hover", do: "?", else: "ⓘ"}
+      </button>
+      <div
+        role={if @props["trigger"] == "hover", do: "tooltip", else: "dialog"}
+        aria-label={text(@props["title"])}
+        class={["wf-popup wf-surface", @props["trigger"] == "hover" && "wf-tooltip"]}
+        hidden={@props["open"] != true}
+      >
+        <span :if={present?(@props["title"])} class="wf-strong">{text(@props["title"])}</span>
+        <p :if={present?(@props["text"])}>{text(@props["text"])}</p>
+        <div style={@box}>{render_slot(@inner_block)}</div>
+      </div>
+    </div>
+    """
   end
 end

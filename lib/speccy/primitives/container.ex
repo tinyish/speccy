@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Container do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1, present?: 1]
+
   def interface do
     %{
       name: "container",
@@ -51,5 +55,37 @@ defmodule Speccy.Primitives.Container do
       pressable: {:prop, "pressable"},
       aria: %{"controls" => "controls", "current" => "current", "role" => "role"}
     }
+  end
+
+  def draw(assigns) do
+    p = assigns.props
+    pressable = p["pressable"] == true
+    controls = present?(p["controls"])
+
+    role =
+      cond do
+        is_binary(p["role"]) and p["role"] != "none" -> p["role"]
+        pressable and present?(p["href"]) -> "link"
+        pressable -> "button"
+        true -> nil
+      end
+
+    on = p["selected"] == true or p["current"] in ~w(page step)
+    assigns = assign(assigns, role: role, pressable: pressable, controls: controls, on: on)
+
+    ~H"""
+    <div
+      role={@role}
+      class={[@pressable && "wf-press", @on && "wf-on"]}
+      aria-current={@props["current"] in ~w(page step) && @props["current"]}
+      aria-selected={@role == "tab" && to_string(@props["selected"] == true)}
+      aria-expanded={@controls && to_string(@props["expanded"] == true)}
+      aria-controls={@controls && text(@props["controls"])}
+      style={@style}
+      {@data}
+    >
+      {render_slot(@inner_block)}
+    </div>
+    """
   end
 end

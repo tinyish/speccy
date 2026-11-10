@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Icon do
   @moduledoc false
 
+  use Phoenix.Component
+
+  alias Speccy.Draw
+
   def interface do
     %{
       name: "icon",
@@ -22,5 +26,17 @@ defmodule Speccy.Primitives.Icon do
       pressable: false,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <Draw.icon
+      ref={@props["icon"]}
+      icons={@icons}
+      label={@props["label"]}
+      style={@style}
+      data={@data}
+    />
+    """
   end
 end

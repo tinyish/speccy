@@ -1,6 +1,10 @@
 defmodule Speccy.Primitives.Text do
   @moduledoc false
 
+  use Phoenix.Component
+
+  import Speccy.Draw, only: [text: 1]
+
   def interface do
     %{
       name: "text",
@@ -17,5 +21,11 @@ defmodule Speccy.Primitives.Text do
       pressable: false,
       aria: %{}
     }
+  end
+
+  def draw(assigns) do
+    ~H"""
+    <p style={@style} {@data}>{text(@props["text"])}</p>
+    """
   end
 end
