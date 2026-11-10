@@ -1,6 +1,6 @@
 {"states":{"confirming":{"children":[{"copy":"done"},{"copy":"delete"},{"state":"open","copy":"confirm"}],"about":"Asking whether to delete the task."}},
  "children":[
   {"width":"fill","bind":{"label":"task.title","checked":"task.done"},"props":{"hint":""},"use":"checkbox","id":"done"},
-  {"props":{"text":"Delete"},"use":"button","id":"delete"},
+  {"props":{"text":"Delete","leadingIcon":"material/delete"},"use":"button","id":"delete"},
   {"children":[{"props":{"text":"Cancel"},"use":"button","id":"cancel"},{"props":{"text":"Delete"},"use":"button","id":"yes"}],"align":"right","layout":"row","props":{"title":"Delete this task?","text":"This can't be undone."},"use":"dialog","id":"confirm"}],
  "align":"left","layout":"row","props":{"task":"Task"},"about":"One task: mark it done, or delete it after confirming.","component":"TaskRow","$schema":"https://raw.githubusercontent.com/tinyish/speccy/main/priv/schemas/1/component.schema.json"}

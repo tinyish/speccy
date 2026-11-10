@@ -7,6 +7,7 @@ defmodule SpeccyWeb.DevController do
   use SpeccyWeb, :controller
 
   alias Speccy.{Format, Icons, Primitives, Resolve, Spec}
+  alias Speccy.Icons.Cache
 
   @fixtures "test/fixtures/specs"
 
@@ -78,7 +79,15 @@ defmodule SpeccyWeb.DevController do
       spec_name: Path.basename(dir),
       frames: frames,
       size: size(spec, json),
-      icons: for({p, svg} <- spec.svgs, Icons.safe(svg) == :ok, into: %{}, do: {ref(p), svg}),
+      # Library icons draw only once cached; the editor page fetches them.
+      icons:
+        for(
+          ref <- Enum.uniq(Enum.flat_map(frames, &Icons.refs(elem(&1, 1)))),
+          svg = Cache.svg(ref, spec),
+          svg != :missing,
+          into: %{},
+          do: {ref, svg}
+        ),
       page_title: path
     )
   end
@@ -102,8 +111,4 @@ defmodule SpeccyWeb.DevController do
   end
 
   defp size(_spec, _json), do: nil
-
-  # A spec icon's reference: `assets/icons/app/alert.svg` is `app/alert`.
-  # (Library icons arrive with part 003; until then they draw their placeholder.)
-  defp ref(path), do: "#{Path.basename(Path.dirname(path))}/#{Path.basename(path, ".svg")}"
 end

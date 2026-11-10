@@ -32,6 +32,24 @@ defmodule Speccy.Icons do
 
   def parse(_), do: :error
 
+  @doc "Every icon reference a resolved tree (`Speccy.Resolve.frame/4`) draws, once each."
+  def refs(tree), do: tree |> drawn() |> Enum.uniq()
+
+  defp drawn(node) do
+    own =
+      if node.kind == :primitive,
+        do:
+          for(
+            {prop, "icon"} <- Speccy.Primitives.get(node.use).interface().props,
+            ref = node.props[prop],
+            parse(ref) != :error,
+            do: ref
+          ),
+        else: []
+
+    own ++ Enum.flat_map(node.children, &drawn/1)
+  end
+
   @doc "The spec's own sets, from a loaded spec's icons: set → its icons' names."
   def sets(icons),
     do:

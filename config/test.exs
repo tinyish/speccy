@@ -20,3 +20,6 @@ config :phoenix_live_view,
 # Sort query params output of verified routes for robust url comparisons
 config :phoenix,
   sort_verified_routes_query_params: true
+
+# The icon fetch never reaches the network in tests, nor retries after a delay.
+config :speccy, Speccy.Icons.Cache, plug: {Req.Test, Speccy.Icons.Cache}, retry: false

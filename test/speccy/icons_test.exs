@@ -1,7 +1,7 @@
 defmodule Speccy.IconsTest do
   use ExUnit.Case, async: true
 
-  alias Speccy.{Format, Icons, Primitives}
+  alias Speccy.{Format, Icons, Primitives, Resolve, Spec}
 
   @sets %{"app" => ["logo"]}
 
@@ -24,6 +24,15 @@ defmodule Speccy.IconsTest do
     assert Icons.resolve("app/nope", @sets) == {:error, :"unknown-icon"}
     assert Icons.resolve("app/logo:filled", @sets) == {:error, :"unknown-icon-style"}
     assert Icons.resolve("brand/logo", @sets) == {:error, :"unknown-icon-set"}
+  end
+
+  test "a resolved tree's icon references, once each, in the order they draw" do
+    spec = Spec.new(Format.load("test/fixtures/specs/tasks"))
+
+    assert Icons.refs(Resolve.frame(spec, "screens/TaskScreen.json", "problem")) ==
+             ["material/add", "app/alert", "material/delete"]
+
+    assert Icons.refs(Resolve.frame(spec, "components/EmptyState.json")) == []
   end
 
   test "the spec's sets come from its SVGs" do

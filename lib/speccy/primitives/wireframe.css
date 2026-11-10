@@ -89,6 +89,11 @@
   height: 100%;
 }
 
+/* A library's SVG sets no fill; a spec's may, as fill="none" on a stroked one. */
+.wf .wf-glyph > svg:not([fill]) {
+  fill: currentColor;
+}
+
 .wf .wf-glyph.wf-missing {
   width: auto;
   min-width: 20px;

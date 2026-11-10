@@ -24,7 +24,8 @@
       "id": "delete",
       "use": "button",
       "props": {
-        "text": "Delete"
+        "text": "Delete",
+        "leadingIcon": "material/delete"
       }
     },
     {
