@@ -45,10 +45,9 @@ is built:
 - **The workspace writes nothing.** Edits, undo and conflicts are
   milestone 3.
 - **The endpoint keeps other pages out.** LiveView checks origin in every
-  environment, and in the window the endpoint is a `Desktop.Endpoint`,
-  whose `Desktop.Auth` asks for the per-launch key the window's URL
-  carries (part 007). `core.md` doesn't say how the local server is
-  guarded.
+  environment, and with the window on, `Desktop.Auth` asks for the
+  per-launch key the window's URL carries (part 007). `core.md` doesn't
+  say how the local server is guarded.
 
 ## Design
 
@@ -87,8 +86,8 @@ in the background and redraws as each arrives.
 
 ## Parts
 
-Each part is built and reviewed on its own, in order. 000 to 002 have a
-file; the rest are specified here.
+Each part is built and reviewed on its own, in order. 000 to 002 and
+007 have a file; the rest are specified here.
 
 - [000-spec](000-spec.md): `Speccy.Spec`, and the check moved onto it.
   No behaviour changes.
@@ -221,11 +220,11 @@ Starts only after the prototype spec-6u4 has run, and takes its findings.
 The app in elixir-desktop's host-first layout, as `core.md` § Packaging
 says: the window on the editor page, a menu with Open (a folder picker)
 and recent specs kept in `~/.speccy/`, and `speccy open [<spec>]` handed
-to the host. The endpoint is a `Desktop.Endpoint` and LiveView checks
-origin, dev's `check_origin: false` included, so no other page on the
-machine can reach the editor and its files. Its program design is
-written when the prototype has run, as a part file added to this spec,
-and approved before it is built.
+to the host. `Desktop.Auth` guards the page with the window's per-launch
+key and LiveView checks origin, dev's `check_origin: false` included, so
+no other page on the machine can reach the editor and its files. Its
+program design is [007-window](007-window.md), approved before it is
+built.
 
 ## Out of scope
 
