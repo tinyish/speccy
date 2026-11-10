@@ -202,6 +202,16 @@ workspace -> editor : spec changed · problems
 editor -> canvas : the frames' diff
 ```
 
+The spike's LiveView and hook also run in desktop_webview's WKWebView
+(`prototypes/desktop-canvas`): driven by DOM events inside that view, a
+commit's round trip stays under 10 ms. A trackpad pinch may reach the
+page as WebKit's gesture events rather than the ctrl+wheel Chromium
+sends, so the hook should zoom on both. The app's menus are a
+`Desktop.Menu`, and File > Open… picks a spec folder with
+`DesktopWebview.Dialog.choose_directory`. The host gives menu items no
+key equivalents, so the page catches shortcuts such as ⌘O
+(`decisions.md#shortcuts-in-page`).
+
 The same app also runs as a plain local web server in development, so
 tests and agents drive the editor in a browser (Playwright, WebKit).
 
@@ -300,11 +310,12 @@ project: the icon cache and recent specs.
 
 ## Prototype first
 
-1. **The canvas in elixir-desktop's own window.** Run the spike's canvas
-   hook inside elixir-desktop's WKWebView host instead of Playwright's: pan,
-   zoom, drag and typing in place, and the native menu and folder
-   picker. If the view drops input or lags, the design keeps the same
-   split but the hook works around the view.
+1. **Real input in elixir-desktop's own window.** Try by hand, in the
+   `prototypes/desktop-canvas` window, the checks its README lists: pan,
+   pinch, a two-finger swipe, drag, typing in place (accents and IME
+   included), the menu and the folder picker. If the view drops input or
+   lags, the design keeps the same split but the hook works around the
+   view.
 
 ## The architect's calls
 

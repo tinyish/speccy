@@ -367,3 +367,12 @@ Considered: also resolving every instance in each of its component's
 states; keeping the separate walk with a cache. In:
 `spec/mvp-2-editor-draws/`, and `architecture/format.md` when
 milestone 2 lands.
+
+## shortcuts-in-page
+
+2026-11-10. The editor's keyboard shortcuts (⌘O and the like) are caught
+by its page, which calls the same action as the menu item. Why:
+desktop_webview's host gives menu items no key equivalents; patching it
+would show shortcuts in the menu but means carrying a fork of a host we
+already build from source. Considered: adding a key attribute upstream.
+In: `architecture/core.md`.

@@ -83,6 +83,12 @@ A `speccy` command parses its arguments, calls the core once and prints;
 anything it computes that the editor could also need belongs in the
 core.
 
+## spike-evidence
+
+A spike's README and its `core.md` edit say, for each finding, whether
+it was observed (by a self-test, by hand, or in the source) or inferred;
+`core.md` records only what was observed.
+
 # Implementation
 
 ## json-through-format
