@@ -71,7 +71,9 @@ holds a spec is dropped when read. It touches a file, so it lives in
   editor.
 - The endpoint refuses a request whose `Host` isn't `localhost` or
   `127.0.0.1`, in every environment, so a page reached through DNS
-  rebinding can't read the editor back (Alberto, 2026-11-10).
+  rebinding can't read the editor back (Alberto, 2026-11-10). Phoenix
+  routes sockets before any plug, so LiveView's socket is guarded by
+  the origin check alone, which refuses a rebinding page's origin.
 
 ### Pinch
 
