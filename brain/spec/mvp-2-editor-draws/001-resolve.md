@@ -137,7 +137,9 @@ Reporting:
   `role` reaching a primitive through a component's prop) each have a
   fixture and pass.
 - **Cost:** every component of the `deep-nesting` fixture gains two
-  states that copy its children, and its test passes as fast as before.
+  states that copy its children, and its test's time grows with the
+  frames drawn, not multiplied by states (Alberto, 2026-11-10: about
+  25 ms against 9 ms before, three frames per component, accepted).
   The fixture stays six levels deep: a tree's size is what is drawn,
   and four wide and ten deep is a million nodes on any canvas. What this
   part removes is the multiplying by states.
