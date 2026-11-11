@@ -98,9 +98,9 @@ The MVP proves:
 - **The spec lives with the code:** plain text files in the project's
   repository, which an agent reads and writes like any other code. The
   editor saves every edit to them as it is made and shows changes made
-  outside it without a reload. When a file changes on disk while the
-  user has unsaved edits to it, the editor asks before saving over it, as
-  any code editor does. A
+  outside it without a reload. The editor never saves over a file that
+  changed on disk: an edit that meets one is dropped, and the editor
+  says so. A
   check reports anything that breaks the format or the composition
   rules.
 - **A command line for agents:** installed with the app and run without
@@ -122,8 +122,7 @@ The MVP proves:
   check passing; the editor shows both without a reload.
 - The check reports no errors on the finished spec.
 - No edit is lost silently: every edit made in the editor is there after
-  a reload, and nothing an agent wrote is overwritten without the user
-  choosing to.
+  a reload, and nothing an agent wrote is overwritten.
 
 ## Milestones
 
@@ -158,6 +157,10 @@ Status:
 
 Inserting, arranging and laying out instances and editing their copy, on
 the canvas and in the side panel, saved as it is made, with undo.
+Several are selected, moved, duplicated, copied and pasted together,
+with the gestures and keys a designer knows from Figma, and a
+right-click offers what fits what was clicked. Icons are picked from the
+dropdown, and the command line searches them the same way.
 
 Done when Alberto builds a screen from nothing in the editor and the
 check passes it.
@@ -172,7 +175,18 @@ using it on screens.
 Done when a tabs component built in the editor is used on two screens,
 and a change to it shows on both.
 
-### 5. States
+### 5. Data and bindings
+
+Status:
+
+Editing what a screen shows in the editor: its data and sample values,
+data models, binding an instance's prop to a piece of data, and
+repeating a list once per item.
+
+Done when Alberto gives a screen a list of sample items in the editor,
+binds a repeated row to it, and the canvas draws one row per item.
+
+### 6. States
 
 Status:
 
@@ -183,7 +197,17 @@ Done when Alberto adds an empty and an error state to a screen in the
 editor, and an agent asked what each changes answers from the files
 alone.
 
-### 6. speccy in speccy
+### 7. The look
+
+Status:
+
+How the app and the canvas look, revisited as a whole once every panel
+and gesture has landed.
+
+Done when Alberto has gone through the editor and its wireframes and
+says they look right.
+
+### 8. speccy in speccy
 
 Status:
 

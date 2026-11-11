@@ -341,14 +341,19 @@ would be a second way to write a format that is still changing. In:
 
 ## two-writers-like-files
 
-2026-11-09. When an agent changes a file the editor has open, the editor
-behaves like any code editor: with no unsaved edits it reloads the file;
-with unsaved edits it asks before saving, overwrite or take the file.
-Nothing merges. Why: the spec is files in a project, and people already
-know how editors handle files changed on disk; a merge engine (penpot's
-rebase, or Ink & Switch's Automerge) would be a feature to build for a
-case autosave makes rare. Considered and dropped: merging change records
-with Automerge later. In: `architecture/format.md`, `prd/mvp.md`.
+2026-11-09, amended 2026-11-10. The spec is files in a project, and two
+writers share them with no merge engine. An edit is written the moment
+its gesture ends, so the editor holds no unsaved edits; when a file
+changed on disk since the app read it, the app's edit to it is dropped,
+the app shows the file as it is now and says the edit wasn't applied.
+Nothing asks, nothing merges, and nothing an agent wrote is overwritten.
+Why: with every edit saved at once, a conflict is a gesture that landed
+within moments of an agent's write, and redoing one gesture costs less
+than a dialog whose "overwrite" discards the agent's work. Considered:
+asking, as a code editor does, overwrite or take the file (the first
+ruling); merging change records with Automerge or a rebase like
+penpot's. In: `prd/mvp.md`, `spec/mvp-3-building-screens/`, and
+`architecture/format.md` when milestone 3 lands.
 
 ## composition-on-drawn-frames
 

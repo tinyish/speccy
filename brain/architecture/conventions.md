@@ -85,6 +85,12 @@ A `speccy` command parses its arguments, calls the core and prints;
 anything it computes that the editor could also need belongs in the
 core.
 
+## figma-shortcuts
+
+A gesture or a key that Figma has does in speccy what it does in Figma,
+with Figma's keys. `shortcuts.md` lists them and which speccy has; a
+feature that lands takes its row's keys in the same change.
+
 ## spike-evidence
 
 A spike's README and its `core.md` edit say, for each finding, whether
