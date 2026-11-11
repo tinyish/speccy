@@ -81,7 +81,7 @@ and daisyUI. Wireframes use only `wireframe.css`'s `wf-` classes, under
 
 ## cli-is-thin
 
-A `speccy` command parses its arguments, calls the core once and prints;
+A `speccy` command parses its arguments, calls the core and prints;
 anything it computes that the editor could also need belongs in the
 core.
 
@@ -90,6 +90,18 @@ core.
 A spike's README and its `core.md` edit say, for each finding, whether
 it was observed (by a self-test, by hand, or in the source) or inferred;
 `core.md` records only what was observed.
+
+## supervised-blast-radius
+
+A process per item under a shared supervisor, such as a workspace, is
+`:temporary`, and whoever uses it monitors it: one crashing in a loop
+never restarts its siblings.
+
+## workspace-subscribe-first
+
+A page that shows a workspace subscribes to `Workspace.topic/1` before
+it calls `get/1`, monitors the workspace, and opens it again on that
+monitor's `:DOWN`.
 
 # Implementation
 
@@ -134,6 +146,23 @@ tables, so the key-order, round-trip and check tests see them all.
 
 The dependencies are the ones `core.md` names, plus Phoenix's generator's
 own. Adding another is the architect's call, recorded in `core.md`.
+
+## props-through-draw-helpers
+
+A primitive's `draw/1` reads each prop through `Speccy.Draw`'s helpers
+or compares it, and never puts a raw prop value into an attribute: a
+value of the wrong type must not make drawing raise.
+
+## cli-output-is-release-output
+
+What `bin/speccy` prints or writes matches what the release would:
+dev-only compile settings, such as HEEx debug annotations, stay out of
+anything the CLI draws, since the agent eval runs the checkout.
+
+## e2e-owns-its-server
+
+The e2e suite never reuses a server it didn't start, and removes the
+temp copies it makes.
 
 ## precommit-passes
 

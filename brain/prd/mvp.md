@@ -141,7 +141,7 @@ card.
 
 ### 2. The editor draws the spec
 
-Status:
+Status: built
 
 The editor opens a project's spec and draws its screens and components on
 the canvas from the primitives' wireframes, the base and each state side

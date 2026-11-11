@@ -1,6 +1,6 @@
 # MVP 2: the editor draws the spec
 
-Status: approved <!-- draft, approved (by Alberto) or built (when it lands) -->
+Status: built <!-- draft, approved (by Alberto) or built (when it lands) -->
 
 The editor opens a spec, draws each screen and component on the canvas,
 its base and each state side by side, and redraws when the files change.
